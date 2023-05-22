@@ -1,9 +1,4 @@
-<?php 
-  session_start(); 
- 
-  //$data = $this->connect()->prepare('SELECT resumeID FROM resume WHERE resumetitle = ?;');
-?>
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,19 +28,9 @@
     </header>
     <!-- Resume Panel -->
     <section class="sidebar">
-      <h4>Resume Builder</h4>
+      <h5>Resume Builder</h5>
       <button class="New" data-window-target="#window">New Resume</button>
-      <button data-window-target="#window2">Delete Resume</button>
-      <?php
-        $pdo =  new PDO("mysql:host=localhost;dbname=curriculumdb;charset=utf8mb4", "root", "");
-        $sql = "SELECT resumetitle FROM resume";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-        while($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {
-          echo "<a>".$row["resumetitle"]."</a>";
-        }
-        $pdo = null;     
-      ?>     
+      <button data-window-target="#window2">Delete Resume</button> 
       <ul>
         <li class="on"><i class='bx bxs-file'></i>Resume Builder</li>
         <li><a><i class='bx bxs-crown'></i>Premium</a></li>

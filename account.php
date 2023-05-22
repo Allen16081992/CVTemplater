@@ -1,7 +1,4 @@
-<?php 
-  session_start();
-?>
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -139,38 +136,21 @@
         </div>
       </div>
 
-      <!--<div class="window" id="window">
-        <div class="window-title">
-          <div class="title">We hate to see you leave...</div>
-          <button data-window-close class="close-button">&#215;</button>
-        </div>
-        <form class="window-body" name="login-form" action="config/logout.config.php" method="post">
-          <span class="error">Warning: These changes cannot be undone!<br>Any information will be removed from our servers</span>
-          <span class="error-uid"></span>
-          <span class="error-pwd"></span>
-          <label for="cv-name">Do you really want to delete your account?</label>
-          <input type="text" name="cv-name" placeholder="Confirm your password for the last time." required>
-          <div class="window-title">
-            <button type="submit" class="Del" type="submit" name="delete">Delete Account</button>
-          </div>
-        </form>
-      </div>-->
-
       <div class="window" id="window">
         <div class="window-title">
           <div class="title">We hate to see you leave...</div>
           <button data-window-close class="close-button">&#215;</button>
         </div>
-        <form class="window-body" name="login-form" action="config/destroy.config.php" method="post">
+        <form class="window-body" name="login-form" action="config/Void.config.php" method="post">
           <p class="error-message">Warning: These changes cannot be undone!<br> Any information will be removed from our servers</p>
-          <span class="error-uid"></span>
           <span class="error-pwd"></span>
           <label>Do you really want to delete your account?</label>
           <label for="username"></label>
-          <input type="text" name="username" placeholder="Enter your username or email" id="user" autocomplete="off">
+          <input type="hidden" name="username" value="<?=$_SESSION['user_name']; ?>">
           <label for="pwd"></label>
           <input type="password" name="pwd" id="pass" placeholder="Confirm your password for the last time">
-          <button type="submit" class="Del" type="submit" name="delete">Delete Account</button>
+          <input type="hidden" name="user_id" value="<?=$_SESSION['user_id']; ?>" readonly>
+          <button type="submit" class="Del" name="delete">Delete Account</button>
         </form>
       </div>
       <div id="overlay"></div>

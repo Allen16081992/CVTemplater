@@ -19,7 +19,7 @@
         $phone = $_POST['phone'];
 
         // Initialise signup class
-        include "db.config.php";
+        include "idb.config.php";
         include "Classes/signup.class.config.php";
         include "Controller/signup.control.config.php";
 

@@ -8,7 +8,7 @@
             // If this fails, kick back to homepage.
             if(!$stmt->execute(array($uid, $passw))) {
                 $stmt = null;
-                header('location: ../index.html?error=failed');
+                header('location: ../index.html?error=checkupfailed');
                 exit();
             }
 
@@ -31,7 +31,7 @@
             // If there was no match from the database, do this.
             if($passHash == false) {
                 $stmt = null;
-                header('location: ../index.html?error=NoMatch');
+                header('location: ../index.html?error=hashmismatch');
                 exit();
             }
             elseif($passHash == true) {
@@ -40,13 +40,13 @@
                 // If this fails, stay on the homepage.
                 if(!$stmt->execute(array($uid, $uid, $passw))) {
                     $stmt = null;
-                    header('location: ../index.html?error=failed');
+                    header('location: ../index.html?error=selectfailed');
                     exit();
                 }
                 // If we received nothing, stay on the homepage.
                 if($stmt->rowCount() == 0) {
                     $stmt = null;
-                    header('location: ../index.html?error=failed');
+                    header('location: ../index.html?error=getfailed');
                     exit();                   
                 }
 

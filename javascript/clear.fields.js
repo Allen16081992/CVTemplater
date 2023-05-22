@@ -1,3 +1,4 @@
+"use strict";
 // Build-in form function to clear fields
 function ClearAccFields() {
     document.getElementById("1").value = "";

@@ -1,3 +1,4 @@
+"use strict";
 // Mobile Menu Icon
 let menuIcon = document.querySelector('#menu-icon');
 let navBar = document.querySelector('nav');

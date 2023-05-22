@@ -7,7 +7,7 @@
         $passw = $_POST['pwd']; 
 
         // Initialise login class
-        include "db.config.php";
+        include "idb.config.php";
         include "Classes/login.class.config.php";
         include "Controller/login.control.config.php";
 

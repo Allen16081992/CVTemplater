@@ -2,9 +2,6 @@
     margin:0;
     padding:0;
     text-decoration: none;
-    /*border:none;
-    outline:none;
-    scroll-behavior:smooth;*/
 }
 :root {
     --bg-color:rgba(0, 0, 0, 0.9);

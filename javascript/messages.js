@@ -1,3 +1,4 @@
+"use strict";
 // Error message for submitting no values.
 document.forms['login-form'].onsubmit = function(event) {
     if(this.username.value.trim() == ""){
