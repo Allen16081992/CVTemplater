@@ -144,12 +144,10 @@
         <form class="window-body" name="login-form" action="config/Void.config.php" method="post">
           <p class="error-message">Warning: These changes cannot be undone!<br> Any information will be removed from our servers</p>
           <span class="error-pwd"></span>
-          <label>Do you really want to delete your account?</label>
-          <label for="username"></label>
-          <input type="hidden" name="username" value="<?=$_SESSION['user_name']; ?>">
+          <label>Do you really want to delete your account?</label>   
+          <input type="hidden" name="user_id" value="<?=$_SESSION['user_id']; ?>">     
           <label for="pwd"></label>
           <input type="password" name="pwd" id="pass" placeholder="Confirm your password for the last time">
-          <input type="hidden" name="user_id" value="<?=$_SESSION['user_id']; ?>" readonly>
           <button type="submit" class="Del" name="delete">Delete Account</button>
         </form>
       </div>
