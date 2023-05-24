@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/templater.css">
     <!-- Javascript -->
     <script defer src="javascript/popup.window.js"></script>
+    <script defer src="javascript/messages.js"></script>
   </head>
   <body>
     <!-- Upper Navigation Panel -->
@@ -58,12 +59,13 @@
       <!-- Create New Resume Window -->
       <div class="window" id="window">
         <div class="window-title">
-          <div class="title">Your new resume</div>
+          <div class="title">Your New Resume</div>
           <button data-window-close class="close-button">&#215;</button>
         </div>
-        <form class="window-body" action="config/login.config.php" method="post">
-          <label for="cv-name">Let's give it a name</label>
-          <input type="text" name="cv-name" placeholder="Name your new resume...">
+        <form class="window-body" name="popup2" action="" method="post">
+          <p class="error-res"></p>
+          <label for="cvname">Let's give it a name</label>
+          <input type="text" name="cvname" placeholder="Name your new resume...">
           <button type="submit" name="creResume">Save Resume</button>
         </form>
       </div>
@@ -74,13 +76,12 @@
           <div class="title">Do you really want to delete one?</div>
           <button data-window-delclose class="close-button">&#215;</button>
         </div>
-        <form class="window-body" action="config/uniCRUD.config.php" method="post">
-          <label for="cv-name">Select a resume to remove</label>
-          <select name="cv-name">
-            <option>...</option>
+        <form class="window-body" name="popup3" action="" method="post">
+          <p class="error-select"></p>
+          <label for="selectCv">Select a resume to remove</label>
+          <select name="selectCv">
+            <option value="">(None selected)</option>
             <option>....</option>
-            <option>.....</option>
-            <option>......</option>
             <?php foreach($data as $option) { ?>
               <option><?php echo $option; ?></option>
             <?php } ?>

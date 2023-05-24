@@ -9,6 +9,13 @@
     --second-bg-color:#323946;
     --text-color:azure;
     --main-color:#0ef;
+
+    /* Window Error Messages style */  
+    --error-bg:rgba(255, 232, 232); --error-color: crimson;
+    --error-border:1px solid var(--error-color); 
+    --error-disp:none; --error-radius:5px; 
+    --error-font-w:bold; --error-padding: 5px 25px;
+    --error-max-w:100%; --error-marg-b:10px; --error-marg-t:-5px;
 }
 
 body {
@@ -16,7 +23,7 @@ body {
     background-color:#00221F; /* to blend-in with background image */
 }
 
-/* Homepage - Login Area */
+/* Upper Navigation Panel */
 header {
     position: absolute;
     top:0;
@@ -51,11 +58,14 @@ ul li.on { cursor:default; margin-left:20px; }
     opacity:0;
 }
 
+/* Main Content */
 .container {
     max-width: 76ch;
     margin: auto;
     padding: 0 .5rem;
 }
+
+/* (Mobile) Resume Side Panel */
 .m-sidebar {
     display:none;
     position:relative;
@@ -66,6 +76,7 @@ ul li.on { cursor:default; margin-left:20px; }
 }
 .m-sidebar ul { list-style-type: none; }
 
+/* Resume Side Panel */
 .sidebar {
     position: fixed;
     top:6%;
@@ -151,25 +162,18 @@ ul li.on { cursor:default; margin-left:20px; }
 }
 .window-body { padding:10px; }
 .error-message {
-    background: rgba(255, 232, 232);
-    border: 1px solid crimson; 
-    border-radius: 5px; color: crimson;
-    font-weight: bold; padding: 5px 25px;
-    max-width:100%; margin-bottom: 15px; margin-top:-5px;
+    background: var(--error-bg); 
+    border: var(--error-border); 
+    border-radius: var(--error-radius); color: var(--error-color);
+    font-weight: var(--error-font-w); padding: var(--error-padding);
+    max-width: var(--error-max-w); margin-bottom: var(--error-marg-b); margin-top:var(--error-marg-t);
 }
-.error-uid {
-    background: rgba(255, 232, 232);
-    border: 1px solid crimson; display:none;
-    border-radius: 5px; color: crimson;
-    font-weight: bold; padding: 5px 25px;
-    max-width:100%; margin-bottom: -5px; margin-top:-5px;
-}
-.error-pwd {
-    background: rgba(255, 232, 232);
-    border: 1px solid crimson; display:none;
-    border-radius: 5px; color: crimson;
-    font-weight: bold; padding: 5px 25px;
-    max-width:100%; margin-bottom: -5px; margin-top:-5px;
+.error-uid, .error-pwd, .error-res, .error-select {
+    background: var(--error-bg);  
+    border: var(--error-border); display:var(--error-disp);
+    border-radius: var(--error-radius); color: var(--error-color);
+    font-weight: var(--error-font-w); padding: var(--error-padding);  
+    max-width: var(--error-max-w); margin-bottom: var(--error-marg-b); margin-top: var(--error-marg-t);
 }
 
 /* Registration Area */

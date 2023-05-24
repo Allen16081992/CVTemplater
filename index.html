@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="css/templater.css">
     <!-- Javascript -->
     <script defer src="javascript/popup.window.js"></script>
+    <script defer src="javascript/messages.js"></script>
   </head>
   <body>
+    <!-- Upper Navigation Panel -->
     <header>
       <a href="#" class="logo">.</a>
       <i class='bx bx-menu' id="menu-icon"></i>
@@ -21,7 +23,11 @@
         <a data-window-target="#window">Login</a>
       </nav>
     </header>
+
+    <!-- Main Content -->
     <main class="container">
+
+      <!-- Sign In Window -->
       <button data-window-target="#window">Let's get started!</button>
       <div class="window" id="window">
         <div class="window-title">
@@ -29,7 +35,9 @@
           <button class="close-button alt" onclick="location.href='signup.html';">Signup</button>
           <button data-window-close class="close-button">&#215;</button>
         </div>
-        <form class="window-body" action="config/login.config.php" method="post">
+        <form class="window-body" name="popup" action="config/login.config.php" method="post">
+          <p class="error-uid"></p>
+          <p class="error-pwd"></p>
           <label for="username">Username</label>
           <input type="text" name="username" placeholder="Username" id="user" autocomplete="off">
           <label for="pwd">Password</label>
@@ -39,6 +47,8 @@
           </span>
         </form>
       </div>
+
+      <!-- When any Window opens, darken the background -->
       <div id="overlay"></div>
     </main>
   </body>
