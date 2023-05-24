@@ -14,6 +14,7 @@
     <script defer src="javascript/popup.window.js"></script>
   </head>
   <body>
+    <!-- Upper Navigation Panel -->
     <header>
       <a href="#" class="logo">.</a>
       <i class='bx bx-menu' id="menu-icon"></i>
@@ -26,7 +27,8 @@
         <a href="config/logout.config.php">Logout</a>
       </nav>
     </header>
-    <!-- Resume Panel -->
+
+    <!-- Resume Side Panel -->
     <section class="sidebar">
       <h5>Resume Builder</h5>
       <button class="New" data-window-target="#window">New Resume</button>
@@ -38,7 +40,8 @@
         <li><a href="account.php"><i class='bx bxs-cog'></i>Account Settings</a></li>
       </ul>
     </section>
-    <!-- Mobile Resume Panel -->
+
+    <!-- (Mobile) Resume Side Panel -->
     <section class="m-sidebar">
       <ul>
         <li><a data-window-target="#window"><i class='bx bx-plus-circle bx-md'></i></a></li>
@@ -48,8 +51,11 @@
         <li><a><i class='bx bxs-cog bx-md'></i></a></li>
       </ul>
     </section>
+
     <!-- Main Content -->
     <main class="container">
+
+      <!-- Create New Resume Window -->
       <div class="window" id="window">
         <div class="window-title">
           <div class="title">Your new resume</div>
@@ -62,6 +68,7 @@
         </form>
       </div>
 
+      <!-- Delete a Resume Window -->
       <div class="window" id="window2">
         <div class="window-title">
           <div class="title">Do you really want to delete one?</div>
@@ -81,7 +88,8 @@
           <button class="Del" type="submit" name="delResume">Delete</button>
         </form>
       </div>
-      
+
+      <!-- When any Window opens, darken the background -->
       <div id="overlay"></div>
     </main>
   </body>

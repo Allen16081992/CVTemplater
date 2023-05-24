@@ -16,6 +16,7 @@
     <script defer src="javascript/messages.js"></script>
   </head>
   <body>
+    <!-- Upper Navigation Panel -->
     <header>
       <a href="#" class="logo">.</a>
       <i class='bx bx-menu' id="menu-icon"></i>
@@ -28,7 +29,8 @@
         <a href="config/logout.config.php">Logout</a>
       </nav>
     </header>
-    <!-- Resume Panel -->
+
+    <!-- Resume Side Panel -->
     <section class="sidebar">
       <h5>Account Settings</h5>
       <ul>
@@ -39,7 +41,8 @@
       </ul>
       <button class="Del" data-window-target="#window">Delete Account</button>
     </section>
-    <!-- Mobile Resume Panel -->
+
+    <!-- (Mobile) Resume Side Panel -->
     <section class="m-sidebar">
       <ul>
         <li><a href="client.php"><i class='bx bxs-file bx-md'></i></a></li>
@@ -48,9 +51,14 @@
         <li><a data-window-target="#window"><i class='bx bx-x-circle bx-md'></i></a></li>
       </ul>
     </section>
+
     <!-- Main Content -->
     <main class="container">
+
+      <!-- Account Settings -->
       <div class="collapse">
+
+        <!-- Account Info Fields -->
         <input class="check" type="checkbox" id="collapse-head1">
         <label for="collapse-head1">Account Info</label>       
         <div class="collapse-text" id="field1">
@@ -79,6 +87,7 @@
           <button class="alt" onclick="ClearAccFields();">Clear</button>
         </div>
 
+        <!-- Address Info Fields -->
         <input class="check" type="checkbox" id="collapse-head2">
         <label for="collapse-head2">Address Book</label>
         <div class="collapse-text" id="field2">
@@ -107,6 +116,7 @@
           <button class="alt" onclick="ClearAddrFields();">Clear</button>
         </div>
 
+        <!-- Personal Info Fields -->
         <input class="check" type="checkbox" id="collapse-head3">
         <label for="collapse-head3">Personal Info</label>
         <div class="collapse-text" id="field3">
@@ -136,6 +146,7 @@
         </div>
       </div>
 
+      <!-- Delete My Account Window -->
       <div class="window" id="window">
         <div class="window-title">
           <div class="title">We hate to see you leave...</div>
@@ -151,6 +162,8 @@
           <button type="submit" class="Del" name="delete">Delete Account</button>
         </form>
       </div>
+
+      <!-- When any Window opens, darken the background -->
       <div id="overlay"></div>
     </main>
   </body>
