@@ -27,6 +27,7 @@
                     header('location: ../account.php?error=usernotfound');
                     exit();
                 }
+                
                 // Make sure the user has confirmed before deletion
                 if (isset($_POST['delete'])) {
                     $stmt = $this->pdo->prepare('DELETE FROM accounts WHERE userID = ?');
@@ -50,15 +51,33 @@
                 header('location: ../account.php?error=emptyinput');          
                 exit();
             }
-            $this->deleteUser();
+            $this->verifyPassword();
         }
 
         private function emptyInput() {
             // Make sure the submitted value is not empty.
             if (empty($_POST['pwd'])) {
                 $report = false; // The password field cannot be empty.
-            } else { $report = true; }
-            return $report;
+            } else { $report = true; } return $report;
+        }
+
+        private function verifyPassword() {
+            // Select the record to be compared.
+            $stmt = $this->pdo->prepare('SELECT * FROM accounts WHERE userID = ?');
+            $passHash = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if (!password_verify($_POST['pwd'], $passHash[0]['password'])) {
+                $passHash = false; 
+            } else { $passHash = true; }
+
+            if($passHash = false) {
+                // Passwords don't match!
+                header('location: ../account.php?error=hashmismatch');          
+                exit();
+            }
+            elseif($passHash = true) {
+                // Password matches, delete the user.
+                $this->deleteUser();
+            }       
         }
     }
     // Create an object from our class
