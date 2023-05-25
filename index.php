@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html> 
 <html lang="en">
   <head>
@@ -18,6 +19,16 @@
     <header>
       <a href="#" class="logo">.</a>
       <i class='bx bx-menu' id="menu-icon"></i>
+      <?php
+        if (isset($_SESSION['error'])) {
+        echo '<div class="error-message">' . $_SESSION['error'] . '</div>';
+        $_SESSION['error'] = null; // Clear the error message in the session
+        }
+        if (isset($_SESSION['success'])) {
+            echo '<div class="success-message">' . $_SESSION['success'] . '</div>';
+            $_SESSION['success'] = null; // Clear the error message in the session
+        }
+      ?>
       <nav>
         <a class="current">Home</a>
         <a data-window-target="#window">Login</a>

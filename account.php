@@ -39,6 +39,16 @@
         <li><a><i class='bx bxs-videos'></i>Tutorial</a></li>
         <li class="on"><i class='bx bxs-cog'></i>Account Settings</li>
       </ul>
+      <?php 
+        if (isset($_SESSION['error'])) {
+          echo '<div class="error-message">' . $_SESSION['error'] . '</div>';
+          $_SESSION['error'] = null; // Clear the error message in the session
+        }
+        if (isset($_SESSION['success'])) {
+          echo '<div class="success-message">' . $_SESSION['success'] . '</div>';
+          $_SESSION['success'] = null; // Clear the error message in the session
+        }
+      ?>
       <button class="Del" data-window-target="#window">Delete Account</button>
     </section>
 
@@ -63,10 +73,10 @@
         <label for="collapse-head1">Account Info</label>       
         <div class="collapse-text" id="field1">
           <p>You can easily edit your Information by clicking on your credentials</p>
-          <form name="account" name="field1" action="config/setAccount.config.php" method="post">
+          <form name="account" action="config/setAccount.config.php" method="post">
             <div class="left">
               <label for="username">Username</label>
-              <input type="text" name="username" placeholder="Username" value="<?= $row["username"]; ?>">
+              <input type="text" name="username" placeholder="Username">
             </div>
             <div class="left">
               <label for="pwd">Password</label>
@@ -81,7 +91,7 @@
               <input type="password" name="pwdR" placeholder="Password">
             </div>
             <div class="left">   
-              <button type="submit" name="submit">Save Changes</button>       
+              <button type="submit" name="saveAccount">Save Changes</button>       
             </div>
           </form>
           <button class="alt" onclick="ClearAccFields();">Clear</button>
@@ -93,7 +103,7 @@
         <label for="collapse-head2">Address Book</label>
         <div class="collapse-text" id="field2">
           <p>You can easily clear your credentials by clicking our Clear button</p>
-          <form name="address" name="field2" action="config/setAccount.config.php" method="post">
+          <form name="address" action="config/setAccount.config.php" method="post">
             <div class="left">
               <label for="streetname">Address</label>
               <input type="text" name="streetname" placeholder="Streetname">  
@@ -111,7 +121,7 @@
               <input type="text" name="nationality" placeholder="Country or Nationality">    
             </div> 
             <div class="left">   
-              <button type="submit" name="submit">Save Changes</button>       
+              <button type="submit" name="saveBook">Save Changes</button>       
             </div> 
           </form>
           <button class="alt" onclick="ClearAddrFields();">Clear</button>
@@ -122,7 +132,7 @@
         <label for="collapse-head3">Personal Info</label>
         <div class="collapse-text" id="field3">
           <p>You can even use our App on your mobile device, how convenient is that?</p>
-          <form name="personal" name="field3" action="config/setAccount.config.php" method="post">
+          <form name="personal" action="config/setAccount.config.php" method="post">
             <div class="left">
               <label for="firstname">First name</label>
               <input type="text" name="firstname" placeholder="Firstname">
@@ -140,7 +150,7 @@
               <input type="text" name="birth" placeholder="Example: 1956-06-18">           
             </div> 
             <div class="left">   
-              <button type="submit" name="submit">Save Changes</button>       
+              <button type="submit" name="savePersonal">Save Changes</button>       
             </div> 
           </form>
           <button class="alt" onclick="ClearPersFields();">Clear</button>

@@ -29,6 +29,6 @@
         $registrate->signupUser();
 
         // Dismiss to homepage
-        header('location: ../index.html?error=none');
+        header('location: ../index.php?error=none');
     }
 ?>

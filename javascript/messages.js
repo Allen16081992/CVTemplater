@@ -1,6 +1,5 @@
 "use strict";
 // Error messages for submitting no values.
-
 // Target - Login fields
 var loginForm = document.forms['popup'];
 if (loginForm) {

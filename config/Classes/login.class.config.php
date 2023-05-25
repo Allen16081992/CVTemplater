@@ -1,4 +1,7 @@
-<?php
+<?php 
+    // This session_start is solely for displaying error messages.
+    session_start();
+
     class Login extends Database {
 
         // Verify if the user already exists in the database.
@@ -8,56 +11,48 @@
             // If this fails, kick back to homepage.
             if(!$stmt->execute(array($uid, $passw))) {
                 $stmt = null;
-                header('location: ../index.html?error=checkupfailed');
+                $_SESSION['error'] = 'User verification failed!';
+                header('location: ../index.php');
                 exit();
             }
 
             // If we got nothing from the database, do this.
             if($stmt->rowCount() == 0 ) {
                 $stmt = null;
-                header('location: ../index.html?error=usernotfound');
+                $_SESSION['error'] = 'Unable to find User!';
+                header('location: ../index.php');
                 exit();
-            }
-
-            // If we got something from the database, verify the hash.
-            if ($stmt->rowCount() > 0) {
-                $passHash = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                if (!password_verify($passw, $passHash[0]['password'])) {
-                    $passHash = false; 
-                }
-                else { $passHash = true; }
             }
 
             // If there was no match from the database, do this.
-            if($passHash == false) {
-                $stmt = null;
-                header('location: ../index.html?error=hashmismatch');
+            $passHash = $stmt->fetchAll(PDO::FETCH_ASSOC)[0]['password'];
+            if (!password_verify($passw, $passHash)) {
+                $_SESSION['error'] = "Passwords don't match!";
+                header('location: ../index.php');
                 exit();
             }
-            elseif($passHash == true) {
-                $stmt = $this->connect()->prepare('SELECT * FROM accounts WHERE username = ? OR email = ? AND password = ?;');
 
-                // If this fails, stay on the homepage.
-                if(!$stmt->execute(array($uid, $uid, $passw))) {
-                    $stmt = null;
-                    header('location: ../index.html?error=selectfailed');
-                    exit();
-                }
-                // If we received nothing, stay on the homepage.
-                if($stmt->rowCount() == 0) {
-                    $stmt = null;
-                    header('location: ../index.html?error=getfailed');
-                    exit();                   
-                }
+            $stmt = $this->connect()->prepare('SELECT * FROM accounts WHERE username = ? OR email = ? AND password = ?;');
 
-                $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                session_start();
-                $_SESSION['user_id'] = $user[0]['userID'];
-                $_SESSION['user_name'] = $user[0]['username'];
+            // If this fails, stay on the homepage.
+            if(!$stmt->execute(array($uid, $uid, $passw))) {
                 $stmt = null;
+                $_SESSION['error'] = 'Database query failed.';
+                header('location: ../index.php');
+                exit();
             }
+            // If we received nothing, stay on the homepage.
+            if($stmt->rowCount() == 0) {
+                $stmt = null;
+                $_SESSION['error'] = 'Database record not found.';
+                header('location: ../index.php');
+                exit();                   
+            }
+
+            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $_SESSION['user_id'] = $user[0]['userID'];
+            $_SESSION['user_name'] = $user[0]['username'];
             $stmt = null;
         }
-
     }
 ?>

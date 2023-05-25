@@ -1,4 +1,7 @@
 <?php
+    // This session_start is solely for displaying error messages.
+    session_start();
+
     class RegistrateControl extends Registration {
         // Account info
         private $uid;
@@ -33,98 +36,64 @@
         }
 
         public function signupUser() {
-            if($this->emptyInput() == false ) {
-                // Empty input, no values given for account.
-                header('location: ../index.html?error=emptyinput');
-                exit();
-            }
-            if($this->emptyContact() == false ) {
-                // Empty input, no values given for personal and contact info.
-                header('location: ../index.html?error=emptyinput');
-                exit();
-            }
-            if($this->invalidUid() == false) {
+            if(!$this->emptyInput()) {
+                // No username or password provided.
+                $_SESSION['error'] = 'No username or password provided!';
+            } elseif(!$this->emptyContact()) {
+                // No values given for contact information.
+                $_SESSION['error'] = 'No contact information provided!';
+            } elseif(!$this->invalidUid()) {
                 // Invalid username.
-                header('location: ../index.html?error=username');
-                exit();              
-            }
-            if($this->invalidEmail() == false) {
+                $_SESSION['error'] = 'Only alphanumeric characters allowed!';
+            } elseif(!$this->invalidEmail()) {
                 // Invalid emailaddress.
-                header('location: ../index.html?error=email');
-                exit();              
-            }
-            if($this->passwMatcher() == false) {
+                $_SESSION['error'] = 'Please enter a valid email address!';
+            } elseif(!$this->passwMatcher()) {
                 // Passwords are not equal!
-                header('location: ../index.html?error=password');
-                exit();              
-            }
-            if($this->uidTakenVerify() == false) {
+                $_SESSION['error'] = "Passwords don't match!";
+            } elseif(!$this->uidTakenVerify()) {
                 // Username or email already taken.
-                header('location: ../index.html?error=usernameOremailTaken');
-                exit();              
-            }
-
-            $this->setUser(
-                $this->uid, $this->passw, $this->email, 
-                $this->phone, $this->firstname, $this->lastname, $this->country, 
-                $this->birth, $this->street, $this->city, $this->postal
-            );
+                $_SESSION['error'] = "This username/email is already used!";
+            } else {
+                $this->setUser(
+                    $this->uid, $this->passw, $this->email, 
+                    $this->phone, $this->firstname, $this->lastname, $this->country, 
+                    $this->birth, $this->street, $this->city, $this->postal
+                );
+            }       
+            header('location: ../index.php');
+            exit();
         }
 
         private function emptyInput() {
             // Make sure the submitted values are not empty.
-            if (empty($this->uid) || empty($this->passw) || empty($this->passwRepeat) || empty($this->email) ) {
-                $report = false;
-                // One or more values are empty.
-            }
-            else { $report = true; }
-            return $report;
+            return !(empty($this->uid) || empty($this->passw) || empty($this->passwRepeat) || empty($this->email));
         }
-
+        
         private function emptyContact() {
             // Make sure the submitted values are not empty.
-            if (empty($this->phone) || empty($this->firstname) || empty($this->lastname) || empty($this->birth) || 
-                empty($this->country) || empty($this->street) || empty($this->postal) || empty($this->city)) {
-                $report = false;
-                // One or more values are empty.
-            }
-            else { $report = true; }
-            return $report;
+            return !(empty($this->phone) || empty($this->firstname) || empty($this->lastname) || empty($this->birth) ||
+                empty($this->country) || empty($this->street) || empty($this->postal) || empty($this->city));
         }
-
+        
         private function invalidUid() {
             // Make sure the submitted values contain permitted characters.
-            if (!preg_match("/^[a-zA-Z0-9]*$/", $this->uid)) {
-                $report = false;
-            }
-            else { $report = true; }
-            return $report;
+            return preg_match("/^[a-zA-Z0-9]*$/", $this->uid);
         }
-
+        
         private function invalidEmail() {
             // Make sure the submitted values contain an @ character.
-            if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-                $report = false;
-            }
-            else { $report = true; }
-            return $report;
+            return filter_var($this->email, FILTER_VALIDATE_EMAIL);
         }
-
+        
         private function passwMatcher() {
             // Make sure the submitted values are equal.
-            if ($this->passw !== $this->passwRepeat) {
-                $report = false;
-            }
-            else { $report = true; }
-            return $report;
+            return $this->passw === $this->passwRepeat;
         }
-
+        
         private function uidTakenVerify() {
-            if (!$this->verifyUser($this->uid, $this->email)) {
-                $report = false;
-            }
-            else { $report = true; }
-            return $report;
-        }
+            // Make sure the submitted values aren't in use.
+            return $this->verifyUser($this->uid, $this->email);
+        }       
     }
 ?>

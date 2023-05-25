@@ -1,4 +1,7 @@
-<?php
+<?php 
+    // This session_start is solely for displaying error messages.
+    session_start();
+
     //extend influence to puppeteer
     class loginControl extends Login {
         // Account info
@@ -13,23 +16,18 @@
 
         public function loginUser() {
             // Activate the private function beneath.
-            if($this->emptyInput() == false ) {
+            if(!$this->emptyInput()) {
                 // Empty input, no values given for account.
-                header('location: ../index.php?error=emptyinput');          
+                $_SESSION['error'] = 'No username or password provided!';
+                header('location: ../index.php');          
                 exit();
             }
             $this->getUser($this->uid, $this->passw);
         }
 
         private function emptyInput() {
-            // Make sure the submitted values are not empty.
-            if (empty($this->uid) || empty($this->passw)) {
-                $report = false;
-                // One or more values are empty.
-                //exit('Please complete the registration form');
-            }
-            else { $report = true; }
-            return $report;
+            // Check if the submitted values are not empty.
+            return !(empty($this->uid) || empty($this->passw));
         }
     }
 ?>
