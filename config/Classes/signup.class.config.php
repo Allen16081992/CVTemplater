@@ -5,13 +5,13 @@
         protected function setUser($uid, $passw, $email, $phone,$firstname,$lastname,$birth,$country,$street,$postal,$city) {
 
             // Let's apply some hashing and salting security.
-            $random = (mt_rand(0,255)); // Generate a random number between 0 and... let's do 255.
-            $salty = array($random); // Set the number into an array for password_hash not to whine about having no array...
+            //$random = (mt_rand(0,255)); // Generate a random number between 0 and... let's do 255.
+            //$salty = array($random); // Set the number into an array for password_hash not to whine about having no array...
             $HashThisNOW = password_hash($passw, PASSWORD_DEFAULT);   
-            $stmt = $this->connect()->prepare("INSERT INTO accounts (username, password, email, salt) VALUES (?, ?, ?, '$salty');");  
+            $stmt = $this->connect()->prepare("INSERT INTO accounts (username, password, email) VALUES (?, ?, ?);");  
 
             // If this fails, kick back to homepage.
-            if(!$stmt->execute(array($uid, $HashThisNOW, $email, $salty))) {
+            if(!$stmt->execute(array($uid, $HashThisNOW, $email))) {
                 $stmt = null;
                 header('location: ../index.html?error=failed');
                 exit();

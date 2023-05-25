@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Templater - Edit Resume</title>
+    <!-- Styling Sheets -->
     <link rel="stylesheet" href="css/trongate.css">
     <style>
         form{
@@ -14,103 +16,99 @@
 <body>
 
 <form>
-    Resume
+    <h6>Resume</h6>
     <form>
-        <label for="resumeTitle">Resume Title</label><br>
-        <input type="text" id="resumeTitle" name="Resume-Title"><br>
+        <label for="rtitle">Resume Title</label>
+        <input type="text" name="rtitle" placeholder="Resume Title">
     </form>
 </form>
 
 <form>
-    Profile
-    <label for="intro">Introduction:</label><br>
-    <input type="text"  name="intro"><br>
-    <label for="Desc">Describtion:</label><br>
-    <input type="text"  name="desc">
-    <label for="Pic">Picture:</label><br>
-    <input type="text"  name="pic"><br>
+    <h6>Profile</h6>
+    <label for="avatar">Profile Picture</label>
+    <input type="file"  name="avatar" accept="image/png, image/jpeg" placeholder="avatar">
+    <label for="intro">Introduction Line</label>
+    <input type="text"  name="intro" placeholder="Short introduction">
+    <label for="desc">Description</label>
+    <input type="text"  name="desc" placeholder="Your description">
 </form>
 
 <form>
-    Email adress
-    <label for="Eadress">Email Adress:</label><br>
-    <input type="text" name="Email-Adress"><br>
+    <h6>Contact</h6>
+    <label for="phone">Phone Number</label>
+    <input type="text"  name="phone" placeholder="Your phone number">
+    <label for="email">Email Address</label>
+    <input type="text" name="email" placeholder="Your email">
+    <label for="firstname">Firstname</label>
+    <input type="text" name="firstname" placeholder="Your name">
+    <label for="lastname">Last name</label>
+    <input type="text"  name="lastname" placeholder="Your surname">
+    <label for="birth">Birth Date</label>
+    <input type="date"  name="birth" placeholder="Birthday">
+    <label for="country">Nationality</label>
+    <input type="text"  name="country" placeholder="Nationality">
+    <label for="streetname">Streetname</label>
+    <input type="text"  name="streetname" placeholder="Streetname">
+    <label for="postalcode">Postalcode</label>
+    <input type="text"  name="postalcode" placeholder="Postalcode">
+    <label for="city">City</label>
+    <input type="text"  name="city" placeholder="Hometown or City">
 </form>
 
 <form>
-    Contact
-    <label for="Pnumber">Phone Number:</label><br>
-    <input type="text"  name="Pnumber"><br>
-    <label for="fname">Firstname:</label><br>
-    <input type="text" name="fname"><br>
-    <label for="lname">Last name:</label><br>
-    <input type="text"  name="lname">
-    <label for="Birth">Birth:</label><br>
-    <input type="text"  name="Birth"><br>
-    <label for="national">Nationality:</label><br>
-    <input type="text"  name="nationality">
-    <label for="Sname">Streetname:</label><br>
-    <input type="text"  name="Sname"><br>
-    <label for="Pcode">Postalcode:</label><br>
-    <input type="text"  name="pcode">
-    <label for="City">City:</label><br>
-    <input type="text"  name="city"><br>
-</form>
-
-<form>
-    Education
    <label>
-       <label for="eTitle">Education:</label><br>
-       <input type="text"  name="eTitle"><br>
-       <label for="desc">Describtion:</label><br>
-       <input type="text"  name="desc">
-       <label for="company">Company:</label><br>
-       <input type="text"  name="Company"><br>
-       <label for="fdate">First Date:</label><br>
-       <input type="text"  name="fdate">
-       <label for="ldate">Last Date:</label><br>
-       <input type="text" name="ldate"><br>
+       <h6>Education</h6>
+       <label for="eTitle">Education</label>
+       <input type="text"  name="eTitle" placeholder="Your course">
+       <label for="desc">Description</label>
+       <input type="text"  name="desc" placeholder="short escription">
+       <label for="company">Company</label>
+       <input type="text"  name="Company" placeholder="Education institute">
+       <label for="joined">From</label>
+       <input type="date"  name="joined" placeholder=".">
+       <label for="leave">Until</label>
+       <input type="date" name="leave" placeholder=".">
    </label>
 </form>
 
 <form>
-    Experience
-    <label for="wtitle">Work Experience:</label><br>
-    <input type="text"  name="wtitle"><br>
-    <label for="wdesc">Describtion:</label><br>
-    <input type="text"  name="wdesc">
-    <label for="company">Company:</label><br>
-    <input type="text"  name="company"><br>
-    <label for="fdate">First Date:</label><br>
-    <input type="text"  name="fdate">
-    <label for="lastdate">Last Date:</label><br>
-    <input type="text"  name="lastdate"><br>
+    <h6>Work Experience</h6>
+    <label for="wtitle">Profession</label>
+    <input type="text"  name="wtitle" placeholder="Your profession">
+    <label for="wdesc">Description</label>
+    <input type="text"  name="wdesc" placeholder="Description">
+    <label for="company">Company</label>
+    <input type="text"  name="company" placeholder="Name of company">
+    <label for="joined">From</label>
+    <input type="date"  name="joined" placeholder=".">
+    <label for="leave">Until</label>
+    <input type="date"  name="joined" placeholder=".">
 </form>
 
 <form>
-    Interests
-    <label for="inter">Interests:</label><br>
-    <input type="text"  name="inter"><br>
+    <h6>Interests/Hobby</h6>
+    <label for="interests">Interests</label>
+    <input type="text"  name="interests" placeholder="Hobby and interests">
 </form>
 
 <form>
-    Language
-    <label for="lan">Language:</label><br>
-    <input type="text"  name="lan"><br>
+    <h6>Languages</h6>
+    <label for="lang">Language</label>
+    <input type="text"  name="lang" placeholder="Language">
 </form>
 
 <form>
-    Portfolio
-    <label for="IMGtitle">Title:</label><br>
-    <input type="text"  name="img-title"><br>
-    <label for="IMGpath">"picture"</label><br>
-    <input type="text"  name="img-path">
+    <h6>Portfolio</h6>
+    <label for="IMGtitle">Image Title</label>
+    <input type="text"  name="IMGtitle" placeholder="image">
+    <label for="IMGpath">Picture of Project</label>
+    <input type="file"  name="IMGpath" placeholder="image">
 </form>
 
 <form>
-    Technical
-    <label for="techTitle">Technicals:</label><br>
-    <input type="text"  name="techTitle"><br>
+    <h6>Technical Skills</h6>
+    <label for="techTitle">Technical Skill</label>
+    <input type="text"  name="techTitle" placeholder="Technical skills">
 </form>
 
 </body>

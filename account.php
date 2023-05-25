@@ -63,22 +63,22 @@
         <label for="collapse-head1">Account Info</label>       
         <div class="collapse-text" id="field1">
           <p>You can easily edit your Information by clicking on your credentials</p>
-          <form action="">
+          <form name="account" name="field1" action="config/setAccount.config.php" method="post">
             <div class="left">
               <label for="username">Username</label>
-              <input type="text" name="username" id="1" placeholder="Username">
+              <input type="text" name="username" placeholder="Username" value="<?= $row["username"]; ?>">
             </div>
             <div class="left">
               <label for="pwd">Password</label>
-              <input type="password" name="pwd" id="2" placeholder="Password">
+              <input type="password" name="pwd" placeholder="Password">
             </div>
             <div class="left">
               <label for="email">Email</label>
-              <input type="text" name="email" id="3" placeholder="Email Address">
+              <input type="text" name="email" placeholder="Email Address">
             </div>
             <div class="left">
               <label for="pwd">Repeat Password</label>
-              <input type="password" name="pwdR" id="4" placeholder="Password">
+              <input type="password" name="pwdR" placeholder="Password">
             </div>
             <div class="left">   
               <button type="submit" name="submit">Save Changes</button>       
@@ -86,28 +86,29 @@
           </form>
           <button class="alt" onclick="ClearAccFields();">Clear</button>
         </div>
+     
 
         <!-- Address Info Fields -->
         <input class="check" type="checkbox" id="collapse-head2">
         <label for="collapse-head2">Address Book</label>
         <div class="collapse-text" id="field2">
           <p>You can easily clear your credentials by clicking our Clear button</p>
-          <form action="">
+          <form name="address" name="field2" action="config/setAccount.config.php" method="post">
             <div class="left">
               <label for="streetname">Address</label>
-              <input type="text" name="streetname" id="5" placeholder="Streetname">  
+              <input type="text" name="streetname" placeholder="Streetname">  
             </div>
             <div class="left"> 
               <label for="postalcode">Zip code</label>
-              <input type="text" name="postalcode" id="6" placeholder="Postalcode">             
+              <input type="text" name="postalcode" placeholder="Postalcode">             
             </div> 
             <div class="left"> 
               <label for="city">City</label>
-              <input type="text" name="city" id="7" placeholder="City">          
+              <input type="text" name="city" placeholder="City">          
             </div> 
             <div class="left"> 
               <label for="nationality">Country</label>
-              <input type="text" name="nationality" id="8" placeholder="Country or Nationality">    
+              <input type="text" name="nationality" placeholder="Country or Nationality">    
             </div> 
             <div class="left">   
               <button type="submit" name="submit">Save Changes</button>       
@@ -121,22 +122,22 @@
         <label for="collapse-head3">Personal Info</label>
         <div class="collapse-text" id="field3">
           <p>You can even use our App on your mobile device, how convenient is that?</p>
-          <form action="">
+          <form name="personal" name="field3" action="config/setAccount.config.php" method="post">
             <div class="left">
               <label for="firstname">First name</label>
-              <input type="text" name="firstname" id="9" placeholder="Firstname">
+              <input type="text" name="firstname" placeholder="Firstname">
             </div>
             <div class="left">
               <label for="lastname">Last name</label>
-              <input type="text" name="lastname" id="10" placeholder="Firstname">
+              <input type="text" name="lastname" placeholder="Firstname">
             </div>
             <div class="left">
               <label for="phone">Mobile Number</label>
-              <input type="text" name="phone" id="11" placeholder="Mobile Number"> 
+              <input type="text" name="phone" placeholder="Mobile Number"> 
             </div>
             <div class="left"> 
               <label for="birth">Date of Birth</label>
-              <input type="text" name="birth" id="12" placeholder="Example: 1956-06-18">           
+              <input type="text" name="birth" placeholder="Example: 1956-06-18">           
             </div> 
             <div class="left">   
               <button type="submit" name="submit">Save Changes</button>       
@@ -152,13 +153,13 @@
           <div class="title">We hate to see you leave...</div>
           <button data-window-close class="close-button">&#215;</button>
         </div>
-        <form class="window-body" name="login-form" action="config/Void.config.php" method="post">
+        <form class="window-body" name="popup" action="config/Void.config.php" method="post">
           <p class="error-message">Warning: These changes cannot be undone!<br> Any information will be removed from our servers</p>
           <p class="error-uid"></p>
           <p class="error-pwd"></p>
           <label>Do you really want to delete your account?</label>   
-          <input type="hidden" name="user_id" value="<?=$_SESSION['user_id']; ?>">  
-          <input type="hidden" name="username" value="<?=$_SESSION['user_name']; ?>" id="user" autocomplete="off">   
+          <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>">  
+          <input type="hidden" name="username" value="<?= $_SESSION['user_name']; ?>" id="user" autocomplete="off">   
           <label for="pwd"></label>
           <input type="password" name="pwd" id="pass" placeholder="Confirm your password for the last time">
           <button type="submit" class="Del" name="delete">Delete Account</button>
