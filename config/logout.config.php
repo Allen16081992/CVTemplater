@@ -4,5 +4,5 @@
     session_unset();
     session_destroy();
     // Push back to homepage.
-    header('location:../index.html');
+    header('location:../index.php');
 ?>

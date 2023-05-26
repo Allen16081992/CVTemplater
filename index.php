@@ -1,4 +1,9 @@
 <?php session_start(); ?>
+<!--
+  User Experience - Waarom vragen ze zoveel bij het registreren?
+  User Experience - '+' accepteren voor nummer veld. (+310637899234)
+  User Experience - Email verificatie werkt goed!
+-->
 <!DOCTYPE html> 
 <html lang="en">
   <head>
