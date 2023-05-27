@@ -3,6 +3,7 @@
     // Use the (improved) database connection.
     include 'idb.config.php';
 
+    // Start a session to destroy, and for displaying error messages.
     session_start();
 
     // These variables are free to use by anything.
@@ -55,7 +56,7 @@
                     session_unset();
                     session_destroy();
 
-                    // Message by session instead of url parsing.
+                    // Error Messages by session instead of url parsing.
                     $_SESSION['success'] = 'User deleted successfully';
                     header('Location: ../index.php?');
                     exit;

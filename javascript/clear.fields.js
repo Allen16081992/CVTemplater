@@ -28,7 +28,6 @@ document.forms['personal'].onsubmit = function(event) {
   // Additional logic for personal form submission
 };
 
-// Example usage:
 // Clear account fields
 function ClearAccFields() {
   clearFields('account', 'username', 'pwd', 'email', 'pwdR');
@@ -43,3 +42,29 @@ function ClearAddrFields() {
 function ClearPersFields() {
   clearFields('personal', 'firstname', 'lastname', 'phone', 'birth');
 }
+
+// Resume Intersection
+
+// Clear resume field
+document.forms['resume'].onsubmit = function(event) {
+  clearFields('resume', 'resumetitle');
+  // Additional logic for account form submission
+};
+
+// Clear profile fields
+document.forms['profile'].onsubmit = function(event) {
+  clearFields('profile', 'intro', 'desc');
+  // Additional logic for account form submission
+};
+
+// Clear resume field
+function ClearResField() {
+  clearFields('resume', 'resumetitle');
+}
+
+// Clear profile fields
+function ClearProfFields() {
+  clearFields('profile', 'intro', 'desc');
+}
+
+

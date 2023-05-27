@@ -280,23 +280,26 @@ ul li.on { cursor:default; margin-left:20px; }
 .collapse-text form .left > input { border: 1px solid transparent; }
 .collapse-text form .left > input:focus { border: 1px solid black; }
 
-.collapse #collapse-head1:checked ~ #field1 {
-    max-height:520px;
-    padding-bottom:25px;
-    background:#fff;
-    box-shadow: 0 5px 1px 0 rgba(0,0,0,.1), 0 4px 11px 0 rgba(0,0,0,.08);
-    opacity:1;
-    top:0;
+.collapse-text img{
+    border-radius: 50%;
+    border: 3px dotted rgb(0, 255, 17);
+    cursor:pointer;
 }
-.collapse #collapse-head2:checked ~ #field2 {
-    max-height:520px;
-    padding-bottom:25px;
-    background:#fff;
-    box-shadow: 0 5px 1px 0 rgba(0,0,0,.1), 0 4px 11px 0 rgba(0,0,0,.08);
-    opacity:1;
-    top:0;
+input[type="file"] {
+    display: none;
 }
-.collapse #collapse-head3:checked ~ #field3 {
+.custom-file-upload {
+    margin-top:-2px;
+    height: 200px;
+    max-width: 200px;
+}
+
+.collapse 
+    #collapse-head1:checked ~ #field1, 
+     #collapse-head2:checked ~ #field2, 
+      #collapse-head3:checked ~ #field3,
+       #collapse-head4:checked ~ #field4,
+        #collapse-head5:checked ~ #field5 {
     max-height:520px;
     padding-bottom:25px;
     background:#fff;
