@@ -61,6 +61,7 @@
           // Access the user and contact data from the array
           $user = $data['user'];
           $contact = $data['contact'];
+        }
       ?>
       <button class="Del" data-window-target="#window">Delete Account</button>
     </section>
@@ -167,7 +168,7 @@
             </div> 
           </form>
           <button class="alt" onclick="ClearPersFields();">Clear</button>
-        </div><?php } ?>
+        </div>
       </div> 
 
       <!-- Delete My Account Window -->
