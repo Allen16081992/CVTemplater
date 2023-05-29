@@ -1,4 +1,14 @@
-<?php session_start(); ?>
+<?php // Dhr. Allen Pieter
+  // Start a session for displaying all user data.
+  session_start(); 
+
+  // Include the PHP file that retrieves the data
+  include 'config/viewdata.config.php';
+
+  // Create an instance of ViewData
+  $viewData = new ViewData();
+  $data = $viewData->viewUserInfo();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -40,14 +50,17 @@
         <li class="on"><i class='bx bxs-cog'></i>Account Settings</li>
       </ul>
       <?php 
-        if (isset($_SESSION['error'])) {
-          echo '<div class="error-message">' . $_SESSION['error'] . '</div>';
-          $_SESSION['error'] = null; // Clear the error message in the session
-        }
         if (isset($_SESSION['success'])) {
           echo '<div class="success-message">' . $_SESSION['success'] . '</div>';
-          $_SESSION['success'] = null; // Clear the error message in the session
+          unset($_SESSION['success']); // Clear the error message in the session
         }
+        if (isset($_SESSION['error'])) {
+          echo '<div class="error-message">' . $_SESSION['error'] . '</div>';
+          unset($_SESSION['error']); // Clear the error message in the session
+        } else {
+          // Access the user and contact data from the array
+          $user = $data['user'];
+          $contact = $data['contact'];
       ?>
       <button class="Del" data-window-target="#window">Delete Account</button>
     </section>
@@ -73,18 +86,18 @@
         <label for="collapse-head1">Account Info</label>       
         <div class="collapse-text" id="field1">
           <p>You can easily edit your Information by clicking on your credentials</p>
-          <form name="account" action="config/setAccount.config.php" method="post">
+          <form name="account" action="config/update.config.php" method="post">
             <div class="left">
               <label for="username">Username</label>
-              <input type="text" name="username" placeholder="Username">
+              <input type="text" name="username" placeholder="Username" value="<?=$user['username'];?>">
             </div>
             <div class="left">
               <label for="pwd">Password</label>
-              <input type="password" name="pwd" placeholder="Password">
+              <input type="password" name="pwd" placeholder="*Password Protected">
             </div>
             <div class="left">
               <label for="email">Email</label>
-              <input type="text" name="email" placeholder="Email Address">
+              <input type="text" name="email" placeholder="Email Address" value="<?=$user['email'];?>">
             </div>
             <div class="left">
               <label for="pwd">Repeat Password</label>
@@ -103,23 +116,23 @@
         <label for="collapse-head2">Address Book</label>
         <div class="collapse-text" id="field2">
           <p>You can easily clear your credentials by clicking our Clear button</p>
-          <form name="address" action="config/setAccount.config.php" method="post">
+          <form name="address" action="config/update.config.php" method="post">
             <div class="left">
               <label for="streetname">Address</label>
-              <input type="text" name="streetname" placeholder="Streetname">  
+              <input type="text" name="streetname" placeholder="Streetname" value="<?=$contact['streetname'];?>">  
             </div>
             <div class="left"> 
               <label for="postalcode">Zip code</label>
-              <input type="text" name="postalcode" placeholder="Postalcode">             
+              <input type="text" name="postalcode" placeholder="Postalcode" value="<?=$contact['postalcode'];?>">             
             </div> 
             <div class="left"> 
               <label for="city">City</label>
-              <input type="text" name="city" placeholder="City">          
+              <input type="text" name="city" placeholder="City" value="<?=$contact['city'];?>">          
             </div> 
             <div class="left"> 
-              <label for="nationality">Country</label>
-              <input type="text" name="nationality" placeholder="Country or Nationality">    
-            </div> 
+              <label for="nationality">Nationality</label>
+              <input type="text" name="nationality" placeholder="Country or Nationality" value="<?=$contact['nationality'];?>">    
+            </div>
             <div class="left">   
               <button type="submit" name="saveBook">Save Changes</button>       
             </div> 
@@ -132,30 +145,30 @@
         <label for="collapse-head3">Personal Info</label>
         <div class="collapse-text" id="field3">
           <p>You can even use our App on your mobile device, how convenient is that?</p>
-          <form name="personal" action="config/setAccount.config.php" method="post">
+          <form name="personal" action="config/update.config.php" method="post">
             <div class="left">
               <label for="firstname">First name</label>
-              <input type="text" name="firstname" placeholder="Firstname">
+              <input type="text" name="firstname" placeholder="Firstname" value="<?=$contact['firstname'];?>">
             </div>
             <div class="left">
               <label for="lastname">Last name</label>
-              <input type="text" name="lastname" placeholder="Firstname">
+              <input type="text" name="lastname" placeholder="Lasttname" value="<?=$contact['lastname'];?>">
             </div>
             <div class="left">
               <label for="phone">Mobile Number</label>
-              <input type="text" name="phone" placeholder="Mobile Number"> 
+              <input type="text" name="phone" placeholder="Mobile Number" value="<?=$contact['phone'];?>"> 
             </div>
             <div class="left"> 
               <label for="birth">Date of Birth</label>
-              <input type="text" name="birth" placeholder="Example: 1956-06-18">           
-            </div> 
+              <input type="text" name="birth" placeholder="Example: 1956-06-18" value="<?=$contact['birth'];?>">           
+            </div>
             <div class="left">   
               <button type="submit" name="savePersonal">Save Changes</button>       
             </div> 
           </form>
           <button class="alt" onclick="ClearPersFields();">Clear</button>
-        </div>
-      </div>
+        </div><?php } ?>
+      </div> 
 
       <!-- Delete My Account Window -->
       <div class="window" id="window">

@@ -59,7 +59,7 @@
                     // Error Messages by session instead of url parsing.
                     $_SESSION['success'] = 'User deleted successfully';
                     header('Location: ../index.php?');
-                    exit;
+                    exit();
                 }
             }
         }
