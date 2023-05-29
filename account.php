@@ -1,6 +1,6 @@
 <?php // Dhr. Allen Pieter
-  // Start a session for displaying all user data.
-  session_start(); 
+  // Start a session for handling data and error messages.
+  session_start();
 
   // Include the PHP file that retrieves the data
   include 'config/viewdata.config.php';
@@ -108,9 +108,8 @@
               <button type="submit" name="saveAccount">Save Changes</button>       
             </div>
           </form>
-          <button class="alt" onclick="ClearAccFields();">Clear</button>
+          <button class="alt" name="clearAccount">Clear</button>
         </div>
-     
 
         <!-- Address Info Fields -->
         <input class="check" type="checkbox" id="collapse-head2">
@@ -138,7 +137,7 @@
               <button type="submit" name="saveBook">Save Changes</button>       
             </div> 
           </form>
-          <button class="alt" onclick="ClearAddrFields();">Clear</button>
+          <button class="alt" name="clearAddress">Clear</button>
         </div>
 
         <!-- Personal Info Fields -->
@@ -167,7 +166,7 @@
               <button type="submit" name="savePersonal">Save Changes</button>       
             </div> 
           </form>
-          <button class="alt" onclick="ClearPersFields();">Clear</button>
+          <button class="alt" name="clearPersonal">Clear</button>
         </div>
       </div> 
 

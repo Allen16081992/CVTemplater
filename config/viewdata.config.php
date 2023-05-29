@@ -1,9 +1,9 @@
 <?php // Dhr. Allen Pieter
-    // Use the (improved) database connection.
-    include 'idb.config.php';
-
     // Start a session for displaying error messages.
     session_start();
+
+    // Use the (improved) database connection.
+    include 'idb.config.php';
 
     class ViewData {
         private $pdo;

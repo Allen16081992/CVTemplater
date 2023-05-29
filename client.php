@@ -72,8 +72,8 @@
             <button type="submit" name="saveResume">Save Changes</button>       
           </form>
           <div class="left">
-            <button class="alt" onclick="ClearResField();">Clear</button>
-            <button class="alt" onclick="">View Entire Resume</button>
+            <button class="alt" name="clearResume">Clear</button>
+            <button class="alt">View Entire Resume</button>
           </div>
         </div>
      
@@ -101,7 +101,7 @@
               <button type="submit" name="saveProfile">Save Changes</button>       
             </div>
           </form>
-          <button class="alt" onclick="ClearProfFields();">Clear</button>
+          <button class="alt" name="clearProfile">Clear</button>
         </div>
 
         <!-- Work Experience Fields -->
