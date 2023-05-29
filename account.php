@@ -8,6 +8,10 @@
   // Create an instance of ViewData
   $viewData = new ViewData();
   $data = $viewData->viewUserInfo();
+
+  // Access the user and contact data from the array
+  $user = $data['user'];
+  $contact = $data['contact'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +34,16 @@
     <header>
       <a href="#" class="logo">.</a>
       <i class='bx bx-menu' id="menu-icon"></i>
+      <?php
+        if (isset($_SESSION['success'])) {
+          echo '<div class="success-message">' . $_SESSION['success'] . '</div>';
+          unset($_SESSION['success']); // Clear the error message in the session
+        }
+        if (isset($_SESSION['error'])) {
+          echo '<div class="error-message">' . $_SESSION['error'] . '</div>';
+          unset($_SESSION['error']); // Clear the error message in the session
+        }
+      ?>
       <nav> 
         <?php
           if(isset($_SESSION['user_id'])) {
@@ -49,20 +63,6 @@
         <li><a><i class='bx bxs-videos'></i>Tutorial</a></li>
         <li class="on"><i class='bx bxs-cog'></i>Account Settings</li>
       </ul>
-      <?php 
-        if (isset($_SESSION['success'])) {
-          echo '<div class="success-message">' . $_SESSION['success'] . '</div>';
-          unset($_SESSION['success']); // Clear the error message in the session
-        }
-        if (isset($_SESSION['error'])) {
-          echo '<div class="error-message">' . $_SESSION['error'] . '</div>';
-          unset($_SESSION['error']); // Clear the error message in the session
-        } else {
-          // Access the user and contact data from the array
-          $user = $data['user'];
-          $contact = $data['contact'];
-        }
-      ?>
       <button class="Del" data-window-target="#window">Delete Account</button>
     </section>
 
