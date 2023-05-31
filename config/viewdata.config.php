@@ -46,7 +46,8 @@
             return [];
         }       
     }
-
+    // Create an object from our class
     $viewData = new ViewData();
+    // Error handlers
     $viewData->viewUserInfo();
 ?>

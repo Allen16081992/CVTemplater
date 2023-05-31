@@ -107,7 +107,6 @@
 
     // Create an object from our class
     $void = new Crusified();
-
     // Error handlers
     $void->verifyUser($_POST['pwd']);
 ?>

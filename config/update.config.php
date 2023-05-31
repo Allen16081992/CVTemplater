@@ -15,7 +15,7 @@
         $passwRepeat = $_POST['pwdR'];
 
         $update = new UpdateAccount($uid, $email, $passw, $passwRepeat);
-        $update->verifyAccount();
+        $update->verifyAccount(); // Error handlers
 
     } elseif(isset($_POST['saveBook'])) {
         // Absorb this provided data.
@@ -25,7 +25,7 @@
         $country = $_POST['nationality'];
 
         $update = new UpdateAddress($street, $postal, $city, $country);
-        $update->verifyAddress();
+        $update->verifyAddress(); // Error handlers
 
     } elseif(isset($_POST['savePersonal'])) {
         // Absorb this provided data.
@@ -35,7 +35,7 @@
         $birth = $_POST['birth'];
 
         $update = new UpdatePersonal($firstname, $lastname, $phone, $birth);
-        $update->verifyPersonal();
+        $update->verifyPersonal(); // Error handlers
 
     }
     // Refresh account page.

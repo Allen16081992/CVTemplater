@@ -182,9 +182,9 @@
           <p class="error-pwd"></p>
           <label>Do you really want to delete your account?</label>   
           <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>">  
-          <input type="hidden" name="username" value="<?= $_SESSION['user_name']; ?>" id="user" autocomplete="off">   
+          <input type="hidden" name="username" value="<?= $_SESSION['user_name']; ?>">   
           <label for="pwd"></label>
-          <input type="password" name="pwd" id="pass" placeholder="Confirm your password for the last time">
+          <input type="password" name="pwd" placeholder="Confirm your password for the last time">
           <button type="submit" class="Del" name="delete">Delete Account</button>
         </form>
       </div>

@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php // Dhr. Allen Pieter
+  // Start a session for handling data and error messages.
+  session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -82,12 +85,10 @@
         <label for="collapse-head2">Profile</label>
         <div class="collapse-text" id="field2">
           <p>Edit your profile image</p>       
-          <form name="profile" action="config/setAccount.config.php" method="post">
+          <form name="profile" action="config/setAccount.config.php" enctype="multipart/form-data" method="post">
             <div class="left">
-              <label for="file-upload" class="custom-file-upload">    
-                <img src="img/av-placehold.png" alt="">            
-              </label>
-              <input id="file-upload" type="file"/>  
+              <label for="file-upload" class="custom-file-upload"><img src="img/av-placehold.png" alt=""></label>
+              <input id="file-upload" name="file-upload" type="file"/>  
             </div>
             <div class="left">
               <label for="intro">Introduction</label>

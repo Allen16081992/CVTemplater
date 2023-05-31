@@ -18,6 +18,7 @@
     <!-- Javascript -->
     <script defer src="javascript/popup.window.js"></script>
     <script defer src="javascript/messages.js"></script>
+    <script src="javascript/audio.js"></script>
   </head>
   <body>
     <!-- Upper Navigation Panel -->
@@ -42,9 +43,22 @@
 
     <!-- Main Content -->
     <main class="container">
+      
+      <!-- Sphere of Influence -->
+      <div id="round"></div>
+      <!-- Resume Icon Call-to-action -->
+      <button data-window-target="#window" id="action" onmouseover="PlaySound('mySound')"><img  src="img/logo_CV_Icon.png" alt=""></button><!--<button data-window-target="#window">Let's get started!</button>-->
+      <!-- Sphere Animation -->
+      <svg>
+        <filter id="wavy">
+          <feTurbulence x="0" y="0" baseFrequency="0.009" numOctaves="5" seed="2">
+            <animate attributeName="baseFrequency" dur="60s" values="0.02;0.005;0.02" repeatCount="indefinite"></animate>
+          </feTurbulence>
+          <feDisplacementMap in="SourceGraphic" scale="30"></feDisplacementMap>        
+        </filter>
+      </svg>
 
       <!-- Sign In Window -->
-      <button data-window-target="#window">Let's get started!</button>
       <div class="window" id="window">
         <div class="window-title">
           <div class="title">Login</div>
@@ -55,9 +69,9 @@
           <p class="error-uid"></p>
           <p class="error-pwd"></p>
           <label for="username">Username</label>
-          <input type="text" name="username" placeholder="Username" id="user" autocomplete="off">
+          <input type="text" name="username" placeholder="Username" autocomplete="off">
           <label for="pwd">Password</label>
-          <input type="password" name="pwd" id="pass" placeholder="Password">
+          <input type="password" name="pwd" placeholder="Password">
           <button type="submit" name="submit">Login</button>
           <span>Don't have an account yet? <a href="signup.html">Register</a>
           </span>
@@ -66,6 +80,9 @@
 
       <!-- When any Window opens, darken the background -->
       <div id="overlay"></div>
+
+      <!-- Audio file -->
+      <audio id="mySound" src="audio/The Wolf and the Moon.mp3"></audio>
     </main>
   </body>
 </html>
