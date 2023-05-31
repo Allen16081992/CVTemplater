@@ -36,7 +36,12 @@ header {
     justify-content: space-between;
     align-items: center;
 }
-header .logo { display:none; }
+.logo { 
+    position:absolute;
+    margin:0;
+    height:6rem;
+    width:6rem;
+}
 header #nav-signup { z-index:2; }
 
 nav a {
