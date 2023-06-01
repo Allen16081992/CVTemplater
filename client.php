@@ -111,20 +111,35 @@
         <div class="collapse-text" id="field3">
           <form name="experience" action="config/setAccount.config.php" method="post">
 
-              <!-- replace with label -->
-              <!-- replace with input -->
+        <div class="left">    
+          <label for="wtitle">Profession</label>
+          <input type="text"  name="wtitle" placeholder="Your profession">
+        </div>
+        
+                
+        <div class="left">  
+          <label for="wdesc">Description</label>
+          <input type="text"  name="wdesc" placeholder="Description">
+        </div>
 
-              <!-- replace with label -->
-              <!-- replace with input -->
 
-              <!-- replace with label -->
-              <!-- replace with input -->
+        <div class="left">
+          <label for="company">Company</label>
+          <input type="text"  name="company" placeholder="Name of company">
+        </div>
 
-              <!-- replace with label -->
-              <!-- replace with input -->         
 
-              <!-- replace with label -->
-              <!-- replace with input -->         
+        <div class="left">
+          <label for="joined">From</label>
+          <input type="date"  name="joined" placeholder=".">        
+        </div>
+
+
+        <div class="left">
+          <label for="leave">Until</label>
+          <input type="date"  name="joined" placeholder=".">         
+        </div>
+
 
             <div class="left">   
               <button type="submit" name="saveExperience">Save Changes</button>       
@@ -140,21 +155,36 @@
         <!-- <p> zet hier maar wat leuks in... of haal weg </p> -->
           <form name="education" action="config/setAccount.config.php" method="post">
 
-              <!-- replace with label -->
-              <!-- replace with input -->
+          <div class="left">
+            <label for="eTitle">Education</label>
+            <input type="text"  name="eTitle" placeholder="Your course">
+          </div>
 
-              <!-- replace with label -->
-              <!-- replace with input -->
 
-              <!-- replace with label -->
-              <!-- replace with input -->
+          <div class="left">
+            <label for="desc">Description</label>
+            <input type="text"  name="desc" placeholder="short escription">
+          </div>
 
-              <!-- replace with label -->
-              <!-- replace with input -->         
 
-              <!-- replace with label -->
-              <!-- replace with input -->         
- 
+          <div class="left">
+            <label for="company">Company</label>
+            <input type="text"  name="Company" placeholder="Education institute">
+          </div>
+
+
+          <div class="left">
+            <label for="joined">From</label>
+            <input type="date"  name="joined" placeholder=".">        
+          </div>
+
+
+          <div class="left">
+            <label for="leave">Until</label>
+            <input type="date" name="leave" placeholder=".">         
+          </div>
+
+
             <div class="left">   
               <button type="submit" name="saveEducation">Save Changes</button>       
             </div> 
@@ -170,23 +200,36 @@
           <form name="skills" action="config/setAccount.config.php" method="post">
               <!-- Languages, Technical Skills, Interests -->
 
-              <!-- replace with label -->
-              <!-- replace with input -->
+            <div class="left"> 
+              <label for="lang">Language</label>
+              <input type="text"  name="lang" placeholder="Language">
+            </div> 
 
-              <!-- replace with label -->
-              <!-- replace with input -->
 
-              <!-- replace with label -->
-              <!-- replace with input -->  
-              
+            <div class="left">
+              <label for="techTitle">Technical Skill</label>
+              <input type="text"  name="techTitle" placeholder="Technical skills">
+            </div>
+
+
+            <div class="left">
+              <label for="interests">Interests</label>
+              <input type="text"  name="interests" placeholder="Hobby and interests">
+            </div>
+            
               <!-- -- -- -- Portfolio Fields -- -- -- -->
 
-              <!-- replace with label -->
-              <!-- replace with input -->
+            <div class="left"> 
+              <label for="IMGtitle">Image Title</label>
+              <input type="text"  name="IMGtitle" placeholder="image">
+            </div> 
 
-              <!-- replace with label -->
-              <!-- replace with input -->  
 
+            <div class="left">
+              <label for="IMGpath">Picture of Project</label>
+              <input type="file"  name="IMGpath" placeholder="image">
+            </div>
+            
             <div class="left">   
               <button type="submit" name="saveSkills">Save Changes</button>       
             </div> 
