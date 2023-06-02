@@ -5,7 +5,7 @@
     // Use the (improved) database connection.
     include 'idb.config.php';
 
-    class ViewData {
+    class ViewUser {
         private $pdo;
         
         public function __construct() {
@@ -47,7 +47,7 @@
         }       
     }
     // Create an object from our class
-    $viewData = new ViewData();
+    $viewData = new ViewUser();
     // Error handlers
     $viewData->viewUserInfo();
 ?>

@@ -2,11 +2,13 @@
   // Start a session for handling data and error messages.
   session_start();
 
-  // Include the PHP file that retrieves the data
-  include 'config/viewdata.config.php';
+  // Only unlock the page when signed in.
+  require 'config/peripherals/redirect.config.php';
+  // Include PHP files to retrieve data
+  include 'config/viewuser.config.php';
 
-  // Create an instance of ViewData
-  $viewData = new ViewData();
+  // Create an instance of ViewUser
+  $viewData = new ViewUser();
   $data = $viewData->viewUserInfo();
 
   // Access the user and contact data from the array
@@ -32,7 +34,7 @@
   <body>
     <!-- Upper Navigation Panel -->
     <header>
-      <a href="#" class="logo">.</a>
+      <img class="logo" src="img/CV-headed-eagle.png" alt="Brand Signature">
       <i class='bx bx-menu' id="menu-icon"></i>
       <?php
         if (isset($_SESSION['success'])) {

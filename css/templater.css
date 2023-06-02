@@ -17,7 +17,6 @@
     --error-font-w:bold; --error-padding: 5px 25px;
     --error-max-w:100%; --error-marg-b:10px; --error-marg-t:-5px;
 }
-
 body {
     background: url("../img/templater-main.jpg") no-repeat;
     background-color:#00221F; /* to blend-in with background image */
@@ -39,8 +38,6 @@ header {
 .logo { 
     position:absolute;
     margin:0;
-    height:6rem;
-    width:6rem;
 }
 header #nav-signup { z-index:2; }
 
@@ -109,6 +106,9 @@ ul li.on { cursor:default; margin-left:20px; }
     display:block;
     color:azure;
     cursor:pointer;
+}
+.resume-select {
+    color: rgb(68, 189, 250);
 }
 
 /* Circle Sphere */
@@ -378,6 +378,10 @@ input[type="file"] {
 /* Two Media queries for screen orientation */
 @media (orientation: landscape) {
     body { background-size: 100%; }
+    .logo {
+        height:6rem;
+        width:6rem;
+    }
     #action { left:25%; }
     .window { width: 500px; }
     .sidebar { max-width:20vw; }
@@ -389,14 +393,22 @@ input[type="file"] {
     }
 }
 @media (orientation: portrait) {
+    .logo {
+        position:relative;
+        height:3rem;
+        width:3rem;
+    }
     nav { display:flex; }
     nav.active a { display:block; }
     nav a {
         display:none;
-        font-size: 1.2rem;
-        margin-left: 10px;      
+        font-size: 1.2rem;    
     }  
-    #menu-icon { opacity:1; }
+    #menu-icon { 
+        position:absolute;
+        margin-left:4rem;
+        opacity:1; 
+    }
     #action { left:30%; }
     .window { width: 80%; }
     .sidebar { display:none; }

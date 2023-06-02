@@ -1,8 +1,6 @@
 <?php session_start(); ?>
 <!--
   User Experience - Waarom vragen ze zoveel bij het registreren?
-  User Experience - '+' accepteren voor nummer veld. (+310637899234)
-  User Experience - Email verificatie werkt goed!
 -->
 <!DOCTYPE html> 
 <html lang="en">
@@ -31,7 +29,7 @@
   <body>
     <!-- Upper Navigation Panel -->
     <header>
-      <img class="logo" src="img/CV-headed-eagle.png" alt="">
+      <img class="logo" src="img/CV-headed-eagle.png" alt="Brand Signature">
       <i class='bx bx-menu' id="menu-icon"></i>
       <?php
         if (isset($_SESSION['error'])) {

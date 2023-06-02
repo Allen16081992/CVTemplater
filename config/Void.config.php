@@ -36,9 +36,14 @@
                 
                 // Make sure the user has confirmed before deletion
                 if (isset($_POST['delete'])) {
+
+                    // Erase data from Accounts
                     $stmt = $this->pdo->prepare('DELETE FROM accounts WHERE userID = ?');
                     $stmt->execute([$_POST['user_id']]);
                     $stmt = null;
+
+                    // Queries voor de andere tabellen zijn niet meer nodig dankzij het volgende.
+                    // Buiten accounts, heeft nu elk tabel de foreign key: ON DELETE & UPDATE (van userID) CASCADE.
 
                     // Reset auto increment in Accounts from the current highest userID.
                     $stmt = $this->pdo->prepare('SELECT MAX( `userID` ) FROM `accounts`;');
@@ -56,6 +61,8 @@
                     session_unset();
                     session_destroy();
 
+                    // This session is only for displaying messages.
+                    session_start();
                     // Error Messages by session instead of url parsing.
                     $_SESSION['success'] = 'User deleted successfully';
                     header('Location: ../index.php?');

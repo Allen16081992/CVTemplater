@@ -1,6 +1,15 @@
 <?php // Dhr. Allen Pieter
   // Start a session for handling data and error messages.
   session_start(); 
+
+  // Only unlock the page when signed in.
+  require 'config/peripherals/redirect.config.php';
+  // Include PHP files to retrieve data
+  include "config/viewresume.config.php";
+
+  // Create an instance of ViewResume
+  $resume = new ViewResume();
+  $resumeData = $resume->viewResumeInfo();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +30,7 @@
   <body>
     <!-- Upper Navigation Panel -->
     <header>
-      <a href="#" class="logo">.</a>
+      <img class="logo" src="img/CV-headed-eagle.png" alt="Brand Signature">
       <i class='bx bx-menu' id="menu-icon"></i>
       <nav> 
         <?php
@@ -37,7 +46,13 @@
     <section class="sidebar">
       <h5>Resume Builder</h5>
       <button class="New" data-window-target="#window">New Resume</button>
-      <button data-window-target="#window2">Delete Resume</button> 
+      <button data-window-target="#window2">Delete Resume</button>
+      <ul>
+      <?php if (!empty($resumeData)) { ?>
+      <?php foreach ($resumeData as $resume): ?>
+        <li class="resume-select"><?php echo $resume['resumetitle']; ?></li>
+      <?php endforeach; ?> <?php } ?>
+      </ul> 
       <ul>
         <li class="on"><i class='bx bxs-file'></i>Resume Builder</li>
         <li><a><i class='bx bxs-crown'></i>Premium</a></li>
@@ -110,37 +125,26 @@
         <label for="collapse-head3">Work Experience</label>
         <div class="collapse-text" id="field3">
           <form name="experience" action="config/setAccount.config.php" method="post">
-
-        <div class="left">    
-          <label for="wtitle">Profession</label>
-          <input type="text"  name="wtitle" placeholder="Your profession">
-        </div>
-        
-                
-        <div class="left">  
-          <label for="wdesc">Description</label>
-          <input type="text"  name="wdesc" placeholder="Description">
-        </div>
-
-
-        <div class="left">
-          <label for="company">Company</label>
-          <input type="text"  name="company" placeholder="Name of company">
-        </div>
-
-
-        <div class="left">
-          <label for="joined">From</label>
-          <input type="date"  name="joined" placeholder=".">        
-        </div>
-
-
-        <div class="left">
-          <label for="leave">Until</label>
-          <input type="date"  name="joined" placeholder=".">         
-        </div>
-
-
+          <div class="left">    
+            <label for="wtitle">Profession</label>
+            <input type="text"  name="wtitle" placeholder="Your profession">
+          </div>   
+          <div class="left">  
+            <label for="wdesc">Description</label>
+            <input type="text"  name="wdesc" placeholder="Description">
+          </div>
+            <div class="left">
+              <label for="company">Company</label>
+              <input type="text"  name="company" placeholder="Name of company">
+            </div>
+            <div class="left">
+              <label for="joined">From</label>
+              <input type="date"  name="joined" placeholder=".">        
+            </div>
+            <div class="left">
+              <label for="leave">Until</label>
+              <input type="date"  name="joined" placeholder=".">         
+            </div>
             <div class="left">   
               <button type="submit" name="saveExperience">Save Changes</button>       
             </div> 
@@ -152,39 +156,28 @@
         <input class="check" type="checkbox" id="collapse-head4">
         <label for="collapse-head4">Education</label>
         <div class="collapse-text" id="field4">
-        <!-- <p> zet hier maar wat leuks in... of haal weg </p> -->
+          <!-- <p> zet hier maar wat leuks in... of haal weg </p> -->
           <form name="education" action="config/setAccount.config.php" method="post">
-
-          <div class="left">
-            <label for="eTitle">Education</label>
-            <input type="text"  name="eTitle" placeholder="Your course">
-          </div>
-
-
-          <div class="left">
-            <label for="desc">Description</label>
-            <input type="text"  name="desc" placeholder="short escription">
-          </div>
-
-
-          <div class="left">
-            <label for="company">Company</label>
-            <input type="text"  name="Company" placeholder="Education institute">
-          </div>
-
-
-          <div class="left">
-            <label for="joined">From</label>
-            <input type="date"  name="joined" placeholder=".">        
-          </div>
-
-
-          <div class="left">
-            <label for="leave">Until</label>
-            <input type="date" name="leave" placeholder=".">         
-          </div>
-
-
+            <div class="left">
+              <label for="eTitle">Education</label>
+              <input type="text"  name="eTitle" placeholder="Your course">
+            </div>
+            <div class="left">
+              <label for="desc">Description</label>
+              <input type="text"  name="desc" placeholder="short escription">
+            </div>
+            <div class="left">
+              <label for="company">Company</label>
+              <input type="text"  name="Company" placeholder="Education institute">
+            </div>
+            <div class="left">
+              <label for="joined">From</label>
+              <input type="date"  name="joined" placeholder=".">        
+            </div>
+            <div class="left">
+              <label for="leave">Until</label>
+              <input type="date" name="leave" placeholder=".">         
+            </div>
             <div class="left">   
               <button type="submit" name="saveEducation">Save Changes</button>       
             </div> 
@@ -192,44 +185,35 @@
           <button class="alt" onclick="">Clear</button>
         </div>
 
-        <!-- All Skills Fields -->
+        <!-- Technical Skills Fields -->
         <input class="check" type="checkbox" id="collapse-head5">
         <label for="collapse-head5">Skills</label>
         <div class="collapse-text" id="field5">
-        <!-- <p> zet hier maar wat leuks in... of haal weg </p> -->
+          <!-- <p> zet hier maar wat leuks in... of haal weg </p> -->
           <form name="skills" action="config/setAccount.config.php" method="post">
-              <!-- Languages, Technical Skills, Interests -->
-
-            <div class="left"> 
-              <label for="lang">Language</label>
-              <input type="text"  name="lang" placeholder="Language">
-            </div> 
-
-
+            <!-- Languages, Technical Skills, Interests -->
             <div class="left">
               <label for="techTitle">Technical Skill</label>
               <input type="text"  name="techTitle" placeholder="Technical skills">
             </div>
-
-
+            <div class="left"> 
+              <label for="lang">Language</label>
+              <input type="text"  name="lang" placeholder="Language">
+            </div>
             <div class="left">
               <label for="interests">Interests</label>
               <input type="text"  name="interests" placeholder="Hobby and interests">
             </div>
             
-              <!-- -- -- -- Portfolio Fields -- -- -- -->
-
-            <div class="left"> 
-              <label for="IMGtitle">Image Title</label>
-              <input type="text"  name="IMGtitle" placeholder="image">
-            </div> 
-
-
+            <!-- -- -- -- Portfolio Fields -- -- -- -->
             <div class="left">
               <label for="IMGpath">Picture of Project</label>
               <input type="file"  name="IMGpath" placeholder="image">
             </div>
-            
+            <div class="left"> 
+              <label for="IMGtitle">Image Title</label>
+              <input type="text"  name="IMGtitle" placeholder="image">
+            </div>
             <div class="left">   
               <button type="submit" name="saveSkills">Save Changes</button>       
             </div> 
@@ -255,18 +239,19 @@
       <!-- Delete a Resume Window -->
       <div class="window" id="window2">
         <div class="window-title">
-          <div class="title">Do you really want to delete one?</div>
+          <div class="title">Delete Resume</div>
           <button data-window-delclose class="close-button">&#215;</button>
         </div>
         <form class="window-body" name="popup3" action="" method="post">
+          <p>Do you really want to delete a resume?</p>
           <p class="error-select"></p>
           <label for="selectCv">Select a resume to remove</label>
           <select name="selectCv">
             <option value="">(None selected)</option>
-            <option>....</option>
-            <?php foreach($data as $option) { ?>
-              <option><?php echo $option; ?></option>
-            <?php } ?>
+            <?php if (!empty($resumeData)) { ?>
+            <?php foreach ($resumeData as $resume): ?>
+              <option><?php echo $resume['resumetitle']; ?></option>
+            <?php endforeach; ?> <?php } ?>
           </select>
           <button class="Del" type="submit" name="delResume">Delete</button>
         </form>
