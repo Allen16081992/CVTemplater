@@ -68,9 +68,31 @@ ul li.on { cursor:default; margin-left:20px; }
 }
 
 /* (Mobile) Resume Side Panel */
+#mobilecv > select {
+    background:transparent;
+}
+.m-dropup {
+    display:none;
+    position:fixed;
+    padding:0.8rem;
+    bottom:4.2rem;
+    width:100%;
+    color:var(--primary-color);
+    border: 1px solid var(--primary-color-dark);
+    border-radius:10px;
+    background:rgba(0,0,0,0.5); 
+}
+.m-dropup option { 
+    margin-top:10px;
+    padding-left:8px;
+    color:var(--primary-color); 
+    background:rgba(0,0,0,0.5); 
+}
+
 .m-sidebar {
     display:none;
-    position:relative;
+    position:fixed;
+    bottom:0;
     width:100%;
     border: 1px solid var(--primary-color-dark);
     border-radius:10px;
@@ -393,6 +415,7 @@ input[type="file"] {
     }
 }
 @media (orientation: portrait) {
+    body { overflow-x: hidden;}
     .logo {
         position:relative;
         height:3rem;
@@ -412,6 +435,7 @@ input[type="file"] {
     #action { left:30%; }
     .window { width: 80%; }
     .sidebar { display:none; }
+    .m-dropup { display:block; }
     .m-sidebar {  
         position:fixed;  
         display:block;   
@@ -433,6 +457,20 @@ input[type="file"] {
     .collapse-text > .alt {
         max-width: 47%;
         height: 3.2rem;
+    }
+    .collapse form .left input[name='resumetitle'] { width:210%; }
+    .collapse-text button { max-width:100%; margin:5px 0 0 0;}
+    header .error-message {
+        position:absolute;
+        margin-top:0;
+        left:50%;
+        max-width:40%;
+    }
+    header .success-message {
+        position:absolute;
+        margin-top:0;
+        left:50%;
+        max-width:40%;
     }
 }
 /* Tablet Specific */

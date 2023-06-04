@@ -1,15 +1,14 @@
 <?php // Dhr. Allen Pieter
+    // Start a session to destroy, and for displaying error messages.
+    require 'peripherals/session_start.config.php';
 
     // Use the (improved) database connection.
-    include 'idb.config.php';
-
-    // Start a session to destroy, and for displaying error messages.
-    session_start();
+    require 'idb.config.php';
 
     // These variables are free to use by anything.
     $_POST['pwd']; 
 
-    class Crusified {
+    class CrusifiedUser {
         private $pdo;
         
         public function __construct() {
@@ -48,7 +47,7 @@
                     // Reset auto increment in Accounts from the current highest userID.
                     $stmt = $this->pdo->prepare('SELECT MAX( `userID` ) FROM `accounts`;');
                     $edit = $stmt->fetch(PDO::FETCH_ASSOC);
-                    $stmt = $this->pdo->prepare("ALTER TABLE `table` AUTO_INCREMENT = '$edit';");
+                    $stmt = $this->pdo->prepare("ALTER TABLE `accounts` AUTO_INCREMENT = '$edit';");
                     $stmt = null; $edit = null;
 
                     // Reset auto increment in Contact from the current highest contactID.
@@ -57,13 +56,12 @@
                     $stmt = $this->pdo->prepare("ALTER TABLE `contact` AUTO_INCREMENT = '$edit';");
                     $stmt = null; $edit = null;
 
-                    // When removal is completed, Wipe everything related to the session.
+                    // When removal is completed, erase the session and make a new one.
                     session_unset();
                     session_destroy();
 
-                    // This session is only for displaying messages.
-                    session_start();
                     // Error Messages by session instead of url parsing.
+                    session_start();
                     $_SESSION['success'] = 'User deleted successfully';
                     header('Location: ../index.php?');
                     exit();
@@ -75,7 +73,7 @@
             // Activate the private function beneath.
             if($this->emptyInput()) {
                 // Empty input, no values given for account.
-                $_SESSION['error'] = 'Empty input';
+                $_SESSION['error'] = 'No password provided.';
                 header('location: ../account.php');          
                 exit();
             }
@@ -113,7 +111,7 @@
     }
 
     // Create an object from our class
-    $void = new Crusified();
+    $void = new CrusifiedUser();
     // Error handlers
     $void->verifyUser($_POST['pwd']);
 ?>

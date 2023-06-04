@@ -1,9 +1,9 @@
 <?php // Dhr. Allen Pieter
     // Start a session for displaying error messages.
-    session_start();
+    require 'peripherals/session_start.config.php';
 
     // Use the (improved) database connection.
-    include 'idb.config.php';
+    require 'idb.config.php';
 
     class ViewResume {
         private $pdo;
@@ -13,7 +13,7 @@
             $this->pdo = $database->connect();
         }       
 
-        public function viewResumeInfo() {
+        public function viewResumeTitles() {
             // Verify if the user ID exists
             if (isset($_SESSION['user_id'])) {
                 $userID = $_SESSION['user_id'];
@@ -24,6 +24,7 @@
                 $cv = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
                 if (!$cv) {
+                    $_SESSION['error'] = 'Work information not found';
                     return [];
                 }
                 // Return the resume data
@@ -31,7 +32,18 @@
             }
             // Return an empty array if user ID is not set
             return [];
-        }        
+        } 
+        
+        public function selectResumeInfo($selectedTitle) {
+            // Select resumeID that matches the corresponding title
+            $stmt = $this->pdo->prepare('SELECT resumeID FROM `resume` WHERE title = :title');
+            $stmt->execute(['title' => $selectedTitle]);
+            $resumeID = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Select from all tables everything that matches the resumeID
+            $stmt = $this->pdo->prepare('SELECT resumeID FROM `resume` WHERE title = :title');
+            $stmt->execute($resumeID);
+        }
 
         public function viewExperience() {
             // Verify if the user ID exists
@@ -159,29 +171,18 @@
             return [];              
         }
     }
-    // Create an object from our class
 
+    // If we receive an AJAX request.
+    if (isset($_POST['action'])) {
+        $action = $_POST['action'];
 
-        // Copy-paste this part into the file that needs to display all resume data.
-        // Include the PHP file that retrieves the data
-        //include 'config/viewresume.config.php';
-
-        // Create an instance of ViewResume
-        //$viewResume = new ViewResume();
-        //$data = $viewResume->viewResumeInfo();
-        //$data = $viewResume->viewExperience();
-        //$data = $viewResume->viewEducation();
-        //$data = $viewResume->viewTechnical();
-        //$data = $viewResume->viewLanguages();
-        //$data = $viewResume->viewInterests();
-        //$data = $viewResume->viewPortfolio();
-      
-        // Access the resume and all corresponding data from the array
-        //$cv = $data['cv'];
-        //$work = $data['work'];
-        //$college = $data['college'];
-        //$tech = $data['tech'];
-        //$lang = $data['lang'];
-        //$interest = $data['interest'];
-        //$portfolio = $data['portfolio'];
+        // Create an object from our class
+        $ajax = new ViewResume();
+        if ($action === 'selectResumeInfo') {
+            $selectedTitle = $_POST['title'];
+            $ajax->selectResumeInfo($selectedTitle);
+        } elseif ($action === 'function2') {
+          // $ajax->function2();
+        }
+    }
 ?>
