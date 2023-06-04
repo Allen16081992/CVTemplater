@@ -1,6 +1,6 @@
 <?php
     // Start a session for resume to userID assignment.
-    require '././peripherals/session_start.config.php';
+    require 'peripherals/session_start.config.php';
 
     error_reporting(E_ALL);
     ini_set('display_errors', 'On');
@@ -13,7 +13,7 @@
 
         // Refresh client page.
         $_SESSION['success'] = 'The resume has been created.';
-        header('location: ../../client.php?');
+        header('location: ../client.php?');
         exit();
     }
 ?>

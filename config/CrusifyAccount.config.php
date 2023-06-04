@@ -17,7 +17,7 @@
         }
         
         public function deleteUser() {
-            // Verify if the user ID exists
+            // Verify if the userID exists
             if (isset($_POST['user_id'])) {
 
                 // Select the record that is to be 'crucified'
