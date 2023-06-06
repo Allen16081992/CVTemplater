@@ -1,6 +1,6 @@
 <?php
     // Database Configuration
-    include_once 'config.php';
+    require_once 'config.php';
     
     class Database {
         public function connect() {

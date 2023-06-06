@@ -1,7 +1,9 @@
-<?php session_start(); ?>
-<!--
-  User Experience - Waarom vragen ze zoveel bij het registreren?
--->
+<?php // Dhr. Allen Pieter
+  // Start a session for displaying error messages.
+  require 'config/peripherals/session_start.config.php'; 
+?>
+<!-- User Experience - Waarom vragen ze zoveel bij het registreren? -->
+
 <!DOCTYPE html> 
 <html lang="en">
   <head>
@@ -9,38 +11,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to CV Templater</title>
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="img/favicon//site.webmanifest">
-    <link rel="mask-icon" href="img/favicon//safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+    <?php include 'config/peripherals/favicon.config.php';?>
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="css/trongate.css">
     <link rel="stylesheet" href="css/templater.css">
     <!-- Javascript -->
-    <script defer src="javascript/popup.window.js"></script>
-    <script defer src="javascript/messages.js"></script>
-    <script src="javascript/audio.js"></script>
+    <?php include 'config/peripherals/javascript_load.config.php'; ?>
   </head>
   <body>
     <!-- Upper Navigation Panel -->
     <header>
       <img class="logo" src="img/CV-headed-eagle.png" alt="Brand Signature">
       <i class='bx bx-menu' id="menu-icon"></i>
-      <?php
-        if (isset($_SESSION['error'])) {
-        echo '<div class="error-message">' . $_SESSION['error'] . '</div>';
-        $_SESSION['error'] = null; // Clear the error message in the session
-        }
-        if (isset($_SESSION['success'])) {
-            echo '<div class="success-message">' . $_SESSION['success'] . '</div>';
-            $_SESSION['success'] = null; // Clear the error message in the session
-        }
-      ?>
+      <?php include 'config/peripherals/server_messages.config.php'; ?>
       <nav>
         <a class="current">Home</a>
         <a data-window-target="#window">Login</a>

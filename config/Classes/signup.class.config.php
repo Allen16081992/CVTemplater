@@ -1,6 +1,6 @@
 <?php
     // This session_start is solely for displaying error messages.
-    session_start();
+    require '././peripherals/session_start.config.php';
     
     class Registration extends Database {
 

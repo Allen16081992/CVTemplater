@@ -1,11 +1,12 @@
 <?php // Dhr. Allen Pieter
   // Start a session for handling data and error messages.
-  session_start();
+  require 'config/peripherals/session_start.config.php'; 
 
   // Only unlock the page when signed in.
   require 'config/peripherals/redirect.config.php';
+  
   // Include PHP files to retrieve data
-  include 'config/viewuser.config.php';
+  include 'config/ViewAccount.config.php';
 
   // Create an instance of ViewUser
   $viewData = new ViewUser();
@@ -21,37 +22,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV Templater - MyResume</title>
+    <!-- Favicon -->
+    <?php include 'config/peripherals/favicon.config.php';?>
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="css/trongate.css">
     <link rel="stylesheet" href="css/templater.css">
     <!-- Javascript -->
-    <script defer src="javascript/popup.window.js"></script>
-    <script defer src="javascript/clear.fields.js"></script>
-    <script defer src="javascript/messages.js"></script>
+    <?php require 'config/peripherals/javascript_load.config.php'; ?>
   </head>
   <body>
     <!-- Upper Navigation Panel -->
     <header>
       <img class="logo" src="img/CV-headed-eagle.png" alt="Brand Signature">
       <i class='bx bx-menu' id="menu-icon"></i>
-      <?php
-        if (isset($_SESSION['success'])) {
-          echo '<div class="success-message">' . $_SESSION['success'] . '</div>';
-          unset($_SESSION['success']); // Clear the error message in the session
-        }
-        if (isset($_SESSION['error'])) {
-          echo '<div class="error-message">' . $_SESSION['error'] . '</div>';
-          unset($_SESSION['error']); // Clear the error message in the session
-        }
-      ?>
+      <?php include 'config/peripherals/server_messages.config.php'; ?>
       <nav> 
-        <?php
-          if(isset($_SESSION['user_id'])) {
-              echo '<a class="current">'.$_SESSION['user_name'].'</a>';
-          } else { echo '<a class="current">MyID</a>'; }
-        ?>
+        <?php include 'config/peripherals/nav_username.config.php'; ?>
         <a href="config/logout.config.php">Logout</a>
       </nav>
     </header>
@@ -89,7 +77,7 @@
         <label for="collapse-head1">Account Info</label>       
         <div class="collapse-text" id="field1">
           <p>You can easily edit your Information by clicking on your credentials</p>
-          <form name="account" action="config/update.config.php" method="post">
+          <form name="account" action="config/AccountUpdate.config.php" method="post">
             <div class="left">
               <label for="username">Username</label>
               <input type="text" name="username" placeholder="Username" value="<?=$user['username'];?>">
@@ -118,7 +106,7 @@
         <label for="collapse-head2">Address Book</label>
         <div class="collapse-text" id="field2">
           <p>You can easily clear your credentials by clicking our Clear button</p>
-          <form name="address" action="config/update.config.php" method="post">
+          <form name="address" action="config/AccountUpdate.config.php" method="post">
             <div class="left">
               <label for="streetname">Address</label>
               <input type="text" name="streetname" placeholder="Streetname" value="<?=$contact['streetname'];?>">  
@@ -147,7 +135,7 @@
         <label for="collapse-head3">Personal Info</label>
         <div class="collapse-text" id="field3">
           <p>You can even use our App on your mobile device, how convenient is that?</p>
-          <form name="personal" action="config/update.config.php" method="post">
+          <form name="personal" action="config/AccountUpdate.config.php" method="post">
             <div class="left">
               <label for="firstname">First name</label>
               <input type="text" name="firstname" placeholder="Firstname" value="<?=$contact['firstname'];?>">
@@ -178,8 +166,8 @@
           <div class="title">We hate to see you leave...</div>
           <button data-window-close class="close-button">&#215;</button>
         </div>
-        <form class="window-body" name="popup" action="config/Void.config.php" method="post">
-          <p class="error-message">Warning: These changes cannot be undone!<br> Any information will be removed from our servers</p>
+        <form class="window-body" name="popup" action="config/AccountCrusify.config.php" method="post">
+          <p class="error-message">Warning: All your information will be removed from our servers.</p>
           <p class="error-uid"></p>
           <p class="error-pwd"></p>
           <label>Do you really want to delete your account?</label>   

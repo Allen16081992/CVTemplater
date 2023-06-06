@@ -1,6 +1,6 @@
 <?php // Dhr. Allen Pieter
     // Start a session for displaying error messages.
-    session_start();
+    require '././peripherals/session_start.config.php';
 
     class UpdateAccount extends Account {
         private $uid;
@@ -28,10 +28,7 @@
             } elseif(!$this->invalidEmail()) {
                 // Invalid emailaddress.
                 $_SESSION['error'] = 'Please enter a valid email address.';
-            } elseif(!$this->emptyPassword()) {
-                // No username or password provided.
-                $_SESSION['error'] = 'No passwords provided.';              
-            } elseif(!$this->passwMatcher()) {
+            } elseif(!$this->passwMatcher() && !empty($this->passw)) {
                 // Passwords aren't equal.
                 $_SESSION['error'] = "Passwords aren't the same.";
             } else { 
