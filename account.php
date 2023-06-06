@@ -6,7 +6,7 @@
   require 'config/peripherals/redirect.config.php';
   
   // Include PHP files to retrieve data
-  include 'config/ViewUser.config.php';
+  include 'config/ViewAccount.config.php';
 
   // Create an instance of ViewUser
   $viewData = new ViewUser();
@@ -77,7 +77,7 @@
         <label for="collapse-head1">Account Info</label>       
         <div class="collapse-text" id="field1">
           <p>You can easily edit your Information by clicking on your credentials</p>
-          <form name="account" action="config/UpdateAccount.config.php" method="post">
+          <form name="account" action="config/AccountUpdate.config.php" method="post">
             <div class="left">
               <label for="username">Username</label>
               <input type="text" name="username" placeholder="Username" value="<?=$user['username'];?>">
@@ -106,7 +106,7 @@
         <label for="collapse-head2">Address Book</label>
         <div class="collapse-text" id="field2">
           <p>You can easily clear your credentials by clicking our Clear button</p>
-          <form name="address" action="config/UpdateAccount.config.php" method="post">
+          <form name="address" action="config/AccountUpdate.config.php" method="post">
             <div class="left">
               <label for="streetname">Address</label>
               <input type="text" name="streetname" placeholder="Streetname" value="<?=$contact['streetname'];?>">  
@@ -135,7 +135,7 @@
         <label for="collapse-head3">Personal Info</label>
         <div class="collapse-text" id="field3">
           <p>You can even use our App on your mobile device, how convenient is that?</p>
-          <form name="personal" action="config/UpdateAccount.config.php" method="post">
+          <form name="personal" action="config/AccountUpdate.config.php" method="post">
             <div class="left">
               <label for="firstname">First name</label>
               <input type="text" name="firstname" placeholder="Firstname" value="<?=$contact['firstname'];?>">
@@ -166,7 +166,7 @@
           <div class="title">We hate to see you leave...</div>
           <button data-window-close class="close-button">&#215;</button>
         </div>
-        <form class="window-body" name="popup" action="config/CrusifyAccount.config.php" method="post">
+        <form class="window-body" name="popup" action="config/AccountCrusify.config.php" method="post">
           <p class="error-message">Warning: All your information will be removed from our servers.</p>
           <p class="error-uid"></p>
           <p class="error-pwd"></p>

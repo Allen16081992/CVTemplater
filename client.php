@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="css/templater.css">
     <!-- Javascript -->
     <?php require 'config/peripherals/javascript_load.config.php'; ?>
+    <script defer src="javascript/dropdown.submit.js"></script>
   </head>
   <body>
     <!-- Upper Navigation Panel -->
@@ -44,14 +45,19 @@
     <section class="sidebar">
       <h5>Resume Builder</h5>
       <button class="New" data-window-target="#window">New Resume</button>
-      <button data-window-target="#window2">Delete Resume</button>
-      <ul id="resumeList"><!-- The id here is only used for AJAX requests -->
-      <?php if (!empty($resumeData)) { ?>
-      <?php foreach ($resumeData as $resume): ?>
-        <li class="resume-select" data-resume-title="<?= $resume['resumetitle']; ?>"><?= $resume['resumetitle']; ?></li>
-      <?php endforeach; ?> <?php } ?>
-      </ul> 
+      <button data-window-target="#window2">Delete Resume</button> 
+           
       <ul>
+        <form action="config/ViewResume.config.php" method="post">
+          <select class="dropdown" name="selectCv" onchange="submitForm(this.form)">
+            <option selected disabled hidden>Select Resume:</option>
+            <?php if (!empty($resumeData)) { ?>
+            <?php foreach ($resumeData as $resume): ?>
+              <option class="resume-select"><?= $resume['resumetitle']; ?></option>
+            <?php endforeach; ?> <?php } ?>
+          </select>
+        </form>
+
         <li class="on"><i class='bx bxs-file'></i>Resume Builder</li>
         <li><a><i class='bx bxs-crown'></i>Premium</a></li>
         <li><a><i class='bx bxs-videos'></i>Tutorial</a></li>
@@ -61,13 +67,15 @@
 
     <!-- (Mobile) Resume Side Panel -->
     <section id="#mobilecv">
-        <select class="m-dropup" name="selectCv">
+      <form action="config/ViewResume.config.php" method="post">
+        <select class="m-dropup" name="selectCv" onchange="submitForm(this.form)">
           <option selected disabled hidden>Select Resume:</option>
           <?php if (!empty($resumeData)) { ?>
           <?php foreach ($resumeData as $resume): ?>
             <option><?= $resume['resumetitle']; ?></option>
           <?php endforeach; ?> <?php } ?>
         </select>
+      </form>
     </section>
     <section class="m-sidebar">
       <ul>
@@ -92,7 +100,7 @@
           <form name="resume" action="" method="post">
             <div class="left">
               <label for="resumetitle">Title</label>
-              <input type="text" name="resumetitle" placeholder="Ex: Human Resource Manager" autocomplete="off">
+              <input type="text" name="resumetitle" placeholder="Ex: Human Resource Manager" value="<?= isset($cv['resumetitle']) ? $cv['resumetitle'] : '' ?>" autocomplete="off">
             </div>  
             <button type="submit" name="saveResume">Save Changes</button> 
           </form>
@@ -105,18 +113,18 @@
         <label for="collapse-head2">Profile</label>
         <div class="collapse-text" id="field2">
           <p>Edit your profile image</p>       
-          <form name="profile" action="" enctype="multipart/form-data" method="post">
+          <form name="profile" action="config/UploadFile.config.php" enctype="multipart/form-data" method="post">
             <div class="left">
               <label for="file-upload" class="custom-file-upload"><img src="img/av-placehold.png" alt=""></label>
               <input id="file-upload" name="file-upload" type="file"/>  
             </div>
             <div class="left">
               <label for="intro">Introduction</label>
-              <input type="text" name="intro" placeholder="Write a short introduction" autocomplete="off">
+              <input type="text" name="intro" id="profIntro" value="<?= isset($profile['intro']) ? $profile['intro'] : '' ?>" placeholder="Write a short introduction" autocomplete="off">
             </div>
             <div class="left">
               <label for="desc">Description</label>
-              <textarea name="desc" rows="2" placeholder="Write your summary"></textarea>
+              <textarea name="desc" rows="2" value="<?= isset($profile['desc']) ? $profile['desc'] : '' ?>" placeholder="Write your summary"></textarea>
             </div>
             <div class="left">   
               <button type="submit" name="saveProfile">Save Changes</button>       
@@ -132,23 +140,23 @@
           <form name="experience" action="" method="post">
             <div class="left">
               <label for="joined">From</label>
-              <input type="date"  name="joined" placeholder=".">        
+              <input type="date"  name="joined" value="<?= isset($exp['firstDate']) ? $exp['firstDate'] : '' ?>" placeholder=".">        
             </div>
             <div class="left">
               <label for="leave">Until</label>
-              <input type="date"  name="joined" placeholder=".">         
+              <input type="date"  name="joined" value="<?= isset($exp['lastDate']) ? $exp['lastDate'] : '' ?>" placeholder=".">         
             </div>
             <div class="left">    
               <label for="wtitle">Profession</label>
-              <input type="text"  name="wtitle" placeholder="Your profession">
+              <input type="text"  name="title" value="<?= isset($exp['worktitle']) ? $exp['worktitle'] : '' ?>" placeholder="Your profession">
             </div>   
             <div class="left">  
               <label for="wdesc">Description</label>
-              <input type="text"  name="wdesc" placeholder="Description">
+              <input type="text"  name="desc" value="<?= isset($exp['workdesc']) ? $exp['workdesc'] : '' ?>" placeholder="Description">
             </div>
             <div class="left">
               <label for="company">Company</label>
-              <input type="text"  name="company" placeholder="Name of company">
+              <input type="text"  name="company" value="<?= isset($exp['company']) ? $exp['company'] : '' ?>" placeholder="Name of company">
             </div>
             <div class="left">   
               <button type="submit" name="saveExperience">Save Changes</button>       
@@ -165,23 +173,23 @@
           <form name="education" action="" method="post">
             <div class="left">
               <label for="eTitle">Education</label>
-              <input type="text"  name="eTitle" placeholder="Your course">
+              <input type="text"  name="title" value="<?= isset($college['edutitle']) ? $college['edutitle'] : '' ?>" placeholder="Your course">
             </div>
             <div class="left">
               <label for="desc">Description</label>
-              <input type="text"  name="desc" placeholder="short escription">
+              <input type="text"  name="desc" value="<?= isset($college['edudesc']) ? $college['edudesc'] : '' ?>" placeholder="short escription">
             </div>
             <div class="left">
               <label for="company">Company</label>
-              <input type="text"  name="Company" placeholder="Education institute">
+              <input type="text"  name="Company" value="<?= isset($college['company']) ? $college['company'] : '' ?>" placeholder="Education institute">
             </div>
             <div class="left">
               <label for="joined">From</label>
-              <input type="date"  name="joined" placeholder=".">        
+              <input type="date"  name="joined" value="<?= isset($college['firstDate']) ? $college['firstDate'] : '' ?>" placeholder=".">        
             </div>
             <div class="left">
               <label for="leave">Until</label>
-              <input type="date" name="leave" placeholder=".">         
+              <input type="date" name="leave" value="<?= isset($college['lastDate']) ? $college['lastDate'] : '' ?>" placeholder=".">         
             </div>
             <div class="left">   
               <button type="submit" name="saveEducation">Save Changes</button>       
@@ -199,25 +207,25 @@
             <!-- Languages, Technical Skills, Interests -->
             <div class="left">
               <label for="techTitle">Technical Skill</label>
-              <input type="text"  name="techTitle" placeholder="Technical skills">
+              <input type="text" name="techTitle" value="<?= isset($tech['techtitle']) ? $tech['techtitle'] : '' ?>" placeholder="Technical skills">
             </div>
             <div class="left"> 
               <label for="lang">Language</label>
-              <input type="text"  name="lang" placeholder="Language">
+              <input type="text" name="lang" value="<?= isset($lang['language']) ? $lang['languge'] : '' ?>" placeholder="Language">
             </div>
             <div class="left">
               <label for="interests">Interests</label>
-              <input type="text"  name="interests" placeholder="Hobby and interests">
+              <input type="text" name="interests" value="<?= isset($hobby['interest']) ? $hobby['interest'] : '' ?>" placeholder="Hobby and interests">
             </div>
             
             <!-- -- -- -- Portfolio Fields -- -- -- -->
             <div class="left">
               <label for="IMGpath">Picture of Project</label>
-              <input type="file"  name="IMGpath" placeholder="image">
+              <input type="file" name="IMGpath" placeholder="image">
             </div>
             <div class="left"> 
               <label for="IMGtitle">Image Title</label>
-              <input type="text"  name="IMGtitle" placeholder="image">
+              <input type="text" name="IMGtitle" placeholder="image">
             </div>
             <div class="left">   
               <button type="submit" name="saveSkills">Save Changes</button>       
@@ -233,7 +241,7 @@
           <div class="title">Your New Resume</div>
           <button data-window-close class="close-button">&#215;</button>
         </div>
-        <form class="window-body" name="popup2" action="config/Classes/createresume.php" method="post">
+        <form class="window-body" name="popup2" action="config/createresume.php" method="post">
           <p class="error-res"></p>
           <label for="cv-name">Let's give it a name</label>
           <input type="text" name="cv-name" placeholder="Name your new resume...">
