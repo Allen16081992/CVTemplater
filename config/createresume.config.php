@@ -9,8 +9,9 @@
 
     // Verify if a new resume was submitted
     if (isset($_POST['creResume'])) {
-        $nieuweresume = new Resume($_POST['cv-name']);
-        $nieuweresume->Create();
+        $resumetitle = $_POST['cv-name'];
+        $nieuweresume = new Resume($resumetitle);
+        $nieuweresume->verifyResume();
 
         // Refresh client page.
         $_SESSION['success'] = 'The resume has been created.';

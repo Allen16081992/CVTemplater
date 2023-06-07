@@ -6,5 +6,5 @@
         
         header('Location: ././index.php');
         exit;
-    }
+    } else { $userID = $_SESSION['user_id']; }
 ?>

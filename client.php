@@ -7,10 +7,21 @@
 
   // Include PHP files to retrieve data
   require "config/ViewResumes.config.php";
+  include "config/FetchResumeTables.config.php";
 
   // Create an instance of ViewResume
   $resume = new ViewResumes();
   $resumeData = $resume->viewResumeTitles();
+
+  if (isset($_SESSION['resumeID'])) {
+    $resumeID = $_SESSION['resumeID'];
+    $resumetitle = $_SESSION['resumetitle'];
+    
+    // Create a new instance of FetchData
+    $fetchData = new FetchData();
+    // Fetch all the data
+    $data = $fetchData->fetchAllData($resumeID, $userID);
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +59,7 @@
       <button data-window-target="#window2">Delete Resume</button> 
            
       <ul>
-        <form action="config/SelectResume.config.php" method="post">
+        <form action="config/FetchResume.config.php" method="post">
           <select class="dropdown" name="selectCv" onchange="submitForm(this.form)">
             <option selected disabled hidden>Select Resume:</option>
             <?php if (!empty($resumeData)) { ?>
@@ -62,12 +73,13 @@
         <li><a><i class='bx bxs-crown'></i>Premium</a></li>
         <li><a><i class='bx bxs-videos'></i>Tutorial</a></li>
         <li><a href="./account.php"><i class='bx bxs-cog'></i>Account Settings</a></li>
+        <?php echo "<i class='bx bxs-user-account bx-ms'></i> ".$userID; ?>
       </ul>
     </section>
 
     <!-- (Mobile) Resume Side Panel -->
     <section id="#mobilecv">
-      <form action="config/SelectResume.config.php" method="post">
+      <form action="config/FetchResume.config.php" method="post">
         <select class="m-dropup" name="selectCv" onchange="submitForm(this.form)">
           <option selected disabled hidden>Select Resume:</option>
           <?php if (!empty($resumeData)) { ?>
@@ -99,8 +111,12 @@
         <div class="collapse-text" id="field1">
           <form name="resume" action="" method="post">
             <div class="left">
-              <label for="resumetitle">Title</label>
-              <input type="text" name="resumetitle" placeholder="Ex: Human Resource Manager" value="<?= isset($cv['resumetitle']) ? $cv['resumetitle'] : '' ?>" autocomplete="off">
+              <label for="resumeid">Resume ID</label>
+              <input type="text" name="resumeid" placeholder="Ex: 0" value="<?= isset($resumeID) ? $resumeID : '' ?>" disabled>
+            </div> 
+            <div class="left">
+              <label for="resumetitle">Name</label>
+              <input type="text" name="resumetitle" placeholder="Ex: Human Resource Manager" value="<?= isset($resumetitle) ? $resumetitle : '' ?>" autocomplete="off">
             </div>  
             <button type="submit" name="saveResume">Save Changes</button> 
           </form>
@@ -120,11 +136,11 @@
             </div>
             <div class="left">
               <label for="intro">Introduction</label>
-              <input type="text" name="intro" id="profIntro" value="<?= isset($profile['intro']) ? $profile['intro'] : '' ?>" placeholder="Write a short introduction" autocomplete="off">
+              <input type="text" name="intro" id="profIntro" value="<?= isset($profile['profileintro']) ? $profile['profileintro'] : '' ?>" placeholder="Write a short introduction" autocomplete="off">
             </div>
             <div class="left">
               <label for="desc">Description</label>
-              <textarea name="desc" rows="2" value="<?= isset($profile['desc']) ? $profile['desc'] : '' ?>" placeholder="Write your summary"></textarea>
+              <textarea name="desc" rows="2" value="<?= isset($profile['profiledesc']) ? $profile['profiledesc'] : '' ?>" placeholder="Write your summary"></textarea>
             </div>
             <div class="left">   
               <button type="submit" name="saveProfile">Save Changes</button>       
@@ -137,32 +153,50 @@
         <input class="check" type="checkbox" id="collapse-head3">
         <label for="collapse-head3">Work Experience</label>
         <div class="collapse-text" id="field3">
-          <form name="experience" action="" method="post">
-            <div class="left">
+          <?php if (!empty($data)) { ?>
+            <table>
+              <tr>
+                  <th>From</th>
+                  <th>Until</th>
+                  <th>Profession</th>
+                  <th>Company</th>
+                  <th>Description</th>
+              </tr>
+              <tr>
+                <?php foreach ($data['experience'] as $experience): ?>
+                  <td><?= $experience['firstDate']; ?></td>
+                  <td><?= $experience['lastDate']; ?></td>
+                  <td><?= $experience['worktitle']; ?></td>
+                  <td><?= $experience['company']; ?></td>  
+                  <td rowspan="2"><?= $experience['workdesc']; ?></td>
+                <?php endforeach; ?>
+                </tr>
+            </table>
+          <?php } else { } ?>
+           <form name="experience" action="" method="post">
+       
               <label for="joined">From</label>
-              <input type="date"  name="joined" value="<?= isset($exp['firstDate']) ? $exp['firstDate'] : '' ?>" placeholder=".">        
-            </div>
-            <div class="left">
+              <input type="date"  name="joined" value="<?= isset($experience['firstDate']) ? $experience['firstDate'] : '' ?>" placeholder=".">        
+        
+        
               <label for="leave">Until</label>
-              <input type="date"  name="joined" value="<?= isset($exp['lastDate']) ? $exp['lastDate'] : '' ?>" placeholder=".">         
-            </div>
-            <div class="left">    
+              <input type="date"  name="joined" value="<?= isset($experience['lastDate']) ? $experience['lastDate'] : '' ?>" placeholder=".">         
+       
+        
               <label for="wtitle">Profession</label>
-              <input type="text"  name="title" value="<?= isset($exp['worktitle']) ? $exp['worktitle'] : '' ?>" placeholder="Your profession">
-            </div>   
-            <div class="left">  
+              <input type="text"  name="title" value="<?= isset($experience['worktitle']) ? $experience['worktitle'] : '' ?>" placeholder="Your profession">
+  
               <label for="wdesc">Description</label>
-              <input type="text"  name="desc" value="<?= isset($exp['workdesc']) ? $exp['workdesc'] : '' ?>" placeholder="Description">
-            </div>
-            <div class="left">
+              <input type="text"  name="desc" value="<?= isset($experience['workdesc']) ? $experience['workdesc'] : '' ?>" placeholder="Description">
+
               <label for="company">Company</label>
-              <input type="text"  name="company" value="<?= isset($exp['company']) ? $exp['company'] : '' ?>" placeholder="Name of company">
-            </div>
-            <div class="left">   
+              <input type="text"  name="company" value="<?= isset($experience['company']) ? $experience['company'] : '' ?>" placeholder="Name of company">
+   
               <button type="submit" name="saveExperience">Save Changes</button>       
-            </div> 
+        
           </form>
-          <button class="alt" onclick="">Clear</button>
+          <button class="alt" onclick="">Clear</button> 
+          
         </div>
 
         <!-- Education Fields -->
@@ -202,7 +236,25 @@
         <input class="check" type="checkbox" id="collapse-head5">
         <label for="collapse-head5">Skills</label>
         <div class="collapse-text" id="field5">
-          <!-- <p> zet hier maar wat leuks in... of haal weg </p> -->
+          <?php if(isset($_SESSION['resumeID'])) { 
+            echo "<table>
+                    <tr>
+                      <th>Company</th>
+                      <th>Contact</th>
+                      <th>Country</th>
+                    </tr>
+                    <tr>
+                      <td>Alfreds Futterkiste</td>
+                      <td>Maria Anders</td>
+                      <td>Germany</td>
+                    </tr>
+                    <tr>
+                      <td>Centro comercial Moctezuma</td>
+                      <td>Francisco Chang</td>
+                      <td>Mexico</td>
+                    </tr>
+                  </table>";
+          } else { ?>
           <form name="skills" action="" method="post">
             <!-- Languages, Technical Skills, Interests -->
             <div class="left">
@@ -221,17 +273,18 @@
             <!-- -- -- -- Portfolio Fields -- -- -- -->
             <div class="left">
               <label for="IMGpath">Picture of Project</label>
-              <input type="file" name="IMGpath" placeholder="image">
+              
             </div>
             <div class="left"> 
               <label for="IMGtitle">Image Title</label>
-              <input type="text" name="IMGtitle" placeholder="image">
+              <input type="text" name="IMGtitle" value="<?= isset($portfolio['file_name']) ? $portfolio['file_name'] : '' ?>" placeholder="image">
             </div>
             <div class="left">   
               <button type="submit" name="saveSkills">Save Changes</button>       
             </div> 
           </form>
           <button class="alt" onclick="">Clear</button>
+          <?php } ?>
         </div>
       </div>
 
@@ -243,8 +296,8 @@
         </div>
         <form class="window-body" name="popup2" action="config/createresume.config.php" method="post">
           <p class="error-res"></p>
-          <label for="cv-name">Let's give it a name</label>
-          <input type="text" name="cv-name" placeholder="Name your new resume...">
+          <label for="cvname">Let's give it a name</label>
+          <input type="text" name="cvname" placeholder="Name your new resume...">
           <button type="submit" name="creResume">Save Resume</button>
         </form>
       </div>
@@ -255,9 +308,9 @@
           <div class="title">Delete Resume</div>
           <button data-window-delclose class="close-button">&#215;</button>
         </div>
-        <form class="window-body" name="popup3" action="" method="post">
-          <p>Do you really want to delete a resume?</p>
+        <form class="window-body" name="popup3" action="config/delete.resume.config.php" method="post">
           <p class="error-select"></p>
+          <p>Do you really want to delete a resume?</p>
           <label for="selectCv">Select a resume to remove</label>
           <select name="selectCv">
             <option value="">(None selected)</option>

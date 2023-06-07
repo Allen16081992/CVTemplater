@@ -29,12 +29,12 @@ if (resumeForm) {
   }
 }
 
-// New Form with Select Element
-var myForm = document.forms['popup3'];
-if (myForm) {
-  myForm.onsubmit = function(event) {
+// Target - Delete Resume/CVName Select
+var deleteForm = document.forms['popup3'];
+if (deleteForm) {
+  deleteForm.onsubmit = function(event) {
     // Validate select element
-    var selectedOption = myForm.selectCv.value;
+    var selectedOption = deleteForm.selectCv.value;
     if (selectedOption === "") {
       displayErrorMessage(".error-select", "&bull; Please select an option.");
       event.preventDefault();
