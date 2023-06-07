@@ -22,6 +22,9 @@
     // Fetch all the data
     $data = $fetchData->fetchAllData($resumeID, $userID);
   }
+  if (!isset($resumeID)) { //test.. goofing around
+    $_SESSION['golden'] = 'You can now select a resume.';
+  } elseif(isset($resumeID)) { $_SESSION['golden'] = 'Resume: '.$resumetitle; }
 ?>
 <!DOCTYPE html>
 <html lang="en">

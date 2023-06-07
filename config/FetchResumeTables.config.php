@@ -51,7 +51,7 @@
             $data['technical'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if (empty($data)) {
-                $_SESSION['error'] = 'No data found.';
+                $_SESSION['error'] = 'No data found.';  
             }
             
             return $data;

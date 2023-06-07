@@ -7,4 +7,8 @@
         echo '<div class="success-message">'.$_SESSION['success'].'</div>';
         $_SESSION['success'] = null; // Clear the server message on page reload
     }
+    if (isset($_SESSION['golden'])) {
+        echo '<div class="golden-message">'.$_SESSION['golden'].'</div>';
+        $_SESSION['golden'] = null; // Clear the server message on page reload
+    }
 ?>
