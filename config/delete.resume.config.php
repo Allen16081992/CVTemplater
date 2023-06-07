@@ -1,5 +1,18 @@
 <?php // Loubna Faress
 
+  // Dhr. A Pieter: we moeten een specifieke resume pakken, niet alles via *.
+  //SELECT resumeID FROM `resume` WHERE resumetitle = ? AND userID = ?'
+
+  // Dhr. A Pieter: Login naar client.php, Druk op de knop 'Delete Resume'. Wordt er een wachtwoord gevraagd?
+  //if (isset($_POST['selectCv']) && isset($_SESSION['user_id'])) {
+  //  $resumetitle = $_POST['selectCv'];
+  //  $userID = $_SESSION['user_id'];
+    
+    // Create an instance of FetchResumeID and fetch the resume ID
+  //  $deleteResume = new deleteResume();
+  //  $deleteResume->deleteResume($resumetitle, $userID);
+  //}
+
   // use the (improved) database connection.
   include 'idb.config.php';
 
@@ -73,14 +86,14 @@
         $passHash = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!password_verify($_POST['pwd'], $passHash['password'])) {
-            // Passwords don't match!
-            $_SESSION['error'] = "Passwords don't match!";
-                header('Location: ../account.php?');
-                exit();
-            } else {
-                // Password matches, delete the user.
-                $this->deleteUser();
-            }
+          // Passwords don't match!
+          $_SESSION['error'] = "Passwords don't match!";
+              header('Location: ../account.php?');
+              exit();
+          } else {
+              // Password matches, delete the user.
+              $this->deleteUser();
+          }
         }
       }
 ?>
