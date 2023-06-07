@@ -1,8 +1,8 @@
-<?php 
+<?php // Dhr. Allen Pieter
     // This session_start is solely for displaying error messages.
     require '././peripherals/session_start.config.php';
 
-    //extend influence to puppeteer
+    //extend influence
     class loginControl extends Login {
         // Account info
         private $uid;
@@ -15,7 +15,7 @@
         }
 
         public function loginUser() {
-            // Activate the private function beneath.
+            // Activate security function beneath.
             if(!$this->emptyInput()) {
                 // Empty input, no values given for account.
                 $_SESSION['error'] = 'No username or password provided!';

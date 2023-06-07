@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 03 jun 2023 om 23:10
+-- Gegenereerd op: 06 jun 2023 om 15:23
 -- Serverversie: 10.4.28-MariaDB
 -- PHP-versie: 8.2.4
 
@@ -41,7 +41,7 @@ CREATE TABLE `accounts` (
 INSERT INTO `accounts` (`userID`, `username`, `password`, `email`) VALUES
 (1, 'test', '$2y$10$DIf2wwLBCD2ZuCzHZFtJvub84eFfqilLCCplX7YgveQiTQS9r5n4W', 'test@test.com'),
 (2, 'Aaltje', '$2y$10$2NVwcUH7PiS4P7S7lxN7gevUGCEujO4IHuT0NBb7r1Bn6QJyzUM0q', 'aaltje@gmail.com'),
-(3, 'Hallo', '$2y$10$TBIiFLi0WEg1IUCKoLm6eekayuhESeVK9OnyBzN1afX9qo9HGkHSu', 'hallo@hallo.nl');
+(3, 'Hallo', '$2y$10$mSx2augsaJ1Af1dprLStduM9tMLRCaJQ4mISkiePmdKLExwmd/sBW', 'hallo@yug.nl');
 
 -- --------------------------------------------------------
 
@@ -88,6 +88,13 @@ CREATE TABLE `education` (
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `education`
+--
+
+INSERT INTO `education` (`eduID`, `edutitle`, `edudesc`, `company`, `firstDate`, `lastDate`, `resumeID`, `userID`) VALUES
+(1, 'Duel Academy', 'Island prospects and resources.', 'KaibaCorp', '2017-06-11', '2023-06-02', 1, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -105,6 +112,13 @@ CREATE TABLE `experience` (
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `experience`
+--
+
+INSERT INTO `experience` (`workID`, `worktitle`, `workdesc`, `company`, `firstDate`, `lastDate`, `resumeID`, `userID`) VALUES
+(1, 'Necromancer', 'As a necromancer, I harness the power of ressurection.', 'Gravecorp', '2013-06-11', '2023-06-04', 1, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -118,6 +132,13 @@ CREATE TABLE `interests` (
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `interests`
+--
+
+INSERT INTO `interests` (`interestID`, `interest`, `resumeID`, `userID`) VALUES
+(1, 'Dueling', 1, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -130,6 +151,13 @@ CREATE TABLE `languages` (
   `resumeID` int(11) NOT NULL,
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `languages`
+--
+
+INSERT INTO `languages` (`langID`, `language`, `resumeID`, `userID`) VALUES
+(1, 'Zombie', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -155,10 +183,18 @@ CREATE TABLE `profile` (
   `profileID` int(11) NOT NULL,
   `profileintro` varchar(255) DEFAULT NULL,
   `profiledesc` varchar(255) DEFAULT NULL,
-  `IMGpath` varchar(255) DEFAULT NULL,
+  `file_path` varchar(255) NOT NULL,
+  `file_name` varchar(50) NOT NULL,
   `resumeID` int(11) NOT NULL,
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `profile`
+--
+
+INSERT INTO `profile` (`profileID`, `profileintro`, `profiledesc`, `file_path`, `file_name`, `resumeID`, `userID`) VALUES
+(1, 'Hi, I am Hallo.', NULL, '', '', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -177,8 +213,9 @@ CREATE TABLE `resume` (
 --
 
 INSERT INTO `resume` (`resumeID`, `resumetitle`, `userID`) VALUES
-(1, 'Tzeentch Coördinator', 3),
-(2, 'Beleidsadviseur', 3);
+(1, 'Tzeentch Coordinator', 3),
+(2, 'Beleidsadviseur', 3),
+(3, 'Winkelmedewerker', 3);
 
 -- --------------------------------------------------------
 
@@ -192,6 +229,13 @@ CREATE TABLE `technical` (
   `resumeID` int(11) NOT NULL,
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `technical`
+--
+
+INSERT INTO `technical` (`techID`, `techtitle`, `resumeID`, `userID`) VALUES
+(1, 'Nation building', 1, 3);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -330,7 +374,7 @@ ALTER TABLE `profile`
 -- AUTO_INCREMENT voor een tabel `resume`
 --
 ALTER TABLE `resume`
-  MODIFY `resumeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `resumeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT voor een tabel `technical`

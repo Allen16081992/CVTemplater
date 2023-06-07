@@ -33,32 +33,5 @@
             // Return an empty array if user ID is not set
             return [];
         }
-        
-        public function selectMyResume() {
-            // Verify if a resume was selected
-            if (isset($_POST['selectCv'])) {
-                $selectID = $_POST['selectCv'];
-
-                // Verify if the user ID exists
-                if (isset($_SESSION['user_id'])) {
-                    $userID = $_SESSION['user_id'];
-                
-                    // Select specified cv record
-                    $stmt = $this->pdo->prepare('SELECT * FROM resume WHERE userID = ? AND resumetitle = ? LIMIT 1');
-                    $stmt->execute([$userID][$selectID]);
-                    $cvname = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-                    if (!$cvname) {
-                        $_SESSION['error'] = 'User information not found';
-                        return;
-                    }
-
-                    // Return the combined user and contact data
-                    return ['cvname' => $cvname];
-                }
-                // Return an empty array if user ID is not set
-                return [];
-            }
-        }
     }
 ?>

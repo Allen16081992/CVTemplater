@@ -48,7 +48,7 @@
       <button data-window-target="#window2">Delete Resume</button> 
            
       <ul>
-        <form action="config/ViewResume.config.php" method="post">
+        <form action="config/SelectResume.config.php" method="post">
           <select class="dropdown" name="selectCv" onchange="submitForm(this.form)">
             <option selected disabled hidden>Select Resume:</option>
             <?php if (!empty($resumeData)) { ?>
@@ -67,7 +67,7 @@
 
     <!-- (Mobile) Resume Side Panel -->
     <section id="#mobilecv">
-      <form action="config/ViewResume.config.php" method="post">
+      <form action="config/SelectResume.config.php" method="post">
         <select class="m-dropup" name="selectCv" onchange="submitForm(this.form)">
           <option selected disabled hidden>Select Resume:</option>
           <?php if (!empty($resumeData)) { ?>
