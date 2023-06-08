@@ -239,8 +239,8 @@
         <input class="check" type="checkbox" id="collapse-head5">
         <label for="collapse-head5">Skills</label>
         <div class="collapse-text" id="field5">
-          <?php if(isset($_SESSION['resumeID'])) { 
-            echo "<table>
+       
+            <table>
                     <tr>
                       <th>Company</th>
                       <th>Contact</th>
@@ -256,8 +256,8 @@
                       <td>Francisco Chang</td>
                       <td>Mexico</td>
                     </tr>
-                  </table>";
-          } else { ?>
+                  </table>
+         
           <form name="skills" action="" method="post">
             <!-- Languages, Technical Skills, Interests -->
             <div class="left">
@@ -287,7 +287,7 @@
             </div> 
           </form>
           <button class="alt" onclick="">Clear</button>
-          <?php } ?>
+       
         </div>
       </div>
 
