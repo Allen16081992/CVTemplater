@@ -35,7 +35,7 @@
         if (isset($_POST['user_id'])) {
 
           // Select the record that is to be 'deleteResume'
-          $stmt = $this->pdo->prepare('SELECT *  FROM `resume` WHERE userID = ?');
+          $stmt = $this->pdo->prepare('SELECT resumeID FROM `resume` WHERE resumetitle = ? AND userID = ?');
           $stmt->execute([$_POST['user_id']]);
           $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -75,25 +75,14 @@
           }
         } 
       }
-
-      public function verifyPassword() {
-        // Select the record to be compared.
-        $stmt = $this->pdo->prepare('SELECT password FROM `resume` WHERE userID = ?');
-
-        // Bind the input parameter to use parameterized queries.
-        $stmt->bindValue(1, $_POST['user_id'], PDO::PARAM_INT);
-        $stmt->execute();
-        $passHash = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!password_verify($_POST['pwd'], $passHash['password'])) {
-          // Passwords don't match!
-          $_SESSION['error'] = "Passwords don't match!";
-              header('Location: ../account.php?');
-              exit();
-          } else {
-              // Password matches, delete the user.
-              $this->deleteUser();
-          }
-        }
-      }
+    }
+      if (isset($_POST['selectCv']) && isset($_SESSION['user_id'])) {
+          $resumetitle = $_POST['selectCv'];
+          $userID = $_SESSION['user_id'];
+          
+            Create an instance of FetchResumeID and fetch the resume ID
+          $deleteResume = new deleteResume();
+          $deleteResume->deleteResume($resumetitle, $userID);
+          $this->deleteUser();
+        }    
 ?>
