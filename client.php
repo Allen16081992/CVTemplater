@@ -23,7 +23,7 @@
     $data = $fetchData->fetchAllData($resumeID, $userID);
   }
   if (!isset($resumeID)) { //test.. goofing around
-    $_SESSION['golden'] = 'You can now select a resume.';
+    $_SESSION['success'] = 'You can now select a resume.';
   } elseif(isset($resumeID)) { $_SESSION['golden'] = 'Resume: '.$resumetitle; }
 ?>
 <!DOCTYPE html>
@@ -42,6 +42,7 @@
     <!-- Javascript -->
     <?php require 'config/peripherals/javascript_load.config.php'; ?>
     <script defer src="javascript/dropdown.submit.js"></script>
+    <script defer src="javascript/input.fields.js"></script>
   </head>
   <body>
     <!-- Upper Navigation Panel -->
@@ -81,7 +82,7 @@
     </section>
 
     <!-- (Mobile) Resume Side Panel -->
-    <section id="#mobilecv">
+    <section id="mobilecv">
       <form action="config/FetchResume.config.php" method="post">
         <select class="m-dropup" name="selectCv" onchange="submitForm(this.form)">
           <option selected disabled hidden>Select Resume:</option>
@@ -120,9 +121,13 @@
             <div class="left">
               <label for="resumetitle">Name</label>
               <input type="text" name="resumetitle" placeholder="Ex: Human Resource Manager" value="<?= isset($resumetitle) ? $resumetitle : '' ?>" autocomplete="off">
-            </div>  
-            <button type="submit" name="saveResume">Save Changes</button> 
+            </div> 
+
+            <div class="left"> 
+              <button type="submit" name="saveResume">Save Changes</button>
+            </div> 
           </form>
+
           <button class="alt" name="clearResume">Clear</button>
           <button class="alt">View Resume</button>
         </div>
@@ -145,10 +150,12 @@
               <label for="desc">Description</label>
               <textarea name="desc" rows="2" value="<?= isset($profile['profiledesc']) ? $profile['profiledesc'] : '' ?>" placeholder="Write your summary"></textarea>
             </div>
+
             <div class="left">   
               <button type="submit" name="saveProfile">Save Changes</button>       
             </div>
           </form>
+
           <button class="alt" name="clearProfile">Clear</button>
         </div>
 
@@ -156,7 +163,8 @@
         <input class="check" type="checkbox" id="collapse-head3">
         <label for="collapse-head3">Work Experience</label>
         <div class="collapse-text" id="field3">
-          <?php if (!empty($data)) { ?>
+          <form name="experience" action="" method="post">
+            <p class="error-skills"></p>
             <table>
               <tr>
                   <th>From</th>
@@ -164,42 +172,29 @@
                   <th>Profession</th>
                   <th>Company</th>
                   <th>Description</th>
+                  <th></th>
               </tr>
-              <tr>
+              <tr class="row">
+              <?php if (!empty($data)) { ?>
                 <?php foreach ($data['experience'] as $experience): ?>
-                  <td><?= $experience['firstDate']; ?></td>
-                  <td><?= $experience['lastDate']; ?></td>
-                  <td><?= $experience['worktitle']; ?></td>
-                  <td><?= $experience['company']; ?></td>  
-                  <td rowspan="2"><?= $experience['workdesc']; ?></td>
+                  <td class="cell"><div class="row-field"><?= $experience['firstDate']; ?></div></td>
+                  <td class="cell"><div class="row-field"><?= $experience['lastDate']; ?></div></td>
+                  <td class="cell"><div class="row-field"><?= $experience['worktitle']; ?></div></td>
+                  <td class="cell"><div class="row-field"><?= $experience['company']; ?></div></td>  
+                  <td class="cell"><div class="row-field"><?= $experience['workdesc']; ?></div></td>        
+                  <td class="actions"><div class="row-field"><a href="delete.php?=<?= $experience['workID']; ?>"></div><i class='bx bxs-trash'></i></a></td>
                 <?php endforeach; ?>
-                </tr>
+              </tr>
             </table>
-          <?php } else { } ?>
-           <form name="experience" action="" method="post">
-       
-              <label for="joined">From</label>
-              <input type="date"  name="joined" value="<?= isset($experience['firstDate']) ? $experience['firstDate'] : '' ?>" placeholder=".">        
-        
-        
-              <label for="leave">Until</label>
-              <input type="date"  name="joined" value="<?= isset($experience['lastDate']) ? $experience['lastDate'] : '' ?>" placeholder=".">         
-       
-        
-              <label for="wtitle">Profession</label>
-              <input type="text"  name="title" value="<?= isset($experience['worktitle']) ? $experience['worktitle'] : '' ?>" placeholder="Your profession">
-  
-              <label for="wdesc">Description</label>
-              <input type="text"  name="desc" value="<?= isset($experience['workdesc']) ? $experience['workdesc'] : '' ?>" placeholder="Description">
+            <?php } ?>
 
-              <label for="company">Company</label>
-              <input type="text"  name="company" value="<?= isset($experience['company']) ? $experience['company'] : '' ?>" placeholder="Name of company">
-   
+            <div class="left">
+              <button type="submit" class="New" name="createExperience">Add Experience</button>  
               <button type="submit" name="saveExperience">Save Changes</button>       
-        
+            </div>       
           </form>
+
           <button class="alt" onclick="">Clear</button> 
-          
         </div>
 
         <!-- Education Fields -->
@@ -208,27 +203,32 @@
         <div class="collapse-text" id="field4">
           <!-- <p> zet hier maar wat leuks in... of haal weg </p> -->
           <form name="education" action="" method="post">
+            <p class="error-skills"></p>
+            <table>
+              <tr>
+                <th>From</th>
+                <th>Until</th>
+                <th>Profession</th>
+                <th>Company</th>
+                <th>Description</th>
+                <th></th>
+              </tr>
+              <tr class="row">
+              <?php if (!empty($data)) { ?>
+                <?php foreach ($data['education'] as $college): ?>
+                  <td class="cell"><div class="row-field"><?= $college['firstDate']; ?></div></td>
+                  <td class="cell"><div class="row-field"><?= $college['lastDate']; ?></div></td>
+                  <td class="cell"><div class="row-field"><?= $college['edutitle']; ?></div></td>
+                  <td class="cell"><div class="row-field"><?= $college['company']; ?></div></td>
+                  <td class="cell"><div class="row-field"><?= $college['edudesc']; ?></div></td>
+                  <td class="actions"><div class="row-field"><a href="delete.php?=<?= $college['eduID']; ?>"></div><i class='bx bxs-trash'></i></a></td>
+                <?php endforeach; ?>
+              </tr>
+            </table>
+            <?php } ?>
+
             <div class="left">
-              <label for="eTitle">Education</label>
-              <input type="text"  name="title" value="<?= isset($college['edutitle']) ? $college['edutitle'] : '' ?>" placeholder="Your course">
-            </div>
-            <div class="left">
-              <label for="desc">Description</label>
-              <input type="text"  name="desc" value="<?= isset($college['edudesc']) ? $college['edudesc'] : '' ?>" placeholder="short escription">
-            </div>
-            <div class="left">
-              <label for="company">Company</label>
-              <input type="text"  name="Company" value="<?= isset($college['company']) ? $college['company'] : '' ?>" placeholder="Education institute">
-            </div>
-            <div class="left">
-              <label for="joined">From</label>
-              <input type="date"  name="joined" value="<?= isset($college['firstDate']) ? $college['firstDate'] : '' ?>" placeholder=".">        
-            </div>
-            <div class="left">
-              <label for="leave">Until</label>
-              <input type="date" name="leave" value="<?= isset($college['lastDate']) ? $college['lastDate'] : '' ?>" placeholder=".">         
-            </div>
-            <div class="left">   
+              <button type="submit" class="New" name="createEducation">Add Education</button>   
               <button type="submit" name="saveEducation">Save Changes</button>       
             </div> 
           </form>
@@ -238,56 +238,39 @@
         <!-- Technical Skills Fields -->
         <input class="check" type="checkbox" id="collapse-head5">
         <label for="collapse-head5">Skills</label>
-        <div class="collapse-text" id="field5">
-       
-            <table>
-                    <tr>
-                      <th>Company</th>
-                      <th>Contact</th>
-                      <th>Country</th>
-                    </tr>
-                    <tr>
-                      <td>Alfreds Futterkiste</td>
-                      <td>Maria Anders</td>
-                      <td>Germany</td>
-                    </tr>
-                    <tr>
-                      <td>Centro comercial Moctezuma</td>
-                      <td>Francisco Chang</td>
-                      <td>Mexico</td>
-                    </tr>
-                  </table>
-         
+        <div class="collapse-text" id="field5">        
           <form name="skills" action="" method="post">
             <!-- Languages, Technical Skills, Interests -->
-            <div class="left">
-              <label for="techTitle">Technical Skill</label>
-              <input type="text" name="techTitle" value="<?= isset($tech['techtitle']) ? $tech['techtitle'] : '' ?>" placeholder="Technical skills">
-            </div>
+            <p class="error-skills"></p>
+            <table>
+              <tr>
+                  <th>Technical Skills</th>
+                  <th>Languages</th>
+                  <th>Interests</th>
+                  <th></th>
+              </tr>
+              <tr class="row">
+              <?php if (!empty($data)) { ?>
+                <?php foreach ($data['technical'] as $tech): ?>
+                  <td class="cell"><div class="row-field"><?= $tech['techtitle']; ?></div></td>
+                <?php endforeach; ?>
+                <?php foreach ($data['languages'] as $lang): ?>
+                  <td class="cell"><div class="row-field"><?= $lang['language']; ?></div></td>
+                <?php endforeach; ?>
+                <?php foreach ($data['interests'] as $hobby): ?>
+                  <td class="cell"><div class="row-field"><?= $hobby['interest']; ?></div></td>
+                <?php endforeach; ?>
+                <td class="actions"><div class="row-field"><a href="delete.php"></div><i class='bx bxs-trash'></i></a></td>
+              </tr>
+            </table>
+            <?php } ?>
+
             <div class="left"> 
-              <label for="lang">Language</label>
-              <input type="text" name="lang" value="<?= isset($lang['language']) ? $lang['languge'] : '' ?>" placeholder="Language">
-            </div>
-            <div class="left">
-              <label for="interests">Interests</label>
-              <input type="text" name="interests" value="<?= isset($hobby['interest']) ? $hobby['interest'] : '' ?>" placeholder="Hobby and interests">
-            </div>
-            
-            <!-- -- -- -- Portfolio Fields -- -- -- -->
-            <div class="left">
-              <label for="IMGpath">Picture of Project</label>
-              
-            </div>
-            <div class="left"> 
-              <label for="IMGtitle">Image Title</label>
-              <input type="text" name="IMGtitle" value="<?= isset($portfolio['file_name']) ? $portfolio['file_name'] : '' ?>" placeholder="image">
-            </div>
-            <div class="left">   
+              <button type="submit" class="New" name="createSkills">Add New Skill</button>   
               <button type="submit" name="saveSkills">Save Changes</button>       
             </div> 
           </form>
           <button class="alt" onclick="">Clear</button>
-       
         </div>
       </div>
 

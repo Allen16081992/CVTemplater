@@ -35,11 +35,6 @@
             $stmt->execute([$resumeID, $userID]);
             $data['languages'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            // Fetch data from the 'portfolio' table
-            $stmt = $this->pdo->prepare('SELECT * FROM `portfolio` WHERE resumeID = ? AND userID = ?');
-            $stmt->execute([$resumeID, $userID]);
-            $data['portfolio'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
             // Fetch data from the 'profile' table
             $stmt = $this->pdo->prepare('SELECT * FROM `profile` WHERE resumeID = ? AND userID = ?');
             $stmt->execute([$resumeID, $userID]);

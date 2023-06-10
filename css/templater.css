@@ -382,7 +382,7 @@ ul li.on { cursor:default; margin-left:20px; }
 .collapse-text h5, p { padding: 15px 0 0 15px; }
 .collapse-text form .left > input { border: 1px solid transparent; }
 .collapse-text form .left > input:focus { border: 1px solid black; }
-
+.collapse-text form table { margin-top:5px; }
 .collapse-text img{
     border-radius: 50%;
     border: 3px dotted rgb(0, 255, 17);
@@ -491,4 +491,8 @@ input[type="file"] {
 @media screen and (min-width:700px) and (max-width:912px) {
     .window-title { font-size: 2rem; }
     .window-body { font-size: 2rem; }
+}
+
+.row-field {
+  display: block;
 }
