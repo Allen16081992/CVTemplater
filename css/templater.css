@@ -380,8 +380,8 @@ ul li.on { cursor:default; margin-left:20px; }
     transition: all 0.3s ease;
 }
 .collapse-text h5, p { padding: 15px 0 0 15px; }
-.collapse-text form .left > input { border: 1px solid transparent; }
-.collapse-text form .left > input:focus { border: 1px solid black; }
+.collapse-text form input { border: 1px solid transparent; transition: border 0.3s ease; }
+.collapse-text form input:focus { border: 1px solid black; }
 .collapse-text form table { margin-top:5px; }
 .collapse-text img{
     border-radius: 50%;
@@ -396,6 +396,7 @@ input[type="file"] {
     height: 200px;
     max-width: 200px;
 }
+.row-field {display: block;}
 
 .collapse 
     #collapse-head1:checked ~ #field1, 
@@ -486,6 +487,11 @@ input[type="file"] {
         left:50%;
         max-width:40%;
     }
+    header .golden-message {
+        position:absolute;
+        margin-top:32%;
+        max-width:100%;
+    }
 }
 /* Tablet Specific */
 @media screen and (min-width:700px) and (max-width:912px) {
@@ -493,6 +499,3 @@ input[type="file"] {
     .window-body { font-size: 2rem; }
 }
 
-.row-field {
-  display: block;
-}

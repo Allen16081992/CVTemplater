@@ -1,13 +1,13 @@
 <?php // Dhr. Allen Pieter
   // Start a session for handling data and error messages.
-  require 'config/peripherals/session_start.config.php'; 
+  require_once 'config/peripherals/session_start.config.php'; 
 
   // Only load the page when signed in.
-  require 'config/peripherals/redirect.config.php';
+  require_once 'config/peripherals/redirect.config.php';
 
   // Include PHP files to retrieve data
-  require "config/ViewResumes.config.php";
-  include "config/FetchResumeTables.config.php";
+  require_once "config/ViewResumes.config.php";
+  require_once "config/FetchResumeTables.config.php";
 
   // Create an instance of ViewResume
   $resume = new ViewResumes();
@@ -23,7 +23,7 @@
     $data = $fetchData->fetchAllData($resumeID, $userID);
   }
   if (!isset($resumeID)) { //test.. goofing around
-    $_SESSION['success'] = 'You can now select a resume.';
+    $_SESSION['golden'] = 'You can now select a resume.';
   } elseif(isset($resumeID)) { $_SESSION['golden'] = 'Resume: '.$resumetitle; }
 ?>
 <!DOCTYPE html>
@@ -114,14 +114,12 @@
         <label for="collapse-head1">Resume Name</label>       
         <div class="collapse-text" id="field1">
           <form name="resume" action="" method="post">
-            <div class="left">
-              <label for="resumeid">Resume ID</label>
-              <input type="text" name="resumeid" placeholder="Ex: 0" value="<?= isset($resumeID) ? $resumeID : '' ?>" disabled>
-            </div> 
-            <div class="left">
-              <label for="resumetitle">Name</label>
-              <input type="text" name="resumetitle" placeholder="Ex: Human Resource Manager" value="<?= isset($resumetitle) ? $resumetitle : '' ?>" autocomplete="off">
-            </div> 
+          
+            <label for="resumeid">Resume ID</label>
+            <input type="text" name="resumeid" placeholder="Ex: 0" value="<?= isset($resumeID) ? $resumeID : '' ?>" disabled>
+
+            <label for="resumetitle">Name</label>
+            <input type="text" name="resumetitle" placeholder="Ex: Sales" value="<?= isset($resumetitle) ? $resumetitle : '' ?>" autocomplete="off">
 
             <div class="left"> 
               <button type="submit" name="saveResume">Save Changes</button>
@@ -164,15 +162,14 @@
         <label for="collapse-head3">Work Experience</label>
         <div class="collapse-text" id="field3">
           <form name="experience" action="" method="post">
-            <p class="error-skills"></p>
             <table>
               <tr>
-                  <th>From</th>
-                  <th>Until</th>
-                  <th>Profession</th>
-                  <th>Company</th>
-                  <th>Description</th>
-                  <th></th>
+                <th>From</th>
+                <th>Until</th>
+                <th>Profession</th>
+                <th>Company</th>
+                <th>Description</th>
+                <th></th>
               </tr>
               <tr class="row">
               <?php if (!empty($data)) { ?>
@@ -182,11 +179,10 @@
                   <td class="cell"><div class="row-field"><?= $experience['worktitle']; ?></div></td>
                   <td class="cell"><div class="row-field"><?= $experience['company']; ?></div></td>  
                   <td class="cell"><div class="row-field"><?= $experience['workdesc']; ?></div></td>        
-                  <td class="actions"><div class="row-field"><a href="delete.php?=<?= $experience['workID']; ?>"></div><i class='bx bxs-trash'></i></a></td>
-                <?php endforeach; ?>
+                  <td class="actions"><div class="row-field"><a href="delete.php?=<?= $experience['workID']; ?>"><i class='bx bxs-trash'></i></a></div></td>
+                <?php endforeach; ?><?php } ?>
               </tr>
             </table>
-            <?php } ?>
 
             <div class="left">
               <button type="submit" class="New" name="createExperience">Add Experience</button>  
@@ -203,7 +199,6 @@
         <div class="collapse-text" id="field4">
           <!-- <p> zet hier maar wat leuks in... of haal weg </p> -->
           <form name="education" action="" method="post">
-            <p class="error-skills"></p>
             <table>
               <tr>
                 <th>From</th>
@@ -221,18 +216,18 @@
                   <td class="cell"><div class="row-field"><?= $college['edutitle']; ?></div></td>
                   <td class="cell"><div class="row-field"><?= $college['company']; ?></div></td>
                   <td class="cell"><div class="row-field"><?= $college['edudesc']; ?></div></td>
-                  <td class="actions"><div class="row-field"><a href="delete.php?=<?= $college['eduID']; ?>"></div><i class='bx bxs-trash'></i></a></td>
-                <?php endforeach; ?>
+                  <td class="actions"><div class="row-field"><a href="delete.php?=<?= $college['eduID']; ?>"><i class='bx bxs-trash'></i></a></div></td>
+                <?php endforeach; ?><?php } ?>
               </tr>
             </table>
-            <?php } ?>
 
             <div class="left">
-              <button type="submit" class="New" name="createEducation">Add Education</button>   
-              <button type="submit" name="saveEducation">Save Changes</button>       
-            </div> 
+              <button type="submit" class="New" name="createEducation">Add Education</button>  
+              <button type="submit" name="saveEducation">Save Changes</button>  
+            </div>       
           </form>
-          <button class="alt" onclick="">Clear</button>
+
+          <button class="alt" onclick="">Clear</button> 
         </div>
 
         <!-- Technical Skills Fields -->
@@ -241,32 +236,26 @@
         <div class="collapse-text" id="field5">        
           <form name="skills" action="" method="post">
             <!-- Languages, Technical Skills, Interests -->
-            <p class="error-skills"></p>
-            <table>
-              <tr>
-                  <th>Technical Skills</th>
-                  <th>Languages</th>
-                  <th>Interests</th>
-                  <th></th>
-              </tr>
-              <tr class="row">
-              <?php if (!empty($data)) { ?>
-                <?php foreach ($data['technical'] as $tech): ?>
-                  <td class="cell"><div class="row-field"><?= $tech['techtitle']; ?></div></td>
-                <?php endforeach; ?>
-                <?php foreach ($data['languages'] as $lang): ?>
-                  <td class="cell"><div class="row-field"><?= $lang['language']; ?></div></td>
-                <?php endforeach; ?>
-                <?php foreach ($data['interests'] as $hobby): ?>
-                  <td class="cell"><div class="row-field"><?= $hobby['interest']; ?></div></td>
-                <?php endforeach; ?>
-                <td class="actions"><div class="row-field"><a href="delete.php"></div><i class='bx bxs-trash'></i></a></td>
-              </tr>
-            </table>
-            <?php } ?>
+            <label for="skills">Skills</label>
+            <?php if (!empty($data)) { ?>
+            <?php foreach ($data['technical'] as $tech): ?>
+              <input type="text" name="skills" placeholder="Ex: 0" value="<?= $tech['techtitle']; ?>">
+            <?php endforeach; ?><?php } else { ?> <input type="text" name="skills" placeholder="Ex: Planning"> <?php } ?>
+
+            <label for="language">Languages</label>
+            <?php if (!empty($data)) { ?>
+            <?php foreach ($data['languages'] as $lang): ?>
+              <input type="text" name="language" placeholder="Ex: Sales" value="<?= $lang['language']; ?>">
+            <?php endforeach; ?><?php } else { ?> <input type="text" name="language" placeholder="Ex: Berber"> <?php } ?>
+
+            <label for="hobby">Hobby</label>
+            <?php if (!empty($data)) { ?>
+            <?php foreach ($data['interests'] as $hobby): ?>
+              <input type="text" name="hobby" placeholder="Ex: Sales" value="<?= $hobby['interest']; ?>">
+            <?php endforeach; ?><?php } else { ?> <input type="text" name="hobby" placeholder="Ex: Bingewatching"> <?php } ?>
 
             <div class="left"> 
-              <button type="submit" class="New" name="createSkills">Add New Skill</button>   
+              <button type="submit" class="New" name="createSkills">Add Skill</button>   
               <button type="submit" name="saveSkills">Save Changes</button>       
             </div> 
           </form>

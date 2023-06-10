@@ -1,71 +1,73 @@
 <?php // Loubna Faress
-
-  // Start the session to enable session data use and error messages.
-  session_start();
+  // Start a session for displaying error messages.
+  require 'peripherals/session_start.config.php';
 
   // Use the (improved) database connection.
-  include 'idb.config.php';
+  require 'idb.config.php';
 
   class deleteResume {
-    private $pdo;
+    private $resumetitle;
+    private $database;
 
-    public function __construct() {
-        $database = new Database();
-        $this->pdo = $database->connect();
+    public function __construct($resumetitle) {
+        $this->resumetitle = $resumetitle;
+        $this->database = new Database();
     }
 
-    public function deleteResume($resumetitle, $userID) {
+    public function deleteResume() {
       // Verify if the userID exists
-      if (isset($resumetitle, $userID)) {
+      if (isset($_SESSION['user_id'])) {
+        $userID = $_SESSION['user_id'];
 
         // Select the record that is to be deleted
-        $stmt = $this->pdo->prepare('SELECT resumeID FROM `resume` WHERE resumetitle = ? AND userID = ?');
-        $stmt->execute([$resumetitle, $userID]);
-        $delete = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $this->database->connect()->prepare('SELECT resumeID FROM `resume` WHERE resumetitle = :resumetitle AND userID = :userID');
+        $stmt->bindParam(":resumetitle", $this->resumetitle);
+        $stmt->bindParam(":userID", $userID);
+        $stmt->execute();
+        $resID = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!$delete) {
-            $delete = null;
+        if (!$resID) {
+            $resID = null;
             // Error message by sessions instead of URL parsing.
-            $_SESSION['error'] = 'User not found';
-            header('location: ../account.php');
+            $_SESSION['error'] = 'Resume not found';
+            header('location: ../client.php');
             exit();
         }
 
         // Make sure the user has confirmed before deletion
-        if (isset($_POST['delete'])) {
+        if (isset($resID)) {
 
           // Erase data from resume
-          $stmt = $this->pdo->prepare('DELETE FROM `resume` WHERE resumeID = ? AND userID = ?');
-          $stmt->execute([$delete['resumeID'], $userID]);
-          $stmt = null;
+          $stmt = $this->database->connect()->prepare('DELETE FROM `resume` WHERE resumeID = :resID AND userID = :userID');
+          $stmt->bindParam(":resID", $resID['resumeID']);
+          $stmt->bindParam(":userID", $userID);
+          $stmt->execute();          
 
-          // Reset auto increment in resume from the current highest resumeID
-          $stmt = $this->pdo->prepare('SELECT MAX(`resumeID`) FROM `resume`');
-          $stmt->execute();
-          $edit = $stmt->fetch(PDO::FETCH_ASSOC);
-          $stmt = $this->pdo->prepare("ALTER TABLE `resume` AUTO_INCREMENT = :edit");
-          $stmt->bindValue(':edit', $edit['resumeID']);
-          $stmt->execute();
+          // get rid of variables
+          $resID = null;
+          $this->resumetitle = null;
 
+          // Purge the data from the session
+          unset($_SESSION['resumeID']);
+          unset($_SESSION['resumetitle']);
+          
           // Success message by session instead of URL parsing
-          $_SESSION['success'] = 'User deleted successfully';
-          header('Location: ../index.php');
+          $_SESSION['success'] = 'Resume deleted successfully';
+          header('Location: ../client.php');
           exit();
         }
       } 
     }
 
     public function __destruct() {
-      $this->pdo = null;
+      $this->database = null;
     }
   }
 
-  if (isset($_POST['selectCv']) && isset($_SESSION['user_id'])) {
-    $resumetitle = $_POST['selectCv'];
-    $userID = $_SESSION['user_id'];
-    
+  if (isset($_POST['delResume'])) { 
+    $resumetitle = $_POST['selectCv'];  
     // Create an instance of deleteResume and delete the resume
-    $deleteResume = new deleteResume();
-    $deleteResume->deleteResume($resumetitle, $userID);
+    $deleteResume = new deleteResume($resumetitle);
+    $deleteResume->deleteResume();
   }    
 ?>
