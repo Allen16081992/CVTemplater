@@ -113,19 +113,15 @@
         <input class="check" type="checkbox" id="collapse-head1">
         <label for="collapse-head1">Resume Name</label>       
         <div class="collapse-text" id="field1">
-          <form name="resume" action="" method="post">
-          
+          <form name="resume" action="" method="post">         
             <label for="resumeid">Resume ID</label>
             <input type="text" name="resumeid" placeholder="Ex: 0" value="<?= isset($resumeID) ? $resumeID : '' ?>" disabled>
-
             <label for="resumetitle">Name</label>
             <input type="text" name="resumetitle" placeholder="Ex: Sales" value="<?= isset($resumetitle) ? $resumetitle : '' ?>" autocomplete="off">
-
             <div class="left"> 
               <button type="submit" name="saveResume">Save Changes</button>
             </div> 
           </form>
-
           <button class="alt" name="clearResume">Clear</button>
           <button class="alt">View Resume</button>
         </div>
@@ -148,12 +144,10 @@
               <label for="desc">Description</label>
               <textarea name="desc" rows="2" value="<?= isset($profile['profiledesc']) ? $profile['profiledesc'] : '' ?>" placeholder="Write your summary"></textarea>
             </div>
-
             <div class="left">   
               <button type="submit" name="saveProfile">Save Changes</button>       
             </div>
           </form>
-
           <button class="alt" name="clearProfile">Clear</button>
         </div>
 
@@ -183,13 +177,11 @@
                 <?php endforeach; ?><?php } ?>
               </tr>
             </table>
-
             <div class="left">
               <button type="submit" class="New" name="createExperience">Add Experience</button>  
               <button type="submit" name="saveExperience">Save Changes</button>       
             </div>       
           </form>
-
           <button class="alt" onclick="">Clear</button> 
         </div>
 
@@ -197,7 +189,6 @@
         <input class="check" type="checkbox" id="collapse-head4">
         <label for="collapse-head4">Education</label>
         <div class="collapse-text" id="field4">
-          <!-- <p> zet hier maar wat leuks in... of haal weg </p> -->
           <form name="education" action="" method="post">
             <table>
               <tr>
@@ -220,13 +211,11 @@
                 <?php endforeach; ?><?php } ?>
               </tr>
             </table>
-
             <div class="left">
               <button type="submit" class="New" name="createEducation">Add Education</button>  
               <button type="submit" name="saveEducation">Save Changes</button>  
             </div>       
           </form>
-
           <button class="alt" onclick="">Clear</button> 
         </div>
 
