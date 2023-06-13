@@ -26,15 +26,3 @@ document.querySelector('[name="clearAddress"]').addEventListener('click', functi
 document.querySelector('[name="clearPersonal"]').addEventListener('click', function(event) {
   clearFields('personal', 'firstname', 'lastname', 'phone', 'birth');
 });
-
-// Resume Intersection
-
-// Clear resume field
-document.querySelector('[name="clearResume"]').addEventListener('click', function(event) {
-  clearFields('resume', 'resumetitle');
-});
-
-// Clear profile fields
-document.querySelector('[name="clearProfile"]').addEventListener('click', function(event) {
-  clearFields('profile', 'intro', 'desc');
-});

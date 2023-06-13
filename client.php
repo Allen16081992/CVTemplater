@@ -42,7 +42,7 @@
     <!-- Javascript -->
     <?php require 'config/peripherals/javascript_load.config.php'; ?>
     <script defer src="javascript/dropdown.submit.js"></script>
-    <script defer src="javascript/input.fields.js"></script>
+    <!--<script defer src="javascript/clear.fields.js"></script>-->
   </head>
   <body>
     <!-- Upper Navigation Panel -->
@@ -122,7 +122,7 @@
               <button type="submit" name="saveResume">Save Changes</button>
             </div> 
           </form>
-          <button class="alt" name="clearResume">Clear</button>
+          <!--<button class="alt" name="clearResume">Clear</button>-->
           <button class="alt">View Resume</button>
         </div>
      
@@ -148,7 +148,7 @@
               <button type="submit" name="saveProfile">Save Changes</button>       
             </div>
           </form>
-          <button class="alt" name="clearProfile">Clear</button>
+          <!--<button class="alt" name="clearProfile">Clear</button>-->
         </div>
 
         <!-- Work Experience Fields -->
@@ -156,33 +156,25 @@
         <label for="collapse-head3">Work Experience</label>
         <div class="collapse-text" id="field3">
           <form name="experience" action="" method="post">
-            <table>
-              <tr>
-                <th>From</th>
-                <th>Until</th>
-                <th>Profession</th>
-                <th>Company</th>
-                <th>Description</th>
-                <th></th>
-              </tr>
-              <tr class="row">
-              <?php if (!empty($data)) { ?>
-                <?php foreach ($data['experience'] as $experience): ?>
-                  <td class="cell"><div class="row-field"><?= $experience['firstDate']; ?></div></td>
-                  <td class="cell"><div class="row-field"><?= $experience['lastDate']; ?></div></td>
-                  <td class="cell"><div class="row-field"><?= $experience['worktitle']; ?></div></td>
-                  <td class="cell"><div class="row-field"><?= $experience['company']; ?></div></td>  
-                  <td class="cell"><div class="row-field"><?= $experience['workdesc']; ?></div></td>        
-                  <td class="actions"><div class="row-field"><a href="delete.php?=<?= $experience['workID']; ?>"><i class='bx bxs-trash'></i></a></div></td>
-                <?php endforeach; ?><?php } ?>
-              </tr>
-            </table>
+            <?php if (!empty($data)) { ?>
+            <?php foreach ($data['experience'] as $experience): ?>
+              <?= $experience['firstDate']; ?><?=" ".$experience['firstDate']; ?><?= " ".$experience['worktitle']; ?><?= " ".$experience['workdesc']; ?>
+
+              <input type="hidden" name="work" value="<?= $experience['workID']; ?>">
+              <label for="from">From - Until</label>
+              <input type="text" name="from" value="<?= $experience['firstDate']; ?>">
+              <input type="text" name="until" value="<?= $experience['lastDate']; ?>">
+              <label for="profession">Profession and Description</label>
+              <input type="text" name="profession" value="<?= $experience['worktitle']; ?>">
+              <input type="text" name="company" value="<?= $experience['company']; ?>">
+              <textarea name="desc" rows="2" placeholder="Write your summary"><?= $experience['workdesc']; ?></textarea>
+            <?php endforeach; ?><?php } ?>
             <div class="left">
-              <button type="submit" class="New" name="createExperience">Add Experience</button>  
+              <button type="submit" class="New" name="createExperience">Add</button>  
               <button type="submit" name="saveExperience">Save Changes</button>       
             </div>       
           </form>
-          <button class="alt" onclick="">Clear</button> 
+          <!--<button class="alt" name="clearWork">Clear</button>-->
         </div>
 
         <!-- Education Fields -->
@@ -190,33 +182,25 @@
         <label for="collapse-head4">Education</label>
         <div class="collapse-text" id="field4">
           <form name="education" action="" method="post">
-            <table>
-              <tr>
-                <th>From</th>
-                <th>Until</th>
-                <th>Profession</th>
-                <th>Company</th>
-                <th>Description</th>
-                <th></th>
-              </tr>
-              <tr class="row">
-              <?php if (!empty($data)) { ?>
-                <?php foreach ($data['education'] as $college): ?>
-                  <td class="cell"><div class="row-field"><?= $college['firstDate']; ?></div></td>
-                  <td class="cell"><div class="row-field"><?= $college['lastDate']; ?></div></td>
-                  <td class="cell"><div class="row-field"><?= $college['edutitle']; ?></div></td>
-                  <td class="cell"><div class="row-field"><?= $college['company']; ?></div></td>
-                  <td class="cell"><div class="row-field"><?= $college['edudesc']; ?></div></td>
-                  <td class="actions"><div class="row-field"><a href="delete.php?=<?= $college['eduID']; ?>"><i class='bx bxs-trash'></i></a></div></td>
-                <?php endforeach; ?><?php } ?>
-              </tr>
-            </table>
+            <?php if (!empty($data)) { ?>
+            <?php foreach ($data['education'] as $college): ?>
+              <?= $college['firstDate']; ?><?=" ".$college['firstDate']; ?><?= " ".$college['edutitle']; ?><?= " ".$college['edudesc']; ?>
+
+              <input type="hidden" name="work" value="<?= $college['eduID']; ?>">
+              <label for="from">From - Until</label>
+              <input type="text" name="from" value="<?= $college['firstDate']; ?>">
+              <input type="text" name="until" value="<?= $college['lastDate']; ?>">
+              <label for="profession">Profession and Description</label>
+              <input type="text" name="course" value="<?= $college['edutitle']; ?>">
+              <input type="text" name="company" value="<?= $college['company']; ?>">
+              <textarea name="desc" rows="2" placeholder="Write your summary"><?= $college['edudesc']; ?></textarea>
+            <?php endforeach; ?><?php } ?>
             <div class="left">
-              <button type="submit" class="New" name="createEducation">Add Education</button>  
+              <button type="submit" class="New" name="createEducation">Add</button>  
               <button type="submit" name="saveEducation">Save Changes</button>  
             </div>       
           </form>
-          <button class="alt" onclick="">Clear</button> 
+          <!--<button class="alt">Clear</button>--> 
         </div>
 
         <!-- Technical Skills Fields -->
@@ -244,11 +228,11 @@
             <?php endforeach; ?><?php } else { ?> <input type="text" name="hobby" placeholder="Ex: Bingewatching"> <?php } ?>
 
             <div class="left"> 
-              <button type="submit" class="New" name="createSkills">Add Skill</button>   
+              <button type="submit" class="New" name="createSkills">Add</button>   
               <button type="submit" name="saveSkills">Save Changes</button>       
             </div> 
           </form>
-          <button class="alt" onclick="">Clear</button>
+          <!--<button class="alt" onclick="">Clear</button>-->
         </div>
       </div>
 

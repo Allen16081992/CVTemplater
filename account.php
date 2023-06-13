@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="css/templater.css">
     <!-- Javascript -->
     <?php require 'config/peripherals/javascript_load.config.php'; ?>
+    <script defer src="javascript/clear.fields.js"></script>
   </head>
   <body>
     <!-- Upper Navigation Panel -->
