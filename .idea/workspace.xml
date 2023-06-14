@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b46d36df-5538-4b6a-929e-837deffb69d3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/Classes/createeducation.class.config.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/Classes/createexperience.class.config.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/createeducation.config.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/createexperience.config.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/update.resume.config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client.php" beforeDir="false" afterPath="$PROJECT_DIR$/client.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/Classes/createresume.class.config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/Classes/createresume.class.config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/Classes/createeducation.class.config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/Classes/createeducation.class.config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/createeducation.config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/createeducation.config.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +54,8 @@
       <workItem from="1686211881767" duration="1337000" />
       <workItem from="1686219955211" duration="8394000" />
       <workItem from="1686500738484" duration="1549000" />
-      <workItem from="1686503034654" duration="13168000" />
+      <workItem from="1686503034654" duration="14487000" />
+      <workItem from="1686743682254" duration="4484000" />
     </task>
     <servers />
   </component>

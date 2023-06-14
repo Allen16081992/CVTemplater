@@ -212,15 +212,15 @@
               <label for="profession">Profession and Description</label>
               <input type="text" name="edutitle" value="<?= $college['edutitle']; ?>">
               <input type="text" name="company" value="<?= $college['company']; ?>">
-              <textarea name="desc" rows="2" placeholder="Write your summary"><?= $college['edudesc']; ?></textarea>
+              <textarea name="edudesc" rows="2" placeholder="Write your summary"><?= $college['edudesc']; ?></textarea>
             <?php endforeach; } else { ?>
               <label for="from">From - Until</label>
               <input type="text" name="from" placeholder="1800-01-01">
               <input type="text" name="until" placeholder="2000-01-01">
-              <label for="worktitle">Profession and Description</label>
-              <input type="text" name="worktitle" placeholder="Leader">
+              <label for="edutitle">Profession and Description</label>
+              <input type="text" name="edutitle" placeholder="Leader">
               <input type="text" name="company" placeholder="Rulecorp">
-              <textarea name="workdesc" rows="2" placeholder="Write your summary"></textarea>               
+              <textarea name="edudesc" rows="2" placeholder="Write your summary"></textarea>
             <?php } ?>
             <?php if(isset($resumeID)) { ?>
               <input type="hidden" name="edu_id" value="<?= $college['eduID']; ?>">
@@ -230,6 +230,7 @@
               <label for="profession">Profession and Description</label>
               <input type="text" name="edutitle" placeholder="Ex: History Teacher">
               <input type="text" name="company" placeholder="Ex: Rotterdamse Technische School">
+                <textarea name="edudesc" rows="2" placeholder="Write your summary"></textarea>
             <?php } ?>  
             <div class="left">
               <button type="submit" class="New" name="addEducation">Add</button>  

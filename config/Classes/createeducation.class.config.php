@@ -7,14 +7,19 @@ class Education {
     private $firstDate;
     private $lastDate;
     private $database;
+    private $userID;
+    private $resumeID;
 
-    public function __construct($edutitle, $edudesc, $company, $firstDate, $lastDate)
+
+    public function __construct($edutitle, $edudesc, $company, $firstDate, $lastDate, $resumeID, $userID)
     {
         $this->edutitle = $edutitle;
         $this->edudesc = $edudesc;
         $this->company = $company;
         $this->firstDate = $firstDate;
         $this->lastDate = $lastDate;
+        $this->userID = $userID;
+        $this->resumeID = $resumeID;
         $this->database = new Database();
     }
 
@@ -30,35 +35,34 @@ class Education {
             $company = $this->getcompany();
             $firstDate = $this->getfirstDate();
             $lastDate = $this->getlastDate();
+            $resumeID = 4;
 
             $sql = $connection->prepare(
-                "insert into education(edutitle, edudesc, company, firstDate, lastDate, userID) values 
-                       (:edutitle, :edudesc, :company, :firstDate, :lastDate, :userID);"
+                "insert into education(edutitle, edudesc, company, firstDate, lastDate, userID, resumeiD) values 
+                       (:edutitle, :edudesc, :company, :firstDate, :lastDate, :userID, :resumeID);"
             );
             $sql->bindParam(":edutitle", $edutitle);
             $sql->bindParam(":edudesc", $edudesc);
             $sql->bindParam(":company", $company);
             $sql->bindParam(":firstDate", $firstDate);
             $sql->bindParam(":lastDate", $lastDate);
+            $sql->bindParam(":userID", $userID);
+            $sql->bindParam(":resumeID", $resumeID);
             $sql->execute();
-
-            $stmt = $sql->fetch(PDO::FETCH_ASSOC);
-            return $stmt;
 
         }
     }
 
-    public function verifyEducation() {
-        // Activate security function beneath.
-//        if(!$this->emptyInput()) {
-//            // Empty input, no values given for account.
-//           // $_SESSION['error'] = 'Please name your education.';
-//            //header('location: ../client.php');
-//            //exit();
-//            return $this->edutitle, $this->edudesc, $this->company, $this->firstDate, $this->lastDate;
-//        }
-          $this->Createeducation();
-
+    public function verifyEducation(){
+        if(!$this->emptyInput()){
+            $_SESSION['error'] = 'please name your education.';
+            header('location: ../client.php');
+            exit();
+        }
+        $this->Createeducation();
+    }
+    public function emptyInput(){
+        return !(empty($this->edutitle));
     }
 
 //    private function emptyInput() {
