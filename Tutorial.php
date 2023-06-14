@@ -1,3 +1,10 @@
+<?php
+  // Start a session for holding the user.
+  require_once 'config/peripherals/session_start.config.php'; 
+
+  // Only load the page when signed in.
+  require_once 'config/peripherals/redirect.config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,6 +44,7 @@
         <img class="logo" src="img/CV-headed-eagle.png" alt="Brand Signature">
         <i class='bx bx-menu' id="menu-icon"></i>
         <nav> 
+          <?php include 'config/peripherals/nav_username.config.php'; ?>
           <a href="config/logout.config.php">Logout</a>
         </nav>
       </header>

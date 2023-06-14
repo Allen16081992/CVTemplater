@@ -75,7 +75,7 @@
 
         <li class="on"><i class='bx bxs-file'></i>Resume Builder</li>
         <li><a><i class='bx bxs-crown'></i>Premium</a></li>
-        <li><a href="Tutorial.html"><i class='bx bxs-videos'></i>Tutorial</a></li>
+        <li><a href="./Tutorial.php"><i class='bx bxs-videos'></i>Tutorial</a></li>
         <li><a href="./account.php"><i class='bx bxs-cog'></i>Account Settings</a></li>
         <?php echo "<i class='bx bxs-user-account bx-ms'></i> ".$userID; ?>
       </ul>
@@ -98,7 +98,7 @@
         <li><a data-window-target="#window"><i class='bx bx-plus-circle bx-md'></i></a></li>
         <li><a data-window-target="#window2"><i class='bx bx-x-circle bx-md'></i></a></li>
         <li><a><i class='bx bxs-crown bx-md'></i></a></li>
-        <li><a><i class='bx bxs-videos bx-md'></i></a></li>
+        <li><a href="./Tutorial.php"><i class='bx bxs-videos bx-md'></i></a></li>
         <li><a href="./account.php"><i class='bx bxs-cog bx-md'></i></a></li>
       </ul>
     </section>
@@ -156,6 +156,16 @@
         <label for="collapse-head3">Work Experience</label>
         <div class="collapse-text" id="field3">
           <form name="experience" action="config/createexperience.config.php" method="post">
+            <?php if(isset($resumeID)) { ?>
+              <input type="hidden" name="work" placeholder="">
+              <label for="from">From - Until</label>
+              <input type="text" name="from" placeholder="1800-01-01">
+              <input type="text" name="until" placeholder="2000-01-01">
+              <label for="worktitle">Profession and Description</label>
+              <input type="text" name="worktitle" placeholder="Leader">
+              <input type="text" name="company" placeholder="Rulecorp">
+              <textarea name="workdesc" rows="2" placeholder="Write your summary"></textarea>               
+            <?php } ?>
             <?php if (!empty($data)) { ?>
             <?php foreach ($data['experience'] as $experience): ?>
               <?= $experience['firstDate']; ?><?=" ".$experience['firstDate']; ?><?= " ".$experience['worktitle']; ?><?= " ".$experience['workdesc']; ?>
@@ -168,9 +178,7 @@
               <input type="text" name="worktitle" value="<?= $experience['worktitle']; ?>">
               <input type="text" name="company" value="<?= $experience['company']; ?>">
               <textarea name="workdesc" rows="2" placeholder="Write your summary"><?= $experience['workdesc']; ?></textarea>
-            <?php endforeach; ?>
-            <?php } if(isset($resumeID)) { ?>
-              <input type="hidden" name="work" placeholder="">
+            <?php endforeach; } else { ?>
               <label for="from">From - Until</label>
               <input type="text" name="from" placeholder="1800-01-01">
               <input type="text" name="until" placeholder="2000-01-01">
@@ -179,6 +187,7 @@
               <input type="text" name="company" placeholder="Rulecorp">
               <textarea name="workdesc" rows="2" placeholder="Write your summary"></textarea>               
             <?php } ?>
+
             <div class="left">
               <button type="submit" class="New" name="addExperience">Add</button>  
               <button type="submit" name="saveExperience">Save Changes</button>       
@@ -204,7 +213,24 @@
               <input type="text" name="edutitle" value="<?= $college['edutitle']; ?>">
               <input type="text" name="company" value="<?= $college['company']; ?>">
               <textarea name="desc" rows="2" placeholder="Write your summary"><?= $college['edudesc']; ?></textarea>
-            <?php endforeach; ?><?php } ?>
+            <?php endforeach; } else { ?>
+              <label for="from">From - Until</label>
+              <input type="text" name="from" placeholder="1800-01-01">
+              <input type="text" name="until" placeholder="2000-01-01">
+              <label for="worktitle">Profession and Description</label>
+              <input type="text" name="worktitle" placeholder="Leader">
+              <input type="text" name="company" placeholder="Rulecorp">
+              <textarea name="workdesc" rows="2" placeholder="Write your summary"></textarea>               
+            <?php } ?>
+            <?php if(isset($resumeID)) { ?>
+              <input type="hidden" name="edu_id" value="<?= $college['eduID']; ?>">
+              <label for="from">From - Until</label>
+              <input type="text" name="from" placeholder="1923-12-30">
+              <input type="text" name="until" placeholder="2002-08-01">
+              <label for="profession">Profession and Description</label>
+              <input type="text" name="edutitle" placeholder="Ex: History Teacher">
+              <input type="text" name="company" placeholder="Ex: Rotterdamse Technische School">
+            <?php } ?>  
             <div class="left">
               <button type="submit" class="New" name="addEducation">Add</button>  
               <button type="submit" name="saveEducation">Save Changes</button>  
