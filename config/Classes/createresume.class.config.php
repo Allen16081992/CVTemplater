@@ -31,6 +31,27 @@ class Resume {
         }
     }
 
+    public function UpdateResume()
+    {
+        if (isset($_SESSION['user_id'])) {
+            $userID = $_SESSION['user_id'];
+            $connection = $this->database->connect();
+
+            $resumetitle = $this->getResumetitle();
+
+            $sql = $connection->prepare
+            ("
+        update resume
+        set resumetitle=:resumetitle
+        where user_id=:user_id
+        ");
+
+            $sql->bindParam(":user_id", $userID);
+            $sql->bindParam(":resumetitle", $resumetitle);
+            $sql->execute();
+        }
+    }
+
     public function getResumetitle()
     {
         return $this->resumetitle;

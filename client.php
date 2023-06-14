@@ -155,7 +155,7 @@
         <input class="check" type="checkbox" id="collapse-head3">
         <label for="collapse-head3">Work Experience</label>
         <div class="collapse-text" id="field3">
-          <form name="experience" action="" method="post">
+          <form name="experience" action="config/createexperience.config.php" method="post">
             <?php if (!empty($data)) { ?>
             <?php foreach ($data['experience'] as $experience): ?>
               <?= $experience['firstDate']; ?><?=" ".$experience['firstDate']; ?><?= " ".$experience['worktitle']; ?><?= " ".$experience['workdesc']; ?>
@@ -164,19 +164,20 @@
               <label for="from">From - Until</label>
               <input type="text" name="from" value="<?= $experience['firstDate']; ?>">
               <input type="text" name="until" value="<?= $experience['lastDate']; ?>">
-              <label for="profession">Profession and Description</label>
-              <input type="text" name="profession" value="<?= $experience['worktitle']; ?>">
+              <label for="worktitle">Profession and Description</label>
+              <input type="text" name="worktitle" value="<?= $experience['worktitle']; ?>">
               <input type="text" name="company" value="<?= $experience['company']; ?>">
-              <textarea name="desc" rows="2" placeholder="Write your summary"><?= $experience['workdesc']; ?></textarea>
-            <?php endforeach; ?><?php } else { ?>
+              <textarea name="workdesc" rows="2" placeholder="Write your summary"><?= $experience['workdesc']; ?></textarea>
+            <?php endforeach; ?>
+            <?php } if(isset($resumeID)) { ?>
               <input type="hidden" name="work" placeholder="">
               <label for="from">From - Until</label>
               <input type="text" name="from" placeholder="1800-01-01">
               <input type="text" name="until" placeholder="2000-01-01">
-              <label for="profession">Profession and Description</label>
-              <input type="text" name="profession" placeholder="Leader">
+              <label for="worktitle">Profession and Description</label>
+              <input type="text" name="worktitle" placeholder="Leader">
               <input type="text" name="company" placeholder="Rulecorp">
-              <textarea name="desc" rows="2" placeholder="Write your summary">Write your message</textarea>               
+              <textarea name="workdesc" rows="2" placeholder="Write your summary"></textarea>               
             <?php } ?>
             <div class="left">
               <button type="submit" class="New" name="addExperience">Add</button>  
@@ -190,7 +191,7 @@
         <input class="check" type="checkbox" id="collapse-head4">
         <label for="collapse-head4">Education</label>
         <div class="collapse-text" id="field4">
-          <form name="education" action="" method="post">
+          <form name="education" action="config/createeducation.config.php" method="post">
             <?php if (!empty($data)) { ?>
             <?php foreach ($data['education'] as $college): ?>
               <?= $college['firstDate']; ?><?=" ".$college['firstDate']; ?><?= " ".$college['edutitle']; ?><?= " ".$college['edudesc']; ?>
