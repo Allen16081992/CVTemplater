@@ -22,9 +22,9 @@
     // Fetch all the data
     $data = $fetchData->fetchAllData($resumeID, $userID);
   }
-  if (!isset($resumeID)) { //test.. goofing around
-    $_SESSION['golden'] = 'You can now select a resume.';
-  } elseif(isset($resumeID)) { $_SESSION['golden'] = 'Resume: '.$resumetitle; }
+  if (isset($resumeID)) { //test.. goofing around
+    $_SESSION['golden'] = 'Resume: '.$resumetitle;
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +75,7 @@
 
         <li class="on"><i class='bx bxs-file'></i>Resume Builder</li>
         <li><a><i class='bx bxs-crown'></i>Premium</a></li>
-        <li><a><i class='bx bxs-videos'></i>Tutorial</a></li>
+        <li><a href="Tutorial.html"><i class='bx bxs-videos'></i>Tutorial</a></li>
         <li><a href="./account.php"><i class='bx bxs-cog'></i>Account Settings</a></li>
         <?php echo "<i class='bx bxs-user-account bx-ms'></i> ".$userID; ?>
       </ul>
@@ -168,9 +168,18 @@
               <input type="text" name="profession" value="<?= $experience['worktitle']; ?>">
               <input type="text" name="company" value="<?= $experience['company']; ?>">
               <textarea name="desc" rows="2" placeholder="Write your summary"><?= $experience['workdesc']; ?></textarea>
-            <?php endforeach; ?><?php } ?>
+            <?php endforeach; ?><?php } else { ?>
+              <input type="hidden" name="work" placeholder="">
+              <label for="from">From - Until</label>
+              <input type="text" name="from" placeholder="1800-01-01">
+              <input type="text" name="until" placeholder="2000-01-01">
+              <label for="profession">Profession and Description</label>
+              <input type="text" name="profession" placeholder="Leader">
+              <input type="text" name="company" placeholder="Rulecorp">
+              <textarea name="desc" rows="2" placeholder="Write your summary">Write your message</textarea>               
+            <?php } ?>
             <div class="left">
-              <button type="submit" class="New" name="createExperience">Add</button>  
+              <button type="submit" class="New" name="addExperience">Add</button>  
               <button type="submit" name="saveExperience">Save Changes</button>       
             </div>       
           </form>
@@ -186,17 +195,17 @@
             <?php foreach ($data['education'] as $college): ?>
               <?= $college['firstDate']; ?><?=" ".$college['firstDate']; ?><?= " ".$college['edutitle']; ?><?= " ".$college['edudesc']; ?>
 
-              <input type="hidden" name="work" value="<?= $college['eduID']; ?>">
+              <input type="hidden" name="edu_id" value="<?= $college['eduID']; ?>">
               <label for="from">From - Until</label>
               <input type="text" name="from" value="<?= $college['firstDate']; ?>">
               <input type="text" name="until" value="<?= $college['lastDate']; ?>">
               <label for="profession">Profession and Description</label>
-              <input type="text" name="course" value="<?= $college['edutitle']; ?>">
+              <input type="text" name="edutitle" value="<?= $college['edutitle']; ?>">
               <input type="text" name="company" value="<?= $college['company']; ?>">
               <textarea name="desc" rows="2" placeholder="Write your summary"><?= $college['edudesc']; ?></textarea>
             <?php endforeach; ?><?php } ?>
             <div class="left">
-              <button type="submit" class="New" name="createEducation">Add</button>  
+              <button type="submit" class="New" name="addEducation">Add</button>  
               <button type="submit" name="saveEducation">Save Changes</button>  
             </div>       
           </form>
@@ -212,7 +221,7 @@
             <label for="skills">Skills</label>
             <?php if (!empty($data)) { ?>
             <?php foreach ($data['technical'] as $tech): ?>
-              <input type="text" name="skills" placeholder="Ex: 0" value="<?= $tech['techtitle']; ?>">
+              <input type="text" name="technical" placeholder="Ex: 0" value="<?= $tech['techtitle']; ?>">
             <?php endforeach; ?><?php } else { ?> <input type="text" name="skills" placeholder="Ex: Planning"> <?php } ?>
 
             <label for="language">Languages</label>
@@ -228,7 +237,7 @@
             <?php endforeach; ?><?php } else { ?> <input type="text" name="hobby" placeholder="Ex: Bingewatching"> <?php } ?>
 
             <div class="left"> 
-              <button type="submit" class="New" name="createSkills">Add</button>   
+              <button type="submit" class="New" name="addSkills">Add</button>   
               <button type="submit" name="saveSkills">Save Changes</button>       
             </div> 
           </form>
