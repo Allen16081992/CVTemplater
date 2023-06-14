@@ -11,7 +11,7 @@ class Education {
     private $resumeID;
 
 
-    public function __construct($edutitle, $edudesc, $company, $firstDate, $lastDate, $resumeID, $userID)
+    public function __construct($edutitle, $edudesc, $company, $firstDate, $lastDate, $userID, $resumeID)
     {
         $this->edutitle = $edutitle;
         $this->edudesc = $edudesc;
@@ -25,8 +25,7 @@ class Education {
 
     public function Createeducation()
     {
-        if (isset($_SESSION['user_id'])) {
-            $userID = $_SESSION['user_id'];
+        if (isset($this->userID)) {
 
             // Khaqan
             $connection = $this->database->connect();
@@ -35,19 +34,18 @@ class Education {
             $company = $this->getcompany();
             $firstDate = $this->getfirstDate();
             $lastDate = $this->getlastDate();
-            $resumeID = 4;
 
             $sql = $connection->prepare(
-                "insert into education(edutitle, edudesc, company, firstDate, lastDate, userID, resumeiD) values 
-                       (:edutitle, :edudesc, :company, :firstDate, :lastDate, :userID, :resumeID);"
+                "INSERT INTO education (edutitle, edudesc, company, firstDate, lastDate, resumeID, userID) 
+                 VALUES (:edutitle, :edudesc, :company, :firstDate, :lastDate, :resumeID, :userID);"
             );
             $sql->bindParam(":edutitle", $edutitle);
             $sql->bindParam(":edudesc", $edudesc);
             $sql->bindParam(":company", $company);
             $sql->bindParam(":firstDate", $firstDate);
             $sql->bindParam(":lastDate", $lastDate);
-            $sql->bindParam(":userID", $userID);
-            $sql->bindParam(":resumeID", $resumeID);
+            $sql->bindParam(":resumeID", $this->resumeID);
+            $sql->bindParam(":userID", $this->userID);
             $sql->execute();
 
         }

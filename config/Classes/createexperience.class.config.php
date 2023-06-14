@@ -24,8 +24,7 @@ class Experience {
 
     public function Createexperience()
     {
-        if (isset($_SESSION['user_id'])) {
-            $userID = $_SESSION['user_id'];
+        if (isset($this->userID)) {
 
             // Khaqan
             $connection = $this->database->connect();
@@ -34,10 +33,9 @@ class Experience {
             $company = $this->getCompany();
             $firstDate = $this->getFirstDate();
             $lastDate = $this->getLastDate();
-            $resumeID = 4;
             $sql = $connection->prepare(
-                "INSERT INTO experience (worktitle, workdesc, company, firstDate, lastDate, userID, resumeID) 
-    VALUES (:worktitle, :workdesc, :company, :firstDate, :lastDate, :userID, :resumeID);"
+                "INSERT INTO experience (worktitle, workdesc, company, firstDate, lastDate, resumeID, userID) 
+                 VALUES (:worktitle, :workdesc, :company, :firstDate, :lastDate, :resumeID, :userID);"
             );
 
             $sql->bindParam(":worktitle", $worktitle);
@@ -45,8 +43,8 @@ class Experience {
             $sql->bindParam(":company", $company);
             $sql->bindParam(":firstDate", $firstDate);
             $sql->bindParam(":lastDate", $lastDate);
-            $sql->bindParam(":userID", $userID);
-            $sql->bindParam(":resumeID", $resumeID);
+            $sql->bindParam(":userID", $this->userID);
+            $sql->bindParam(":resumeID", $this->resumeID);
             $sql->execute();
 
         }
