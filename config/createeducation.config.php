@@ -10,12 +10,12 @@ if (isset($_POST['addEducation'])) {
     $userID = $_SESSION['user_id'];
     $resumeID = $_SESSION["resumeID"];
     $edutitle = $_POST['edutitle'];
-    $nieuweedutitle = new Education($_POST['edutitle'], $_POST['edudesc'], $_POST['company'], $_POST['from'], $_POST['until'], $userID, $resumeID);
+    $nieuweedutitle = new Education($_POST['edutitle'], $_POST['edudesc'], $_POST['company'], $_POST['from'], $_POST['until'], $userID, $resumeID );
     $nieuweedutitle->Createeducation();
-    header('location: ../client.php?');
+
     // Refresh client page.
-    //$_SESSION['success'] = 'The education has been created.';
-    //header('location: ../client.php?');
-    //exit();
+    $_SESSION['success'] = 'Education has been created.';
+    header('location: ../client.php?');
+    exit();
 }
 ?>

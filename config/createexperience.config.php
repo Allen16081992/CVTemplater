@@ -12,12 +12,11 @@ if (isset($_POST['addExperience'])) {
     $userID = $_SESSION['user_id'];
     $resumeID = $_SESSION["resumeID"];
     $worktitle = $_POST['worktitle'];
-    $nieuweworktitle = new Experience($worktitle, $_POST['workdesc'], $_POST['company'], $_POST['from'], $_POST['until'],$userID, $resumeID );
+    $nieuweworktitle = new Experience($worktitle, $_POST['workdesc'], $_POST['company'], $_POST['from'], $_POST['until'], $userID, $resumeID );
     $nieuweworktitle->Createexperience();
-    header('Location: ../client.php');
 
 //    // Refresh client page.
-//    $_SESSION['success'] = 'The experience has been created.';
-//    header('location: ../client.php?');
-//    exit();
+    $_SESSION['success'] = 'Experience has been created.';
+    header('location: ../client.php?');
+    exit();
 }
