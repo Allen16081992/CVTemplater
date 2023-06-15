@@ -217,9 +217,10 @@
         <input class="check" type="checkbox" id="collapse-head5">
         <label for="collapse-head5">Skills</label>
         <div class="collapse-text" id="field5">        
-          <form name="skills" action="" method="post">
+          <form name="skills" action="config/createskills.config.php" method="post">
             <!-- Languages, Technical Skills, Interests -->
             <label for="technical">Technical Skill</label>
+              //lmao
             <?php if (isset($userID) && !empty($data['technical'])) { ?>
                 <?php foreach ($data['technical'] as $tech): ?>
                     <input type="text" name="technical" placeholder="Ex: Analyzing data" value="<?= $tech['techtitle']; ?>"> 
