@@ -8,34 +8,36 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>CV Templater - Tutorial</title>
-        <!-- Favicon -->
-        <?php include 'config/peripherals/favicon.config.php';?>
-        <!-- Boxicons -->
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <!-- Styling Sheets -->
-        <link rel="stylesheet" href="css/trongate.css">
-        <link rel="stylesheet" href="css/templater.css">
-   </head> 
-   <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Templater - Tutorial</title>
+    <!-- Favicon -->
+    <?php include 'config/peripherals/favicon.config.php';?>
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Styling Sheets -->
+    <link rel="stylesheet" href="css/trongate.css">
+    <link rel="stylesheet" href="css/templater.css">
+  </head> 
+  <style>
     header > h1 {
-        margin-left:100px;
+      position:absolute;
+      margin-left:100px;
+      /* font-size: ; */
     }
     .sidebar {
-      margin-top: 8%;
+      margin-top: 4.8%;
     }
     img {
-        width: 900px;
-        height: auto;
-        margin-top: 15%;
-        margin-left: 320px;
+      width: 900px;
+      height: auto;
+      margin-top: 5%;
+      margin-left: 320px;
     }
     p {
-        color: white;
-        margin-left: 320px;
-        font-weight: bold;
+      color: white;
+      margin-left: 320px;
+      font-weight: bold;
     }
     .Builder {
       height: auto;
@@ -51,19 +53,19 @@
       height: auto;
       width: 900px;
     }
-   </style>
+  </style>
 <body>
     <header>
-        <h1>Tutorial</h1>
-        <img class="logo" src="img/CV-headed-eagle.png" alt="Brand Signature">
-        <i class='bx bx-menu' id="menu-icon"></i>
-        <nav> 
-          <?php include 'config/peripherals/nav_username.config.php'; ?>
-          <a href="config/logout.config.php">Logout</a>
-        </nav>
-      </header>
+      <img class="logo" src="img/CV-headed-eagle.png" alt="Brand Signature">
+      <h1>Tutorial</h1>
+      <i class='bx bx-menu' id="menu-icon"></i>
+      <nav> 
+        <?php include 'config/peripherals/nav_username.config.php'; ?>
+        <a href="config/logout.config.php">Logout</a>
+      </nav>
+    </header>
 
-      <section class="sidebar">
+    <section class="sidebar">
       <h5>Resume Builder</h5>
       <button class="New" data-window-target="#window">New Resume</button>
       <button data-window-target="#window2">Delete Resume</button> 
@@ -79,9 +81,9 @@
           </select>
         </form>
 
-        <li class="on"><i class='bx bxs-file'></i>Resume Builder</li>
+        <li><a href="./client.php"><i class='bx bxs-file'></i>Resume Builder</li>
         <li><a><i class='bx bxs-crown'></i>Premium</a></li>
-        <li><a href="./Tutorial.php"><i class='bx bxs-videos'></i>Tutorial</a></li>
+        <li class="on"><i class='bx bxs-videos'></i>Tutorial</a></li>
         <li><a href="./account.php"><i class='bx bxs-cog'></i>Account Settings</a></li>
         <?php echo "<i class='bx bxs-user-account bx-ms'></i> ".$userID; ?>
       </ul>
