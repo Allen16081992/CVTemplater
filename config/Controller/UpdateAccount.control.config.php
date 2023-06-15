@@ -158,4 +158,3 @@
             return !(empty($this->birth));
         }
     }
-?>

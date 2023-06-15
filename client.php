@@ -8,23 +8,6 @@
   // Include PHP files to retrieve data
   require_once "config/ViewResumes.config.php";
   require_once "config/FetchResumeTables.config.php";
-
-  // Create an instance of ViewResume
-  $resume = new ViewResumes();
-  $resumeData = $resume->viewResumeTitles();
-
-  if (isset($_SESSION['resumeID'])) {
-    $resumeID = $_SESSION['resumeID'];
-    $resumetitle = $_SESSION['resumetitle'];
-    
-    // Create a new instance of FetchData
-    $fetchData = new FetchData();
-    // Fetch all the data
-    $data = $fetchData->fetchAllData($resumeID, $userID);
-  }
-  if (isset($resumeID)) { //test.. goofing around
-    $_SESSION['golden'] = 'Resume: '.$resumetitle;
-  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -131,7 +114,7 @@
         <label for="collapse-head2">Profile</label>
         <div class="collapse-text" id="field2">
           <p>Edit your profile image</p>       
-          <form name="profile" action="config/UploadFile.config.php" enctype="multipart/form-data" method="post">
+          <form name="profile" action="config/UpdateProfile.config.php" enctype="multipart/form-data" method="post">
             <div class="left">
               <label for="file-upload" class="custom-file-upload"><img src="img/av-placehold.png" alt=""></label>
               <input id="file-upload" name="file-upload" type="file"/>  
@@ -236,10 +219,10 @@
         <div class="collapse-text" id="field5">        
           <form name="skills" action="" method="post">
             <!-- Languages, Technical Skills, Interests -->
-            <label for="technical">Skills</label>
+            <label for="technical">Technical Skill</label>
             <?php if (isset($userID) && !empty($data['technical'])) { ?>
                 <?php foreach ($data['technical'] as $tech): ?>
-                    <input type="text" name="technical" placeholder="Ex: Analyzing data" value="<?= $tech['techtitle']; ?>">
+                    <input type="text" name="technical" placeholder="Ex: Analyzing data" value="<?= $tech['techtitle']; ?>"> 
                 <?php endforeach; ?>
             <?php } else { ?>
                 <input type="text" name="technical" placeholder="Ex: Analyzing data">
@@ -254,18 +237,22 @@
                 <input type="text" name="language" placeholder="Ex: Maghrebi Arabic">
             <?php } ?>
 
-            <label for="hobby">Hobby</label>
+            <label for="interest">Interests</label>
             <?php if (isset($userID) && !empty($data['interests'])) { ?>
                 <?php foreach ($data['interests'] as $hobby): ?>
-                    <input type="text" name="hobby" placeholder="Ex: Gaming" value="<?= $hobby['interest']; ?>">
+                    <input type="text" name="interest" placeholder="Ex: Gaming" value="<?= $hobby['interest']; ?>">
                 <?php endforeach; ?>
             <?php } else { ?>
-                <input type="text" name="hobby" placeholder="Ex: Gaming">
+                <input type="text" name="interest" placeholder="Ex: Gaming">
             <?php } ?>
 
             <div class="left"> 
-              <button type="submit" class="New" name="addSkills">Add</button>   
-              <button type="submit" name="saveSkills">Save Changes</button>       
+            <?php if (isset($userID) && !empty($data['interests'])) { ?>
+              <button type="submit" class="New" name="addSkill">Add</button> 
+              <button type="submit" name="saveSkill">Save Changes</button>
+            <?php } else { ?>
+              <button type="submit" class="New" name="addSkill">Add</button>
+            <?php } ?>
             </div> 
           </form>
           <!--<button class="alt" onclick="">Clear</button>-->

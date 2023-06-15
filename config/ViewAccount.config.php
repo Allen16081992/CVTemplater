@@ -50,4 +50,3 @@
     $viewData = new ViewUser();
     // Error handlers
     $viewData->viewUserInfo();
-?>

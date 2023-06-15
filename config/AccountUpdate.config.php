@@ -41,4 +41,3 @@
     // Refresh account page.
     header('location: ../account.php?');
     exit();
-?>

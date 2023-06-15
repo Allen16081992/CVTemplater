@@ -1,8 +1,9 @@
-<?php
-    //if (!class_exists('Database')) {
-        // Database Configuration
-        require_once 'config.php';
-    //}
+<?php // Dhr. Allen Pieter
+    // Start a session for displaying error messages.
+    require_once 'peripherals/session_start.config.php';
+
+    // Use the (improved) database connection.
+    require_once 'idb.config.php';
 
     class FetchData {
         private $pdo;
@@ -52,4 +53,12 @@
             return $data;
         }
     }
-?>
+
+    if (isset($_SESSION['resumeID'])) {
+        $resumeID = $_SESSION['resumeID'];
+        $resumetitle = $_SESSION['resumetitle'];
+        
+        // Create a new instance of FetchData
+        $fetchData = new FetchData();
+        $data = $fetchData->fetchAllData($resumeID, $userID);
+    }

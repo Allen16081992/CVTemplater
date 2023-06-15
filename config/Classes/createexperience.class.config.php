@@ -1,4 +1,4 @@
-<?php
+<?php // Khaqan Ul Haq Awan
 
 class Experience {
     private $worktitle;
@@ -26,7 +26,6 @@ class Experience {
     {
         if (isset($this->userID)) {
 
-            // Khaqan
             $connection = $this->database->connect();
             $worktitle = $this->getWorktitle();
             $workdesc = $this->getWorkdesc();
@@ -43,8 +42,8 @@ class Experience {
             $sql->bindParam(":company", $company);
             $sql->bindParam(":firstDate", $firstDate);
             $sql->bindParam(":lastDate", $lastDate);
-            $sql->bindParam(":userID", $this->userID);
-            $sql->bindParam(":resumeID", $this->resumeID);
+            $sql->bindParam(":userID", $this->userID); // Dhr. Allen Pieter. It now handles the logged in user value correctly.
+            $sql->bindParam(":resumeID", $this->resumeID); // Dhr. Allen Pieter. It now handles the resume value correctly.
             $sql->execute();
 
         }
@@ -158,6 +157,4 @@ class Experience {
     public function emptyInput(){
         return !(empty($this->worktitle));
     }
-
-
 }

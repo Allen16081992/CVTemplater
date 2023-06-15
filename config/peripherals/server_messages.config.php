@@ -1,4 +1,4 @@
-<?php
+<?php // Dhr. Allen Pieter
     if (isset($_SESSION['error'])) {
         echo '<div class="error-message">'.$_SESSION['error'].'</div>';
         $_SESSION['error'] = null; // Clear the server message on page reload
@@ -11,4 +11,3 @@
         echo '<div class="golden-message">'.$_SESSION['golden'].'</div>';
         $_SESSION['golden'] = null; // Clear the server message on page reload
     }
-?>

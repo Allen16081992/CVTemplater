@@ -5,4 +5,3 @@
     session_destroy();
     // Push back to homepage.
     header('location: ../index.php');
-?>

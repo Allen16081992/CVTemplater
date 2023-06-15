@@ -30,4 +30,3 @@
             return !(empty($this->uid) || empty($this->passw));
         }
     }
-?>

@@ -1,4 +1,4 @@
-<?php
+<?php // Khaqan Ul Haq Awan
 
 class Education {
     private $edutitle;
@@ -44,8 +44,8 @@ class Education {
             $sql->bindParam(":company", $company);
             $sql->bindParam(":firstDate", $firstDate);
             $sql->bindParam(":lastDate", $lastDate);
-            $sql->bindParam(":resumeID", $this->resumeID);
-            $sql->bindParam(":userID", $this->userID);
+            $sql->bindParam(":resumeID", $this->resumeID); // Dhr. Allen Pieter. It now handles the resume value correctly.
+            $sql->bindParam(":userID", $this->userID); // Dhr. Allen Pieter. It now handles the logged in user value correctly.
             $sql->execute();
 
         }

@@ -1,6 +1,6 @@
 <?php // Khaqan Ul Haq Awan
-/*error_reporting(E_ALL);
-ini_set('display_errors', 'On'); <-- Dhr. A Pieter: Niet zo handig in een productie omgeving.*/
+//error_reporting(E_ALL);
+//ini_set('display_errors', 'On');
 
 class Resume {
     private $resumetitle;

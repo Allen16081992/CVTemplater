@@ -1,4 +1,4 @@
-<?php
+<?php // Dhr. Allen Pieter
     if (!isset($_SESSION['user_id'])) {
         // Start a session to display error messages.
         session_start();
@@ -7,4 +7,3 @@
         header('Location: ././index.php');
         exit;
     } else { $userID = $_SESSION['user_id']; }
-?>

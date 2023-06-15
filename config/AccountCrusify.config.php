@@ -114,4 +114,3 @@
     $void = new CrusifiedUser();
     // Error handlers
     $void->verifyUser($_POST['pwd']);
-?>

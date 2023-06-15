@@ -1,4 +1,4 @@
-<?php
+<?php // Dhr. Allen Pieter
     // This session_start is solely for displaying error messages.
     require '././peripherals/session_start.config.php';
     
@@ -49,4 +49,3 @@
             return $stmt->rowCount() === 0;
         }
     }
-?>
