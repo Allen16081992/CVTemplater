@@ -114,7 +114,8 @@
         <label for="collapse-head2">Profile</label>
         <div class="collapse-text" id="field2">
           <p>Edit your profile image</p>       
-          <form name="profile" action="config/UpdateProfile.config.php" enctype="multipart/form-data" method="post">
+          <form name="profile" action="config/profile.config.php" enctype="multipart/form-data" method="post">
+            <input type="text" name="resumeid" placeholder="Ex: 0" value="<?= isset($resumeID) ? $resumeID : '' ?>" hidden>
             <div class="left">
               <label for="file-upload" class="custom-file-upload"><img src="img/av-placehold.png" alt=""></label>
               <input id="file-upload" name="file-upload" type="file"/>  
@@ -220,10 +221,9 @@
           <form name="skills" action="config/createskills.config.php" method="post">
             <!-- Languages, Technical Skills, Interests -->
             <label for="technical">Technical Skill</label>
-              //lmao
             <?php if (isset($userID) && !empty($data['technical'])) { ?>
-                <?php foreach ($data['technical'] as $tech): ?>
-                    <input type="text" name="technical" placeholder="Ex: Analyzing data" value="<?= $tech['techtitle']; ?>"> 
+                <?php foreach ($data['technical'] as $technical): ?>
+                    <input type="text" name="technical" placeholder="Ex: Analyzing data" value="<?= $technical['techtitle']; ?>"> 
                 <?php endforeach; ?>
             <?php } else { ?>
                 <input type="text" name="technical" placeholder="Ex: Analyzing data">
@@ -253,6 +253,7 @@
               <button type="submit" name="saveSkill">Save Changes</button>
             <?php } else { ?>
               <button type="submit" class="New" name="addSkill">Add</button>
+              <button type="submit" name="saveSkill">Save Changes</button>
             <?php } ?>
             </div> 
           </form>
