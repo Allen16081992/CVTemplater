@@ -56,7 +56,6 @@
 
     if (isset($_SESSION['resumeID'])) {
         $resumeID = $_SESSION['resumeID'];
-        $resumetitle = $_SESSION['resumetitle'];
         
         // Create a new instance of FetchData
         $fetchData = new FetchData();

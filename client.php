@@ -100,7 +100,7 @@
             <label for="resumeid">Resume ID</label>
             <input type="text" name="resumeid" placeholder="Ex: 0" value="<?= isset($resumeID) ? $resumeID : '' ?>" disabled>
             <label for="resumetitle">Name</label>
-            <input type="text" name="resumetitle" placeholder="Ex: Sales" value="<?= isset($resumetitle) ? $resumetitle : '' ?>" autocomplete="off">
+            <input type="text" name="resumetitle" placeholder="Ex: Sales" value="<?= isset($_SESSION['resumetitle']) ? $_SESSION['resumetitle'] : '' ?>">
             <div class="left"> 
               <button type="submit" name="saveResume">Save Changes</button>
             </div> 
@@ -117,16 +117,41 @@
           <form name="profile" action="config/profile.config.php" enctype="multipart/form-data" method="post">
             <input type="text" name="resumeid" placeholder="Ex: 0" value="<?= isset($resumeID) ? $resumeID : '' ?>" hidden>
             <div class="left">
-              <label for="file-upload" class="custom-file-upload"><img src="img/av-placehold.png" alt=""></label>
+              <?php if (isset($userID) && !empty($data['profile'])) { ?>
+                <?php foreach ($data['profile'] as $profile): ?>
+                  <!-- Verify if the image is readable -->
+                  <?php $filePath = "img/avatars/".$profile['fileName'];
+                  if (is_readable($filePath)) {
+                      echo 'File is readable.';
+                  } else {
+                    echo 'File is not readable.';
+                  } ?>
+                  <label for="file-upload" class="custom-file-upload"><img src="img/avatars/<?= $profile['fileName']; ?>" alt=""></label>
+                <?php endforeach; ?>
+              <?php } else { ?>
+                <label for="file-upload" class="custom-file-upload"><img src="img/av-placehold.png" alt=""></label>
+              <?php } ?>
               <input id="file-upload" name="file-upload" type="file"/>  
             </div>
             <div class="left">
               <label for="intro">Introduction</label>
-              <input type="text" name="intro" id="profIntro" value="<?= isset($profile['profileintro']) ? $profile['profileintro'] : '' ?>" placeholder="Write a short introduction" autocomplete="off">
+              <?php if (isset($userID) && !empty($data['profile'])) { ?>
+                <?php foreach ($data['profile'] as $profile): ?>
+                  <input type="text" name="intro" id="profIntro" value="<?= $profile['profileintro']; ?>" placeholder="Write a short introduction">
+                <?php endforeach; ?>
+              <?php } else { ?>
+                <input type="text" name="intro" id="profIntro" placeholder="Write a short introduction">
+              <?php } ?>
             </div>
             <div class="left">
               <label for="desc">Description</label>
-              <textarea name="desc" rows="2" value="<?= isset($profile['profiledesc']) ? $profile['profiledesc'] : '' ?>" placeholder="Write your summary"></textarea>
+              <?php if (isset($userID) && !empty($data['profile'])) { ?>
+                <?php foreach ($data['profile'] as $profile): ?>
+                  <textarea name="desc" rows="2" placeholder="Write your summary"><?= $profile['profiledesc']; ?></textarea>
+                <?php endforeach; ?>
+              <?php } else { ?>
+                <textarea name="desc" rows="2" placeholder="Write your summary"></textarea>
+              <?php } ?>
             </div>
             <div class="left">   
               <button type="submit" name="saveProfile">Save Changes</button>       
