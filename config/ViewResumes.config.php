@@ -1,9 +1,9 @@
 <?php // Dhr. Allen Pieter
     // Start a session for displaying error messages.
-    require 'peripherals/session_start.config.php';
+    require_once 'peripherals/session_start.config.php';
 
     // Use the (improved) database connection.
-    require 'idb.config.php';
+    require_once 'idb.config.php';
 
     class ViewResumes {
         private $pdo;
@@ -34,4 +34,7 @@
             return [];
         }
     }
-?>
+
+    // Create an instance of ViewResume
+    $resume = new ViewResumes();
+    $resumeData = $resume->viewResumeTitles();
