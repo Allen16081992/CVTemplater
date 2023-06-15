@@ -96,4 +96,3 @@
             return $this->verifyUser($this->uid, $this->email);
         }       
     }
-?>

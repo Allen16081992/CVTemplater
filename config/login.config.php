@@ -19,4 +19,3 @@
         // When loginUser() completed verification, open the client environment MyResume.
         header('Location: ../client.php');
     }
-?>

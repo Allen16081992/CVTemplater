@@ -31,4 +31,3 @@
         // Dismiss to homepage
         header('location: ../index.php?error=none');
     }
-?>

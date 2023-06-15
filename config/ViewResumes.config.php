@@ -20,15 +20,15 @@
         
                 // Select user records
                 $stmt = $this->pdo->prepare('SELECT resumetitle FROM `resume` WHERE userID = ?');
-                $stmt->execute([$userID]);
-                $cv = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-                if (!$cv) {
-                    $_SESSION['error'] = 'Work information not found';
+
+                if (!$stmt->execute([$userID])) {
+                    $_SESSION['error'] = 'Failed to retrieve resume info.';
                     return [];
+                } else {
+                    // Return the resume data
+                    $cv = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $cv;                   
                 }
-                // Return the resume data
-                return $cv;
             }
             // Return an empty array if user ID is not set
             return [];

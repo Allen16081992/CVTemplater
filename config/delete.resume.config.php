@@ -69,5 +69,4 @@
     // Create an instance of deleteResume and delete the resume
     $deleteResume = new deleteResume($resumetitle);
     $deleteResume->deleteResume();
-  }    
-?>
+  }

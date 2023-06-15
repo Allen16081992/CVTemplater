@@ -16,7 +16,3 @@
         header('location: ../client.php?');
         exit();
     }
-?>
-
-
-
