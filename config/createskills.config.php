@@ -7,7 +7,7 @@ require 'peripherals/session_start.config.php';
 require "idb.config.php";
 require_once "Classes/createskills.class.config.php";
 
-if (isset($_POST['addSkills'])){
+if (isset($_POST['addSkill'])){
     $userID = $_SESSION["user_id"];
     $resumeID = $_SESSION["resumeID"];
     $language = $_POST['language'];
@@ -21,7 +21,7 @@ if (isset($_POST['addSkills'])){
     exit();
 
 }
-if (isset($_POST['addSkills'])){
+if (isset($_POST['addSkill'])){
     $userID = $_SESSION["user_id"];
     $resumeID = $_SESSION["resumeID"];
     $interest = $_POST['interest'];
@@ -35,7 +35,7 @@ if (isset($_POST['addSkills'])){
     exit();
 
 }
-if (isset($_POST['addSkills'])){
+if (isset($_POST['addSkill'])){
     $userID = $_SESSION["user_id"];
     $resumeID = $_SESSION["resumeID"];
     $techtitle = $_POST['technical'];
