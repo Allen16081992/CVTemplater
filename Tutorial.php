@@ -120,7 +120,7 @@
       <img src="img/tutorials/tutorial1.PNG" alt="Resume Name">
       <p>1. De Resume Id is de serienummer van je CV.<br></br>
          2. De naam is aan te passen.<br></br>
-         3. Klik op Save Changes om je wijzigingen op je Resume op te slaan.<br></br>
+         3. Klik op Save Changes om de wijzigingen op je CV op te slaan.<br></br>
          4. Klik op View Resume om je CV te bekijken.  
       </p>
       <img src="img/tutorials/tutorial2.PNG" alt="Profile">
@@ -139,13 +139,13 @@
       <img src="img/tutorials/tutorial4.PNG" alt="Education">
       <p> 1. Zet hier wanneer je bent gestart en wanneer je bent gestopt.<br></br>
           2. Zet hier je opleidingnaam, schoolnaam en een korte beschrijving.<br></br>
-          3. Klik op Add om er één opleiding bij te voegen en op Save Changes om een bestaande op te slaan.
+          3. Klik op Add om één opleiding bij te voegen en op Save Changes om een bestaande op te slaan.
       </p>
       <img src="img/tutorials/tutorial5.PNG" alt="Skills">
       <p>1. Zet hier al je skills die je beheerst.<br></br>
          2. Geef aan welke talen je beheerst.<br></br>
          3. Zet hier wat je hobby's zijn.<br></br>
-         4. Klik op Add om er één bij te voegen en op Save Changes om een bestaande op te slaan.   
+         4. Klik op Add om een skill bij te voegen en op Save Changes om een bestaande op te slaan.   
 
       </p>
       <div class="Builder">
