@@ -51,7 +51,7 @@
       <ul>
         <li><a href="client.php"><i class='bx bxs-file'></i>Resume Builder</a></li>
         <li><a><i class='bx bxs-crown'></i>Premium</a></li>
-        <li><a><i class='bx bxs-videos'></i>Tutorial</a></li>
+        <li><a href="./Tutorial.php"><i class='bx bxs-videos'></i>Tutorial</a></li>
         <li class="on"><i class='bx bxs-cog'></i>Account Settings</li>
       </ul>
       <button class="Del" data-window-target="#window">Delete Account</button>
@@ -62,7 +62,7 @@
       <ul>
         <li><a href="client.php"><i class='bx bxs-file bx-md'></i></a></li>
         <li><a><i class='bx bxs-crown bx-md'></i></a></li>
-        <li><a><i class='bx bxs-videos bx-md'></i></a></li>
+        <li><a href="./Tutorial.php"><i class='bx bxs-videos bx-md'></i></a></li>
         <li><a data-window-target="#window"><i class='bx bx-x-circle bx-md'></i></a></li>
       </ul>
     </section>

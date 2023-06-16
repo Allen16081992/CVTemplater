@@ -1,4 +1,4 @@
-<?php
+<?php // Loubna Faress
   // Start a session for holding the user.
   require_once 'config/peripherals/session_start.config.php'; 
 
@@ -18,12 +18,14 @@
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="css/trongate.css">
     <link rel="stylesheet" href="css/templater.css">
+    <!-- Javascript -->
+    <?php require 'config/peripherals/javascript_load.config.php'; ?>
   </head> 
   <style>
     header > h1 {
       position:absolute;
-      margin-left:100px;
-      /* font-size: ; */
+      margin-left:110px;
+      font-size:2rem;
     }
     .sidebar {
       margin-top: 4.8%;
@@ -32,12 +34,13 @@
       width: 900px;
       height: auto;
       margin-top: 5%;
-      margin-left: 320px;
+      /*margin-left: 320px;*/
     }
     p {
       color: white;
-      margin-left: 320px;
       font-weight: bold;
+      /*margin-left: 320px;*/
+      margin-bottom: 10%;
     }
     .Account > p {
       margin-bottom: 10%;
@@ -60,8 +63,21 @@
       height: auto;
       width: 900px;
     }
+    @media (orientation: portrait) {
+      header > h1 {
+        margin-top:-3rem;
+        margin-left:-8px;
+        font-size:1rem;
+      }
+      img, p, .Builder, .Delete, .Experience {
+        width:100%;
+      }
+      .Account { margin-bottom:8rem; }
+    }
+
   </style>
 <body>
+    <!-- Upper Navigation Panel -->
     <header>
       <img class="logo" src="img/CV-headed-eagle.png" alt="Brand Signature">
       <h1>Tutorial</h1>
@@ -72,19 +88,17 @@
       </nav>
     </header>
 
+    <!-- Resume Side Panel -->
     <section class="sidebar">
-      <h5>Resume Builder</h5>
+      <h5>Tutorial</h5>
       <button class="New" data-window-target="#window">New Resume</button>
       <button data-window-target="#window2">Delete Resume</button> 
            
       <ul>
-        <form action="config/FetchResume.config.php" method="post">
-          <select class="dropdown" name="selectCv" onchange="submitForm(this.form)">
-            <option selected disabled hidden>Select Resume:</option>
-            <?php if (!empty($resumeData)) { ?>
-            <?php foreach ($resumeData as $resume): ?>
-              <option class="resume-select"><?= $resume['resumetitle']; ?></option>
-            <?php endforeach; ?> <?php } ?>
+        <form action="#" method="post">
+          <select class="dropdown" name="selectCv">
+            <option selected>Select Resume:</option>
+            <option class="resume-select">This is an example</option>
           </select>
         </form>
 
@@ -92,31 +106,31 @@
         <li><a><i class='bx bxs-crown'></i>Premium</a></li>
         <li class="on"><i class='bx bxs-videos'></i>Tutorial</a></li>
         <li><a href="./account.php"><i class='bx bxs-cog'></i>Account Settings</a></li>
-        <?php echo "<i class='bx bxs-user-account bx-ms'></i> ".$userID; ?>
       </ul>
     </section>
 
+    <!-- (Mobile) Resume Side Panel -->
     <section id="mobilecv">
-      <form action="config/FetchResume.config.php" method="post">
-        <select class="m-dropup" name="selectCv" onchange="submitForm(this.form)">
-          <option selected disabled hidden>Select Resume:</option>
-          <?php if (!empty($resumeData)) { ?>
-          <?php foreach ($resumeData as $resume): ?>
-            <option><?= $resume['resumetitle']; ?></option>
-          <?php endforeach; ?> <?php } ?>
+      <form action="#" method="post">
+        <select class="m-dropup" name="selectCv">
+          <option selected>Select Resume:</option>
+          <option class="resume-select">This is an example</option>
         </select>
       </form>
     </section>
+    
     <section class="m-sidebar">
       <ul>
         <li><a data-window-target="#window"><i class='bx bx-plus-circle bx-md'></i></a></li>
         <li><a data-window-target="#window2"><i class='bx bx-x-circle bx-md'></i></a></li>
         <li><a><i class='bx bxs-crown bx-md'></i></a></li>
-        <li><a href="./Tutorial.php"><i class='bx bxs-videos bx-md'></i></a></li>
+        <li><a><i class='bx bxs-videos bx-md'></i></a></li>
         <li><a href="./account.php"><i class='bx bxs-cog bx-md'></i></a></li>
       </ul>
     </section>
 
+    <!-- Main Content -->
+    <main class="container">
       <img src="img/tutorials/tutorial1.PNG" alt="Resume Name">
       <p>1. De Resume Id is de serienummer van je CV.<br></br>
          2. De naam is aan te passen.<br></br>
@@ -130,7 +144,7 @@
          4. Klik op Save Changes om je wijzigingen op je profiel op te slaan.
       </p>
       <div class="Experience">
-      <img src="img/tutorials/tutorial3.PNG" alt="Work Experience">
+        <img src="img/tutorials/tutorial3.PNG" alt="Work Experience">
       </div>
       <p> 1. Zet hier wanneer je in dienst bent geweest en wanneer je bent gestopt.<br></br>
           2. Zet hier je functie, bedrijfsnaam en een korte beschrijving.<br></br>
@@ -146,20 +160,53 @@
          2. Geef aan welke talen je beheerst.<br></br>
          3. Zet hier wat je hobby's zijn.<br></br>
          4. Klik op Add om een skill bij te voegen en op Save Changes om een bestaande op te slaan.   
-
       </p>
       <div class="Builder">
-      <img src="img/tutorials/tutorial6.PNG" alt="Resume Builder">
+        <img src="img/tutorials/tutorial6.PNG" alt="Resume Builder">
       </div>
       <p>1. Wil je een nieuwe CV aanmaken? Klik dan op New Resume.<br></br>
-         2. Wil je een gemaakte CV verwijderen? Klik dan op Delete Resume.<br></br>
-         3. Wil je een gemaakte CV bekijken? Zoek hem dan op via Select Resume.  
+        2. Wil je een gemaakte CV verwijderen? Klik dan op Delete Resume.<br></br>
+        3. Wil je een gemaakte CV bekijken? Zoek hem dan op via Select Resume.  
       </p>
       <div class="Delete">
-      <img src="img/tutorials/tutorial7.PNG" alt="Delete function">
+        <img src="img/tutorials/tutorial7.PNG" alt="Delete function">
       </div>
       <div class="Account">        
-      <p>Ga naar het tabblad Account Settings en klik dan op Delete Account om je account te verwijderen.</p>
+        <p>Ga naar het tabblad Account Settings en klik dan op Delete Account om je account te verwijderen.</p>
       </div>
+
+      <!-- Create New Resume Window -->
+      <div class="window" id="window">
+        <div class="window-title">
+          <div class="title">Your New Resume</div>
+          <button data-window-close class="close-button">&#215;</button>
+        </div>
+        <form class="window-body" name="popup2" action="#" method="post">
+          <label for="cvname">Let's give it a name</label>
+          <input type="text" name="cvname" placeholder="This is an example">
+          <button type="submit" name="creResume">Save Resume</button>
+        </form>
+      </div>
+
+      <!-- Delete a Resume Window -->
+      <div class="window" id="window2">
+        <div class="window-title">
+          <div class="title">Delete Resume</div>
+          <button data-window-delclose class="close-button">&#215;</button>
+        </div>
+        <form class="window-body" name="popup3" action="#" method="post">
+          <p>Do you really want to delete a resume?</p>
+          <label for="selectCv">Select a resume to remove</label>
+          <select name="selectCv">
+            <option>(None selected)</option>
+            <option>This is an example</option>
+          </select>
+          <button class="Del" type="submit" name="delResume">Delete</button>
+        </form>
+      </div>
+
+      <!-- When any Window opens, darken the background -->
+      <div id="overlay"></div>
+    </main>
 </body>
 </html>

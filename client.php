@@ -314,7 +314,7 @@
           <p>Do you really want to delete a resume?</p>
           <label for="selectCv">Select a resume to remove</label>
           <select name="selectCv">
-            <option value="">(None selected)</option>
+            <option>(None selected)</option>
             <?php if (!empty($resumeData)) { ?>
             <?php foreach ($resumeData as $resume): ?>
               <option><?php echo $resume['resumetitle']; ?></option>
