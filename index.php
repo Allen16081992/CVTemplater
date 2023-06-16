@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/templater.css">
     <!-- Javascript -->
     <?php include 'config/peripherals/javascript_load.config.php'; ?>
+    <script defer src="javascript/audio.js"></script>
   </head>
   <body>
     <!-- Upper Navigation Panel -->

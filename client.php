@@ -91,15 +91,16 @@
       <!-- Resume Builder -->
       <div class="collapse">
 
-        <!-- Resume Name Field -->
+        <!-- Resume Title Tab -->
         <input class="check" type="checkbox" id="collapse-head1">
         <label for="collapse-head1">Resume Name</label>       
         <div class="collapse-text" id="field1">
-          <form name="resume" action="config/createresume.config.php" method="post">         
-            <label for="resumeID">Resume ID</label>
-            <input type="text" name="resumeID" placeholder="Ex: 0" value="<?= isset($resumeID) ? $resumeID : '' ?>" disabled>
+          <form name="resume" action="config/updateresume.config.php" method="post"> 
+            <p class="error-resume-tab"></p>        
+            <label for="resid">Resume ID</label>
+            <input type="text" name="resid" placeholder="Ex: 0" value="<?= isset($resumeID) ? $resumeID : '' ?>" disabled>
             <label for="cvname">Name</label>
-            <input type="text" name="cvname" placeholder="Ex: Sales" value="<?= isset($_SESSION['resumetitle']) ? $_SESSION['resumetitle'] : '' ?>">
+            <input type="text" name="cvname" placeholder="Ex: Professional Dredger" value="<?= isset($_SESSION['resumetitle']) ? $_SESSION['resumetitle'] : '' ?>">
             <div class="left"> 
               <button type="submit" name="saveResume">Save Changes</button>
             </div> 
@@ -108,13 +109,14 @@
           <button class="alt">View Resume</button>
         </div>
      
-        <!-- Profile Fields -->
+        <!-- Profile Tab -->
         <input class="check" type="checkbox" id="collapse-head2">
         <label for="collapse-head2">Profile</label>
         <div class="collapse-text" id="field2">
           <p>Edit your profile image</p>       
           <form name="profile" action="config/profile.config.php" enctype="multipart/form-data" method="post">
-            <input type="text" name="resumeid" placeholder="Ex: 0" value="<?= isset($resumeID) ? $resumeID : '' ?>" hidden>
+            <p class="error-profile-tab"></p>
+            <input type="text" name="resumeid" value="<?= isset($resumeID) ? $resumeID : '' ?>" hidden>
             <div class="left">
               <?php if (isset($userID) && !empty($data['profile'])) { ?>
                 <?php foreach ($data['profile'] as $profile): ?>
@@ -136,10 +138,10 @@
               <label for="intro">Introduction</label>
               <?php if (isset($userID) && !empty($data['profile'])) { ?>
                 <?php foreach ($data['profile'] as $profile): ?>
-                  <input type="text" name="intro" id="profIntro" value="<?= $profile['profileintro']; ?>" placeholder="Write a short introduction">
+                  <input type="text" name="intro" placeholder="Write a short introduction" value="<?= $profile['profileintro']; ?>">
                 <?php endforeach; ?>
               <?php } else { ?>
-                <input type="text" name="intro" id="profIntro" placeholder="Write a short introduction">
+                <input type="text" name="intro" placeholder="Write a short introduction">
               <?php } ?>
             </div>
             <div class="left">
@@ -159,36 +161,36 @@
           <!--<button class="alt" name="clearProfile">Clear</button>-->
         </div>
 
-        <!-- Work Experience Fields -->
+        <!-- Work Experience Tab -->
         <input class="check" type="checkbox" id="collapse-head3">
         <label for="collapse-head3">Work Experience</label>
         <div class="collapse-text" id="field3">
           <form name="experience" action="config/createexperience.config.php" method="post">
+            <p class="error-work-tab"></p>
             <label for="from">From - Until</label>
-
             <?php if (isset($userID) && !empty($data['experience'])) { ?>
                 <?php foreach ($data['experience'] as $experience): ?>
                     <input type="hidden" name="work" value="<?= $experience['workID']; ?>">
-                    <input type="text" name="from" value="<?= $experience['firstDate']; ?>">
-                    <input type="text" name="until" value="<?= $experience['lastDate']; ?>">
+                    <input type="text" name="from" placeholder="Ex: 1956-02-01" value="<?= $experience['firstDate']; ?>">
+                    <input type="text" name="until" placeholder="Ex: 2002-01-01 or To Date" value="<?= $experience['lastDate']; ?>">
                 <?php endforeach; ?>
             <?php } else { ?>
-                <input type="text" name="from" placeholder="1800-01-01">
-                <input type="text" name="until" placeholder="2000-01-01">
+                <input type="text" name="from" placeholder="Ex: 1956-02-01">
+                <input type="text" name="until" placeholder="Ex: 2002-01-01 or To Date">
             <?php } ?>
             
             <label for="worktitle">Profession and Description</label>
             
             <?php if (isset($userID) && !empty($data['experience'])) { ?>
                 <?php foreach ($data['experience'] as $experience): ?>
-                    <input type="text" name="worktitle" value="<?= $experience['worktitle']; ?>">
-                    <input type="text" name="company" value="<?= $experience['company']; ?>">
-                    <textarea name="workdesc" rows="2"><?= $experience['workdesc']; ?></textarea>
+                    <input type="text" name="worktitle" placeholder="Finance Advisor" value="<?= $experience['worktitle']; ?>">
+                    <input type="text" name="company" placeholder="Triodos Bank" value="<?= $experience['company']; ?>">
+                    <textarea name="workdesc" rows="2" placeholder="Write your job summary"><?= $experience['workdesc']; ?></textarea>
                 <?php endforeach; ?>
             <?php } else { ?>
                 <input type="text" name="worktitle" placeholder="Finance Advisor">
                 <input type="text" name="company" placeholder="Triodos Bank">
-                <textarea name="workdesc" rows="2" placeholder="Write your summary"></textarea>
+                <textarea name="workdesc" rows="2" placeholder="Write your job summary"></textarea>
             <?php } ?>
 
             <div class="left">
@@ -199,11 +201,12 @@
           <!--<button class="alt" name="clearWork">Clear</button>-->
         </div>
 
-        <!-- Education Fields -->
+        <!-- Education Tab -->
         <input class="check" type="checkbox" id="collapse-head4">
         <label for="collapse-head4">Education</label>
         <div class="collapse-text" id="field4">
           <form name="education" action="config/createeducation.config.php" method="post">
+            <p class="error-education-tab"></p>
             <label for="from">From - Until</label>
             <?php if (isset($userID) && !empty($data['education'])) { ?>
                 <?php foreach ($data['education'] as $college): ?>
@@ -238,12 +241,13 @@
           <!--<button class="alt">Clear</button>--> 
         </div>
 
-        <!-- Technical Skills Fields -->
+        <!-- Technical Skills Tab -->
         <input class="check" type="checkbox" id="collapse-head5">
         <label for="collapse-head5">Skills</label>
         <div class="collapse-text" id="field5">        
           <form name="skills" action="config/createskills.config.php" method="post">
             <!-- Languages, Technical Skills, Interests -->
+            <p class="error-skill-tab"></p>
             <label for="technical">Technical Skill</label>
             <?php if (isset($userID) && !empty($data['technical'])) { ?>
                 <?php foreach ($data['technical'] as $technical): ?>

@@ -278,7 +278,9 @@ ul li.on { cursor:default; margin-left:20px; }
     font-weight: var(--error-font-w); padding: var(--error-padding);
     max-width: var(--error-max-w); margin-bottom: var(--error-marg-b); margin-top:var(--error-marg-t);
 }
-.error-uid, .error-pwd, .error-res, .error-select {
+.error-uid, .error-pwd, .error-res, .error-select, 
+.error-resume-tab, .error-profile-tab, .error-work-tab,
+.error-education-tab, .error-skill-tab {
     background: var(--error-bg);  
     border: var(--error-border); display:var(--error-disp);
     border-radius: var(--error-radius); color: var(--error-color);
@@ -387,6 +389,8 @@ ul li.on { cursor:default; margin-left:20px; }
     border-radius: 50%;
     border: 3px dotted rgb(0, 255, 17);
     cursor:pointer;
+    max-height:10rem;
+    max-width:10rem;
 }
 input[type="file"] {
     display: none;

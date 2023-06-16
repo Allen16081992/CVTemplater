@@ -43,6 +43,121 @@ if (deleteForm) {
   };
 }
 
+// Target Client - Resume tab
+var resumeForm = document.forms['resume'];
+if (resumeForm) {
+  resumeForm.onsubmit = function(event) {
+    if(this.cvname.value.trim() == ""){
+      displayErrorMessage(".error-resume-tab", "Please name your resume.");
+      event.preventDefault();
+      return false;
+    }
+  }
+}
+
+// Target Client - Profile tab
+var resumeForm = document.forms['profile'];
+if (resumeForm) {
+  resumeForm.onsubmit = function(event) {
+    if(this.intro.value.trim() == ""){
+      displayErrorMessage(".error-profile-tab", "Please write an introduction.");
+      event.preventDefault();
+      return false;
+    }
+    if(this.desc.value.trim() == ""){
+      displayErrorMessage(".error-profile-tab", "Please write a description.");
+      event.preventDefault();
+      return false;
+    }
+  }
+}
+
+// Target Client - Work tab
+var resumeForm = document.forms['experience'];
+if (resumeForm) {
+  resumeForm.onsubmit = function(event) {
+    if(this.from.value.trim() == ""){         
+      displayErrorMessage(".error-work-tab", "No date of employment.");
+      event.preventDefault();
+      return false;
+    }
+    if(this.until.value.trim() == ""){
+      displayErrorMessage(".error-work-tab", "No date of unemployment.");
+      event.preventDefault();
+      return false;
+    }
+    if(this.worktitle.value.trim() == ""){
+      displayErrorMessage(".error-work-tab", "Please provide your profession.");
+      event.preventDefault();
+      return false;
+    }
+    if(this.company.value.trim() == ""){
+      displayErrorMessage(".error-work-tab", "No company provided.");
+      event.preventDefault();
+      return false;
+    }
+    if(this.workdesc.value.trim() == ""){
+      displayErrorMessage(".error-work-tab", "No job summary provided.");
+      event.preventDefault();
+      return false;
+    }
+  }
+}
+
+// Target Client - Education tab
+var resumeForm = document.forms['education'];
+if (resumeForm) {
+  resumeForm.onsubmit = function(event) {
+    if(this.from.value.trim() == ""){         
+      displayErrorMessage(".error-education-tab", "No start date provided.");
+      event.preventDefault();
+      return false;
+    }
+    if(this.until.value.trim() == ""){
+      displayErrorMessage(".error-education-tab", "No graduation date provided.");
+      event.preventDefault();
+      return false;
+    }
+    if(this.edutitle.value.trim() == ""){
+      displayErrorMessage(".error-education-tab", "No education provided.");
+      event.preventDefault();
+      return false;
+    }
+    if(this.company.value.trim() == ""){
+      displayErrorMessage(".error-education-tab", "No school provided.");
+      event.preventDefault();
+      return false;
+    }
+    if(this.edudesc.value.trim() == ""){
+      displayErrorMessage(".error-education-tab", "No education summary provided.");
+      event.preventDefault();
+      return false;
+    }
+  }
+}
+
+// Target Client - Skills tab
+var resumeForm = document.forms['skills'];
+if (resumeForm) {
+  resumeForm.onsubmit = function(event) {
+    if(this.technical.value.trim() == ""){         
+      displayErrorMessage(".error-skill-tab", "No skills provided.");
+      event.preventDefault();
+      return false;
+    }
+    if(this.language.value.trim() == ""){
+      displayErrorMessage(".error-skill-tab", "No language provided.");
+      event.preventDefault();
+      return false;
+    }
+    if(this.interest.value.trim() == ""){
+      displayErrorMessage(".error-skill-tab", "No interest or hobby provided.");
+      event.preventDefault();
+      return false;
+    }
+  }
+}
+
 // Error message function.
 function displayErrorMessage(selector, message) {
   var errorElement = document.querySelector(selector);
