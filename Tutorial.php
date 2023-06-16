@@ -39,15 +39,22 @@
       margin-left: 320px;
       font-weight: bold;
     }
+    .Account > p {
+      margin-bottom: 10%;
+      margin-top: -10%;
+      height: 5rem;
+      width: auto;
+    }
     .Builder {
       height: auto;
       width: 500px;
-      margin-top: 15%;
+      margin-top: 8%;
     }
     .Delete {
       height: auto;
       width: 500px;
-      margin-top: 15%;
+      margin-top: 8%;
+      margin-bottom: 10%;
     }
     .Experience {
       height: auto;
@@ -111,37 +118,48 @@
     </section>
 
       <img src="img/tutorials/tutorial1.PNG" alt="Resume Name">
-      <p>De Resume Id is de serienummer van je CV.<br></br>
-         De naam is aan te passen.<br></br>
-         Klik op Save Changes om je wijzigingen op je Resume op te slaan.<br></br>
-         Klik op View Resume om je CV te bekijken.  
+      <p>1. De Resume Id is de serienummer van je CV.<br></br>
+         2. De naam is aan te passen.<br></br>
+         3. Klik op Save Changes om je wijzigingen op je Resume op te slaan.<br></br>
+         4. Klik op View Resume om je CV te bekijken.  
       </p>
       <img src="img/tutorials/tutorial2.PNG" alt="Profile">
-      <p>Zet onder Introduction een korte introductie over jezelf.<br></br>
-         Zet onder Description een sammenvatting over wie je bent/wat je doet etc.<br></br>
-         Klik op Save Changes om je wijzigingen op je profiel op te slaan.
-      </p>  
+      <p>1. Zet onder Introduction een korte introductie over jezelf.<br></br>
+         2. Zet onder Description een sammenvatting over wie je bent/wat je doet etc.<br></br>
+         3. Plaats linksboven een foto van jezelf.<br></br>
+         4. Klik op Save Changes om je wijzigingen op je profiel op te slaan.
+      </p>
       <div class="Experience">
       <img src="img/tutorials/tutorial3.PNG" alt="Work Experience">
       </div>
-      <p> Zet hier wanneer je in dienst bent geweest en wanneer je bent gestopt.<br></br>
-          Zet hier je functie, bedrijfsnaam en een korte beschrijving.<br></br>
-          Klik op Add om er één bij te voegen en op Save Changes om een bestaande op te slaan.
+      <p> 1. Zet hier wanneer je in dienst bent geweest en wanneer je bent gestopt.<br></br>
+          2. Zet hier je functie, bedrijfsnaam en een korte beschrijving.<br></br>
+          3. Klik op Add om er één bij te voegen en op Save Changes om een bestaande op te slaan.
       </p>
       <img src="img/tutorials/tutorial4.PNG" alt="Education">
-      <p> Zet hier wanneer je bent gestart en wanneer je bent gestopt.<br></br>
-          Zet hier je opleidingnaam, schoolnaam en een korte beschrijving.<br></br>
-          Klik op Add om er één opleiding bij te voegen en op Save Changes om een bestaande op te slaan.
+      <p> 1. Zet hier wanneer je bent gestart en wanneer je bent gestopt.<br></br>
+          2. Zet hier je opleidingnaam, schoolnaam en een korte beschrijving.<br></br>
+          3. Klik op Add om er één opleiding bij te voegen en op Save Changes om een bestaande op te slaan.
       </p>
       <img src="img/tutorials/tutorial5.PNG" alt="Skills">
-      <p></p>
+      <p>1. Zet hier al je skills die je beheerst.<br></br>
+         2. Geef aan welke talen je beheerst.<br></br>
+         3. Zet hier wat je hobby's zijn.<br></br>
+         4. Klik op Add om er één bij te voegen en op Save Changes om een bestaande op te slaan.   
+
+      </p>
       <div class="Builder">
       <img src="img/tutorials/tutorial6.PNG" alt="Resume Builder">
       </div>
-      <p></p>
+      <p>1. Wil je een nieuwe CV aanmaken? Klik dan op New Resume.<br></br>
+         2. Wil je een gemaakte CV verwijderen? Klik dan op Delete Resume.<br></br>
+         3. Wil je een gemaakte CV bekijken? Zoek hem dan op via Select Resume.  
+      </p>
       <div class="Delete">
       <img src="img/tutorials/tutorial7.PNG" alt="Delete function">
       </div>
-      <p>Verwijder je CV onder het tabblad Account Settings.</p>
+      <div class="Account">        
+      <p>Ga naar het tabblad Account Settings en klik dan op Delete Account om je account te verwijderen.</p>
+      </div>
 </body>
 </html>
