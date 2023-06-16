@@ -60,7 +60,6 @@
         <li><a><i class='bx bxs-crown'></i>Premium</a></li>
         <li><a href="./Tutorial.php"><i class='bx bxs-videos'></i>Tutorial</a></li>
         <li><a href="./account.php"><i class='bx bxs-cog'></i>Account Settings</a></li>
-        <?php echo "<i class='bx bxs-user-account bx-ms'></i> ".$userID; ?>
       </ul>
     </section>
 
@@ -96,11 +95,11 @@
         <input class="check" type="checkbox" id="collapse-head1">
         <label for="collapse-head1">Resume Name</label>       
         <div class="collapse-text" id="field1">
-          <form name="resume" action="" method="post">         
-            <label for="resumeid">Resume ID</label>
-            <input type="text" name="resumeid" placeholder="Ex: 0" value="<?= isset($resumeID) ? $resumeID : '' ?>" disabled>
-            <label for="resumetitle">Name</label>
-            <input type="text" name="resumetitle" placeholder="Ex: Sales" value="<?= isset($_SESSION['resumetitle']) ? $_SESSION['resumetitle'] : '' ?>">
+          <form name="resume" action="config/createresume.config.php" method="post">         
+            <label for="resumeID">Resume ID</label>
+            <input type="text" name="resumeID" placeholder="Ex: 0" value="<?= isset($resumeID) ? $resumeID : '' ?>" disabled>
+            <label for="cvname">Name</label>
+            <input type="text" name="cvname" placeholder="Ex: Sales" value="<?= isset($_SESSION['resumetitle']) ? $_SESSION['resumetitle'] : '' ?>">
             <div class="left"> 
               <button type="submit" name="saveResume">Save Changes</button>
             </div> 
