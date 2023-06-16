@@ -12,7 +12,7 @@
         $nieuweresume->verifyResume();
 
         // Refresh client page.
-        $_SESSION['success'] = 'The resume has been created.';
+        $_SESSION['success'] = 'Resume created. You can now select it.';
         header('location: ../client.php?');
         exit();
     }
