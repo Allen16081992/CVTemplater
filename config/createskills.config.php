@@ -17,7 +17,7 @@ if (isset($_POST['addSkill'])){
     $nieuwelanguage->Createskills();
 
     //    // Refresh client page.
-    $_SESSION['success'] = 'Experience has been created.';
+    $_SESSION['success'] = 'Skills has been created.';
     header('location: ../client.php?');
     exit();
 }

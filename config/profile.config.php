@@ -24,8 +24,7 @@
         } 
 
         public function setProfileInfo() {
-
-            if (isset($this->userID, $this->resumeID)) {
+            if (isset($this->userID) && isset($this->resumeID) && !empty($this->resumeID)) {
                 // Select user record
                 $stmt = $this->pdo->prepare('SELECT * FROM `profile` WHERE resumeID = :resumeID AND userID = :userID');
                 $stmt->bindParam(':resumeID', $this->resumeID);
@@ -102,6 +101,11 @@
                 // Redirect to the appropriate page
                 header('Location: ../client.php');
                 exit();
+            } else {
+                // No resume selected.
+                $_SESSION['error'] = 'You should create a resume first.';
+                header('location: ../client.php');
+                exit();                 
             }
         }
 

@@ -24,8 +24,8 @@ class Education {
     }
 
     public function Createeducation()
-    {
-        if (isset($this->userID)) {
+    {   // Dhr. Allen Pieter: New if. We can't let users save resume related data without creating a resume.
+        if (isset($this->userID) && isset($this->resumeID) && !empty($this->resumeID)) {
 
             // Khaqan
             $connection = $this->database->connect();
@@ -48,6 +48,11 @@ class Education {
             $sql->bindParam(":userID", $this->userID); // Dhr. Allen Pieter. It now handles the logged in user value correctly.
             $sql->execute();
 
+        } else {
+            // No resume selected.
+            $_SESSION['error'] = 'You should create a resume first.';
+            header('location: ../client.php');
+            exit();                 
         }
     }
 
