@@ -1,4 +1,4 @@
-<?php
+<?php // Dhr. Allen Pieter
     // Start a session for displaying error messages.
     require_once 'peripherals/session_start.config.php';
 

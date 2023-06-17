@@ -15,7 +15,18 @@
         $nieuweworktitle = new Experience($worktitle, $_POST['workdesc'], $_POST['company'], $_POST['from'], $_POST['until'], $userID, $resumeID );
         $nieuweworktitle->Createexperience();
 
-    //    // Refresh client page.
+        // Refresh client page.
+        $_SESSION['success'] = 'Experience has been created.';
+        header('location: ../client.php?');
+        exit();
+    } elseif (isset($_POST['saveExperience'])) {
+        $userID = $_SESSION['user_id'];
+        $resumeID = $_SESSION["resumeID"];
+        $worktitle = $_POST['worktitle'];
+        $nieuweworktitle = new Experience($worktitle, $_POST['workdesc'], $_POST['company'], $_POST['from'], $_POST['until'], $userID, $resumeID );
+        $nieuweworktitle->Updateexperience();
+
+        // Refresh client page.
         $_SESSION['success'] = 'Experience has been created.';
         header('location: ../client.php?');
         exit();

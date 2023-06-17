@@ -56,6 +56,38 @@ class Education {
         }
     }
 
+    // Dhr. Allen Pieter: Adding an update procedure with haste.
+    public function Updateeducation() {
+        // Dhr. Allen Pieter: New if. We can't let users save resume related data without creating a resume.
+        if (isset($this->userID) && isset($this->resumeID) && !empty($this->resumeID)) {       
+
+            $connection = $this->database->connect();
+            $edutitle = $this->getedutitle();
+            $edudesc = $this->getedudesc();
+            $company = $this->getcompany();
+            $firstDate = $this->getfirstDate();
+            $lastDate = $this->getlastDate();
+
+            $sql = $connection->prepare(
+                "UPDATE `education` SET edutitle = :edutitle, edudesc = :edudesc, company = :company, firstDate = :firstDate, lastDate = :lastDate, resumeID = :resumeID, userID = :userID;"
+            );
+            $sql->bindParam(":edutitle", $edutitle);
+            $sql->bindParam(":edudesc", $edudesc);
+            $sql->bindParam(":company", $company);
+            $sql->bindParam(":firstDate", $firstDate);
+            $sql->bindParam(":lastDate", $lastDate);
+            $sql->bindParam(":resumeID", $this->resumeID); // Dhr. Allen Pieter. It now handles the resume value correctly.
+            $sql->bindParam(":userID", $this->userID); // Dhr. Allen Pieter. It now handles the logged in user value correctly.
+            $sql->execute();    
+
+        } else {
+            // No resume selected.
+            $_SESSION['error'] = 'You should create a resume first.';
+            header('location: ../client.php');
+            exit();                 
+        }
+    }
+
     public function verifyEducation(){
         if(!$this->emptyInput()){
             $_SESSION['error'] = 'please name your education.';
@@ -64,7 +96,7 @@ class Education {
         }
         $this->Createeducation();
     }
-    public function emptyInput(){
+    private function emptyInput(){
         return !(empty($this->edutitle));
     }
 

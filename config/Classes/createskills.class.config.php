@@ -62,6 +62,43 @@ class Skills
         }
     }
 
+    public function Updateskills() {
+
+        if (isset($this->userID) && isset($this->resumeID) && !empty($this->resumeID)) {
+
+            $connection = $this->database->connect();
+
+            $sqleen = $connection->prepare(
+                "UPDATE `interests` SET `interest` = :interest, resumeID = :resumeID, userID = :userID;"
+            );
+            $sqleen->bindParam(":interest", $this->interest);
+            $sqleen->bindParam(":resumeID", $this->resumeID);
+            $sqleen->bindParam(":userID", $this->userID);
+            $sqleen->execute();
+
+            $sqltwee = $connection->prepare(
+                "UPDATE `languages` SET `language` = :language, resumeID = :resumeID, userID = :userID;"
+            );
+            $sqltwee->bindParam(":language", $this->language);
+            $sqltwee->bindParam(":resumeID", $this->resumeID);
+            $sqltwee->bindParam(":userID", $this->userID);
+            $sqltwee->execute();
+
+            $sqldrie = $connection->prepare(
+                "UPDATE `technical` SET `techtitle` = :techtitle, resumeID = :resumeID, userID = :userID;"
+            );
+            $sqldrie->bindParam(":techtitle", $this->techtitle);
+            $sqldrie->bindParam(":resumeID", $this->resumeID);
+            $sqldrie->bindParam(":userID", $this->userID);           
+            $sqldrie->execute();
+        } else {
+            // No resume selected.
+            $_SESSION['error'] = 'You should create a resume first.';
+            header('location: ../client.php');
+            exit();                 
+        }
+    }
+
     /**
      * @return mixed
      */

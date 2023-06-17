@@ -54,6 +54,38 @@ class Experience {
         }
     }
 
+    // Dhr. Allen Pieter: Adding an update procedure with haste.
+    public function Updateexperience() {
+        // Dhr. Allen Pieter: New if. We can't let users save resume related data without creating a resume.
+        if (isset($this->userID) && isset($this->resumeID) && !empty($this->resumeID)) {  
+
+            $connection = $this->database->connect();
+            $worktitle = $this->getWorktitle();
+            $workdesc = $this->getWorkdesc();
+            $company = $this->getCompany();
+            $firstDate = $this->getFirstDate();
+            $lastDate = $this->getLastDate();
+            $sql = $connection->prepare(
+                "UPDATE `experience` SET worktitle = :worktitle, workdesc = :workdesc, company = :company, firstDate = :firstDate, lastDate = :lastDate, resumeID = :resumeID, userID = :userID;"
+            );
+
+            $sql->bindParam(":worktitle", $worktitle);
+            $sql->bindParam(":workdesc", $workdesc);
+            $sql->bindParam(":company", $company);
+            $sql->bindParam(":firstDate", $firstDate);
+            $sql->bindParam(":lastDate", $lastDate);
+            $sql->bindParam(":userID", $this->userID); // Dhr. Allen Pieter. It now handles the logged in user value correctly.
+            $sql->bindParam(":resumeID", $this->resumeID); // Dhr. Allen Pieter. It now handles the resume value correctly.
+            $sql->execute(); 
+
+        } else {
+            // No resume selected.
+            $_SESSION['error'] = 'You should create a resume first.';
+            header('location: ../client.php');
+            exit();                 
+        }
+    }
+
     /**
      * @return mixed
      */

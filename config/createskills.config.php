@@ -16,8 +16,21 @@ if (isset($_POST['addSkill'])){
     $nieuwelanguage = new Skills($interest, $language, $techtitle, $resumeID, $userID);
     $nieuwelanguage->Createskills();
 
-    //    // Refresh client page.
+    // Refresh client page.
     $_SESSION['success'] = 'Skills has been created.';
+    header('location: ../client.php?');
+    exit();
+} elseif (isset($_POST['saveSkill'])){
+    $language = $_POST['language'];
+    $interest = $_POST['interest'];
+    $techtitle = $_POST['technical'];
+    $resumeID = $_SESSION["resumeID"];
+    $userID = $_SESSION["user_id"];
+    $nieuwelanguage = new Skills($interest, $language, $techtitle, $resumeID, $userID);
+    $nieuwelanguage->Updateskills();
+
+    // Refresh client page.
+    $_SESSION['success'] = 'Skills has been updated.';
     header('location: ../client.php?');
     exit();
 }
