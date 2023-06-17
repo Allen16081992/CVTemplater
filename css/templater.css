@@ -279,7 +279,7 @@ ul li.on { cursor:default; margin-left:20px; }
     max-width: var(--error-max-w); margin-bottom: var(--error-marg-b); margin-top:var(--error-marg-t);
 }
 .error-uid, .error-pwd, .error-res, .error-select, 
-.error-resume-tab, .error-profile-tab, .error-work-tab,
+.error-resume-tab, .error-work-tab,
 .error-education-tab, .error-skill-tab {
     background: var(--error-bg);  
     border: var(--error-border); display:var(--error-disp);

@@ -55,22 +55,7 @@ if (resumeForm) {
   }
 }
 
-// Target Client - Profile tab
-var resumeForm = document.forms['profile'];
-if (resumeForm) {
-  resumeForm.onsubmit = function(event) {
-    if(this.intro.value.trim() == ""){
-      displayErrorMessage(".error-profile-tab", "Please write an introduction.");
-      event.preventDefault();
-      return false;
-    }
-    if(this.desc.value.trim() == ""){
-      displayErrorMessage(".error-profile-tab", "Please write a description.");
-      event.preventDefault();
-      return false;
-    }
-  }
-}
+// Target Client - Profile tab (became conditional)
 
 // Target Client - Work tab
 var resumeForm = document.forms['experience'];

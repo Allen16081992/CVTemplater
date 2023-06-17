@@ -25,17 +25,7 @@
 
         public function setProfileInfo() {
 
-            if (isset($this->userID) && (isset($this->resumeID))) {
-                // Check if a file was submitted
-                if ($this->fileUpload['name'] !== '') {
-                    // Generate a unique file name
-                    $filename = uniqid() . '_' . $this->fileUpload['name'];
-                    $filepath = '../img/avatars/' . $filename;
-
-                    // Move the uploaded file to the desired location
-                    move_uploaded_file($this->fileUpload['tmp_name'], $filepath);
-                }
-
+            if (isset($this->userID, $this->resumeID)) {
                 // Select user record
                 $stmt = $this->pdo->prepare('SELECT * FROM `profile` WHERE resumeID = :resumeID AND userID = :userID');
                 $stmt->bindParam(':resumeID', $this->resumeID);
@@ -50,57 +40,65 @@
 
                 if($stmt->rowCount() == 0 ) {
                     $stmt = null;
-
                     // SQL statement for all data and file details
-                    $stmt = $this->pdo->prepare(
-                        'INSERT INTO `profile` (profileintro, profiledesc, filePath, fileName, resumeID, userID)
-                            VALUES (:intro, :desc, :filepath, :filename, :resumeID, :userID)'
-                    ); 
-                    $stmt->bindParam(':intro', $this->intro);
-                    $stmt->bindParam(':desc', $this->desc);   
-                    $stmt->bindParam(':filepath', $filepath);
-                    $stmt->bindParam(':filename', $filename);
-                    $stmt->bindParam(':resumeID', $this->resumeID);
-                    $stmt->bindParam(':userID', $this->userID);
-
-                    if (!$stmt->execute()) {
-                        $stmt = null;
-                        $_SESSION['error'] = 'Unable to insert profile data.';
-                        header('location: ../client.php');
-                        exit(); 
-                    }
-
-                    // display a message
-                    $_SESSION['success'] = "Profile info created.";
-                } 
-
-                if ($stmt->rowCount() > 0) {
+                    $stmt = $this->pdo->prepare('INSERT INTO `profile` (resumeID, userID, profileintro, profiledesc, filePath, fileName) VALUES (:resumeID, :userID, :intro, :desc, :filepath, :filename)');
+                } else { 
                     $stmt = null;
+                    // Existing profile record found, use syntax update
+                    $stmt = $this->pdo->prepare('UPDATE `profile` SET profileintro = IF(:intro <> "", :intro, profileintro), profiledesc = IF(:desc <> "", :desc, profiledesc), filePath = IF(:filepath <> "", :filepath, filePath), fileName = IF(:filename <> "", :filename, fileName) WHERE resumeID = :resumeID AND userID = :userID');
+                }
 
-                    // SQL statement for all data and file details
-                    $stmt = $this->pdo->prepare(
-                        'UPDATE `profile` SET profileintro = :intro, profiledesc = :desc, filePath = :filepath, fileName = :filename 
-                            WHERE resumeID = :resumeID AND userID = :userID'
-                    );    
+                // Check if any of the fields have a value and bind the corresponding parameters
+                if (!empty($this->intro)) {
                     $stmt->bindParam(':intro', $this->intro);
-                    $stmt->bindParam(':desc', $this->desc); 
+                } else {
+                    $stmt->bindValue(':intro', '');
+                }
+                if (!empty($this->desc)) {
+                    $stmt->bindParam(':desc', $this->desc);
+                } else {
+                    $stmt->bindValue(':desc', '');
+                }
+                if (!empty($this->fileUpload['name'])) {
+                    // Generate a unique file name
+                    $filename = uniqid() . '_' . $this->fileUpload['name'];
+                    $filepath = '../img/avatars/' . $filename;
                     $stmt->bindParam(':filepath', $filepath);
                     $stmt->bindParam(':filename', $filename);
-                    $stmt->bindParam(':resumeID', $this->resumeID);
-                    $stmt->bindParam(':userID', $this->userID);
 
-                    if (!$stmt->execute()) {
-                        $stmt = null;
-                        $_SESSION['error'] = 'Unable to update profile data.';
-                        header('location: ../client.php');
-                        exit(); 
-                    }
+                    // Move the uploaded file to the desired location
+                    move_uploaded_file($this->fileUpload['tmp_name'], $filepath);
+                } else {
+                    // Generate a unique file name
+                    $filename = uniqid() . '_' . $this->fileUpload['name'];
+                    $filepath = '../img/avatars/' . $filename;
+                    $stmt->bindValue(':filepath', '');
+                    $stmt->bindValue(':filename', '');
 
-                    // display a message
-                    $_SESSION['success'] = "Profile info updated.";
+                    // Move the uploaded file to the desired location
+                    move_uploaded_file($this->fileUpload['tmp_name'], $filepath);
                 }
-                $stmt = null;
 
+                $stmt->bindParam(':resumeID', $this->resumeID);
+                $stmt->bindParam(':userID', $this->userID);
+
+                echo "Query: ";
+                echo $stmt->queryString;
+                echo "<br>";
+
+                echo "Bound Parameters: ";
+                print_r($stmt->debugDumpParams());
+                echo "<br>";
+
+                if (!$stmt->execute()) {
+                    $stmt = null;
+                    $_SESSION['error'] = 'Unable to save profile data.';
+                    header('location: ../client.php');
+                    exit();
+                }
+
+                // display a message
+                $_SESSION['success'] = "Profile info saved.";
                 // Redirect to the appropriate page
                 header('Location: ../client.php');
                 exit();
@@ -118,29 +116,21 @@
                 $_SESSION['error'] = 'Only letters, "," and numbers allowed.';
                 header('location: ../client.php');
                 exit(); 
-            } elseif(!$this->emptyFile()) {
-                // No image.
-                $_SESSION['error'] = 'No avatar provided.';  
-                header('location: ../client.php');
-                exit();                  
             } else {
                 $this->setProfileInfo();
             }
         }
-
+        
         private function emptyInput() {
-            // Check if the submitted values are not empty.
-            return !(empty($this->intro) || empty($this->desc));
+            // Check if any of the required fields are empty
+            return !(empty($this->intro) && empty($this->desc) && empty($this->fileUpload['name']));
         }
         private function invalidInput() {
             // Make sure the submitted values are valid.
-            $regex = '/^[a-zA-Z0-9]+$/';
-            return !preg_match($regex, $this->intro) && preg_match($regex, $this->desc);
+            $regex = '/^[a-zA-Z0-9,]+$/';
+            return !preg_match($regex, $this->intro) || !preg_match($regex, $this->desc);
         }
-        private function emptyFile() {
-            // Check if the submitted values are not empty.
-            return !(empty($this->fileUpload));
-        }
+        
     }
 
     // Check if the form is submitted

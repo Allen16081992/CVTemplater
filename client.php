@@ -108,14 +108,12 @@
           <!--<button class="alt" name="clearResume">Clear</button>-->
           <button class="alt">View Resume</button>
         </div>
-     
         <!-- Profile Tab -->
         <input class="check" type="checkbox" id="collapse-head2">
         <label for="collapse-head2">Profile</label>
         <div class="collapse-text" id="field2">
           <p>Edit your profile image</p>       
           <form name="profile" action="config/profile.config.php" enctype="multipart/form-data" method="post">
-            <p class="error-profile-tab"></p>
             <input type="text" name="resumeid" value="<?= isset($resumeID) ? $resumeID : '' ?>" hidden>
             <div class="left">
               <?php if (isset($userID) && !empty($data['profile'])) { ?>
@@ -127,7 +125,9 @@
                   } else {
                     echo 'File is not readable.';
                   } ?>
-                  <label for="file-upload" class="custom-file-upload"><img src="img/avatars/<?= $profile['fileName']; ?>" alt=""></label>
+                  <?php if (!empty($profile['fileName'])) { ?>
+                    <label for="file-upload" class="custom-file-upload"><img src="img/avatars/<?= $profile['fileName']; ?>" alt=""></label>
+                  <?php } else { ?> <label for="file-upload" class="custom-file-upload"><img src="img/av-placehold.png" alt=""></label><?php } ?>
                 <?php endforeach; ?>
               <?php } else { ?>
                 <label for="file-upload" class="custom-file-upload"><img src="img/av-placehold.png" alt=""></label>
