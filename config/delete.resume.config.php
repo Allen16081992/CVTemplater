@@ -38,7 +38,7 @@
         if (isset($resID)) {
           $pdo = $this->database->connect();
 
-          // Erase resume related profile
+          // Erase resume related profile data if there is any
           if ($this->tableHasData('profile', $resID, $userID)) {
             $stmtPro = $pdo->prepare('DELETE FROM `profile` WHERE resumeID = :resID AND userID = :userID');
             $stmtPro->bindParam(":resID", $resID['resumeID']);
@@ -46,7 +46,7 @@
             $stmtPro->execute();
           }
 
-          // Erase resume related experience
+          // Erase resume related experience data if there is any
           if ($this->tableHasData('experience', $resID, $userID)) {
             $stmtExp = $pdo->prepare('DELETE FROM `experience` WHERE resumeID = :resID AND userID = :userID');
             $stmtExp->bindParam(":resID", $resID['resumeID']);
@@ -54,7 +54,7 @@
             $stmtExp->execute();
           }
 
-          // Erase resume related education
+          // Erase resume related education data if there is any
           if ($this->tableHasData('education', $resID, $userID)) {
             $stmtEdu = $pdo->prepare('DELETE FROM `education` WHERE resumeID = :resID AND userID = :userID');
             $stmtEdu->bindParam(":resID", $resID['resumeID']);
@@ -62,7 +62,7 @@
             $stmtEdu->execute();
           }
           
-          // Erase resume related technical
+          // Erase resume related technical data if there is any
           if ($this->tableHasData('technical', $resID, $userID)) {
             $stmtTech = $pdo->prepare('DELETE FROM `technical` WHERE resumeID = :resID AND userID = :userID');
             $stmtTech->bindParam(":resID", $resID['resumeID']);
@@ -70,7 +70,7 @@
             $stmtTech->execute();
           }
 
-          // Erase resume related language
+          // Erase resume related language data if there is any
           if ($this->tableHasData('languages', $resID, $userID)) {
             $stmtLang = $pdo->prepare('DELETE FROM `languages` WHERE resumeID = :resID AND userID = :userID');
             $stmtLang->bindParam(":resID", $resID['resumeID']);
@@ -78,7 +78,7 @@
             $stmtLang->execute();
           }
 
-          // Erase resume related interest
+          // Erase resume related interest data if there is any
           if ($this->tableHasData('interests', $resID, $userID)) {
             $stmtInt = $pdo->prepare('DELETE FROM `interests` WHERE resumeID = :resID AND userID = :userID');
             $stmtInt->bindParam(":resID", $resID['resumeID']);
@@ -92,11 +92,9 @@
           $stmtRes->bindParam(":userID", $userID);
           $stmtRes->execute();          
 
-          // get rid of variables
+          // Erase variables and session data
           $resID = null;
           $this->resumetitle = null;
-
-          // Purge the data from the session
           unset($_SESSION['resumeID']);
           unset($_SESSION['resumetitle']);
           

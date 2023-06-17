@@ -106,10 +106,42 @@
                 exit();
             }
         }
-    }
 
-    $resumeID = $_POST['resumeid'];
-    $userID = $_SESSION['user_id'];
+        public function verifyProfile() {
+            if(!$this->emptyInput()) {
+               // No resume name.
+               $_SESSION['error'] = 'No introduction provided.';
+               header('location: ../client.php');
+               exit(); 
+            } elseif(!$this->invalidInput()) {
+                // Invalid characters.
+                $_SESSION['error'] = 'Only letters, "," and numbers allowed.';
+                header('location: ../client.php');
+                exit(); 
+            } elseif(!$this->emptyFile()) {
+                // No image.
+                $_SESSION['error'] = 'No avatar provided.';  
+                header('location: ../client.php');
+                exit();                  
+            } else {
+                $this->setProfileInfo();
+            }
+        }
+
+        private function emptyInput() {
+            // Check if the submitted values are not empty.
+            return !(empty($this->intro) || empty($this->desc));
+        }
+        private function invalidInput() {
+            // Make sure the submitted values are valid.
+            $regex = '/^[a-zA-Z0-9]+$/';
+            return !preg_match($regex, $this->intro) && preg_match($regex, $this->desc);
+        }
+        private function emptyFile() {
+            // Check if the submitted values are not empty.
+            return !(empty($this->fileUpload));
+        }
+    }
 
     // Check if the form is submitted
     if (isset($_POST['saveProfile'])) {
@@ -117,7 +149,9 @@
         $intro = $_POST['intro'];
         $desc = $_POST['desc'];
         $fileUpload = $_FILES['file-upload'];
+        $resumeID = $_POST['resumeid'];
+        $userID = $_SESSION['user_id'];
         
         $profile = new Profile($intro, $desc, $fileUpload, $resumeID, $userID);
-        $profile->setProfileInfo();
+        $profile->verifyProfile();
     }
