@@ -7,9 +7,9 @@
         // Verify if the user already exists in the database.
         protected function setUser($uid, $passw, $email, $phone,$firstname,$lastname,$birth,$country,$street,$postal,$city) {
             // Let's apply some hashing and salting security.
-            //$random = (mt_rand(0,255)); // Generate a random number between 0 and... let's do 255.
-            //$salty = array($random); // Set the number into an array for password_hash not to whine about having no array...
-            $HashThisNOW = password_hash($passw, PASSWORD_DEFAULT);   
+            $HashThisNOW = password_hash($passw, PASSWORD_DEFAULT);
+            
+            // Insert user into the accounts table
             $stmt = $this->connect()->prepare("INSERT INTO accounts (username, password, email) VALUES (?, ?, ?);");  
 
             // If this fails, kick back to homepage.
@@ -20,16 +20,29 @@
                 exit();
             }
 
-            // The $stmtC is used for the contact table.
-            $stmtC = $this->connect()->prepare('INSERT INTO contact (phone, firstname, lastname, birth, nationality, streetname, postalcode, city) VALUES (?, ?, ?, ?, ?, ?, ?, ?);');
+            // Immediately grab the newly generated userID like thunder strike
+            $stmtB = $this->connect()->prepare('SELECT userID FROM accounts WHERE username = ? AND email = ?;');
+            $stmtB->execute([$uid, $email]);
+            $userID = $stmtB->fetchColumn();
 
-            // If this fails, kick back to homepage.
-            if(!$stmtC->execute(array($phone,$firstname,$lastname,$birth,$country,$street,$postal,$city))) {
+            if (!$userID) {
+                // Handle the case where userID is not found
+                $stmtB = null;
+                $_SESSION['error'] = 'Failed to retrieve userID.';
+                header('location: ../index.php');
+                exit();
+            }
+
+            // Insert contact information into the contact table
+            $stmtC = $this->connect()->prepare('INSERT INTO contact (phone, firstname, lastname, birth, nationality, streetname, postalcode, city, userID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);');
+
+            if (!$stmtC->execute(array($phone, $firstname, $lastname, $birth, $country, $street, $postal, $city, $userID))) {
                 $stmtC = null;
                 $_SESSION['error'] = 'Database query failed.';
                 header('location: ../index.php');
                 exit();
             }
+
             $stmt = null;
             $stmtC = null;
             $_SESSION['success'] = 'You have successfully registered.';

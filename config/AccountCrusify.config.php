@@ -5,88 +5,81 @@
     // Use the (improved) database connection.
     require 'idb.config.php';
 
-    // These variables are free to use by anything.
-    $_POST['pwd']; 
-
     class CrusifiedUser {
         private $pdo;
-        
+
         public function __construct() {
             $database = new Database();
             $this->pdo = $database->connect();
         }
-        
+
         public function deleteUser() {
             // Verify if the userID exists
             if (isset($_POST['user_id'])) {
 
-                // Select the record that is to be 'crucified'
-                $stmt = $this->pdo->prepare('SELECT * FROM accounts WHERE userID = ?');
-                $stmt->execute([$_POST['user_id']]);
-                $user = $stmt->fetch(PDO::FETCH_ASSOC);
-                
-                if (!$user) {
-                    $user = null;
-                    // Success message by sessions instead of url parsing.
-                    $_SESSION['error'] = 'User not found';
-                    header('location: ../account.php?');
-                    exit();
-                }
-                
                 // Make sure the user has confirmed before deletion
                 if (isset($_POST['delete'])) {
+                    $this->deleteDataIfExists('contact', 'userID');
+                    $this->deleteDataIfExists('profile', 'userID');
+                    $this->deleteDataIfExists('experience', 'userID');
+                    $this->deleteDataIfExists('education', 'userID');
+                    $this->deleteDataIfExists('technical', 'userID');
+                    $this->deleteDataIfExists('languages', 'userID');
+                    $this->deleteDataIfExists('interests', 'userID');
+                    $this->deleteDataIfExists('resume', 'userID');
 
                     // Erase data from Accounts
                     $stmt = $this->pdo->prepare('DELETE FROM accounts WHERE userID = ?');
                     $stmt->execute([$_POST['user_id']]);
-                    $stmt = null;
 
-                    // Queries voor de andere tabellen zijn niet meer nodig dankzij het volgende.
-                    // Buiten accounts, heeft nu elk tabel de foreign key: ON DELETE & UPDATE (van userID) CASCADE.
+                    // Reset auto increment for all tables
+                    $stmt = $this->pdo->prepare("SHOW TABLES");
+                    $stmt->execute();
+                    $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-                    // Reset auto increment in Accounts from the current highest userID.
-                    $stmt = $this->pdo->prepare('SELECT MAX( `userID` ) FROM `accounts`;');
-                    $edit = $stmt->fetch(PDO::FETCH_ASSOC);
-                    $stmt = $this->pdo->prepare("ALTER TABLE `accounts` AUTO_INCREMENT = '$edit';");
-                    $stmt = null; $edit = null;
+                    foreach ($tables as $table) {
+                        // Get the maximum ID value for the table
+                        $stmt = $this->pdo->prepare("SELECT MAX(`id`) FROM `$table`");
+                        $stmt->execute();
+                        $maxID = $stmt->fetchColumn();
 
-                    // Reset auto increment in Contact from the current highest contactID.
-                    $stmt = $this->pdo->prepare('SELECT MAX( `contactID` ) FROM `contact`;');
-                    $edit = $stmt->fetch(PDO::FETCH_ASSOC);
-                    $stmt = $this->pdo->prepare("ALTER TABLE `contact` AUTO_INCREMENT = '$edit';");
-                    $stmt = null; $edit = null;
+                        // Reset auto-increment to the next available ID
+                        $stmt = $this->pdo->prepare("ALTER TABLE `$table` AUTO_INCREMENT = :maxID");
+                        $stmt->bindValue(':maxID', $maxID + 1, PDO::PARAM_INT);
+                        $stmt->execute();
+                    }
 
                     // When removal is completed, erase the session and make a new one.
                     session_unset();
-                    session_destroy();
-
-                    // Error Messages by session instead of url parsing.
                     session_start();
+
+                    // Error Messages by session instead of URL parsing.
                     $_SESSION['success'] = 'User deleted successfully';
                     header('Location: ../index.php?');
                     exit();
                 }
+            } else {
+                // User ID is missing, browser crashed or user is not logged in
+                $_SESSION['error'] = '401: Access denied. You must be signed in.';
+                header('Location: ../index.php');
+                exit();
             }
         }
 
         public function verifyUser() {
             // Activate the private function beneath.
-            if($this->emptyInput()) {
+            if (!$this->emptyInput()) {
                 // Empty input, no values given for account.
                 $_SESSION['error'] = 'No password provided.';
-                header('location: ../account.php');          
+                header('location: ../account.php');
                 exit();
             }
             $this->verifyPassword();
         }
 
         private function emptyInput() {
-            // Make sure the submitted value is not empty.
-            if (empty($_POST['pwd'])) {
-                return true; // The password field is empty.
-            } else { 
-                return false; 
-            } 
+            // Check if the submitted values are not empty.
+            return !(empty($_POST['pwd']));
         }
 
         private function verifyPassword() {
@@ -97,20 +90,33 @@
             $stmt->bindValue(1, $_POST['user_id'], PDO::PARAM_INT);
             $stmt->execute();
             $passHash = $stmt->fetch(PDO::FETCH_ASSOC);
-        
+
             if (!password_verify($_POST['pwd'], $passHash['password'])) {
-                // Passwords don't match!
-                $_SESSION['error'] = "Passwords don't match!";
-                header('Location: ../account.php?');
+                // Passwords do not match.
+                $_SESSION['error'] = 'Invalid password.';
+                header('location: ../account.php');
                 exit();
-            } else {
-                // Password matches, delete the user.
-                $this->deleteUser();
             }
-        }     
+
+            // Password matches, invoke Crusification Operations.
+            $this->deleteUser();     
+            // Clear sensitive data from memory
+            unset($passHash);
+        }
+
+        private function deleteDataIfExists($table, $column) {
+            $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM `$table` WHERE $column = ?");
+            $stmt->execute([$_POST['user_id']]);
+            $count = $stmt->fetchColumn();
+
+            if ($count > 0) {
+                $stmt = $this->pdo->prepare("DELETE FROM `$table` WHERE $column = ?");
+                $stmt->execute([$_POST['user_id']]);
+            }
+        }
     }
 
     // Create an object from our class
-    $void = new CrusifiedUser();
+    $crusifyUser = new CrusifiedUser();
     // Error handlers
-    $void->verifyUser($_POST['pwd']);
+    $crusifyUser->verifyUser($_POST['pwd']);
