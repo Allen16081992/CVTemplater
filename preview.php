@@ -6,10 +6,10 @@
     require_once 'config/peripherals/redirect.config.php';
 
     // Include PHP files to retrieve data
-    require_once "config/ViewResumes.config.php";
-    require_once "config/FetchResumeTables.config.php";
+    require_once 'config/ViewResumes.config.php';
+    require_once 'config/FetchResumeTables.config.php';
 
-    // Include PHP files to retrieve data problem i guess
+    // Include PHP files to retrieve data
     require_once 'config/ViewAccount.config.php';
 
     // Access the user and contact data from the array
@@ -135,7 +135,7 @@
                     <i style="font-size:24px" class="fa"></i>
                 </li>
             </ul>
-            <button class="download">Download PDF</button>
+            <button class="download" onclick="window.location.href = 'config/preview.config.php'">Download PDF</button>
             <button class="default" onclick="window.location.href = 'client.php'">Return</button>
         </div>
         <div class="About">

@@ -16,7 +16,6 @@
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Styling Sheets -->
-    <link rel="stylesheet" href="css/trongate.css">
     <link rel="stylesheet" href="css/templater.css">
     <!-- Javascript -->
     <?php require 'config/peripherals/javascript_load.config.php'; ?>
