@@ -1,16 +1,12 @@
 <?php // Dhr. Allen Pieter
   // Start a session for handling data and error messages.
-  require 'config/peripherals/session_start.config.php'; 
+  require_once 'config/peripherals/session_start.config.php'; 
 
   // Only unlock the page when signed in.
-  require 'config/peripherals/redirect.config.php';
+  require_once 'config/peripherals/redirect.config.php';
   
   // Include PHP files to retrieve data
-  include 'config/ViewAccount.config.php';
-
-  // Create an instance of ViewUser
-  $viewData = new ViewUser();
-  $data = $viewData->viewUserInfo();
+  require_once 'config/ViewAccount.config.php';
 
   // Access the user and contact data from the array
   $user = $data['user'];
@@ -51,7 +47,7 @@
       <ul>
         <li><a href="client.php"><i class='bx bxs-file'></i>Resume Builder</a></li>
         <li><a><i class='bx bxs-crown'></i>Premium</a></li>
-        <li><a href="./Tutorial.php"><i class='bx bxs-videos'></i>Tutorial</a></li>
+        <li><a href="./tutorial.php"><i class='bx bxs-videos'></i>Tutorial</a></li>
         <li class="on"><i class='bx bxs-cog'></i>Account Settings</li>
       </ul>
       <button class="Del" data-window-target="#window">Delete Account</button>
@@ -62,7 +58,7 @@
       <ul>
         <li><a href="client.php"><i class='bx bxs-file bx-md'></i></a></li>
         <li><a><i class='bx bxs-crown bx-md'></i></a></li>
-        <li><a href="./Tutorial.php"><i class='bx bxs-videos bx-md'></i></a></li>
+        <li><a href="./tutorial.php"><i class='bx bxs-videos bx-md'></i></a></li>
         <li><a data-window-target="#window"><i class='bx bx-x-circle bx-md'></i></a></li>
       </ul>
     </section>

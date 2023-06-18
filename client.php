@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="css/trongate.css">
     <link rel="stylesheet" href="css/templater.css">
     <!-- Javascript -->
-    <?php require 'config/peripherals/javascript_load.config.php'; ?>
+    <?php require_once 'config/peripherals/javascript_load.config.php'; ?>
     <script defer src="javascript/dropdown.submit.js"></script>
     <!--<script defer src="javascript/clear.fields.js"></script>-->
   </head>
@@ -32,7 +32,7 @@
     <header>
       <img class="logo" src="img/CV-headed-eagle.png" alt="Brand Signature">
       <i class='bx bx-menu' id="menu-icon"></i>
-      <?php include 'config/peripherals/server_messages.config.php'; ?>
+      <?php require_once 'config/peripherals/server_messages.config.php'; ?>
       <nav> 
         <?php include 'config/peripherals/nav_username.config.php'; ?>
         <a href="config/logout.config.php">Logout</a>
@@ -43,8 +43,7 @@
     <section class="sidebar">
       <h5>Resume Builder</h5>
       <button class="New" data-window-target="#window">New Resume</button>
-      <button data-window-target="#window2">Delete Resume</button> 
-           
+      <button data-window-target="#window2">Delete Resume</button>           
       <ul>
         <form action="config/FetchResume.config.php" method="post">
           <select class="dropdown" name="selectCv" onchange="submitForm(this.form)">
@@ -55,10 +54,9 @@
             <?php endforeach; ?> <?php } ?>
           </select>
         </form>
-
         <li class="on"><i class='bx bxs-file'></i>Resume Builder</li>
         <li><a><i class='bx bxs-crown'></i>Premium</a></li>
-        <li><a href="./Tutorial.php"><i class='bx bxs-videos'></i>Tutorial</a></li>
+        <li><a href="./tutorial.php"><i class='bx bxs-videos'></i>Tutorial</a></li>
         <li><a href="./account.php"><i class='bx bxs-cog'></i>Account Settings</a></li>
       </ul>
     </section>
@@ -75,12 +73,13 @@
         </select>
       </form>
     </section>
+
     <section class="m-sidebar">
       <ul>
         <li><a data-window-target="#window"><i class='bx bx-plus-circle bx-md'></i></a></li>
         <li><a data-window-target="#window2"><i class='bx bx-x-circle bx-md'></i></a></li>
         <li><a><i class='bx bxs-crown bx-md'></i></a></li>
-        <li><a href="./Tutorial.php"><i class='bx bxs-videos bx-md'></i></a></li>
+        <li><a href="./tutorial.php"><i class='bx bxs-videos bx-md'></i></a></li>
         <li><a href="./account.php"><i class='bx bxs-cog bx-md'></i></a></li>
       </ul>
     </section>
@@ -106,7 +105,7 @@
             </div> 
           </form>
           <!--<button class="alt" name="clearResume">Clear</button>-->
-          <button class="alt">View Resume</button>
+          <button class="alt" onclick="window.location.href = 'preview.php'">Preview</button>
         </div>
         <!-- Profile Tab -->
         <input class="check" type="checkbox" id="collapse-head2">
@@ -127,7 +126,7 @@
                   } ?>
                   <?php if (!empty($profile['fileName'])) { ?>
                     <label for="file-upload" class="custom-file-upload"><img src="img/avatars/<?= $profile['fileName']; ?>" alt=""></label>
-                  <?php } else { ?> <label for="file-upload" class="custom-file-upload"><img src="img/av-placehold.png" alt=""></label><?php } ?>
+                  <?php } else { ?><label for="file-upload" class="custom-file-upload"><img src="img/av-placehold.png" alt=""></label><?php } ?>
                 <?php endforeach; ?>
               <?php } else { ?>
                 <label for="file-upload" class="custom-file-upload"><img src="img/av-placehold.png" alt=""></label>

@@ -190,7 +190,7 @@ class Experience {
         }
         $this->Createexperience();
     }
-    public function emptyInput(){
+    private function emptyInput(){
         return !(empty($this->worktitle));
     }
 }

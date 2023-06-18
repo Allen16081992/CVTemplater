@@ -1,9 +1,9 @@
 <?php // Dhr. Allen Pieter
     // Start a session for displaying error messages.
-    require 'peripherals/session_start.config.php';
+    require_once 'peripherals/session_start.config.php';
 
     // Use the (improved) database connection.
-    require 'idb.config.php';
+    require_once 'idb.config.php';
 
     class ViewUser {
         private $pdo;
@@ -48,5 +48,4 @@
     }
     // Create an object from our class
     $viewData = new ViewUser();
-    // Error handlers
-    $viewData->viewUserInfo();
+    $data = $viewData->viewUserInfo();
