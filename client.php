@@ -96,7 +96,8 @@
           <form name="resume" action="config/updateresume.config.php" method="post"> 
             <p class="error-resume-tab"></p>        
             <label for="resid">Resume ID</label>
-            <input type="text" name="resid" placeholder="Ex: 0" value="<?= isset($resumeID) ? $resumeID : '' ?>" disabled>
+            <input type="text" placeholder="*ID is Protected." disabled>
+            <input type="text" name="resid" value="<?= isset($resumeID) ? $resumeID : '' ?>" hidden>
             <label for="cvname">Name</label>
             <input type="text" name="cvname" placeholder="Ex: Professional Dredger" value="<?= isset($_SESSION['resumetitle']) ? $_SESSION['resumetitle'] : '' ?>">
             <div class="left"> 
