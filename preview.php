@@ -4,15 +4,13 @@
 
     // Only load the page when signed in.
     require_once 'config/peripherals/redirect.config.php';
+    //if (isset($_POST['preview'])) {
+
+    //}
 
     // Include PHP files to retrieve data
-    require_once 'config/ViewResumes.config.php';
     require_once 'config/FetchResumeTables.config.php';
-
-    // Include PHP files to retrieve data
     require_once 'config/ViewAccount.config.php';
-
-    // Access the user and contact data from the array
     $user = $data['user'];
     $contact = $data['contact'];
 ?>
@@ -111,21 +109,15 @@
 <body>
     <div class="container">
         <div class="box">
-            <?php if (isset($userID) && !empty($data['profile'])) { ?>
-            <?php foreach ($data['profile'] as $profile): ?>
-            <?php if (!empty($profile['fileName'])) { ?>
-                <img src="img/avatars/<?= $profile['fileName']; ?>" alt="">
+            <?php if (!empty($resumeID)) {  echo $userID." ".$resumeID; ?>
+                <img src="img/avatars/6490c2cc812ca_ilaic-crest.png" alt="">
             <?php } else { ?><img src="img/av-placehold.png" alt=""><?php } ?>
-            <?php endforeach; ?>
-            <?php } else { ?>
-                <img src="img/av-placehold.png" alt="">
-            <?php } ?>
             <ul>
                 <?php if (!empty($resumeID)) { ?>
                 <li><?= isset($contact['firstname']) ? $contact['firstname'] : '';?> <?= isset($contact['lastname']) ? $contact['lastname'] : '';?></li>
                 <li><?php $contact['birth']; $dateObj = new DateTime($contact['birth']); $currentDate = new DateTime(); $ageInt = $dateObj->diff($currentDate); $age = $ageInt->y; echo "Age ".$age; ?></li>
                 <li><?php if (!empty($data['experience'])) { foreach ($data['experience'] as $experience): echo $experience['worktitle']; endforeach; ?></li>
-                <?php } else { ?><li>Hardware Analist</li><?php } ?>
+                <?php } else { ?><li>Cook</li><?php } ?>
                 <?php } else { ?>
                 <li>Ezra Al Haq Awress</li>
                 <li>24 Years</li>
@@ -135,7 +127,11 @@
                     <i style="font-size:24px" class="fa"></i>
                 </li>
             </ul>
-            <button class="download" onclick="window.location.href = 'config/preview.config.php'">Download PDF</button>
+            <form action="config/download.config.php" method="post">
+                <input type="text" name="userID" value="<?= $userID ?>" hidden>
+                <input type="text" name="resumeID" value="<?= $resumeID ?>" hidden>
+                <button class="download">Download PDF</button>
+            </form>
             <button class="default" onclick="window.location.href = 'client.php'">Return</button>
         </div>
         <div class="About">

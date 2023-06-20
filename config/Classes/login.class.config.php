@@ -27,7 +27,7 @@
             // If there was no match from the database, do this.
             $passHash = $stmt->fetchAll(PDO::FETCH_ASSOC)[0]['password'];
             if (!password_verify($passw, $passHash)) {
-                $_SESSION['error'] = "Passwords don't match!";
+                $_SESSION['error'] = "Incorrect password.";
                 header('location: ../index.php');
                 exit();
             }

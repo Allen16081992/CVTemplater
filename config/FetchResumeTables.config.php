@@ -56,6 +56,7 @@
 
     if (isset($_SESSION['resumeID'])) {
         $resumeID = $_SESSION['resumeID'];
+        $userID = $_SESSION['user_id'];
         
         // Create a new instance of FetchData
         $fetchData = new FetchData();
