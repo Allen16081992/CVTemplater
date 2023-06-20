@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 15 jun 2023 om 19:39
+-- Gegenereerd op: 20 jun 2023 om 23:28
 -- Serverversie: 10.4.28-MariaDB
 -- PHP-versie: 8.2.4
 
@@ -40,8 +40,7 @@ CREATE TABLE `accounts` (
 
 INSERT INTO `accounts` (`userID`, `username`, `password`, `email`) VALUES
 (1, 'test', '$2y$10$DIf2wwLBCD2ZuCzHZFtJvub84eFfqilLCCplX7YgveQiTQS9r5n4W', 'test@test.com'),
-(2, 'Aaltje', '$2y$10$2NVwcUH7PiS4P7S7lxN7gevUGCEujO4IHuT0NBb7r1Bn6QJyzUM0q', 'aaltje@gmail.com'),
-(3, 'Hallo', '$2y$10$mSx2augsaJ1Af1dprLStduM9tMLRCaJQ4mISkiePmdKLExwmd/sBW', 'hallo@yuger.nl');
+(2, 'Aaltje', '$2y$10$zJ4nCav3Cam7eVRBKE5IO.9nWT1HfyJ4fuTEWktRDQb2zSbDIGpdu', 'info@aaltjevincent.nl');
 
 -- --------------------------------------------------------
 
@@ -67,9 +66,8 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`contactID`, `phone`, `firstname`, `lastname`, `birth`, `nationality`, `streetname`, `postalcode`, `city`, `userID`) VALUES
-(1, '06311224455', 'test', 'test', '2023-06-30', 'dutch', 'sickstreet 1', '100020vv', 'delft', 1),
-(2, '0631244569', 'Aaltje', 'Veldhoven', '2023-05-19', 'Dutch', 'Keileweg 6', '3021AZ', 'Rotterdam', 2),
-(3, '+310063145578', 'Hallohallo', 'Hallo', '2023-06-04', 'Japanese', 'Haunted Maisonnette 3', '1010XD', 'Tokigawa', 3);
+(1, '06311224455', 'test', 'test', '1998-06-30', 'dutch', 'sickstreet 1', '100020vv', 'delft', 1),
+(2, '06-98755252', 'Aaltje', 'Vincent', '1971-08-10', 'Dutch', 'Duinvoetstraat 47', '1361 BC', 'Almere-Duin', 2);
 
 -- --------------------------------------------------------
 
@@ -93,8 +91,9 @@ CREATE TABLE `education` (
 --
 
 INSERT INTO `education` (`eduID`, `edutitle`, `edudesc`, `company`, `firstDate`, `lastDate`, `resumeID`, `userID`) VALUES
-(1, 'Duel Academy', 'Island prospects and resources.', 'KaibaCorp', '2017-06-11', '2023-06-02', 1, 3),
-(6, 'Artillery Operator', 'I have skills in shooting on coördinates.', 'Military School', '1920-01-01', '1921-01-01', 4, 2);
+(1, 'MBO4 Ethnical Hacking', 'I learn hacking within the boundaries of the law so I can provide assistance to police forces.', 'Cyberworkspace', '2012-04-19', '2020-11-02', 6, 2),
+(2, 'MBO3 Graphic Designer', 'I was studying Graphic Designer for 3 years and got my certificate.', 'Grafisch Lyceum Rotterdam', '2015-07-24', '2018-06-18', 6, 2),
+(3, 'VMBO-TL', 'The classes sucked balls. But I had a great time growing up.', 'RMPI De Wilgen', '1993-06-23', '2005-06-14', 6, 2);
 
 -- --------------------------------------------------------
 
@@ -104,9 +103,9 @@ INSERT INTO `education` (`eduID`, `edutitle`, `edudesc`, `company`, `firstDate`,
 
 CREATE TABLE `experience` (
   `workID` int(11) NOT NULL,
-  `worktitle` varchar(255) DEFAULT NULL,
+  `worktitle` varchar(50) DEFAULT NULL,
   `workdesc` varchar(255) DEFAULT NULL,
-  `company` varchar(255) DEFAULT NULL,
+  `company` varchar(100) DEFAULT NULL,
   `firstDate` date DEFAULT NULL,
   `lastDate` date DEFAULT NULL,
   `resumeID` int(11) NOT NULL,
@@ -118,9 +117,10 @@ CREATE TABLE `experience` (
 --
 
 INSERT INTO `experience` (`workID`, `worktitle`, `workdesc`, `company`, `firstDate`, `lastDate`, `resumeID`, `userID`) VALUES
-(1, 'Necromancer', 'As a necromancer, I harness the power of ressurection.', 'Gravecorp', '2013-06-11', '2023-06-04', 1, 3),
-(6, 'Sturmbannführer', 'Als SS bevelhebber veeg ik dorpjes van de kaart voor saus.', 'Waffen-SS', '1938-04-26', '1944-08-13', 4, 2),
-(7, 'Aartsbisschop', 'Als Aartsbisschop vervul ik een hoge rang in de kerk voor een wijntje.', 'Rooms-Katholieke Kerk', '1945-01-09', '1951-12-31', 3, 2);
+(1, 'Robery', 'I am good at hacking into bank accounts', 'Bank of America', '1945-10-23', '1956-12-30', 4, 1),
+(2, 'Security Advisor', 'At the helpdesk of ESET I provide counceling to people with questions about security.', 'ESET', '2006-05-10', '2010-08-30', 6, 2),
+(3, 'Helpdesk Employee', 'I was responsible for manning the register and helping customers.', 'Informatique', '2023-06-08', '2023-06-29', 6, 2),
+(4, 'Cassiere', 'I was responsible for counting cash and handling the transactions of customers.', 'Burger King', '2023-06-10', '2023-06-18', 6, 2);
 
 -- --------------------------------------------------------
 
@@ -130,7 +130,7 @@ INSERT INTO `experience` (`workID`, `worktitle`, `workdesc`, `company`, `firstDa
 
 CREATE TABLE `interests` (
   `interestID` int(11) NOT NULL,
-  `interest` varchar(255) DEFAULT NULL,
+  `interest` varchar(50) DEFAULT NULL,
   `resumeID` int(11) NOT NULL,
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -140,7 +140,8 @@ CREATE TABLE `interests` (
 --
 
 INSERT INTO `interests` (`interestID`, `interest`, `resumeID`, `userID`) VALUES
-(1, 'Swimming', 4, 2);
+(1, 'Road trips', 6, 2),
+(2, 'Booz', 5, 2);
 
 -- --------------------------------------------------------
 
@@ -160,7 +161,8 @@ CREATE TABLE `languages` (
 --
 
 INSERT INTO `languages` (`langID`, `language`, `resumeID`, `userID`) VALUES
-(1, 'Spanish', 4, 2);
+(1, 'HTML and CSS', 6, 2),
+(2, 'Arabic', 5, 2);
 
 -- --------------------------------------------------------
 
@@ -172,8 +174,8 @@ CREATE TABLE `profile` (
   `profileID` int(11) NOT NULL,
   `profileintro` varchar(255) DEFAULT NULL,
   `profiledesc` varchar(255) DEFAULT NULL,
-  `filePath` varchar(255) NOT NULL,
-  `fileName` varchar(255) NOT NULL,
+  `filePath` varchar(255) DEFAULT NULL,
+  `fileName` varchar(255) DEFAULT NULL,
   `resumeID` int(11) NOT NULL,
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -183,7 +185,9 @@ CREATE TABLE `profile` (
 --
 
 INSERT INTO `profile` (`profileID`, `profileintro`, `profiledesc`, `filePath`, `fileName`, `resumeID`, `userID`) VALUES
-(2, 'acdcdsdvvds', 'vdsvds', '../img/avatars/648b43dd3b4c1_EnemyPress.jpg', '648b43dd3b4c1_EnemyPress.jpg', 3, 2);
+(2, NULL, 'I am a test account', '', '', 2, 1),
+(3, 'Hi, my name is test', '', '../img/avatars/648e4934486aa_sun-yat-sen.png', '648e4934486aa_sun-yat-sen.png', 4, 1),
+(4, 'Hi, my name is Aaltje', 'I am a resume advisor.', '../img/avatars/6490c2cc812ca_ilaic-crest.png', '6490c2cc812ca_ilaic-crest.png', 6, 2);
 
 -- --------------------------------------------------------
 
@@ -202,10 +206,10 @@ CREATE TABLE `resume` (
 --
 
 INSERT INTO `resume` (`resumeID`, `resumetitle`, `userID`) VALUES
-(1, 'Tzeentch Coordinator', 3),
-(2, 'Clown', 3),
-(3, 'Bishbaalkin', 2),
-(4, 'Novigrod Police', 2);
+(2, 'Testing One', 1),
+(4, 'Breachersuit', 1),
+(5, 'Helpdesk Administrator', 2),
+(6, 'Security Engineer', 2);
 
 -- --------------------------------------------------------
 
@@ -225,7 +229,8 @@ CREATE TABLE `technical` (
 --
 
 INSERT INTO `technical` (`techID`, `techtitle`, `resumeID`, `userID`) VALUES
-(1, 'Writer', 4, 2);
+(1, 'Basketball', 6, 2),
+(2, 'Walking dogs', 5, 2);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -243,52 +248,62 @@ ALTER TABLE `accounts`
 --
 ALTER TABLE `contact`
   ADD PRIMARY KEY (`contactID`),
-  ADD KEY `fk1` (`userID`);
+  ADD KEY `contact` (`userID`);
 
 --
 -- Indexen voor tabel `education`
 --
 ALTER TABLE `education`
-  ADD PRIMARY KEY (`eduID`);
+  ADD PRIMARY KEY (`eduID`),
+  ADD KEY `fk_edu_res` (`resumeID`),
+  ADD KEY `fk_edu_user` (`userID`);
 
 --
 -- Indexen voor tabel `experience`
 --
 ALTER TABLE `experience`
-  ADD PRIMARY KEY (`workID`);
+  ADD PRIMARY KEY (`workID`),
+  ADD KEY `fk_exp_res` (`resumeID`),
+  ADD KEY `fk_exp_user` (`userID`);
 
 --
 -- Indexen voor tabel `interests`
 --
 ALTER TABLE `interests`
-  ADD PRIMARY KEY (`interestID`);
+  ADD PRIMARY KEY (`interestID`),
+  ADD KEY `fk_int_res` (`resumeID`),
+  ADD KEY `fk_int_user` (`userID`);
 
 --
 -- Indexen voor tabel `languages`
 --
 ALTER TABLE `languages`
-  ADD PRIMARY KEY (`langID`);
+  ADD PRIMARY KEY (`langID`),
+  ADD KEY `fk_lang_res` (`resumeID`),
+  ADD KEY `fk_lang_user` (`userID`);
 
 --
 -- Indexen voor tabel `profile`
 --
 ALTER TABLE `profile`
   ADD PRIMARY KEY (`profileID`),
-  ADD KEY `resumeID` (`resumeID`,`userID`);
+  ADD KEY `fk_prof_res` (`resumeID`),
+  ADD KEY `fk_prof_user` (`userID`);
 
 --
 -- Indexen voor tabel `resume`
 --
 ALTER TABLE `resume`
   ADD PRIMARY KEY (`resumeID`),
-  ADD KEY `fk_resume_accounts` (`userID`);
+  ADD KEY `fk_res_user` (`userID`);
 
 --
 -- Indexen voor tabel `technical`
 --
 ALTER TABLE `technical`
   ADD PRIMARY KEY (`techID`),
-  ADD KEY `fk_technical_resume` (`userID`);
+  ADD KEY `fk_tech_res` (`resumeID`),
+  ADD KEY `fk_tech_user` (`userID`);
 
 --
 -- AUTO_INCREMENT voor geëxporteerde tabellen
@@ -298,55 +313,113 @@ ALTER TABLE `technical`
 -- AUTO_INCREMENT voor een tabel `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `contactID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `contactID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `education`
 --
 ALTER TABLE `education`
-  MODIFY `eduID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `eduID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT voor een tabel `experience`
 --
 ALTER TABLE `experience`
-  MODIFY `workID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `workID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT voor een tabel `interests`
 --
 ALTER TABLE `interests`
-  MODIFY `interestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `interestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `languages`
 --
 ALTER TABLE `languages`
-  MODIFY `langID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `langID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `profile`
 --
 ALTER TABLE `profile`
-  MODIFY `profileID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `profileID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT voor een tabel `resume`
 --
 ALTER TABLE `resume`
-  MODIFY `resumeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `resumeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT voor een tabel `technical`
 --
 ALTER TABLE `technical`
-  MODIFY `techID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `techID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Beperkingen voor geëxporteerde tabellen
+--
+
+--
+-- Beperkingen voor tabel `contact`
+--
+ALTER TABLE `contact`
+  ADD CONSTRAINT `contact` FOREIGN KEY (`userID`) REFERENCES `accounts` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Beperkingen voor tabel `education`
+--
+ALTER TABLE `education`
+  ADD CONSTRAINT `fk_edu_res` FOREIGN KEY (`resumeID`) REFERENCES `resume` (`resumeID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_edu_user` FOREIGN KEY (`userID`) REFERENCES `accounts` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Beperkingen voor tabel `experience`
+--
+ALTER TABLE `experience`
+  ADD CONSTRAINT `fk_exp_res` FOREIGN KEY (`resumeID`) REFERENCES `resume` (`resumeID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_exp_user` FOREIGN KEY (`userID`) REFERENCES `accounts` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Beperkingen voor tabel `interests`
+--
+ALTER TABLE `interests`
+  ADD CONSTRAINT `fk_int_res` FOREIGN KEY (`resumeID`) REFERENCES `resume` (`resumeID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_int_user` FOREIGN KEY (`userID`) REFERENCES `accounts` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Beperkingen voor tabel `languages`
+--
+ALTER TABLE `languages`
+  ADD CONSTRAINT `fk_lang_res` FOREIGN KEY (`resumeID`) REFERENCES `resume` (`resumeID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_lang_user` FOREIGN KEY (`userID`) REFERENCES `accounts` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Beperkingen voor tabel `profile`
+--
+ALTER TABLE `profile`
+  ADD CONSTRAINT `fk_prof_res` FOREIGN KEY (`resumeID`) REFERENCES `resume` (`resumeID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_prof_user` FOREIGN KEY (`userID`) REFERENCES `accounts` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Beperkingen voor tabel `resume`
+--
+ALTER TABLE `resume`
+  ADD CONSTRAINT `fk_res_user` FOREIGN KEY (`userID`) REFERENCES `accounts` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Beperkingen voor tabel `technical`
+--
+ALTER TABLE `technical`
+  ADD CONSTRAINT `fk_tech_res` FOREIGN KEY (`resumeID`) REFERENCES `resume` (`resumeID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_tech_user` FOREIGN KEY (`userID`) REFERENCES `accounts` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
