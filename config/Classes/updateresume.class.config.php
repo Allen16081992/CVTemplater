@@ -1,6 +1,6 @@
 <?php // Khaqan Ul Haq Awan
 
-class Resume {
+class updateResume {
     private $resid; // Dhr. A Pieter: Dit is nodig om het juiste cv te wijzigen.
     private $resumetitle;
     private $database; // Dhr. A Pieter: Dit was nodig omdat Resume niet meer werkte.
@@ -11,8 +11,6 @@ class Resume {
         $this->resumetitle = $resumetitle;
         $this->database = new Database(); // <-- Dhr. A Pieter: Dit was nodig omdat Resume niet meer werkte.
     }
-
-
 
     public function UpdateResume()
     {

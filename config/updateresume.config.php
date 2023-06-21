@@ -11,7 +11,7 @@ if (isset($_POST['saveResume'])) {
     $resid = $_POST['resid']; // Dhr. Allen Pieter: een cv id is wel nodig.
     $resumetitle = $_POST['cvname'];
     $userID = $_SESSION["user_id"];
-    $nieuweresume = new Resume($resid, $resumetitle);
+    $nieuweresume = new updateResume($resid, $resumetitle);
     $nieuweresume->UpdateResume();
 
     // Refresh client page.

@@ -45,8 +45,8 @@
       <h5>Account Settings</h5>
       <ul>
         <li><a href="client.php"><i class='bx bxs-file'></i>Resume Builder</a></li>
-        <li><a><i class='bx bxs-crown'></i>Premium</a></li>
-        <li><a href="./tutorial.php"><i class='bx bxs-videos'></i>Tutorial</a></li>
+        <li><a href="error404.php"><i class='bx bxs-crown'></i>Premium</a></li>
+        <li><a href="tutorial.php"><i class='bx bxs-videos'></i>Tutorial</a></li>
         <li class="on"><i class='bx bxs-cog'></i>Account Settings</li>
       </ul>
       <button class="Del" data-window-target="#window">Delete Account</button>

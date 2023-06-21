@@ -1,6 +1,6 @@
 <?php // Khaqan Ul Haq Awan
 
-class Resume {
+class createResume {
     private $resumetitle;
     private $database; // Dhr. A Pieter: Dit was nodig omdat Resume niet meer werkte.
 
