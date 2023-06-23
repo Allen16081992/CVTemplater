@@ -45,7 +45,7 @@ class ResumePDF extends FPDF {
         }
         $this->data = $result; 
     }
-
+    
     function Header() {
         //Cell( width, height, text, border, end line, align)
         // Set the font and size
@@ -75,28 +75,40 @@ class ResumePDF extends FPDF {
         $this->SetFont('Arial', '', 10);
 
         // Name and Contact
-        $firstname = $this->data['contact'][0]['firstname'];
-        $surname = $this->data['contact'][0]['lastname'];
-        $city = $this->data['contact'][0]['city'];
-        $nationality = $this->data['contact'][0]['nationality'];
-        $phone = $this->data['contact'][0]['phone'];
-        $email = $this->data['accounts'][0]['email'];    
+        if (isset($this->data['contact'][0])) {
+            $firstname = $this->data['contact'][0]['firstname'];
+            $surname = $this->data['contact'][0]['lastname'];
+            $city = $this->data['contact'][0]['city'];
+            $nationality = $this->data['contact'][0]['nationality'];
+            $phone = $this->data['contact'][0]['phone'];
+            $email = $this->data['accounts'][0]['email']; 
+        }
         // Work Experience
-        $workTitles = array_column($this->data['experience'], 'worktitle');
-        $workCompany = array_column($this->data['experience'], 'company');
-        $workFirstDate = array_column($this->data['experience'], 'firstDate');
-        $workLastDate = array_column($this->data['experience'], 'lastDate');
-        $workSummary = array_column($this->data['experience'], 'workdesc');
+        if (isset($this->data['experience'])) {
+            $workTitles = array_column($this->data['experience'], 'worktitle');
+            $workCompany = array_column($this->data['experience'], 'company');
+            $workFirstDate = array_column($this->data['experience'], 'firstDate');
+            $workLastDate = array_column($this->data['experience'], 'lastDate');
+            $workSummary = array_column($this->data['experience'], 'workdesc');
+        }
         // Education
-        $eduTitles = array_column($this->data['education'], 'edutitle');
-        $eduCompany = array_column($this->data['education'], 'company');
-        $eduFirstDate = array_column($this->data['education'], 'firstDate');
-        $eduLastDate = array_column($this->data['education'], 'lastDate');
-        $eduSummary = array_column($this->data['education'], 'edudesc');
+        if (isset($this->data['education'])) {
+            $eduTitles = array_column($this->data['education'], 'edutitle');
+            $eduCompany = array_column($this->data['education'], 'company');
+            $eduFirstDate = array_column($this->data['education'], 'firstDate');
+            $eduLastDate = array_column($this->data['education'], 'lastDate');
+            $eduSummary = array_column($this->data['education'], 'edudesc');
+        }
         // Skills
-        $techTitle = array_column($this->data['technical'], 'techtitle');
-        $language = array_column($this->data['languages'], 'language');
-        $interest = array_column($this->data['interests'], 'interest');
+        if (isset($this->data['technical'])) {
+            $techTitle = array_column($this->data['technical'], 'techtitle');
+        }
+        if (isset($this->data['languages'])) {
+            $language = array_column($this->data['languages'], 'language');
+        }
+        if (isset($this->data['interests'])) {
+            $interest = array_column($this->data['interests'], 'interest');
+        }
 
         //////////////////// HEADER ///////////////////
         // Add name and surname
@@ -118,7 +130,9 @@ class ResumePDF extends FPDF {
         $this->SetFont('Arial', 'B', 14);
         $this->Cell(0, 5, 'Profile', 0, 1, 'L');
         $this->SetFont('Arial', '', 10);
-        $this->Cell(0, 10, $this->data['profile'][0]['profiledesc'], 0, 1, 'L');
+        if (isset($this->data['profile'][0]['profiledesc'])) {
+            $this->Cell(0, 10, $this->data['profile'][0]['profiledesc'], 0, 1, 'L');
+        }
         
         // Add a line break
         $this->Ln(10);
@@ -132,39 +146,57 @@ class ResumePDF extends FPDF {
         if (count($workTitles) >= 1) {
             $this->SetFont('Arial', '', 10);
             // DATES
-            $this->Cell(22, 10, $workFirstDate[0], 0, 0, '');
-            $this->Cell(5, 10, '-', 0, 0, '');
-            $this->Cell(30, 10, $workLastDate[0], 0, 0, '');
-            $this->SetFont('Arial', 'B', 12);
+            if (isset($workFirstDate[0]) && isset($workLastDate[0])) {
+                $this->Cell(22, 10, $workFirstDate[0], 0, 0, '');
+                $this->Cell(5, 10, '-', 0, 0, '');
+                $this->Cell(30, 10, $workLastDate[0], 0, 0, '');
+            }
+            $this->SetFont('Arial', 'B', 12);           
             // PROFESSION, COMPANY, SUMMARY
-            $this->Cell(60, 10, $workTitles[0], 0, 0, 'L');
-            $this->Cell(50, 10, $workCompany[0], 0, 1, '');
-            $this->SetFont('Arial', 'I', 10);
-            $this->Cell(30, 5, $workSummary[0], 0, 1, '');
-            $this->Ln(5);
+            if (isset($workTitles[0]) && isset($workCompany[0])) {
+                $this->Cell(60, 10, $workTitles[0], 0, 0, 'L');
+                $this->Cell(50, 10, $workCompany[0], 0, 1, '');
+            }
+            $this->SetFont('Arial', 'I', 10);       
+            if (isset($workSummary[0])) {
+                $this->Cell(30, 5, $workSummary[0], 0, 1, '');
+                $this->Ln(5);
+            }
         }
         if (count($workTitles) >= 2) {
             $this->SetFont('Arial', '', 10);
-            $this->Cell(22, 10, $workFirstDate[1], 0, 0, '');
-            $this->Cell(5, 10, '-', 0, 0, '');
-            $this->Cell(30, 10, $workLastDate[1], 0, 0, '');
+            if (isset($workFirstDate[1]) && isset($workLastDate[1])) {
+                $this->Cell(22, 10, $workFirstDate[1], 0, 0, '');
+                $this->Cell(5, 10, '-', 0, 0, '');
+                $this->Cell(30, 10, $workLastDate[1], 0, 0, '');
+            }
             $this->SetFont('Arial', 'B', 12);
-            $this->Cell(60, 10, $workTitles[1], 0, 0, 'L');
-            $this->Cell(50, 10, $workCompany[1], 0, 1, '');
+            if (isset($workTitles[1]) && isset($workCompany[1])) {
+                $this->Cell(60, 10, $workTitles[1], 0, 0, 'L');
+                $this->Cell(50, 10, $workCompany[1], 0, 1, '');
+            }
             $this->SetFont('Arial', 'I', 10);
-            $this->Cell(30, 5, $workSummary[1], 0, 1, '');
-            $this->Ln(5);
+            if (isset($workSummary[1])) {
+                $this->Cell(30, 5, $workSummary[1], 0, 1, '');
+                $this->Ln(5);
+            }
         } 
         if (count($workTitles) >= 3) {
             $this->SetFont('Arial', '', 10);
-            $this->Cell(22, 10, $workFirstDate[2], 0, 0, '');
-            $this->Cell(5, 10, '-', 0, 0, '');
-            $this->Cell(30, 10, $workLastDate[2], 0, 0, '');
+            if (isset($workFirstDate[2]) && isset($workLastDate[2])) {
+                $this->Cell(22, 10, $workFirstDate[2], 0, 0, '');
+                $this->Cell(5, 10, '-', 0, 0, '');
+                $this->Cell(30, 10, $workLastDate[2], 0, 0, '');
+            }
             $this->SetFont('Arial', 'B', 12);
-            $this->Cell(60, 10, $workTitles[2], 0, 0, 'L');
-            $this->Cell(50, 10, $workCompany[2], 0, 1, '');
+            if (isset($workTitles[2]) && isset($workCompany[2])) {
+                $this->Cell(60, 10, $workTitles[2], 0, 0, 'L');
+                $this->Cell(50, 10, $workCompany[2], 0, 1, '');
+            }
             $this->SetFont('Arial', 'I', 10);
-            $this->Cell(30, 5, $workSummary[2], 0, 1, '');
+            if (isset($workSummary[2])) {
+                $this->Cell(30, 5, $workSummary[2], 0, 1, '');
+            }
             $this->Ln(5);
         }
 
@@ -177,39 +209,57 @@ class ResumePDF extends FPDF {
         if (count($eduTitles) >= 1) {
             $this->SetFont('Arial', '', 10);
             // DATES
-            $this->Cell(22, 10, $eduFirstDate[0], 0, 0, '');
-            $this->Cell(5, 10, '-', 0, 0, '');
-            $this->Cell(30, 10, $eduLastDate[0], 0, 0, '');
+            if (isset($eduFirstDate[0]) && isset($eduLastDate[0])) {
+                $this->Cell(22, 10, $eduFirstDate[0], 0, 0, '');
+                $this->Cell(5, 10, '-', 0, 0, '');
+                $this->Cell(30, 10, $eduLastDate[0], 0, 0, '');
+            }
             $this->SetFont('Arial', 'B', 12);
             // PROFESSION, COMPANY, SUMMARY
-            $this->Cell(60, 10, $eduTitles[0], 0, 0, 'L');
-            $this->Cell(50, 10, $eduCompany[0], 0, 1, '');
+            if (isset($eduTitles[0]) && isset($eduCompany[0])) {
+                $this->Cell(60, 10, $eduTitles[0], 0, 0, 'L');
+                $this->Cell(50, 10, $eduCompany[0], 0, 1, '');
+            }
             $this->SetFont('Arial', 'I', 10);
-            $this->Cell(30, 5, $eduSummary[0], 0, 1, '');
+            if (isset($eduSummary[0])) {
+                $this->Cell(30, 5, $eduSummary[0], 0, 1, '');
+            }
             $this->Ln(5);
         }
         if (count($eduTitles) >= 2) {
             $this->SetFont('Arial', '', 10);
-            $this->Cell(22, 10, $eduFirstDate[1], 0, 0, '');
-            $this->Cell(5, 10, '-', 0, 0, '');
-            $this->Cell(30, 10, $eduLastDate[1], 0, 0, '');
+            if (isset($eduFirstDate[1]) && isset($eduLastDate[1])) {
+                $this->Cell(22, 10, $eduFirstDate[1], 0, 0, '');
+                $this->Cell(5, 10, '-', 0, 0, '');
+                $this->Cell(30, 10, $eduLastDate[1], 0, 0, '');
+            }
             $this->SetFont('Arial', 'B', 12);
-            $this->Cell(60, 10, $eduTitles[1], 0, 0, 'L');
-            $this->Cell(50, 10, $eduCompany[1], 0, 1, '');
+            if (isset($eduTitles[1]) && isset($eduCompany[1])) {
+                $this->Cell(60, 10, $eduTitles[1], 0, 0, 'L');
+                $this->Cell(50, 10, $eduCompany[1], 0, 1, '');
+            }
             $this->SetFont('Arial', 'I', 10);
-            $this->Cell(30, 5, $eduSummary[1], 0, 1, '');
+            if (isset($eduSummary[1])) {
+                $this->Cell(30, 5, $eduSummary[1], 0, 1, '');
+            }
             $this->Ln(5);
         } 
         if (count($eduTitles) >= 3) {
             $this->SetFont('Arial', '', 10);
-            $this->Cell(22, 10, $eduFirstDate[2], 0, 0, '');
-            $this->Cell(5, 10, '-', 0, 0, '');
-            $this->Cell(30, 10, $eduLastDate[2], 0, 0, '');
+            if (isset($eduFirstDate[2]) && isset($eduLastDate[2])) {
+                $this->Cell(22, 10, $eduFirstDate[2], 0, 0, '');
+                $this->Cell(5, 10, '-', 0, 0, '');
+                $this->Cell(30, 10, $eduLastDate[2], 0, 0, '');
+            }
             $this->SetFont('Arial', 'B', 12);
-            $this->Cell(60, 10, $eduTitles[2], 0, 0, 'L');
-            $this->Cell(50, 10, $eduCompany[2], 0, 1, '');
+            if (isset($eduTitles[2]) && isset($eduCompany[2])) {
+                $this->Cell(60, 10, $eduTitles[2], 0, 0, 'L');
+                $this->Cell(50, 10, $eduCompany[2], 0, 1, '');
+            }
             $this->SetFont('Arial', 'I', 10);
-            $this->Cell(30, 5, $eduSummary[2], 0, 1, '');
+            if (isset($eduSummary[2])) {
+                $this->Cell(30, 5, $eduSummary[2], 0, 1, '');
+            }
             $this->Ln(5);
         }
 

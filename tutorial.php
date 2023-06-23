@@ -1,8 +1,6 @@
 <?php // Loubna Faress
   // Start a session for holding the user.
   require_once 'config/peripherals/session_start.config.php'; 
-
-  // Only load the page when signed in.
   require_once 'config/peripherals/redirect.config.php';
 ?>
 <!DOCTYPE html>
@@ -12,13 +10,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV Templater - Tutorial</title>
     <!-- Favicon -->
-    <?php include 'config/peripherals/favicon.config.php';?>
+    <?php include_once 'config/peripherals/favicon.config.php';?>
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="css/templater.css">
     <!-- Javascript -->
-    <?php require 'config/peripherals/javascript_load.config.php'; ?>
+    <?php require_once 'config/peripherals/javascript_load.config.php'; ?>
   </head> 
   <style>
     header > h1 {
@@ -82,7 +80,7 @@
       <h1>Tutorial</h1>
       <i class='bx bx-menu' id="menu-icon"></i>
       <nav> 
-        <?php include 'config/peripherals/nav_username.config.php'; ?>
+        <?php include_once 'config/peripherals/nav_username.config.php'; ?>
         <a href="config/logout.config.php">Logout</a>
       </nav>
     </header>

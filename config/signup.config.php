@@ -22,9 +22,9 @@
         $passwRepeat = $_POST['pwdR']; 
         
         // Initialise signup class
-        include "idb.config.php";
-        include "Classes/signup.class.config.php";
-        include "Controller/signup.control.config.php";
+        require_once "idb.config.php";
+        require_once "Classes/signup.class.config.php";
+        require_once "Controller/signup.control.config.php";
 
         $registrate = new RegistrateControl($uid, $passw, $passwRepeat, $email, $phone,$firstname,$lastname,$birth,$country,$street,$postal,$city);
 

@@ -1,6 +1,6 @@
 <?php // Dhr. Allen Pieter
     // This session_start is solely for displaying error messages.
-    require '././peripherals/session_start.config.php';
+    require_once '././peripherals/session_start.config.php';
     
     class Registration extends Database {
 

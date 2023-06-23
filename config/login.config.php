@@ -1,4 +1,4 @@
-<?php
+<?php // Dhr. Allen Pieter
     // These variables are free to use by anything.
     if(isset($_POST['submit'])) {
 
@@ -7,9 +7,9 @@
         $passw = $_POST['pwd']; 
 
         // Initialise login class
-        require "idb.config.php";
-        require "Classes/login.class.config.php";
-        require "Controller/login.control.config.php";
+        require_once "idb.config.php";
+        require_once "Classes/login.class.config.php";
+        require_once "Controller/login.control.config.php";
 
         $login = new loginControl($uid, $passw);
 

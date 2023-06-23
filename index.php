@@ -1,6 +1,6 @@
 <?php // Dhr. Allen Pieter
   // Start a session for displaying error messages.
-  require 'config/peripherals/session_start.config.php'; 
+  require_once 'config/peripherals/session_start.config.php'; 
 ?>
 <!DOCTYPE html> 
 <html lang="en">
@@ -9,13 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to CV Templater</title>
     <!-- Favicon -->
-    <?php include 'config/peripherals/favicon.config.php';?>
+    <?php include_once 'config/peripherals/favicon.config.php';?>
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="css/templater.css">
     <!-- Javascript -->
-    <?php include 'config/peripherals/javascript_load.config.php'; ?>
+    <?php require_once 'config/peripherals/javascript_load.config.php'; ?>
     <script defer src="javascript/audio.js"></script>
   </head>
   <body>
@@ -23,7 +23,7 @@
     <header>
       <img class="logo" src="img/CV-headed-eagle.png" alt="Brand Signature">
       <i class='bx bx-menu' id="menu-icon"></i>
-      <?php include 'config/peripherals/server_messages.config.php'; ?>
+      <?php require_once 'config/peripherals/server_messages.config.php'; ?>
       <nav>
         <a class="current">Home</a>
         <a data-window-target="#window">Login</a>

@@ -1,4 +1,4 @@
-"use strict";
+"use strict"; // Dhr. Allen Pieter
 // Function to clear fields by their name attribute
 function clearFields(formName, ...fieldNames) {
   const form = document.forms[formName];

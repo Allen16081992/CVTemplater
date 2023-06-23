@@ -1,6 +1,6 @@
 <?php // Dhr. Allen Pieter
     // Start a session for displaying error messages.
-    require '././peripherals/session_start.config.php';
+    require_once '././peripherals/session_start.config.php';
 
     class Account extends Database {
         protected function setAccount($uid, $email, $passw) {

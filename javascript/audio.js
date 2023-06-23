@@ -1,4 +1,4 @@
-"use strict";
+"use strict"; // Dhr. Allen Pieter
 // Play sound on page load.
 document.addEventListener('DOMContentLoaded', function() {
     var roundElement = document.getElementById('round');

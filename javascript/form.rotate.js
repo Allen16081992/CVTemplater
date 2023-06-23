@@ -1,4 +1,4 @@
-// Dhr. Allen Pieter - In collaboration with ChatGPT
+"use strict"; // Dhr. Allen Pieter - In collaboration with ChatGPT
 var tabs = document.getElementsByClassName("tab");
 var currentTabIdx = 0;
 

@@ -1,15 +1,17 @@
 <?php // Khaqan Ul Haq Awan
+require_once '././Controller/errorhandlers.control.config.php';
 
 class updateResume {
-    private $resid; // Dhr. A Pieter: Dit is nodig om het juiste cv te wijzigen.
+    private $resid; // Dhr. A Pieter: This is needed to edit the correct resume.
     private $resumetitle;
-    private $database; // Dhr. A Pieter: Dit was nodig omdat Resume niet meer werkte.
+    private $database; // Dhr. A Pieter: This was needed because the file didn't work anymore.
+    use ErrorHandlers;
 
     public function __construct($resid, $resumetitle)
     {
         $this->resid = $resid;
         $this->resumetitle = $resumetitle;
-        $this->database = new Database(); // <-- Dhr. A Pieter: Dit was nodig omdat Resume niet meer werkte.
+        $this->database = new Database(); // <-- Dhr. A Pieter: This was needed because the file didn't work anymore.
     }
 
     public function UpdateResume()
@@ -37,24 +39,17 @@ class updateResume {
     {
         return $this->resumetitle;
     }
-    //public function setResumetitle($resumetitle)
-    //{
-    //$this->resumetitle = $resumetitle;
-    //}
 
-    // Dhr. A Pieter: Error handler erbij gezet.
+    // Dhr. A Pieter: Error handler added.
+    // Can't be good when only half of the code incorporates validation.
     public function verifyResume() {
-        // Activate security function beneath.
-        if(!$this->emptyInput()) {
-            // Empty input, no values given for account.
+        // Invoke validation.
+        if(!$this->emptyResumetitle()) {
+            // No resume name provided.
             $_SESSION['error'] = 'Please name your resume.';
             header('location: ../client.php');
             exit();
         }
-        $this->CreateResume();
-    }
-    private function emptyInput() {
-        // Check if the submitted values are not empty.
-        return !(empty($this->resumetitle));
+        $this->UpdateResume();
     }
 }

@@ -1,4 +1,4 @@
-// Dhr. A Pieter.
+"use strict"; // Dhr. Allen Pieter
 var cells = document.getElementsByClassName('row-field');
 var inputCounter = 1;
 

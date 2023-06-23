@@ -1,11 +1,8 @@
 <?php // Dhr. Allen Pieter
   // Start a session for handling data and error messages.
   require_once 'config/peripherals/session_start.config.php'; 
-
-  // Only load the page when signed in.
   require_once 'config/peripherals/redirect.config.php';
-
-  // Include PHP files to retrieve data
+  // Load PHP files to retrieve data
   require_once "config/ViewResumes.config.php";
   require_once "config/FetchResumeTables.config.php";
 ?>
@@ -16,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV Templater - MyResume</title>
     <!-- Favicon -->
-    <?php include 'config/peripherals/favicon.config.php';?>
+    <?php include_once 'config/peripherals/favicon.config.php';?>
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Styling Sheets -->
@@ -24,6 +21,7 @@
     <!-- Javascript -->
     <?php require_once 'config/peripherals/javascript_load.config.php'; ?>
     <script defer src="javascript/dropdown.submit.js"></script>
+    <script defer src="javascript/mobile.pdf.helper.js"></script>
     <!--<script defer src="javascript/clear.fields.js"></script>-->
   </head>
   <body>
@@ -33,7 +31,7 @@
       <i class='bx bx-menu' id="menu-icon"></i>
       <?php require_once 'config/peripherals/server_messages.config.php'; ?>
       <nav> 
-        <?php include 'config/peripherals/nav_username.config.php'; ?>
+        <?php include_once 'config/peripherals/nav_username.config.php'; ?>
         <a href="config/logout.config.php">Logout</a>
       </nav>
     </header>
@@ -105,7 +103,7 @@
             </div> 
           </form>
           <!--<button class="alt" name="clearResume">Clear</button>-->
-          <button class="alt" onclick="window.location.href = 'preview.php'">Preview</button>
+          <button class="alt" id="PDF">Download</button>
         </div>
         <!-- Profile Tab -->
         <input class="check" type="checkbox" id="collapse-head2">
@@ -313,7 +311,7 @@
           <p>Do you really want to delete a resume?</p>
           <label for="selectCv">Select a resume to remove</label>
           <select name="selectCv">
-            <option>(None selected)</option>
+            <option value="">(None selected)</option><!-- the value="" is needed for javascript -->
             <?php if (!empty($resumeData)) { ?>
             <?php foreach ($resumeData as $resume): ?>
               <option><?php echo $resume['resumetitle']; ?></option>

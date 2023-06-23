@@ -1,11 +1,11 @@
 <?php // Dhr. Allen Pieter
     // Start a session for displaying error messages.
-    require 'peripherals/session_start.config.php';
+    require_once 'peripherals/session_start.config.php';
 
     // Initialise update class
-    require "idb.config.php";
-    require "Classes/UpdateAccount.class.config.php";
-    require "Controller/UpdateAccount.control.config.php";
+    require_once "idb.config.php";
+    require_once "Classes/UpdateAccount.class.config.php";
+    require_once "Controller/UpdateAccount.control.config.php";
 
     if(isset($_POST['saveAccount'])) {
         // Absorb this provided data.

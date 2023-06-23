@@ -1,4 +1,4 @@
-"use strict";
+"use strict"; // Dhr. Allen Pieter
 // Mobile Menu Icon
 let menuIcon = document.querySelector('#menu-icon');
 let navBar = document.querySelector('nav');

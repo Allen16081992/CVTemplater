@@ -1,6 +1,6 @@
-"use strict";
+"use strict"; // Dhr. Allen Pieter
 // Error messages for submitting no values.
-// Target - Login fields
+// Target Index - Login fields
 var loginForm = document.forms['popup'];
 if (loginForm) {
   loginForm.onsubmit = function(event) {
@@ -17,7 +17,7 @@ if (loginForm) {
   }
 }
 
-// Target - New Resume/CVName field
+// Target Client - New Resume Window
 var resumeForm = document.forms['popup2'];
 if (resumeForm) {
   resumeForm.onsubmit = function(event) {
@@ -29,7 +29,7 @@ if (resumeForm) {
   }
 }
 
-// Target - Delete Resume/CVName Select
+// Target Client - Delete Resume Window
 var deleteForm = document.forms['popup3'];
 if (deleteForm) {
   deleteForm.onsubmit = function(event) {

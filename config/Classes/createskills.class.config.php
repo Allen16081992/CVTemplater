@@ -1,4 +1,5 @@
 <?php // Khaqan
+require_once '././Controller/errorhandlers.control.config.php';
 
 class Skills
 {
@@ -8,6 +9,7 @@ class Skills
     private $techtitle;
     private $resumeID;
     private $userID;
+    use ErrorHandlers;
 
     public function __construct($interest, $language, $techtitle, $resumeID, $userID)
     {
@@ -69,7 +71,7 @@ class Skills
             $connection = $this->database->connect();
 
             $sqleen = $connection->prepare(
-                "UPDATE `interests` SET `interest` = :interest, resumeID = :resumeID, userID = :userID;"
+                "UPDATE `interests` SET `interest` = :interest WHERE resumeID = :resumeID AND userID = :userID;"
             );
             $sqleen->bindParam(":interest", $this->interest);
             $sqleen->bindParam(":resumeID", $this->resumeID);
@@ -77,7 +79,7 @@ class Skills
             $sqleen->execute();
 
             $sqltwee = $connection->prepare(
-                "UPDATE `languages` SET `language` = :language, resumeID = :resumeID, userID = :userID;"
+                "UPDATE `languages` SET `language` = :language WHERE resumeID = :resumeID AND userID = :userID;"
             );
             $sqltwee->bindParam(":language", $this->language);
             $sqltwee->bindParam(":resumeID", $this->resumeID);
@@ -85,7 +87,7 @@ class Skills
             $sqltwee->execute();
 
             $sqldrie = $connection->prepare(
-                "UPDATE `technical` SET `techtitle` = :techtitle, resumeID = :resumeID, userID = :userID;"
+                "UPDATE `technical` SET `techtitle` = :techtitle WHERE resumeID = :resumeID AND userID = :userID;"
             );
             $sqldrie->bindParam(":techtitle", $this->techtitle);
             $sqldrie->bindParam(":resumeID", $this->resumeID);
@@ -99,51 +101,33 @@ class Skills
         }
     }
 
-    /**
-     * @return mixed
-     */
-    //public function getInterest()
-    //{
-    //    return $this->interest;
-    //}
+    // Dhr. A Pieter: Error handler added.
+    // Some checking on empty fields is preferred.
+    public function verifySkills() {
+        // Invoke validation.
+        if(!$this->emptyInterest()) {
+            // No interest provided.
+            $_SESSION['error'] = 'Please fill in your interest.';
+            header('location: ../client.php');
+            exit();
+        } elseif(!$this->emptyLanguage()) {
+            // No language provided.
+            $_SESSION['error'] = 'Please fill in your languages.';
+            header('location: ../client.php');
+            exit();           
+        } elseif(!$this->emptyTech()) { 
+            // No skill provided.
+            $_SESSION['error'] = 'Please fill in your skills.';
+            header('location: ../client.php');
+            exit();  
+        }
 
-    /**
-     * @param mixed $interest
-     */
-    //public function setInterest($interest): void
-    //{
-    //    $this->interest = $interest;
-    //}
+        // Push the submitted values to the correct function
+        if (isset($_POST['addSkill'])){
+            $this->Createskills();
 
-    /**
-     * @return mixed
-     */
-    //public function getLanguage()
-    //{
-    //    return $this->language;
-    //}
-
-    /**
-     * @param mixed $language
-     */
-    //public function setLanguage($language): void
-    //{
-    //    $this->language = $language;
-    //}
-
-    /**
-     * @return mixed
-     */
-    //public function getTechtitle()
-    //{
-    //    return $this->techtitle;
-    //}
-
-    /**
-     * @param mixed $techtitle
-     */
-    //public function setTechtitle($techtitle): void
-    //{
-    //    $this->techtitle = $techtitle;
-    //}
+        } elseif (isset($_POST['saveSkill'])){
+            $this->Updateskills();
+        }
+    }
 }

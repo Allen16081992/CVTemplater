@@ -3,7 +3,7 @@
     require_once 'peripherals/session_start.config.php';
 
     // Use the (improved) database connection.
-    require 'idb.config.php';
+    require_once 'idb.config.php';
 
     class Profile {
         private $pdo;

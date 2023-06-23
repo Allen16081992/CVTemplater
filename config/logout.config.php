@@ -1,4 +1,4 @@
-<?php
+<?php // Dhr. Allen Pieter
     // Wipe everything related to the session.
     session_start();
     session_unset();
