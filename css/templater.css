@@ -289,59 +289,56 @@ ul li.on { cursor:default; margin-left:20px; }
 }
 
 /* Registration Area */
-#reg {
-    position:relative;
-    top:70%;
+#slide-window {
+    position:absolute;
+    top:58%;
     transform:translate(-50%, -50%) scale(1);
 }
-#sheet {
+.tab {
+    display: none;
+}
+.tab input.invalid {
+    background-color: #ffdddd;
+}
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
+.step.active {
+    opacity: 1;
+}
+.step.finish {
+    background-color: #04AA6D;
+    box-shadow: inset 0 0 10px 2px rgba(0, 255, 182, 0.5), 0 0 10px 2px rgba(0, 255, 135, 1);
+    animation: pulse 1s alternate infinite;
+}
+@keyframes pulse {
+  0% {
+      background-color: rgba(255, 255, 255, 0.3);
+      box-shadow: inset 0 0 10px 2px rgba(0, 255, 182, 0.5), 0 0 5px 2px rgba(0, 255, 135, 0.3);
+  }
+  100% {
+      background-color: rgba(255, 255, 255, 1);
+      box-shadow: inset 0 0 10px 2px rgba(0, 255, 182, 0.5), 0 0 15px 2px rgba(0, 255, 135, 1);
+  }
+}
+#prevBtn, #nextBtn { width:35%; }
+#nextBtn { float:right; }
+.rotator {
+    width:100%;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
 }
-.nest {
-    display: flex;
-    flex-wrap: wrap;
-    width: 50%; /*was 100%*/
-    padding-bottom: 15px;
-}
-.nest:nth-child(2n){ justify-content: end; }
-.nest label{
-    width: 95%;
-    color: white;
-    font-size: 20px;
-    font-weight: 400;
-    margin: 5px 0;
-}
-.nest input{
-    height: 40px;
-    width: 95%;
-    border-radius: 7px;
-    outline: none;
-    border: 1px solid grey;
-    padding: 0 10px;
-}
-#de-nest input {
-    font-size:1rem;
-    height: auto;
-    width:auto;
-}
+.tab select { width:4rem; }
+#year-select { width: 5rem; }
 
 /* Account Settings Area */
-#ac-title { color: var(--text-color); }
-.dashboard {
-    position:relative;
-    top:10%;
-    width: 100%;
-    background-color: rgba(0,0,0,0.4);
-    border: 1px solid var(--primary-color-dark);
-    border-radius:10px;
-}
-.dashboard .nest input {
-    color: azure;
-    background-color: rgba(0,0,0,0.4);
-}
-
 .collapse {
     overflow:auto;
     font-weight:500;

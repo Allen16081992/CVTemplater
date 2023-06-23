@@ -1,4 +1,4 @@
-<?php
+<?php // Dhr. Allen Pieter
     // This session_start is solely for displaying error messages.
     require '././peripherals/session_start.config.php';
 
@@ -36,13 +36,34 @@
         }
 
         public function signupUser() {
-            if(!$this->emptyInput()) {
-                // No username or password provided.
-                $_SESSION['error'] = 'No username or password provided!';
-            } elseif(!$this->emptyContact()) {
-                // No values given for contact information.
-                $_SESSION['error'] = 'No contact information provided!';
-            } elseif(!$this->invalidUid()) {
+            if(!$this->emptyNames()) {
+                // No firstname or lastname provided.
+                $_SESSION['error'] = 'No firstname or lastname provided.';
+            } elseif(!$this->emptyCountry()) {
+                // No country information provided.
+                $_SESSION['error'] = 'No country or nationality provided.';
+            } elseif(!$this->emptyPhone()) {
+                // No phone information provided.
+                $_SESSION['error'] = 'No phone number provided.';
+            } elseif(!$this->emptyStreet()) {
+                // No street information provided.
+                $_SESSION['error'] = 'No street provided.';
+            } elseif(!$this->emptyZip()) {
+                // No street information provided.
+                $_SESSION['error'] = 'No zip code provided.';
+            } elseif(!$this->emptyCity()) {
+                // No city information provided.
+                $_SESSION['error'] = 'No city provided.';
+            } elseif(!$this->emptyUsername()) {
+                // No username information provided.
+                $_SESSION['error'] = 'No username provided.';
+            } elseif(!$this->emptyEmail()) {
+                // No email information provided.
+                $_SESSION['error'] = 'No email provided.';
+            } elseif(!$this->emptyPassw()) {
+                // No passwords information provided.
+                $_SESSION['error'] = 'No password(s) provided.';
+            } elseif(!$this->invalidAlpha()) {
                 // Invalid username.
                 $_SESSION['error'] = 'Only alphanumeric characters allowed!';
             } elseif(!$this->invalidEmail()) {
@@ -65,32 +86,63 @@
             exit();
         }
 
-        private function emptyInput() {
+        private function emptyNames() {
             // Make sure the submitted values are not empty.
-            return !(empty($this->uid) || empty($this->passw) || empty($this->passwRepeat) || empty($this->email));
+            return !(empty($this->firstname) || empty($this->lastname));
         }
-        
-        private function emptyContact() {
+        private function emptyCountry() {
             // Make sure the submitted values are not empty.
-            return !(empty($this->phone) || empty($this->firstname) || empty($this->lastname) || empty($this->birth) ||
-                empty($this->country) || empty($this->street) || empty($this->postal) || empty($this->city));
+            return !(empty($this->country) || empty($this->birth));
         }
-        
-        private function invalidUid() {
+        private function emptyPhone() {
+            // Make sure the submitted values are not empty.
+            return !(empty($this->phone));
+        }
+        private function emptyStreet() {
+            // Make sure the submitted values are not empty.
+            return !(empty($this->street));
+        }
+        private function emptyZip() {
+            // Make sure the submitted values are not empty.
+            return !(empty($this->postal));
+        }
+        private function emptyCity() {
+            // Make sure the submitted values are not empty.
+            return !(empty($this->city));
+        }
+        private function emptyUsername() {
+            // Make sure the submitted values are not empty.
+            return !(empty($this->uid));
+        }
+        private function emptyEmail() {
+            // Make sure the submitted values are not empty.
+            return !(empty($this->email));
+        }
+        private function emptyPassw() {
+            // Make sure the submitted values are not empty.
+            return !(empty($this->passw) || empty($this->passwRepeat));
+        }
+        private function invalidAlpha() {
             // Make sure the submitted values contain permitted characters.
-            return preg_match("/^[a-zA-Z0-9]*$/", $this->uid);
-        }
-        
+            return !(
+                preg_match("/^[a-zA-Z0-9]*$/", $this->uid) &&
+                preg_match("/^[a-zA-Z0-9]*$/", $this->phone) &&
+                preg_match("/^[a-zA-Z0-9]*$/", $this->street) &&
+                preg_match("/^[a-zA-Z0-9]*$/", $this->postal) &&
+                preg_match("/^[a-zA-Z0-9]*$/", $this->firstname) &&
+                preg_match("/^[a-zA-Z0-9]*$/", $this->lastname) &&
+                preg_match("/^[a-zA-Z0-9]*$/", $this->country) &&
+                preg_match("/^[a-zA-Z0-9]*$/", $this->city)
+            );
+        }     
         private function invalidEmail() {
             // Make sure the submitted values contain an @ character.
             return filter_var($this->email, FILTER_VALIDATE_EMAIL);
-        }
-        
+        }      
         private function passwMatcher() {
             // Make sure the submitted values are equal.
             return $this->passw === $this->passwRepeat;
-        }
-        
+        }        
         private function uidTakenVerify() {
             // Make sure the submitted values aren't in use.
             return $this->verifyUser($this->uid, $this->email);

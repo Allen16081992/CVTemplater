@@ -2,8 +2,6 @@
   // Start a session for displaying error messages.
   require 'config/peripherals/session_start.config.php'; 
 ?>
-<!-- User Experience - Waarom vragen ze zoveel bij het registreren? -->
-
 <!DOCTYPE html> 
 <html lang="en">
   <head>
@@ -53,7 +51,7 @@
       <div class="window" id="window">
         <div class="window-title">
           <div class="title">Login</div>
-          <button class="close-button alt" onclick="location.href='signup.html';">Signup</button>
+          <button class="close-button alt" onclick="location.href='signup.php';">Signup</button>
           <button data-window-close class="close-button">&#215;</button>
         </div>
         <form class="window-body" name="popup" action="config/login.config.php" method="post">
@@ -64,7 +62,7 @@
           <label for="pwd">Password</label>
           <input type="password" name="pwd" placeholder="Password">
           <button type="submit" name="submit">Login</button>
-          <span>Don't have an account yet? <a href="signup.html">Register</a>
+          <span>Don't have an account yet? <a href="signup.php">Register</a>
           </span>
         </form>
       </div>

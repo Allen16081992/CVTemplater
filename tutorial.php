@@ -102,7 +102,7 @@
         </form>
 
         <li><a href="./client.php"><i class='bx bxs-file'></i>Resume Builder</li>
-        <li><a><i class='bx bxs-crown'></i>Premium</a></li>
+        <li><a href="error404.php"><i class='bx bxs-crown'></i>Premium</a></li>
         <li class="on"><i class='bx bxs-videos'></i>Tutorial</a></li>
         <li><a href="./account.php"><i class='bx bxs-cog'></i>Account Settings</a></li>
       </ul>

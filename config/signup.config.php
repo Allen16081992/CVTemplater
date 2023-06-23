@@ -1,23 +1,26 @@
-<?php
+<?php // Dhr. Allen Pieter
     // These variables are free to use by anything.
     if(isset($_POST['submit'])) {
-
-        // Absorb the first part provided data from the registration form.
-        $uid = $_POST['username']; 
-        $passw = $_POST['pwd']; 
-        $passwRepeat = $_POST['pwdR']; 
-        $email = $_POST['email']; 
-
-        // Absorb the rest of the provided data from the registration form.
+        
+        // Absorb data in the first step of the registration form
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
+        // Absorb data in the second step
         $country = $_POST['nationality'];
-        $birth = $_POST['birth'];
-        $street = $_POST['streetname'];
-        $city = $_POST['city'];
-        $postal = $_POST['postalcode'];
+        $birth = $_POST['day'].'/'.$_POST['month'].'/'.$_POST['year'];
+        // Absorb data in the third step
         $phone = $_POST['phone'];
-
+        $street = $_POST['streetname'];
+        // Absorb data in the fourth step
+        $postal = $_POST['postalcode'];
+        $city = $_POST['city'];
+        // Absorb data in the fifth step
+        $uid = $_POST['username']; 
+        $email = $_POST['email']; 
+        // Absorb data in the sixth and last step
+        $passw = $_POST['pwd']; 
+        $passwRepeat = $_POST['pwdR']; 
+        
         // Initialise signup class
         include "idb.config.php";
         include "Classes/signup.class.config.php";
@@ -29,5 +32,6 @@
         $registrate->signupUser();
 
         // Dismiss to homepage
-        header('location: ../index.php?error=none');
+        header('location: ../index.php');
+        exit();
     }
