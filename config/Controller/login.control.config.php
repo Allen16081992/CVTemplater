@@ -20,7 +20,7 @@
             // Activate security function beneath.
             if(!$this->emptyUsername()) {
                 // Empty input, no values given for account.
-                $_SESSION['error'] = 'No username or password provided!';
+                $_SESSION['error'] = 'No username or password provided.';
                 header('location: ../index.php');          
                 exit();
             } elseif(!$this->emptyPassw()) {

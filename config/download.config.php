@@ -302,4 +302,9 @@ if (isset($_SESSION['resumeID'])) {
     $resumePDF = new ResumePDF();
     $resumePDF->fetchData($resumeID, $userID);
     $resumePDF->generatePDF();
+} else {
+    // No resume selected.
+    $_SESSION['error'] = 'Select a resume to view as PDF.';
+    header('location: ../client.php');          
+    exit();
 }

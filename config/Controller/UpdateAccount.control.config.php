@@ -94,7 +94,7 @@
         public function verifyPersonal() {
             if(!$this->emptyNames()) {
                 // No name or surname provided.
-                $_SESSION['error'] = 'No firstname or surname provided.';
+                $_SESSION['error'] = 'No name or surname provided.';
             } elseif(!$this->emptyPhone()) {
                 // No phone provided.
                 $_SESSION['error'] = 'No phone number provided.';               

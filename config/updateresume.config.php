@@ -16,7 +16,7 @@ if (isset($_POST['saveResume'])) {
     $nieuweresume->verifyResume();
 
     // Refresh client page.
-    $_SESSION['success'] = 'Resume updated.';
+    $_SESSION['success'] = 'Resume updated';
     header('location: ../client.php?');
     exit();
 }

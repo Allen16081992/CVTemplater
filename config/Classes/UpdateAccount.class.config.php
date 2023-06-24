@@ -63,7 +63,7 @@
                     exit();
                 } else {
                     // Error Messages by session instead of url parsing.
-                    $_SESSION['success'] = 'Account Information saved';
+                    $_SESSION['success'] = 'Personal Information saved';
                 }
                 $stmt = null; 
             }

@@ -103,7 +103,7 @@
             </div> 
           </form>
           <!--<button class="alt" name="clearResume">Clear</button>-->
-          <button class="alt" id="PDF">Download</button>
+          <button class="alt" id="PDF">Download</button><!-- id is needed for js -->
         </div>
         <!-- Profile Tab -->
         <input class="check" type="checkbox" id="collapse-head2">
@@ -152,9 +152,10 @@
               <?php } ?>
             </div>
             <div class="left">   
-              <button type="submit" name="saveProfile">Save Changes</button>       
+              <button type="submit" name="saveProfile">Save Changes</button>         
             </div>
           </form>
+          <button type="submit" class="Trash" name="trashProfile"><i class='bx bxs-trash' ></i></button> 
           <!--<button class="alt" name="clearProfile">Clear</button>-->
         </div>
 
@@ -164,35 +165,54 @@
         <div class="collapse-text" id="field3">
           <form name="experience" action="config/createexperience.config.php" method="post">
             <p class="error-work-tab"></p>
-            <label for="from">From - Until</label>
+            <div class="label-container">
+              <div class="label-group">
+                <label for="from">From</label>
+                <label for="until">Until</label>
+                <label for="profession">Profession</label>
+                <label for="company">Company</label>
+              </div>
+            </div>
             <?php if (isset($userID) && !empty($data['experience'])) { ?>
-                <?php foreach ($data['experience'] as $experience): ?>
-                    <input type="hidden" name="work" value="<?= $experience['workID']; ?>">
-                    <input type="text" name="from" placeholder="Ex: 1956-02-01" value="<?= $experience['firstDate']; ?>">
-                    <input type="text" name="until" placeholder="Ex: 2002-01-01 or To Date" value="<?= $experience['lastDate']; ?>">
-                <?php endforeach; ?>
-            <?php } else { ?>
-                <input type="text" name="from" placeholder="Ex: 1956-02-01">
-                <input type="text" name="until" placeholder="Ex: 2002-01-01 or To Date">
-            <?php } ?>
-            
-            <label for="worktitle">Profession and Description</label>
-            
-            <?php if (isset($userID) && !empty($data['experience'])) { ?>
-                <?php foreach ($data['experience'] as $experience): ?>
-                    <input type="text" name="worktitle" placeholder="Finance Advisor" value="<?= $experience['worktitle']; ?>">
-                    <input type="text" name="company" placeholder="Triodos Bank" value="<?= $experience['company']; ?>">
-                    <textarea name="workdesc" rows="2" placeholder="Write your job summary"><?= $experience['workdesc']; ?></textarea>
-                <?php endforeach; ?>
-            <?php } else { ?>
-                <input type="text" name="worktitle" placeholder="Finance Advisor">
-                <input type="text" name="company" placeholder="Triodos Bank">
-                <textarea name="workdesc" rows="2" placeholder="Write your job summary"></textarea>
-            <?php } ?>
-
-            <div class="left">
-              <button type="submit" class="New" name="addExperience">Add</button>  
-              <button type="submit" name="saveExperience">Save Changes</button>       
+              <?php foreach ($data['experience'] as $experience): 
+              echo '<div class="input-container">
+                    <div class="input-group">
+                        <input type="text" name="from" placeholder="1956-02-01" value="'.$experience['firstDate'].'">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" name="until" placeholder="1956-02-01" value="'.$experience['lastDate'].'">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" name="profession" placeholder="Marketing Manager" value="'.$experience['worktitle'].'">
+                    </div>
+                    <div class="input-group">
+                        <input type="text" name="company" placeholder="DHL" value="'.$experience['company'].'">
+                    </div>
+                  </div>
+                  <textarea name="workdesc" rows="2" placeholder="I was responsible for the flow of goods">'.$experience['workdesc'].'</textarea>
+                  <input type="hidden" name="workID" value="'.$experience['workID'].'">' ;?>
+              <?php endforeach; ?>               
+            <?php } else { 
+              echo '<div class="input-container">
+                  <div class="input-group">
+                    <input type="text" name="from" placeholder="1956-02-01">
+                  </div>
+                  <div class="input-group">
+                    <input type="text" name="until" placeholder="1956-02-01">
+                  </div>
+                  <div class="input-group">
+                    <input type="text" name="profession" placeholder="Marketing Manager">
+                  </div>
+                  <div class="input-group">
+                    <input type="text" name="company" placeholder="DHL">
+                  </div>
+                </div>
+                <textarea name="workdesc" rows="2" placeholder="Write your job description here..."></textarea>'; 
+            } ?>
+            <div class="button-container">
+              <button type="submit" class="Add" name="addExperience">Add</button>  
+              <button type="submit" class="Save" name="saveExperience">Save Change</button> 
+              <button type="submit" class="Trash" name="trashExperience"><i class='bx bxs-trash' ></i></button>      
             </div>       
           </form>
           <!--<button class="alt" name="clearWork">Clear</button>-->
@@ -204,36 +224,56 @@
         <div class="collapse-text" id="field4">
           <form name="education" action="config/createeducation.config.php" method="post">
             <p class="error-education-tab"></p>
-            <label for="from">From - Until</label>
+            <div class="label-container">
+              <div class="label-group">
+                <label for="from">From</label>
+                <label for="until">Until</label>
+                <label for="edutitle">Program</label>
+                <label for="company">Institution</label>
+              </div>
+            </div>
             <?php if (isset($userID) && !empty($data['education'])) { ?>
-                <?php foreach ($data['education'] as $college): ?>
-                    <input type="hidden" name="school" value="<?= $college['eduID']; ?>">
-                    <input type="text" name="from" placeholder="1896-01-15" value="<?= $college['firstDate']; ?>">
-                    <input type="text" name="until" placeholder="1936-04-11" value="<?= $college['lastDate']; ?>">
-                <?php endforeach; ?>
-            <?php } else { ?>
-                <input type="text" name="from" placeholder="1896-01-15">
-                <input type="text" name="until" placeholder="1936-04-11">
-            <?php } ?>
+              <?php foreach ($data['education'] as $college):
+                echo '<div class="input-container">
+                  <div class="input-group">
+                      <input type="text" name="from" placeholder="1956-02-01" value="'.$college['firstDate'].'">
+                  </div>
+                  <div class="input-group">
+                      <input type="text" name="until" placeholder="1956-02-01" value="'.$college['lastDate'].'">
+                  </div>
+                  <div class="input-group">
+                      <input type="text" name="edutitle" placeholder="Electrical Engineering" value="'.$college['edutitle'].'">
+                  </div>
+                  <div class="input-group">
+                      <input type="text" name="company" placeholder="DHL" value="'.$college['company'].'">
+                  </div>
+                </div>
+                <textarea name="edudesc" rows="2" placeholder="I was responsible for the flow of goods">'.$college['edudesc'].'</textarea>
+                <input type="hidden" name="eduID" value="'.$college['eduID'].'">' ;?>
+              <?php endforeach; ?>
+            <?php } else {
+              echo '<div class="input-container">
+              <div class="input-group">
+                <input type="text" name="from" placeholder="1956-02-01">
+              </div>
+              <div class="input-group">
+                <input type="text" name="until" placeholder="1956-02-01">
+              </div>
+              <div class="input-group">
+                <input type="text" name="edutitle" placeholder="Electrical Engineering">
+              </div>
+              <div class="input-group">
+                <input type="text" name="company" placeholder="LTS Technical School">
+              </div>
+            </div>
+            <textarea name="edudesc" rows="2" placeholder="Write your college description here..."></textarea>'; 
+            } ?>
 
-            <label for="profession">Profession and Description</label>
-
-            <?php if (isset($userID) && !empty($data['education'])) { ?>
-                <?php foreach ($data['education'] as $college): ?>
-                    <input type="text" name="edutitle" placeholder="Ex: Server Administrator" value="<?= $college['edutitle']; ?>">
-                    <input type="text" name="company" placeholder="Ex: Rotterdam Technical School" value="<?= $college['company']; ?>">
-                    <textarea name="edudesc" rows="2" placeholder="Write your summary"><?= $college['edudesc']; ?></textarea>
-                <?php endforeach; ?>
-            <?php } else { ?>
-                <input type="text" name="edutitle" placeholder="Ex: Server Administrator">
-                <input type="text" name="company" placeholder="Ex: Rotterdam Technical School">
-                <textarea name="edudesc" rows="2" placeholder="Write your summary"></textarea>
-            <?php } ?>
-
-            <div class="left">
-              <button type="submit" class="New" name="addEducation">Add</button>  
-              <button type="submit" name="saveEducation">Save Changes</button>  
-            </div>       
+            <div class="button-container">
+              <button type="submit" class="Add" name="addEducation">Add</button>  
+              <button type="submit" class="Save" name="saveEducation">Save Change</button>
+              <button type="submit" class="Trash" name="trashProfile"><i class='bx bxs-trash' ></i></button>   
+            </div>      
           </form>
           <!--<button class="alt">Clear</button>--> 
         </div>
@@ -245,41 +285,65 @@
           <form name="skills" action="config/createskills.config.php" method="post">
             <!-- Languages, Technical Skills, Interests -->
             <p class="error-skill-tab"></p>
-            <label for="technical">Technical Skill</label>
-            <?php if (isset($userID) && !empty($data['technical'])) { ?>
-                <?php foreach ($data['technical'] as $technical): ?>
-                    <input type="text" name="technical" placeholder="Ex: Analyzing data" value="<?= $technical['techtitle']; ?>"> 
+            <div class="label-container">
+              <div class="label-group">
+                <label for="technical">Technical Skill</label>
+                <label for="language">Languages</label>
+                <label for="interest">Interests</label>
+              </div>
+            </div>
+            <div class="input-container">
+              <?php if (isset($userID) && !empty($data['technical'])) { ?>
+                <?php foreach ($data['technical'] as $technical): 
+                  echo '
+                    <div class="input-group">
+                      <input type="text" name="technical" placeholder="Analyzing data" value="'.$technical['techtitle'].'">
+                    </div>'
+                  ; ?>
                 <?php endforeach; ?>
-            <?php } else { ?>
-                <input type="text" name="technical" placeholder="Ex: Analyzing data">
-            <?php } ?>
-
-            <label for="language">Languages</label>
-            <?php if (isset($userID) && !empty($data['languages'])) { ?>
-                <?php foreach ($data['languages'] as $lang): ?>
-                    <input type="text" name="language" placeholder="Ex: Maghrebi Arabic" value="<?= $lang['language']; ?>">
+              <?php } else { 
+                echo '
+                  <div class="input-group">
+                    <input type="text" name="technical" placeholder="Analyzing data">
+                  </div>'
+                ; } 
+              ?>
+              <?php if (isset($userID) && !empty($data['languages'])) { ?>
+                <?php foreach ($data['languages'] as $lang):
+                  echo '
+                    <div class="input-group">
+                      <input type="text" name="language" placeholder="Maghrebi Arabic" value="'.$lang['language'].'">
+                    </div>'
+                  ; ?>
                 <?php endforeach; ?>
-            <?php } else { ?>
-                <input type="text" name="language" placeholder="Ex: Maghrebi Arabic">
-            <?php } ?>
+                <?php } else { 
+                  echo '
+                    <div class="input-group">
+                      <input type="text" name="language" placeholder="Maghrebi Arabic">
+                    </div>'
+                  ; ?>
+              <?php } ?>                   
+              <?php if (isset($userID) && !empty($data['interests'])) { ?>
+                  <?php foreach ($data['interests'] as $hobby):
+                    echo '
+                      <div class="input-group">
+                      <input type="text" name="interest" placeholder="Gaming" value="'.$hobby['interest'].'">
+                      </div>'
+                    ; ?>
+                  <?php endforeach; ?>
+              <?php } else { 
+                echo '
+                  <div class="input-group">
+                    <input type="text" name="interest" placeholder="Gaming">
+                  </div>'
+                ; ?>
+              <?php } ?>
+            </div>
 
-            <label for="interest">Interests</label>
-            <?php if (isset($userID) && !empty($data['interests'])) { ?>
-                <?php foreach ($data['interests'] as $hobby): ?>
-                    <input type="text" name="interest" placeholder="Ex: Gaming" value="<?= $hobby['interest']; ?>">
-                <?php endforeach; ?>
-            <?php } else { ?>
-                <input type="text" name="interest" placeholder="Ex: Gaming">
-            <?php } ?>
-
-            <div class="left"> 
-            <?php if (isset($userID) && !empty($data['interests'])) { ?>
-              <button type="submit" class="New" name="addSkill">Add</button> 
-              <button type="submit" name="saveSkill">Save Changes</button>
-            <?php } else { ?>
-              <button type="submit" class="New" name="addSkill">Add</button>
-              <button type="submit" name="saveSkill">Save Changes</button>
-            <?php } ?>
+            <div class="button-container"> 
+              <button type="submit" class="Add" name="addSkill">Add</button>
+              <button type="submit" class="Save" name="saveSkill">Save Change</button>
+              <button type="submit" class="Trash" name="trashSkill"><i class='bx bxs-trash' ></i></button> 
             </div> 
           </form>
           <!--<button class="alt" onclick="">Clear</button>-->

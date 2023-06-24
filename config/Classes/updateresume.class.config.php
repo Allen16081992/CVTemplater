@@ -40,10 +40,9 @@ class updateResume {
         return $this->resumetitle;
     }
 
-    // Dhr. A Pieter: Error handler added.
-    // Can't be good when only half of the code incorporates validation.
+    // Dhr. A Pieter: Error handler added. Can't be good when only half of the code incorporates validation.
     public function verifyResume() {
-        // Invoke validation.
+        // Invoke the error handlers.
         if(!$this->emptyResumetitle()) {
             // No resume name provided.
             $_SESSION['error'] = 'Please name your resume.';

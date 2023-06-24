@@ -112,9 +112,58 @@ ul li.on { cursor:default; margin-left:20px; }
 }
 .sidebar button { width: 100%; }
 .New { background: rgb(42, 170, 42); }
-.New:hover { background: rgb(37, 146, 37); }
+.Add, .Trash { width:5rem; }
+.Save { width:10rem;}
+.Add { padding:1rem; background: rgb(42, 170, 42); }
+.New:hover, .Add:hover { background: rgb(37, 146, 37); }
+.Trash { background: rgb(201, 39, 39); }
 .Del { background: rgb(201, 39, 39); }
-.Del:hover { background: rgb(176, 45, 45); }
+.Del:hover, .Trash:hover { background: rgb(176, 45, 45); }
+
+.button-container {
+  text-align: left;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.button-container button {
+  display: inline-block;
+  margin-left: 10px; /* Add a left margin of 5px */
+}
+.button-container button:not(:first-child) {
+  margin-left: 0; /* Remove the left margin from the first button */
+}
+.label-container {
+  display: flex;
+  justify-content: left;
+}
+.label-group {
+  display: flex;
+  justify-content: left;
+  /*gap: 9rem; /* Adjust the gap between labels if needed */
+}
+.label-group > label {
+  pointer-events: none;
+  width: 13rem;
+  margin-bottom:-20px;
+}
+
+.input-container {
+  text-align: left;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.input-group {
+  display: inline-block;
+  margin-right: 10px;
+}
+.input-group:last-child {
+  margin-right: 0;
+}
+.input-group input[type="text"] {
+  display: block;
+  max-width: 12rem;
+  margin:2rem 0 1rem 0;
+}
 
 .sidebar ul { list-style-type: none; }
 .sidebar ul li {
@@ -380,6 +429,8 @@ ul li.on { cursor:default; margin-left:20px; }
 }
 .collapse-text h5, p { padding: 15px 0 0 15px; }
 .collapse-text form input { border: 1px solid transparent; transition: border 0.3s ease; }
+.collapse-text form textarea { border: 2px solid rgba(0,0,0,.2); transition: border 0.3s ease; }
+.collapse-text form textarea:focus { border: 2px solid black; }
 .collapse-text form input:focus { border: 1px solid black; }
 .collapse-text form table { margin-top:5px; }
 .collapse-text img{
@@ -476,22 +527,29 @@ input[type="file"] {
     }
     .collapse form .left input[name='resumetitle'] { width:210%; }
     .collapse-text button { max-width:100%; margin:5px 0 0 0;}
-    header .error-message {
-        position:absolute;
-        margin-top:0;
-        left:50%;
-        max-width:40%;
+    .input-group input[type="text"] {
+      font-size:10px;
+      max-width: 5rem;
+      margin:2rem 0 1rem 0;
     }
-    header .success-message {
-        position:absolute;
-        margin-top:0;
-        left:50%;
-        max-width:40%;
+    .collapse-text form textarea { font-size:12px; }
+    .label-group {
+      width: 100%;
     }
-    header .golden-message {
-        position:absolute;
-        margin-top:32%;
-        max-width:100%;
+    .button-container {
+      text-align: center; /* Center align the buttons */
+      overflow-x: hidden; /* Hide horizontal scrollbar */
+    } 
+    .button-container button {
+      margin-left:0;
+      margin-right:0;
+      margin-top:1rem; /* Reset the left margin for center alignment */
+    }
+    .error-message, .success-message, .golden-message {
+      position:absolute;
+      left:0;
+      margin-top:32%;
+      width:100%;
     }
 }
 /* Tablet Specific */

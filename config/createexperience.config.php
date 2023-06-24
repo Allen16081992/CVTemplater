@@ -17,7 +17,7 @@
         $nieuweworktitle->Createexperience();
 
         // Refresh client page.
-        $_SESSION['success'] = 'Experience has been created.';
+        $_SESSION['success'] = 'Experience has been created';
         header('location: ../client.php?');
         exit();
     } elseif (isset($_POST['saveExperience'])) {
@@ -28,7 +28,7 @@
         $nieuweworktitle->Updateexperience();
 
         // Refresh client page.
-        $_SESSION['success'] = 'Experience has been created.';
+        $_SESSION['success'] = 'Experience has been saved';
         header('location: ../client.php?');
         exit();
     }

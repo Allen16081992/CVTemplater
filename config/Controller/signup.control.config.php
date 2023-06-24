@@ -46,7 +46,7 @@
                 $_SESSION['error'] = 'No country or nationality provided.';
             } elseif(!$this->emptyBirth()) {
                 // No country information provided.
-                $_SESSION['error'] = 'No country or nationality provided.';
+                $_SESSION['error'] = 'No date of birth provided.';
             } elseif(!$this->emptyPhone()) {
                 // No phone information provided.
                 $_SESSION['error'] = 'No phone number provided.';
@@ -73,13 +73,13 @@
                 $_SESSION['error'] = 'Only alphanumeric characters allowed!';
             } elseif(!$this->invalidEmail()) {
                 // Invalid emailaddress.
-                $_SESSION['error'] = 'Please enter a valid email address!';
+                $_SESSION['error'] = 'Please enter a valid email address.';
             } elseif(!$this->passwMatcher()) {
                 // Passwords are not equal!
                 $_SESSION['error'] = "Passwords don't match!";
             } elseif(!$this->uidTakenVerify()) {
                 // Username or email already taken.
-                $_SESSION['error'] = "This username/email is already used!";
+                $_SESSION['error'] = "The username or email is already used.";
             } else {
                 $this->setUser(
                     $this->uid, $this->passw, $this->email, 
