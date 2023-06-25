@@ -112,8 +112,11 @@ ul li.on { cursor:default; margin-left:20px; }
 }
 .sidebar button { width: 100%; }
 .New { background: rgb(42, 170, 42); }
-.Add, .Trash { width:5rem; }
-.Save { width:10rem;}
+#PDF, .Add, .Save, .Trash { 
+  height: 30px; /* Adjust the height as per your requirements */
+  line-height: 0; /* Should match the height of the button */
+  text-align: center; 
+}
 .Add { padding:1rem; background: rgb(42, 170, 42); }
 .New:hover, .Add:hover { background: rgb(37, 146, 37); }
 .Trash { background: rgb(201, 39, 39); }

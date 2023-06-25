@@ -40,10 +40,28 @@
 
           // Erase resume related profile data if there is any
           if ($this->tableHasData('profile', $resID, $userID)) {
+            // Retrieve the fileName from the profile record
+            $stmt = $pdo->prepare('SELECT `fileName` FROM `profile` WHERE resumeID = :resID AND userID = :userID');
+            $stmt->bindParam(":resID", $resID['resumeID']);
+            $stmt->bindParam(":userID", $userID);
+            $stmt->execute();
+            $existingImage = $stmt->fetch();
+
+            // Check if the fileName column has actual data
+            if ($existingImage && !empty($existingImage['fileName'])) {
+              // Remove the associated image file
+              $imageFilePath = '../img/avatars/' . $existingImage['fileName'];
+              if (file_exists($imageFilePath)) {
+                  unlink($imageFilePath);
+              }
+              $existingImage = null;
+            }
+
             $stmtPro = $pdo->prepare('DELETE FROM `profile` WHERE resumeID = :resID AND userID = :userID');
             $stmtPro->bindParam(":resID", $resID['resumeID']);
             $stmtPro->bindParam(":userID", $userID);
             $stmtPro->execute();
+            $stmtPro = null;
           }
 
           // Erase resume related experience data if there is any
@@ -52,6 +70,7 @@
             $stmtExp->bindParam(":resID", $resID['resumeID']);
             $stmtExp->bindParam(":userID", $userID);
             $stmtExp->execute();
+            $stmtExp = null;
           }
 
           // Erase resume related education data if there is any
@@ -60,6 +79,7 @@
             $stmtEdu->bindParam(":resID", $resID['resumeID']);
             $stmtEdu->bindParam(":userID", $userID);
             $stmtEdu->execute();
+            $stmtEdu = null;
           }
           
           // Erase resume related technical data if there is any
@@ -68,6 +88,7 @@
             $stmtTech->bindParam(":resID", $resID['resumeID']);
             $stmtTech->bindParam(":userID", $userID);
             $stmtTech->execute();
+            $stmtTech = null;
           }
 
           // Erase resume related language data if there is any
@@ -76,6 +97,7 @@
             $stmtLang->bindParam(":resID", $resID['resumeID']);
             $stmtLang->bindParam(":userID", $userID);
             $stmtLang->execute();
+            $stmtLang = null;
           }
 
           // Erase resume related interest data if there is any
@@ -84,19 +106,46 @@
             $stmtInt->bindParam(":resID", $resID['resumeID']);
             $stmtInt->bindParam(":userID", $userID);
             $stmtInt->execute();
+            $stmtInt = null;
           } 
 
           // Erase data from resume
           $stmtRes = $pdo->prepare('DELETE FROM `resume` WHERE resumeID = :resID AND userID = :userID');
           $stmtRes->bindParam(":resID", $resID['resumeID']);
           $stmtRes->bindParam(":userID", $userID);
-          $stmtRes->execute();          
+          $stmtRes->execute();
+          $stmtRes = null;          
 
           // Erase variables and session data
           $resID = null;
           $this->resumetitle = null;
           unset($_SESSION['resumeID']);
           unset($_SESSION['resumetitle']);
+
+          // Start cleanup and Reset auto increment for all tables
+          $stmt = $pdo->prepare("SHOW TABLES");
+          $stmt->execute();
+          $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+          foreach ($tables as $tableID) {
+            // Get the list of columns for the table
+            $stmt = $pdo->prepare("DESCRIBE `$tableID`");
+            $stmt->execute();
+            $columns = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+            // Get the first column name
+            $firstColumn = $columns[0];
+
+            // Get the maximum ID value for the table
+            $stmt = $pdo->prepare("SELECT MAX(`$firstColumn`) FROM `$tableID`");
+            $stmt->execute();
+            $maxID = $stmt->fetchColumn();
+        
+            // Reset auto-increment to the next available ID
+            $stmt = $pdo->prepare("ALTER TABLE `$tableID` AUTO_INCREMENT = :maxID");
+            $stmt->bindValue(':maxID', $maxID + 1, PDO::PARAM_INT);
+            $stmt->execute();
+          }
           
           // Success message by session instead of URL parsing
           $_SESSION['success'] = 'Resume deleted successfully';
