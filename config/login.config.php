@@ -7,7 +7,7 @@
         $passw = $_POST['pwd']; 
 
         // Initialise login class
-        require_once "idb.config.php";
+        require_once "idb.config.php"; // (improved) database connection.
         require_once "Classes/login.class.config.php";
         require_once "Controller/login.control.config.php";
 
@@ -18,4 +18,5 @@
 
         // When loginUser() completed verification, open the client environment MyResume.
         header('Location: ../client.php');
+        exit();
     }

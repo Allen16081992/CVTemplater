@@ -5,7 +5,8 @@
 require_once 'peripherals/session_start.config.php';
 // Use the (improved) database connection.
 require_once "idb.config.php";
-require_once "Classes/createskills.class.config.php";
+require_once "Classes/technical.skills.class.config.php";
+require_once "Classes/TrashTables.class.config.php";
 
 if (isset($_POST['addSkill'])){
     $language = $_POST['language'];
@@ -33,4 +34,15 @@ if (isset($_POST['addSkill'])){
     $_SESSION['success'] = 'Skills has been updated.';
     header('location: ../client.php?');
     exit();
+} elseif(isset($_POST['trashSkill'])) {
+    $resumeID = $_SESSION['resumeID'];
+    $userID = $_SESSION['user_id'];
+
+    // Initialise the Multipurose trash class
+    $multidelete = new MultiTrash($resumeID, $userID);
+    $multidelete->multiTrash();
+
+    // When trashing process completes, open the client environment MyResume.
+    header('location: ../client.php');
+    exit();   
 }

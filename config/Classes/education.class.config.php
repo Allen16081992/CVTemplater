@@ -29,7 +29,7 @@ class Education {
 
             // Khaqan
             $connection = $this->database->connect();
-            $edutitle = $this->getedutitle();
+            //$edutitle = $this->getedutitle();
             $edudesc = $this->getedudesc();
             $company = $this->getcompany();
             $firstDate = $this->getfirstDate();
@@ -39,7 +39,7 @@ class Education {
                 "INSERT INTO education (edutitle, edudesc, company, firstDate, lastDate, resumeID, userID) 
                  VALUES (:edutitle, :edudesc, :company, :firstDate, :lastDate, :resumeID, :userID);"
             );
-            $sql->bindParam(":edutitle", $edutitle);
+            $sql->bindParam(":edutitle", $this->edutitle);
             $sql->bindParam(":edudesc", $edudesc);
             $sql->bindParam(":company", $company);
             $sql->bindParam(":firstDate", $firstDate);
@@ -62,7 +62,7 @@ class Education {
         if (isset($this->userID) && isset($this->resumeID) && !empty($this->resumeID)) {       
 
             $connection = $this->database->connect();
-            $edutitle = $this->getedutitle();
+            //$edutitle = $this->getedutitle();
             $edudesc = $this->getedudesc();
             $company = $this->getcompany();
             $firstDate = $this->getfirstDate();
@@ -71,7 +71,7 @@ class Education {
             $sql = $connection->prepare(
                 "UPDATE `education` SET edutitle = :edutitle, edudesc = :edudesc, company = :company, firstDate = :firstDate, lastDate = :lastDate, resumeID = :resumeID, userID = :userID;"
             );
-            $sql->bindParam(":edutitle", $edutitle);
+            $sql->bindParam(":edutitle", $this->edutitle);
             $sql->bindParam(":edudesc", $edudesc);
             $sql->bindParam(":company", $company);
             $sql->bindParam(":firstDate", $firstDate);
@@ -88,29 +88,32 @@ class Education {
         }
     }
 
+    // Dhr. Allen Pieter: Add those damn empty checks!
+    // We don't want NULL set into database columns to specifically hold NULL...
     public function verifyEducation(){
         if(!$this->emptyInput()){
-            $_SESSION['error'] = 'please name your education.';
+            $_SESSION['error'] = 'please fill your education.';
             header('location: ../client.php');
             exit();
         }
-        $this->Createeducation();
-    }
-    private function emptyInput(){
-        return !(empty($this->edutitle));
+        if (isset($_POST['addEducation'])) {
+            $this->Createeducation();
+        } elseif (isset($_POST['saveEducation'])) {
+            $this->Updateeducation();
+        }
     }
 
-//    private function emptyInput() {
-//        // Check if any of the submitted values are empty.
-//        return (
-//            empty($this->edutitle) ||
-//            empty($this->edudesc) ||
-//            empty($this->company) ||
-//            empty($this->firstDate) ||
-//            empty($this->lastDate)
-//        );
-//    }
-
+    private function emptyInput() {
+        // Check if any of the submitted values are empty.
+        return (
+            !empty($this->edutitle) ||
+            !empty($this->edudesc) ||
+            !empty($this->company) ||
+            !empty($this->firstDate) ||
+            !empty($this->lastDate)
+        );
+    }
+    //////////////////////////////////////////////////////////
 
     public function getedutitle()
     {
@@ -178,5 +181,3 @@ class Education {
     {
         $this->database = $database;
     }
-
-}

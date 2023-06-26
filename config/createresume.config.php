@@ -8,6 +8,8 @@
     // Verify if a new resume was submitted
     if (isset($_POST['creResume'])) {
         $resumetitle = $_POST['cvname'];
+
+        // This class also contains the update function
         $nieuweresume = new createResume($resumetitle);
         $nieuweresume->verifyResume();
 

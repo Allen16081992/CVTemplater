@@ -53,7 +53,7 @@ nav a:hover, nav a.current {
 }
 nav a.current { cursor:default; }
 ul li.on { cursor:default; margin-left:20px; }
-
+ul li .m-on { color: #ddd; }
 #menu-icon {
     font-size:3rem;
     color: var(--text-color);
@@ -111,13 +111,13 @@ ul li.on { cursor:default; margin-left:20px; }
     padding: 1rem; 
 }
 .sidebar button { width: 100%; }
-.New { background: rgb(42, 170, 42); }
+#profile button { margin-left:12px; }
+.New, .Add { background: rgb(42, 170, 42); }
 #PDF, .Add, .Save, .Trash { 
   height: 30px; /* Adjust the height as per your requirements */
   line-height: 0; /* Should match the height of the button */
   text-align: center; 
 }
-.Add { padding:1rem; background: rgb(42, 170, 42); }
 .New:hover, .Add:hover { background: rgb(37, 146, 37); }
 .Trash { background: rgb(201, 39, 39); }
 .Del { background: rgb(201, 39, 39); }
@@ -512,12 +512,19 @@ input[type="file"] {
         height:60px;
         bottom: -60px;
     }
-    .m-sidebar ul { 
-        margin:.5rem;   
-        position:relative;   
-        display:inline-flex;
+    .m-sidebar ul {
+      margin: 0.5rem;
+      position: relative;
+      display: flex;
+      justify-content: center;
     }
-    .m-sidebar ul li { margin-right: 2rem; }
+    
+    .m-sidebar ul li {
+      flex: 1;
+      margin: 0 0.85rem; /* Adjust the margin as needed */
+      text-align: center;
+    }
+
     .collapse {
         position:absolute;
         top:15%;
@@ -529,7 +536,7 @@ input[type="file"] {
         height: 3.2rem;
     }
     .collapse form .left input[name='resumetitle'] { width:210%; }
-    .collapse-text button { max-width:100%; margin:5px 0 0 0;}
+    .collapse-text button { margin:5px 0 0 0;}
     .input-group input[type="text"] {
       font-size:10px;
       max-width: 5rem;
@@ -538,6 +545,15 @@ input[type="file"] {
     .collapse-text form textarea { font-size:12px; }
     .label-group {
       width: 100%;
+    }
+    .input-group > input[name="technical"] {
+      max-width: 7rem;
+    }
+    .input-group > input[name="language"] {
+      max-width: 7rem;
+    }
+    .input-group > input[name="interest"] {
+      max-width: 7rem;
     }
     .button-container {
       text-align: center; /* Center align the buttons */
@@ -548,7 +564,8 @@ input[type="file"] {
       margin-right:0;
       margin-top:1rem; /* Reset the left margin for center alignment */
     }
-    .error-message, .success-message, .golden-message {
+    #PDF, .Add, .Save, .Trash { max-width:10rem; }
+    header .error-message, .success-message, .golden-message {
       position:absolute;
       left:0;
       margin-top:32%;

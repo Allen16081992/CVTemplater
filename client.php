@@ -75,7 +75,8 @@
       <ul>
         <li><a data-window-target="#window"><i class='bx bx-plus-circle bx-md'></i></a></li>
         <li><a data-window-target="#window2"><i class='bx bx-x-circle bx-md'></i></a></li>
-        <li><a><i class='bx bxs-crown bx-md'></i></a></li>
+        <li><a class="m-on"><i class='bx bxs-file bx-md'></i></li>
+        <li><a href="./error404.php"><i class='bx bxs-crown bx-md'></i></a></li>
         <li><a href="./tutorial.php"><i class='bx bxs-videos bx-md'></i></a></li>
         <li><a href="./account.php"><i class='bx bxs-cog bx-md'></i></a></li>
       </ul>
@@ -102,7 +103,6 @@
               <button type="submit" class="Save" name="saveResume">Save</button>
             </div> 
           </form>
-          <!--<button class="alt" name="clearResume">Clear</button>-->
           <button class="alt" id="PDF">Download</button><!-- id is needed for js -->
         </div>
 
@@ -110,8 +110,9 @@
         <input class="check" type="checkbox" id="collapse-head2">
         <label for="collapse-head2">Profile</label>
         <div class="collapse-text" id="field2">
-          <p>Edit your profile image</p>       
-          <form name="profile" action="config/profile.config.php" enctype="multipart/form-data" method="post">
+          <p>Edit your profile image</p>
+          <!-- id 'profile' is needed to target buttons in css -->       
+          <form id="profile" name="profile" action="config/profile.config.php" enctype="multipart/form-data" method="post">
             <input type="text" name="resumeid" value="<?= isset($resumeID) ? $resumeID : '' ?>" hidden>
             <div class="left">
               <?php if (isset($userID) && !empty($data['profile'])) { ?>
@@ -151,11 +152,9 @@
               <?php } else { ?>
                 <textarea name="desc" rows="2" placeholder="Write your summary"></textarea>
               <?php } ?>
-            </div>
-            <div class="left">   
-              <button type="submit" class="Save" name="saveProfile">Save</button> 
-              <button type="submit" class="Trash" name="trashProfile">Trash</button>        
-            </div>
+            </div>           
+            <button type="submit" class="Save" name="saveProfile">Save</button> 
+            <button type="submit" class="Trash" name="trashProfile">Trash</button>           
           </form> 
         </div>
 
@@ -174,7 +173,7 @@
           </div>
           <?php if (isset($userID) && !empty($data['experience'])) { ?>
             <?php foreach ($data['experience'] as $experience): 
-            echo '<form name="experience" action="config/createexperience.config.php" method="post">
+            echo '<form name="experience" action="config/experience.config.php" method="post">
                 <div class="input-container">
                   <div class="input-group">
                       <input type="text" name="from" placeholder="1956-02-01" value="'.$experience['firstDate'].'">
@@ -198,7 +197,7 @@
               </form>';
             endforeach; ?> 
             <!-- Dynamically produce an empty form as well -->
-            <form name="experience" action="config/createexperience.config.php" method="post">
+            <form name="experience" action="config/experience.config.php" method="post">
               <div class="input-container">
                 <div class="input-group">
                     <input type="text" name="from" placeholder="1956-02-01">
@@ -219,7 +218,7 @@
               </div>
             </form>               
           <?php } else { 
-            echo '<form name="experience" action="config/createexperience.config.php" method="post">
+            echo '<form name="experience" action="config/experience.config.php" method="post">
               <div class="input-container">
                 <div class="input-group">
                     <input type="text" name="from" placeholder="1956-02-01">
@@ -257,7 +256,7 @@
             </div>
             <?php if (isset($userID) && !empty($data['education'])) { ?>
               <?php foreach ($data['education'] as $college):
-                echo '<form name="education" action="config/createeducation.config.php" method="post">
+                echo '<form name="education" action="config/education.config.php" method="post">
                   <div class="input-container">
                     <div class="input-group">
                         <input type="text" name="from" placeholder="1956-02-01" value="'.$college['firstDate'].'">
@@ -281,7 +280,7 @@
                 </form>';
               endforeach; ?>
               <!-- Dynamically produce an empty form as well -->
-              <form name="education" action="config/createeducation.config.php" method="post">
+              <form name="education" action="config/education.config.php" method="post">
                 <div class="input-container">
                   <div class="input-group">
                       <input type="text" name="from" placeholder="1956-02-01">
@@ -302,7 +301,7 @@
                 </div>
               </form>
             <?php } else {
-              echo '<form name="education" action="config/createeducation.config.php" method="post">
+              echo '<form name="education" action="config/education.config.php" method="post">
                 <div class="input-container">
                   <div class="input-group">
                       <input type="text" name="from" placeholder="1956-02-01">
@@ -340,11 +339,11 @@
             </div>
             
               <?php if (isset($userID) && !empty($data['technical']) && !empty($data['languages']) && !empty($data['interests'])) { ?>
-                <form name="skills" action="config/createskills.config.php" method="post">
+                <form name="TechnicalSkills" action="config/technical.skills.config.php" method="post">
                   <div class="input-container">
                     <?php foreach ($data['technical'] as $technical):
                       echo '
-                        <input type="hidden" name="tech_id" value="'.$technical['techID'].'">
+                        <input type="hidden" name="techID" value="'.$technical['techID'].'">
                         <div class="input-group">
                           <input type="text" name="technical" placeholder="Analyzing data" value="'.$technical['techtitle'].'">
                         </div>
@@ -352,7 +351,7 @@
                     endforeach; ?>
                     <?php foreach ($data['languages'] as $lang):
                       echo'
-                        <input type="hidden" name="lang_id" value="'.$lang['langID'].'">
+                        <input type="hidden" name="langID" value="'.$lang['langID'].'">
                         <div class="input-group">
                           <input type="text" name="language" placeholder="Maghrebi Arabic" value="'.$lang['language'].'">
                         </div>
@@ -360,7 +359,7 @@
                     endforeach; ?>
                     <?php foreach ($data['interests'] as $hobby):
                       echo'
-                        <input type="hidden" name="interest_id" value="'.$hobby['interestID'].'">
+                        <input type="hidden" name="interestID" value="'.$hobby['interestID'].'">
                         <div class="input-group">
                           <input type="text" name="interest" placeholder="Maghrebi Arabic" value="'.$hobby['interest'].'">
                         </div>
@@ -371,7 +370,8 @@
                     <button type="submit" class="Save" name="saveSkill">Save</button> 
                     <button type="submit" class="Trash" name="trashSkill">Trash</button>     
                   </div>
-
+                </form>
+                <form name="skills" action="config/technical.skills.config.php" method="post">
                   <div class="input-container">
                     <div class="input-group">
                       <input type="text" name="technical" placeholder="Analyzing data">
@@ -388,7 +388,7 @@
                   </div>
                 </form>
               <?php } else {
-                echo'<form name="skills" action="config/createskills.config.php" method="post">
+                echo'<form name="skills" action="config/technical.skills.config.php" method="post">
                   <div class="input-container">
                     <div class="input-group">
                       <input type="text" name="technical" placeholder="Analyzing data">
