@@ -54,7 +54,7 @@
           <button class="close-button alt" onclick="location.href='signup.php';">Signup</button>
           <button data-window-close class="close-button">&#215;</button>
         </div>
-        <form class="window-body" name="popup" action="config/login.config.php" method="post">
+        <form class="window-body" name="login" action="config/login.config.php" method="post">
           <p class="error-uid"></p>
           <p class="error-pwd"></p>
           <label for="username">Username</label>

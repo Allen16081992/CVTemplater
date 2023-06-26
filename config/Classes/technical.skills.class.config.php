@@ -56,11 +56,11 @@ class Skills
             $sqldrie->bindParam(":resumeID", $this->resumeID);
             $sqldrie->bindParam(":userID", $this->userID);           
             $sqldrie->execute();
+            exit();
         } else {
             // No resume selected.
             $_SESSION['error'] = 'You should create a resume first.';
-            header('location: ../client.php');
-            exit();                 
+            header('location: ../client.php');              
         }
     }
 
@@ -93,11 +93,11 @@ class Skills
             $sqldrie->bindParam(":resumeID", $this->resumeID);
             $sqldrie->bindParam(":userID", $this->userID);           
             $sqldrie->execute();
+            exit();
         } else {
             // No resume selected.
             $_SESSION['error'] = 'You should create a resume first.';
-            header('location: ../client.php');
-            exit();                 
+            header('location: ../client.php');              
         }
     }
 
@@ -109,17 +109,17 @@ class Skills
             // No interest provided.
             $_SESSION['error'] = 'Please fill in your interest.';
             header('location: ../client.php');
-            exit();
+
         } elseif(!$this->emptyLanguage()) {
             // No language provided.
             $_SESSION['error'] = 'Please fill in your languages.';
             header('location: ../client.php');
-            exit();           
+        
         } elseif(!$this->emptyTech()) { 
             // No skill provided.
             $_SESSION['error'] = 'Please fill in your skills.';
             header('location: ../client.php');
-            exit();  
+
         }
 
         // Push the submitted values to the correct function

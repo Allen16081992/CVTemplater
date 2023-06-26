@@ -30,7 +30,7 @@
           <h4>Registration</h4>
           <button class="close-button alt" onclick="location.href='index.php';">Login</button>
         </div>
-        <form class="window-body" id="rotateForm" action="config/signup.config.php" method="post" autocomplete="off">
+        <form class="window-body" name="signup" id="rotateForm" action="config/signup.config.php" method="post" autocomplete="off">
           <div style="text-align:center;margin-top:40px; cursor:default;">
             <span class="step"></span>
             <span class="step"></span>

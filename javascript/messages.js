@@ -1,7 +1,7 @@
 "use strict"; // Dhr. Allen Pieter
 // Error messages for submitting no values.
 // Target Index - Login fields
-var loginForm = document.forms['popup'];
+var loginForm = document.forms['login'];
 if (loginForm) {
   loginForm.onsubmit = function(event) {
     if(this.username.value.trim() == ""){
