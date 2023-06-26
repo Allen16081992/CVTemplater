@@ -46,11 +46,14 @@ class Experience {
             $sql->bindParam(":resumeID", $this->resumeID); // Dhr. Allen Pieter. It now handles the resume value correctly.
             $sql->execute();
 
+            // Refresh client page.
+            $_SESSION['success'] = 'Experience has been created';
+            header('location: ../client.php?');
+
         } else {
             // No resume selected.
             $_SESSION['error'] = 'You should create a resume first.';
-            header('location: ../client.php');
-            exit();                 
+            header('location: ../client.php');            
         }
     }
 
@@ -78,13 +81,42 @@ class Experience {
             $sql->bindParam(":resumeID", $this->resumeID); // Dhr. Allen Pieter. It now handles the resume value correctly.
             $sql->execute(); 
 
+            // Refresh client page.
+            $_SESSION['success'] = 'Experience has been saved';
+            header('location: ../client.php?');
+
         } else {
             // No resume selected.
             $_SESSION['error'] = 'You should create a resume first.';
-            header('location: ../client.php');
-            exit();                 
+            header('location: ../client.php');              
         }
     }
+
+    // Dhr. Allen Pieter: Add those damn empty checks!
+    // We don't want NULL set into database columns to specifically hold 'NULL'...
+    public function verifyExperience(){
+        if(!$this->emptyInput()){
+            $_SESSION['error'] = 'please fill your experience.';
+            header('location: ../client.php');
+        }
+        if (isset($_POST['addExperience'])) {
+            $this->Createexperience();
+        } elseif (isset($_POST['saveExperience'])) {
+            $this->Updateexperience();
+        }
+    }
+
+    private function emptyInput() {
+        // Check if any of the submitted values are empty.
+        return (
+            !empty($this->worktitle) ||
+            !empty($this->workdesc) ||
+            !empty($this->company) ||
+            !empty($this->firstDate) ||
+            !empty($this->lastDate)
+        );
+    }
+    //////////////////////////////////////////////////////////
 
     /**
      * @return mixed
@@ -180,17 +212,5 @@ class Experience {
     public function setDatabase(Database $database): void
     {
         $this->database = $database;
-    }
-
-    public function verifyExperience(){
-        if(!$this->emptyInput()){
-            $_SESSION['error'] = 'please name your experience.';
-            header('location: ../client.php');
-            exit();
-        }
-        $this->Createexperience();
-    }
-    private function emptyInput(){
-        return !(empty($this->worktitle));
     }
 }

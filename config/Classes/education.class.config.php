@@ -48,11 +48,14 @@ class Education {
             $sql->bindParam(":userID", $this->userID); // Dhr. Allen Pieter. It now handles the logged in user value correctly.
             $sql->execute();
 
+            // Refresh client page.
+            $_SESSION['success'] = 'Education has been created.';
+            header('location: ../client.php?');
+
         } else {
             // No resume selected.
             $_SESSION['error'] = 'You should create a resume first.';
-            header('location: ../client.php');
-            exit();                 
+            header('location: ../client.php');               
         }
     }
 
@@ -78,18 +81,21 @@ class Education {
             $sql->bindParam(":lastDate", $lastDate);
             $sql->bindParam(":resumeID", $this->resumeID); // Dhr. Allen Pieter. It now handles the resume value correctly.
             $sql->bindParam(":userID", $this->userID); // Dhr. Allen Pieter. It now handles the logged in user value correctly.
-            $sql->execute();    
+            $sql->execute();  
+
+            // Refresh client page.
+            $_SESSION['success'] = 'Education has been updated.';
+            header('location: ../client.php?');
 
         } else {
             // No resume selected.
             $_SESSION['error'] = 'You should create a resume first.';
-            header('location: ../client.php');
-            exit();                 
+            header('location: ../client.php');               
         }
     }
 
     // Dhr. Allen Pieter: Add those damn empty checks!
-    // We don't want NULL set into database columns to specifically hold NULL...
+    // We don't want NULL set into database columns to specifically hold 'NULL'...
     public function verifyEducation(){
         if(!$this->emptyInput()){
             $_SESSION['error'] = 'please fill your education.';
@@ -181,3 +187,4 @@ class Education {
     {
         $this->database = $database;
     }
+}
