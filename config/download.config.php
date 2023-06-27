@@ -59,7 +59,17 @@ class ResumePDF extends FPDF {
     }
     
     function Footer() {
-        // Add your custom footer content here
+        // Check if more than one page exists
+        if ($this->PageNo() > 1) {
+            // Select Arial italic 8
+            $this->SetFont('Arial','I',8);
+            
+            // Set the position of the footer at 15mm from the bottom
+            $this->SetY(-15);
+            
+            // Page number
+            $this->Cell(0, 10, 'Page ' . $this->PageNo(), 0, 0, 'C');
+        }
     }
 
     public function generatePDF() {
