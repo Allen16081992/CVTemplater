@@ -4,6 +4,7 @@
 
     // Use the (improved) database connection.
     require_once 'idb.config.php';
+    require_once "Classes/TrashTables.class.config.php";
 
     class Profile {
         private $pdo;
@@ -148,4 +149,14 @@
         
         $profile = new Profile($intro, $desc, $fileUpload, $resumeID, $userID);
         $profile->verifyProfile();
+    } elseif(isset($_POST['trashProfile'])) {
+        $resumeID = $_SESSION['resumeID'];
+        $userID = $_SESSION['user_id'];
+    
+        // Initialise the Multipurose trash class
+        $multidelete = new MultiTrash($resumeID, $userID);
+        $multidelete->multiTrash();
+    
+        // When trashing process completes, open the client environment MyResume.
+        header('location: ../client.php');
     }
