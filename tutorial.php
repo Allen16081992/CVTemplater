@@ -24,9 +24,6 @@
       margin-left:110px;
       font-size:2rem;
     }
-    .sidebar {
-      margin-top: 4.8%;
-    }
     img {
       width: 900px;
       height: auto;
@@ -71,7 +68,6 @@
       }
       .Account { margin-bottom:8rem; }
     }
-
   </style>
 <body>
     <!-- Upper Navigation Panel -->
@@ -89,8 +85,7 @@
     <section class="sidebar">
       <h5>Tutorial</h5>
       <button class="New" data-window-target="#window">New Resume</button>
-      <button data-window-target="#window2">Delete Resume</button> 
-           
+      <button data-window-target="#window2">Delete Resume</button>        
       <ul>
         <form action="#" method="post">
           <select class="dropdown" name="selectCv">
@@ -98,10 +93,9 @@
             <option class="resume-select">This is an example</option>
           </select>
         </form>
-
         <li><a href="./client.php"><i class='bx bxs-file'></i>Resume Builder</li>
-        <li><a href="error404.php"><i class='bx bxs-crown'></i>Premium</a></li>
-        <li class="on"><i class='bx bxs-videos'></i>Tutorial</a></li>
+        <li><a href="suggestion.php"><i class='bx bxs-videos'></i>Useful Tips</a></li>
+        <li class="on"><i class='bx bxs-crown'></i>Tutorial</a></li>
         <li><a href="./account.php"><i class='bx bxs-cog'></i>Account Settings</a></li>
       </ul>
     </section>
@@ -121,8 +115,8 @@
         <li><a data-window-target="#window"><i class='bx bx-plus-circle bx-md'></i></a></li>
         <li><a data-window-target="#window2"><i class='bx bx-x-circle bx-md'></i></a></li>
         <li><a href="./client.php"><i class='bx bxs-file bx-md'></i></li>
-        <li><a href="./error404.php"><i class='bx bxs-crown bx-md'></i></a></li>
-        <li><a class="m-on"><i class='bx bxs-videos bx-md'></i></a></li>
+        <li><a href="./suggestion.php"><i class='bx bxs-videos bx-md'></i></a></li>
+        <li><a class="m-on"><i class='bx bxs-crown bx-md'></i></a></li>
         <li><a href="./account.php"><i class='bx bxs-cog bx-md'></i></a></li>
       </ul>
     </section>

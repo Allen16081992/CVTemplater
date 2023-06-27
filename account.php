@@ -23,6 +23,9 @@
     <?php require_once 'config/peripherals/javascript_load.config.php'; ?>
     <script defer src="javascript/clear.fields.js"></script>
   </head>
+  <style>
+    .sidebar { min-width:19rem;}
+  </style>
   <body>
     <!-- Upper Navigation Panel -->
     <header>
@@ -40,8 +43,8 @@
       <h5>Account Settings</h5>
       <ul>
         <li><a href="client.php"><i class='bx bxs-file'></i>Resume Builder</a></li>
-        <li><a href="error404.php"><i class='bx bxs-crown'></i>Premium</a></li>
-        <li><a href="tutorial.php"><i class='bx bxs-videos'></i>Tutorial</a></li>
+        <li><a href="suggestion.php"><i class='bx bxs-videos'></i>Useful Tips</a></li>
+        <li><a href="tutorial.php"><i class='bx bxs-crown'></i>Tutorial</a></li>
         <li class="on"><i class='bx bxs-cog'></i>Account Settings</li>
       </ul>
       <button class="Del" data-window-target="#window">Delete Account</button>
@@ -51,8 +54,8 @@
     <section class="m-sidebar">
       <ul>
         <li><a href="client.php"><i class='bx bxs-file bx-md'></i></a></li>
-        <li><a href="./error404.php"><i class='bx bxs-crown bx-md'></i></a></li>
-        <li><a href="./tutorial.php"><i class='bx bxs-videos bx-md'></i></a></li>
+        <li><a href="./suggestion.php"><i class='bx bxs-videos bx-md'></i></a></li>
+        <li><a href="./tutorial.php"><i class='bx bxs-crown bx-md'></i></a></li>
         <li><a class="m-on"><i class='bx bxs-cog bx-md'></i></a></li>
         <li><a data-window-target="#window"><i class='bx bx-x-circle bx-md'></i></a></li>
       </ul>

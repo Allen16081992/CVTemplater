@@ -103,7 +103,7 @@ ul li .m-on { color: #ddd; }
 /* Resume Side Panel */
 .sidebar {
     position: fixed;
-    top:6%;
+    top:8%;
     border: 1px solid var(--primary-color-dark);
     border-radius:10px;
     background-color: rgba(0,0,0,0.5);

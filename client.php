@@ -22,7 +22,6 @@
     <?php require_once 'config/peripherals/javascript_load.config.php'; ?>
     <script defer src="javascript/dropdown.submit.js"></script>
     <script defer src="javascript/mobile.pdf.helper.js"></script>
-    <!--<script defer src="javascript/clear.fields.js"></script>-->
   </head>
   <body>
     <!-- Upper Navigation Panel -->
@@ -52,8 +51,8 @@
           </select>
         </form>
         <li class="on"><i class='bx bxs-file'></i>Resume Builder</li>
-        <li><a href="error404.php"><i class='bx bxs-crown'></i>Premium</a></li>
-        <li><a href="tutorial.php"><i class='bx bxs-videos'></i>Tutorial</a></li>
+        <li><a href="suggestion.php"><i class='bx bxs-videos'></i>Useful Tips</a></li>
+        <li><a href="tutorial.php"><i class='bx bxs-crown'></i>Tutorial</a></li>
         <li><a href="account.php"><i class='bx bxs-cog'></i>Account Settings</a></li>
       </ul>
     </section>
@@ -76,8 +75,8 @@
         <li><a data-window-target="#window"><i class='bx bx-plus-circle bx-md'></i></a></li>
         <li><a data-window-target="#window2"><i class='bx bx-x-circle bx-md'></i></a></li>
         <li><a class="m-on"><i class='bx bxs-file bx-md'></i></li>
-        <li><a href="./error404.php"><i class='bx bxs-crown bx-md'></i></a></li>
-        <li><a href="./tutorial.php"><i class='bx bxs-videos bx-md'></i></a></li>
+        <li><a href="./suggestion.php"><i class='bx bxs-videos bx-md'></i></a></li>
+        <li><a href="./tutorial.php"><i class='bx bxs-crown bx-md'></i></a></li>
         <li><a href="./account.php"><i class='bx bxs-cog bx-md'></i></a></li>
       </ul>
     </section>
