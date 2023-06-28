@@ -101,7 +101,7 @@
             <label for="pwd">Repeat your Password</label>
             <input type="password" name="pwdR" placeholder="Password">
             <label for="terms"></label>
-            <span><input type="checkbox" title="terms" name="terms" id="terms" required> I agree to the <a href="#" target="_blank">terms</a> & conditions</span>
+            <span><input type="checkbox" title="terms" name="terms" id="terms" required> I agree to the <a href="error404.php" target="_blank">terms</a> & conditions</span>
           </div>
           <div class="rotator">
             <button type="submit" id="prevBtn" onclick="nextPrev(-1)">Back</button>

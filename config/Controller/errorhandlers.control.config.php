@@ -109,27 +109,4 @@
             // Make sure the submitted values aren't in use.
             return $this->verifyUser($this->uid, $this->email);
         }
-
-        // Beta (improved) emptyInputs method
-        public function emptyInputs($value, $fieldName, $form) {
-            if (empty($value)) {
-                $_SESSION['error'] = "No $fieldName provided.";
-
-                // Define and map forms to redirect locations
-                $redirect = [
-                    'login' => '../index.php',
-                    'signup' => '../signup.php',
-                    'resume' => '../client.php',
-                    // Add more field names and corresponding redirect locations
-                ];
-                
-                // Redirect based on the $fieldName, or use a default location
-                $redirect = isset($redirect[$form])
-                    ? $redirect[$form]
-                    : '../error404.php';
-                
-                header("location: $redirect");
-                exit();
-            }
-        }
     }

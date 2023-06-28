@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 25 jun 2023 om 17:24
+-- Gegenereerd op: 28 jun 2023 om 14:45
 -- Serverversie: 10.4.28-MariaDB
 -- PHP-versie: 8.2.4
 
@@ -40,7 +40,6 @@ CREATE TABLE `accounts` (
 
 INSERT INTO `accounts` (`userID`, `username`, `password`, `email`) VALUES
 (1, 'test', '$2y$10$DIf2wwLBCD2ZuCzHZFtJvub84eFfqilLCCplX7YgveQiTQS9r5n4W', 'test@test.com'),
-(2, 'Aaltje', '$2y$10$zJ4nCav3Cam7eVRBKE5IO.9nWT1HfyJ4fuTEWktRDQb2zSbDIGpdu', 'info@aaltjevincent.nl'),
 (3, 'Hallo', '$2y$10$UQgj5c2excyl7qvVc/DBOuqMl55FFw58BVcYl1I9bYgkMxUbu7uMi', 'hallo@yahoo.com');
 
 -- --------------------------------------------------------
@@ -68,7 +67,6 @@ CREATE TABLE `contact` (
 
 INSERT INTO `contact` (`contactID`, `phone`, `firstname`, `lastname`, `birth`, `nationality`, `streetname`, `postalcode`, `city`, `userID`) VALUES
 (1, '06311224455', 'test', 'test', '07/06/2023', 'dutch', 'sickstreet 1', '100020vv', 'delft', 1),
-(2, '06-98755252', 'Aaltje', 'Vincent', '09/06/2014', 'Dutch', 'Duinvoetstraat 47', '1361 BC', 'Almere-Duin', 2),
 (3, '0635899654', 'Hallohallo', 'Pendulum', '9/6/1999', 'Japanese', 'Cemetery 8', '1010XD', 'Nagikawa', 3);
 
 -- --------------------------------------------------------
@@ -87,13 +85,6 @@ CREATE TABLE `education` (
   `resumeID` int(11) NOT NULL,
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Gegevens worden geëxporteerd voor tabel `education`
---
-
-INSERT INTO `education` (`eduID`, `edutitle`, `edudesc`, `company`, `firstDate`, `lastDate`, `resumeID`, `userID`) VALUES
-(1, 'Cooking', 'I made apple pie and risotto here.', 'Ambachtschool', '2003-01-05', '2008-04-12', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -125,13 +116,6 @@ CREATE TABLE `interests` (
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Gegevens worden geëxporteerd voor tabel `interests`
---
-
-INSERT INTO `interests` (`interestID`, `interest`, `resumeID`, `userID`) VALUES
-(1, 'Holiday', 1, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -144,13 +128,6 @@ CREATE TABLE `languages` (
   `resumeID` int(11) NOT NULL,
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Gegevens worden geëxporteerd voor tabel `languages`
---
-
-INSERT INTO `languages` (`langID`, `language`, `resumeID`, `userID`) VALUES
-(1, 'French', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -168,13 +145,6 @@ CREATE TABLE `profile` (
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Gegevens worden geëxporteerd voor tabel `profile`
---
-
-INSERT INTO `profile` (`profileID`, `profileintro`, `profiledesc`, `filePath`, `fileName`, `resumeID`, `userID`) VALUES
-(1, 'I am Aaltje', 'I give good advice on resumes', '../img/avatars/64984ccdb6661_rombart.png', '64984ccdb6661_rombart.png', 1, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -186,13 +156,6 @@ CREATE TABLE `resume` (
   `resumetitle` varchar(50) DEFAULT NULL,
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Gegevens worden geëxporteerd voor tabel `resume`
---
-
-INSERT INTO `resume` (`resumeID`, `resumetitle`, `userID`) VALUES
-(1, 'Financial Advisor', 2);
 
 -- --------------------------------------------------------
 
@@ -206,13 +169,6 @@ CREATE TABLE `technical` (
   `resumeID` int(11) NOT NULL,
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Gegevens worden geëxporteerd voor tabel `technical`
---
-
-INSERT INTO `technical` (`techID`, `techtitle`, `resumeID`, `userID`) VALUES
-(1, 'Calculations', 1, 2);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -307,7 +263,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT voor een tabel `education`
 --
 ALTER TABLE `education`
-  MODIFY `eduID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `eduID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT voor een tabel `experience`
@@ -319,31 +275,31 @@ ALTER TABLE `experience`
 -- AUTO_INCREMENT voor een tabel `interests`
 --
 ALTER TABLE `interests`
-  MODIFY `interestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `interestID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT voor een tabel `languages`
 --
 ALTER TABLE `languages`
-  MODIFY `langID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `langID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT voor een tabel `profile`
 --
 ALTER TABLE `profile`
-  MODIFY `profileID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `profileID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT voor een tabel `resume`
 --
 ALTER TABLE `resume`
-  MODIFY `resumeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `resumeID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT voor een tabel `technical`
 --
 ALTER TABLE `technical`
-  MODIFY `techID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `techID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Beperkingen voor geëxporteerde tabellen

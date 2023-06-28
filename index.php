@@ -10,8 +10,6 @@
     <title>Welcome to CV Templater</title>
     <!-- Favicon -->
     <?php include_once 'config/peripherals/favicon.config.php';?>
-    <!-- Boxicons -->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="css/templater.css">
     <!-- Javascript -->
