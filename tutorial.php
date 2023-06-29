@@ -124,47 +124,48 @@
     <!-- Main Content -->
     <main class="container">
       <img src="img/tutorials/tutorial1.PNG" alt="Resume Name">
-      <p>1. De Resume Id is de serienummer van je CV.<br></br>
-         2. De naam is aan te passen.<br></br>
-         3. Klik op Save Changes om de wijzigingen op je CV op te slaan.<br></br>
-         4. Klik op View Resume om je CV te bekijken.  
+      <p>1. The Resume Id is the serienumber.<br></br>
+         2. The name is changeable.<br></br>
+         3. click on Download to save your Resume.<br></br>
+         4. click on View Resume to see it.  
       </p>
       <img src="img/tutorials/tutorial2.PNG" alt="Profile">
-      <p>1. Zet onder Introduction een korte introductie over jezelf.<br></br>
-         2. Zet onder Description een sammenvatting over wie je bent/wat je doet etc.<br></br>
-         3. Plaats linksboven een foto van jezelf.<br></br>
-         4. Klik op Save Changes om je wijzigingen op je profiel op te slaan.
+      <p>1. Introduce yourself.<br></br>
+         2. Place here a short description about yourself.<br></br>
+         3. You can put a picture of yourself.<br></br>
+         4. Click on Save to save your changes.
+         5. Click on Trash to Delete everything in this tab.
       </p>
       <div class="Experience">
         <img src="img/tutorials/tutorial3.PNG" alt="Work Experience">
       </div>
-      <p> 1. Zet hier wanneer je in dienst bent geweest en wanneer je bent gestopt.<br></br>
-          2. Zet hier je functie, bedrijfsnaam en een korte beschrijving.<br></br>
-          3. Klik op Add om er één bij te voegen en op Save Changes om een bestaande op te slaan.
+      <p> 1. Put your date of employment and date of leaving.<br></br>
+          2. Write your profession.<br></br>
+          3. Click on Add to include a new job.
       </p>
       <img src="img/tutorials/tutorial4.PNG" alt="Education">
-      <p> 1. Zet hier wanneer je bent gestart en wanneer je bent gestopt.<br></br>
-          2. Zet hier je opleidingnaam, schoolnaam en een korte beschrijving.<br></br>
-          3. Klik op Add om één opleiding bij te voegen en op Save Changes om een bestaande op te slaan.
+      <p> 1. Put your date of enlisting and gradution.<br></br>
+          2. Put here your study description.<br></br>
+          3. Click on Add to add a new institute.
       </p>
       <img src="img/tutorials/tutorial5.PNG" alt="Skills">
-      <p>1. Zet hier al je skills die je beheerst.<br></br>
-         2. Geef aan welke talen je beheerst.<br></br>
-         3. Zet hier wat je hobby's zijn.<br></br>
-         4. Klik op Add om een skill bij te voegen en op Save Changes om een bestaande op te slaan.   
+      <p>1. Put here your skills.<br></br>
+         2. Your languages.<br></br>
+         3. Your hobby's.<br></br>
+         4. click on Add to add new rows.   
       </p>
       <div class="Builder">
         <img src="img/tutorials/tutorial6.PNG" alt="Resume Builder">
       </div>
-      <p>1. Wil je een nieuwe CV aanmaken? Klik dan op New Resume.<br></br>
-        2. Wil je een gemaakte CV verwijderen? Klik dan op Delete Resume.<br></br>
-        3. Wil je een gemaakte CV bekijken? Zoek hem dan op via Select Resume.  
+      <p>1. Click on New Resume to create one.<br></br>
+        2. Click on Delete Resume to delete one.<br></br>
+        3. Select Resume to see and edit.  
       </p>
       <div class="Delete">
         <img src="img/tutorials/tutorial7.PNG" alt="Delete function">
       </div>
       <div class="Account">        
-        <p>Ga naar het tabblad Account Settings en klik dan op Delete Account om je account te verwijderen.</p>
+        <p>Go to Account Settings if you want to remove your Account.</p>
       </div>
 
       <!-- Create New Resume Window -->
