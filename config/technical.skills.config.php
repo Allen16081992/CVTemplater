@@ -17,10 +17,6 @@ if (isset($_POST['addSkill']) || isset($_POST['saveSkill'])){
     $nieuwelanguage = new Skills($interest, $language, $techtitle, $resumeID, $userID);
     $nieuwelanguage->verifySkills();
 
-    // Refresh client page.
-    $_SESSION['success'] = 'Skills has been created.';
-    header('location: ../client.php?');
-
 } elseif(isset($_POST['trashSkill'])) {
     $resumeID = $_SESSION['resumeID'];
     $userID = $_SESSION['user_id'];

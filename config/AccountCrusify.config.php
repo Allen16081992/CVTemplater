@@ -92,14 +92,15 @@
 
         private function verifyPassword() {
             // Select the record to be compared.
-            $stmt = $this->pdo->prepare('SELECT password FROM accounts WHERE userID = ?');
+            $stmt = $this->pdo->prepare('SELECT password, salt FROM accounts WHERE userID = ?');
 
             // Bind the input parameter to use parameterized queries.
             $stmt->bindValue(1, $_POST['user_id'], PDO::PARAM_INT);
             $stmt->execute();
             $passHash = $stmt->fetch(PDO::FETCH_ASSOC);
+            $salt = $passHash['salt'];
 
-            if (!password_verify($_POST['pwd'], $passHash['password'])) {
+            if (!password_verify($_POST['pwd'].$salt, $passHash['password'])) {
                 // Passwords do not match.
                 $_SESSION['error'] = 'Invalid password.';
                 header('location: ../account.php');

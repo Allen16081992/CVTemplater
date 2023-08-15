@@ -56,7 +56,10 @@ class Skills
             $sqldrie->bindParam(":resumeID", $this->resumeID);
             $sqldrie->bindParam(":userID", $this->userID);           
             $sqldrie->execute();
-            exit();
+            
+            // Refresh client page.
+            $_SESSION['success'] = 'Skills has been created.';
+            header('location: ../client.php?');
         } else {
             // No resume selected.
             $_SESSION['error'] = 'You should create a resume first.';
@@ -93,7 +96,10 @@ class Skills
             $sqldrie->bindParam(":resumeID", $this->resumeID);
             $sqldrie->bindParam(":userID", $this->userID);           
             $sqldrie->execute();
-            exit();
+
+            // Refresh client page.
+            $_SESSION['success'] = 'Skills has been updated.';
+            header('location: ../client.php?');
         } else {
             // No resume selected.
             $_SESSION['error'] = 'You should create a resume first.';
