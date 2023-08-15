@@ -6,14 +6,18 @@
 
         // Verify if the user already exists in the database.
         protected function setUser($uid, $passw, $email, $phone,$firstname,$lastname,$birth,$country,$street,$postal,$city) {
+
+            // Now generate a unique salt.
+            $salt = bin2hex(random_bytes(16));
+
             // Let's apply some hashing and salting security.
-            $HashThisNOW = password_hash($passw, PASSWORD_DEFAULT);
-            
+            $HashThisNOW = password_hash($passw.$salt, PASSWORD_DEFAULT);
+
             // Insert user into the accounts table
-            $stmt = $this->connect()->prepare("INSERT INTO accounts (username, password, email) VALUES (?, ?, ?);");  
+            $stmt = $this->connect()->prepare("INSERT INTO accounts (username, password, email, salt) VALUES (?, ?, ?, ?);");  
 
             // If this fails, kick back to homepage.
-            if(!$stmt->execute(array($uid, $HashThisNOW, $email))) {
+            if(!$stmt->execute(array($uid, $HashThisNOW, $email, $salt))) {
                 $stmt = null;
                 $_SESSION['error'] = 'Database query failed.';
                 header('location: ../index.php');

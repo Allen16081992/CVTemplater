@@ -79,19 +79,27 @@ class ResumePDF extends FPDF {
         
         //////////////////// TRADEMARK ///////////////////
         $imagePath = '../img/CV-headed-eagle.png';
-        $this->Image($imagePath, 10, 10, 30); // Adjust the positioning and dimensions as needed    
+        $building = '../img/icons/buildings-24.png'; 
+        $envelope = '../img/icons/envelope-24.png';
+        $mobile = '../img/icons/phone-24.png'; 
+        $world = '../img/icons/world-24.png';
+        $this->Image($imagePath, 10, 10, 30); // Adjust the positioning and dimensions as needed
+          
+        //$this->Image($envelope, 10, 10, 30); 
+        //$this->Image($world, 10, 10, 30); 
+        //$this->Image($mobile, 10, 10, 30); 
 
         // Set font
         $this->SetFont('Arial', '', 10);
 
         // Name and Contact
         if (isset($this->data['contact'][0])) {
-            $firstname = $this->data['contact'][0]['firstname'];
-            $surname = $this->data['contact'][0]['lastname'];
-            $city = $this->data['contact'][0]['city'];
-            $nationality = $this->data['contact'][0]['nationality'];
-            $phone = $this->data['contact'][0]['phone'];
-            $email = $this->data['accounts'][0]['email']; 
+            $firstname = htmlspecialchars($this->data['contact'][0]['firstname']);
+            $surname = htmlspecialchars($this->data['contact'][0]['lastname']);
+            $city = htmlspecialchars($this->data['contact'][0]['city']);
+            $nationality = htmlspecialchars($this->data['contact'][0]['nationality']);
+            $phone = htmlspecialchars($this->data['contact'][0]['phone']);
+            $email = htmlspecialchars($this->data['accounts'][0]['email']); 
         }
         // Work Experience
         if (isset($this->data['experience'])) {
@@ -100,6 +108,13 @@ class ResumePDF extends FPDF {
             $workFirstDate = array_column($this->data['experience'], 'firstDate');
             $workLastDate = array_column($this->data['experience'], 'lastDate');
             $workSummary = array_column($this->data['experience'], 'workdesc');
+
+            // Sanitize the array values using htmlspecialchars
+            $workTitles = array_map('htmlspecialchars', $workTitles);
+            $workCompany = array_map('htmlspecialchars', $workCompany);
+            $workFirstDate = array_map('htmlspecialchars', $workFirstDate);
+            $workLastDate = array_map('htmlspecialchars', $workLastDate);
+            $workSummary = array_map('htmlspecialchars', $workSummary);
         }
         // Education
         if (isset($this->data['education'])) {
@@ -108,19 +123,33 @@ class ResumePDF extends FPDF {
             $eduFirstDate = array_column($this->data['education'], 'firstDate');
             $eduLastDate = array_column($this->data['education'], 'lastDate');
             $eduSummary = array_column($this->data['education'], 'edudesc');
+
+            // Sanitize the array values using htmlspecialchars
+            $eduTitles = array_map('htmlspecialchars', $eduTitles);
+            $eduCompany = array_map('htmlspecialchars', $eduCompany);
+            $eduFirstDate = array_map('htmlspecialchars', $eduFirstDate);
+            $eduLastDate = array_map('htmlspecialchars', $eduLastDate);
+            $eduSummary = array_map('htmlspecialchars', $eduSummary);
         }
         // Skills
         if (isset($this->data['technical'])) {
             $techTitle = array_column($this->data['technical'], 'techtitle');
+            // Sanitize the array values using htmlspecialchars
+            $techTitle = array_map('htmlspecialchars', $techTitle);
         }
         if (isset($this->data['languages'])) {
             $language = array_column($this->data['languages'], 'language');
+            // Sanitize the array values using htmlspecialchars
+            $language = array_map('htmlspecialchars', $language);
         }
         if (isset($this->data['interests'])) {
             $interest = array_column($this->data['interests'], 'interest');
+            // Sanitize the array values using htmlspecialchars
+            $interest = array_map('htmlspecialchars', $interest);
         }
 
         //////////////////// HEADER ///////////////////
+
         // Add name and surname
         $this->SetXY(110, 10); // Set the position for text
         $this->SetFont('Arial', 'B', 14);
@@ -128,21 +157,32 @@ class ResumePDF extends FPDF {
 
         // Add city, phone and email
         $this->SetFont('Arial', '', 10);
-        $this->Cell(0, 5, $city, 0, 1, 'R');
-        $this->Cell(0, 5, 'Nationality:  '.$nationality, 0, 1, 'R');
-        $this->Ln(4);
-        $this->SetX(110); // Set the position for the email
-        $this->Cell(0, 5, $phone, 0, 1, 'R');
-        $this->Cell(0, 5, $email, 0, 1, 'R');
+        $this->SetX($this->GetPageWidth() - 10); //add an offset margin
+        $this->Cell(-5, 5, $city, 0, 1, 'R'); 
+        $this->Image($building, 195, 20, 5); //add icon
 
-        // Add a line break
+        $this->SetX($this->GetPageWidth() - 10); 
+        $this->Cell(-5, 5, $nationality, 0, 1, 'R'); 
+        $this->Image($world, 195, 25, 5); 
+        $this->Ln(4); // add a line break
+
+        //$this->SetX(110); // Set the position for the email
+        $this->SetX($this->GetPageWidth() - 10); 
+        $this->Cell(-5, 5, $phone, 0, 1, 'R'); 
+        $this->Image($mobile, 195, 34, 5); 
+
+        $this->SetX($this->GetPageWidth() - 10); 
+        $this->Cell(-5, 5, $email, 0, 1, 'R'); 
+        $this->Image($envelope, 195, 39, 5); 
+
         $this->Ln(10);
         $this->SetFont('Arial', 'B', 14);
         $this->Cell(0, 5, 'Profile', 0, 1, 'L');
         $this->SetFont('Arial', '', 10);
         if (isset($this->data['profile'][0]['profiledesc'])) {
-            $this->Cell(0, 10, $this->data['profile'][0]['profiledesc'], 0, 1, 'L');
-        }
+            $profiledesc = htmlspecialchars($this->data['profile'][0]['profiledesc']);
+            $this->Cell(0, 10, $profiledesc, 0, 1, 'L');
+        }        
         
         // Add a line break
         $this->Ln(10);

@@ -145,7 +145,36 @@
             </div>
             <div class="left"> 
               <label for="birth">Date of Birth</label>
-              <input type="text" name="birth" placeholder="Example: 1956-06-18" value="<?=$contact['birth'];?>">           
+              <!-- <input type="text" name="birth" placeholder="Example: 1956-06-18" value="<?php //$contact['birth'];?>"> -->
+              <?php include_once 'config/peripherals/date_reformat.config.php';?>
+              <div class="tab">
+                <select name="day" id="birthday">
+                  <option selected><?=$day;?></option>
+                  <?php
+                      for ($day = 1; $day <= 31; $day++) {
+                          echo '<option value="'.$day.'">'.$day.'</option>';
+                      }
+                  ?>
+                </select>
+                <select name="month" id="birthday">
+                  <option selected><?=$month;?></option>
+                  <?php
+                      for ($month = 1; $month <= 12; $month++) {
+                          echo '<option value="'.$month.'">'.$month.'</option>';
+                      }
+                  ?>
+                </select>
+                <select name="year" id="year-select">
+                  <option selected><?=$year;?></option>
+                  <?php
+                    $currentYear = date('Y');
+                    $targetYear = 1908;
+                    for ($year = $currentYear - 15; $year >= $targetYear; $year--) {
+                        echo '<option value="'.$year.'">'.$year.'</option>';
+                    }
+                  ?>
+                </select>  
+              </div>        
             </div>
             <div class="left">   
               <button type="submit" name="savePersonal">Save Changes</button>       
@@ -166,8 +195,8 @@
           <p class="error-uid"></p>
           <p class="error-pwd"></p>
           <label>Do you really want to delete your account?</label>   
-          <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>">  
-          <input type="hidden" name="username" value="<?= $_SESSION['user_name']; ?>">   
+          <input type="hidden" name="user_id" value="<?=$_SESSION['user_id']; ?>">  
+          <input type="hidden" name="username" value="<?=$_SESSION['user_name']; ?>">   
           <label for="pwd"></label>
           <input type="password" name="pwd" placeholder="Confirm your password for the last time">
           <button type="submit" class="Del" name="delete">Delete Account</button>

@@ -101,8 +101,8 @@
             <label for="pwd">Repeat your Password</label>
             <input type="password" name="pwdR" placeholder="Password">
             <label for="terms"></label>
-            <span><input type="checkbox" title="terms" name="terms" id="terms" required> I agree to the <a href="error404.php" target="_blank">terms</a> & conditions</span>
-          </div>
+            <span><input type="checkbox" title="terms" name="terms" id="terms" required> I consent to the <a href="terms-and-conditions.php" target="_blank">terms & conditions</a> regarding the use of my personal info.</span>
+          </div> 
           <div class="rotator">
             <button type="submit" id="prevBtn" onclick="nextPrev(-1)">Back</button>
             <button type="submit" id="nextBtn" onclick="nextPrev(1)">Next</button>

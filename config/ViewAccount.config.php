@@ -11,7 +11,7 @@
         public function __construct() {
             $database = new Database();
             $this->pdo = $database->connect();
-        }       
+        }     
 
         public function viewUserInfo() {
             // Verify if the user ID exists
@@ -37,6 +37,10 @@
                     $_SESSION['error'] = 'Contact information not found';
                     return;
                 }
+
+                // Sanitize the retrieved data using htmlspecialchars beforehand
+                $user = array_map('htmlspecialchars', $user);
+                $contact = array_map('htmlspecialchars', $contact);
         
                 // Return the combined user and contact data
                 return ['user' => $user, 'contact' => $contact];

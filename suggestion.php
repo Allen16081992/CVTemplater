@@ -89,7 +89,7 @@
       <div class="video-container">
         <iframe src="https://www.youtube.com/embed/Y2AzUbDLRXs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
-      <p class="tips">Watch this video to know how you can arrow down your resume to a specific target. Be sure to enable subtitles to follow the spoken Dutch language.</p>
+      <p class="tips">Watch this video so you can arrow down your resume to specific targets. Be sure to enable subtitles to follow the Dutch language in this video.</p>
     </main>
 </body>
 </html>

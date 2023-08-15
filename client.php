@@ -46,7 +46,7 @@
             <option selected disabled hidden>Select Resume:</option>
             <?php if (!empty($resumeData)) { ?>
             <?php foreach ($resumeData as $resume): ?>
-              <option class="resume-select"><?= $resume['resumetitle']; ?></option>
+              <option class="resume-select"><?= htmlspecialchars($resume['resumetitle']); ?></option>
             <?php endforeach; ?> <?php } ?>
           </select>
         </form>
@@ -64,7 +64,7 @@
           <option selected disabled hidden>Select Resume:</option>
           <?php if (!empty($resumeData)) { ?>
           <?php foreach ($resumeData as $resume): ?>
-            <option><?= $resume['resumetitle']; ?></option>
+            <option><?= htmlspecialchars($resume['resumetitle']); ?></option>
           <?php endforeach; ?> <?php } ?>
         </select>
       </form>
@@ -95,9 +95,9 @@
             <p class="error-resume-tab"></p>        
             <label for="resid">Resume ID</label>
             <input type="text" placeholder="*ID is Protected." disabled>
-            <input type="text" name="resid" value="<?= isset($resumeID) ? $resumeID : '' ?>" hidden>
+            <input type="text" name="resid" value="<?= isset($resumeID) ? htmlspecialchars($resumeID) : '' ?>" hidden>
             <label for="cvname">Name</label>
-            <input type="text" name="cvname" placeholder="Ex: Professional Dredger" value="<?= isset($_SESSION['resumetitle']) ? $_SESSION['resumetitle'] : '' ?>">
+            <input type="text" name="cvname" placeholder="Ex: Professional Dredger" value="<?= isset($_SESSION['resumetitle']) ? htmlspecialchars($_SESSION['resumetitle']) : '' ?>">
             <div class="left"> 
               <button type="submit" class="Save" name="saveResume">Save</button>
             </div> 
@@ -112,7 +112,7 @@
           <p>Edit your profile image</p>
           <!-- id 'profile' is needed to target buttons in css -->       
           <form id="profile" name="profile" action="config/profile.config.php" enctype="multipart/form-data" method="post">
-            <input type="text" name="resumeid" value="<?= isset($resumeID) ? $resumeID : '' ?>" hidden>
+            <input type="text" name="resumeid" value="<?= isset($resumeID) ? htmlspecialchars($resumeID) : '' ?>" hidden>
             <div class="left">
               <?php if (isset($userID) && !empty($data['profile'])) { ?>
                 <?php foreach ($data['profile'] as $profile): ?>
@@ -136,7 +136,7 @@
               <label for="intro">Introduction</label>
               <?php if (isset($userID) && !empty($data['profile'])) { ?>
                 <?php foreach ($data['profile'] as $profile): ?>
-                  <input type="text" name="intro" placeholder="Write a short introduction" value="<?= $profile['profileintro']; ?>">
+                  <input type="text" name="intro" placeholder="Write a short introduction" value="<?= htmlspecialchars($profile['profileintro']); ?>">
                 <?php endforeach; ?>
               <?php } else { ?>
                 <input type="text" name="intro" placeholder="Write a short introduction">
@@ -175,19 +175,19 @@
             echo '<form name="experience" action="config/experience.config.php" method="post">
                 <div class="input-container">
                   <div class="input-group">
-                      <input type="text" name="from" placeholder="1956-02-01" value="'.$experience['firstDate'].'">
+                      <input type="text" name="from" placeholder="1956-02-01" value="'.htmlspecialchars($experience['firstDate']).'">
                   </div>
                   <div class="input-group">
-                      <input type="text" name="until" placeholder="1956-02-01" value="'.$experience['lastDate'].'">
+                      <input type="text" name="until" placeholder="1956-02-01" value="'.htmlspecialchars($experience['lastDate']).'">
                   </div>
                   <div class="input-group">
-                      <input type="text" name="profession" placeholder="Marketing Manager" value="'.$experience['worktitle'].'">
+                      <input type="text" name="profession" placeholder="Marketing Manager" value="'.htmlspecialchars($experience['worktitle']).'">
                   </div>
                   <div class="input-group">
-                      <input type="text" name="company" placeholder="DHL" value="'.$experience['company'].'">
+                      <input type="text" name="company" placeholder="DHL" value="'.htmlspecialchars($experience['company']).'">
                   </div>
                 </div>
-                <textarea name="workdesc" rows="2" placeholder="Write your job description here...">'.$experience['workdesc'].'</textarea>
+                <textarea name="workdesc" rows="2" placeholder="Write your job description here...">'.htmlspecialchars($experience['workdesc']).'</textarea>
                 <input type="hidden" name="workID" value="'.$experience['workID'].'">
                 <div class="button-container"> 
                   <button type="submit" class="Save" name="saveExperience">Save</button> 
@@ -258,16 +258,16 @@
                 echo '<form name="education" action="config/education.config.php" method="post">
                   <div class="input-container">
                     <div class="input-group">
-                        <input type="text" name="from" placeholder="1956-02-01" value="'.$college['firstDate'].'">
+                        <input type="text" name="from" placeholder="1956-02-01" value="'.htmlspecialchars($college['firstDate']).'">
                     </div>
                     <div class="input-group">
-                        <input type="text" name="until" placeholder="1956-02-01" value="'.$college['lastDate'].'">
+                        <input type="text" name="until" placeholder="1956-02-01" value="'.htmlspecialchars($college['lastDate']).'">
                     </div>
                     <div class="input-group">
-                        <input type="text" name="program" placeholder="Electrical Engineering" value="'.$college['edutitle'].'">
+                        <input type="text" name="program" placeholder="Electrical Engineering" value="'.htmlspecialchars($college['edutitle']).'">
                     </div>
                     <div class="input-group">
-                        <input type="text" name="company" placeholder="LTS Technical School" value="'.$college['company'].'">
+                        <input type="text" name="company" placeholder="LTS Technical School" value="'.htmlspecialchars($college['company']).'">
                     </div>
                   </div>
                   <textarea name="edudesc" rows="2" placeholder="Write your program description here...">'.$college['edudesc'].'</textarea>
@@ -344,7 +344,7 @@
                       echo '
                         <input type="hidden" name="techID" value="'.$technical['techID'].'">
                         <div class="input-group">
-                          <input type="text" name="technical" placeholder="Analyzing data" value="'.$technical['techtitle'].'">
+                          <input type="text" name="technical" placeholder="Analyzing data" value="'.htmlspecialchars($technical['techtitle']).'">
                         </div>
                       '; 
                     endforeach; ?>
@@ -352,7 +352,7 @@
                       echo'
                         <input type="hidden" name="langID" value="'.$lang['langID'].'">
                         <div class="input-group">
-                          <input type="text" name="language" placeholder="Maghrebi Arabic" value="'.$lang['language'].'">
+                          <input type="text" name="language" placeholder="Maghrebi Arabic" value="'.htmlspecialchars($lang['language']).'">
                         </div>
                       ';
                     endforeach; ?>
@@ -360,7 +360,7 @@
                       echo'
                         <input type="hidden" name="interestID" value="'.$hobby['interestID'].'">
                         <div class="input-group">
-                          <input type="text" name="interest" placeholder="Maghrebi Arabic" value="'.$hobby['interest'].'">
+                          <input type="text" name="interest" placeholder="Maghrebi Arabic" value="'.htmlspecialchars($hobby['interest']).'">
                         </div>
                       ';             
                     endforeach; ?>
@@ -373,13 +373,13 @@
                 <form name="skills" action="config/technical.skills.config.php" method="post">
                   <div class="input-container">
                     <div class="input-group">
-                      <input type="text" name="technical" placeholder="Analyzing data">
+                      <input type="text" name="technical" placeholder="Truck Driver">
                     </div>
                     <div class="input-group">
                       <input type="text" name="language" placeholder="Maghrebi Arabic">
                     </div>                     
                     <div class="input-group">
-                      <input type="text" name="interest" placeholder="Checking out women">
+                      <input type="text" name="interest" placeholder="Theatre">
                     </div>
                   </div>
                   <div class="button-container"> 
@@ -390,13 +390,13 @@
                 echo'<form name="skills" action="config/technical.skills.config.php" method="post">
                   <div class="input-container">
                     <div class="input-group">
-                      <input type="text" name="technical" placeholder="Analyzing data">
+                      <input type="text" name="technical" placeholder="Truck Driver">
                     </div>
                     <div class="input-group">
                       <input type="text" name="language" placeholder="Maghrebi Arabic">
                     </div>                     
                     <div class="input-group">
-                      <input type="text" name="interest" placeholder="Checking out women">
+                      <input type="text" name="interest" placeholder="Theatre">
                     </div>
                   </div>
                   <div class="button-container"> 
@@ -436,7 +436,7 @@
             <option value="">(None selected)</option><!-- the value="" is needed for javascript -->
             <?php if (!empty($resumeData)) { ?>
             <?php foreach ($resumeData as $resume): ?>
-              <option><?php echo $resume['resumetitle']; ?></option>
+              <option><?php echo htmlspecialchars($resume['resumetitle']); ?></option>
             <?php endforeach; ?> <?php } ?>
           </select>
           <button class="Del" type="submit" name="delResume">Delete</button>
