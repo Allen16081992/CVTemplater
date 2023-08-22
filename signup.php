@@ -12,7 +12,7 @@
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="css/templater.css">
     <!-- Javascript -->
-    <script defer src="javascript/messages.js"></script>
+    <?php require_once 'config/peripherals/javascript_load.config.php'; ?>
     <script defer src="javascript/form.rotate.js"></script>
   </head>
   <body>

@@ -1,6 +1,7 @@
 <?php // Dhr. Allen Pieter
 // Start a session for handling data and error messages.
-require_once 'peripherals/session_start.config.php';
+require_once 'peripherals/session_management.config.php';
+sessionRegen(); // Call the periodic session regeneration
 
 // Use the (improved) database connection.
 require_once 'idb.config.php';

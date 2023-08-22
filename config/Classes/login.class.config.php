@@ -1,12 +1,12 @@
 <?php // Dhr. Allen Pieter
     // This session_start is solely for displaying error messages.
-    require_once '././peripherals/session_start.config.php';
+    require_once '././peripherals/session_management.config.php';
 
     class Login extends Database {
 
         // Verify if the user already exists in the database.
         protected function getUser($uid, $passw) {
-            $stmt = $this->connect()->prepare('SELECT userID, password, salt FROM accounts WHERE username = ? OR email = ?;');
+            $stmt = $this->connect()->prepare('SELECT userID, username, password, salt FROM accounts WHERE username = ? OR email = ?;');
 
             // If this fails, kick back to homepage.
             if(!$stmt->execute(array($uid, $passw))) {

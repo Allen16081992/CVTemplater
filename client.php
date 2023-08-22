@@ -1,7 +1,8 @@
 <?php // Dhr. Allen Pieter
   // Start a session for handling data and error messages.
-  require_once 'config/peripherals/session_start.config.php'; 
-  require_once 'config/peripherals/redirect.config.php';
+  require_once 'config/peripherals/session_management.config.php'; 
+  redirectUnauthorized(); // Access denied
+  sessionRegen(); // Call the periodic session regeneration
   // Load PHP files to retrieve data
   require_once "config/ViewResumes.config.php";
   require_once "config/FetchResumeTables.config.php";

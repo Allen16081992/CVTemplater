@@ -1,6 +1,6 @@
 <?php // Dhr. Allen Pieter
     // This session_start is solely for displaying error messages.
-    require_once '././peripherals/session_start.config.php';
+    require_once '././peripherals/session_management.config.php';
     
     class Registration extends Database {
 
@@ -10,8 +10,11 @@
             // Now generate a unique salt.
             $salt = bin2hex(random_bytes(16));
 
+            // Add a defensive delay against bruto-force attacks, updating PASSWORD_DEFAULT.
+            $seal = [ 'cost' => 12 ];
+
             // Let's apply some hashing and salting security.
-            $HashThisNOW = password_hash($passw.$salt, PASSWORD_DEFAULT);
+            $HashThisNOW = password_hash($passw.$salt, PASSWORD_BCRYPT, $seal);
 
             // Insert user into the accounts table
             $stmt = $this->connect()->prepare("INSERT INTO accounts (username, password, email, salt) VALUES (?, ?, ?, ?);");  

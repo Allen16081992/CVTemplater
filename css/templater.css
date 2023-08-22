@@ -66,6 +66,21 @@ ul li .m-on { color: #ddd; }
     margin: auto;
     padding: 0 .5rem;
 }
+.tagline {
+  font-style:italic;
+  opacity: 0;
+  transition: opacity 1s ease;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 1s;
+}
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
 
 /* (Mobile) Resume Side Panel */
 #mobilecv > select {
@@ -309,6 +324,9 @@ ul li .m-on { color: #ddd; }
     max-width:6.5rem; 
 }
 .window-body { padding:10px; }
+.window-body .error-uid {
+  margin-top:-15px;
+}
 .window-terms { padding:10px; background-color: rgba(0, 0, 0, 0.868); }
 .terms {
   position:fixed;
@@ -360,7 +378,7 @@ ul li .m-on { color: #ddd; }
 .tab {
     display: none;
 }
-.tab input.invalid {
+input.invalid {
     background-color: #ffdddd;
 }
 .step {
@@ -485,7 +503,7 @@ input[type="file"] {
         height:6rem;
         width:6rem;
     }
-    #action { left:25%; }
+    #action { left:34%; }
     .window { width: 500px; }
     .sidebar { max-width:20vw; }
     .collapse {
@@ -632,7 +650,6 @@ input[type="file"] {
   body {
     height: 100%;
     min-height: 100vh;
-    min-height: -webkit-fill-available;
   }
   
   body {

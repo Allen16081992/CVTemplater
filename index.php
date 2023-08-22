@@ -1,6 +1,6 @@
 <?php // Dhr. Allen Pieter
   // Start a session for displaying error messages.
-  require_once 'config/peripherals/session_start.config.php'; 
+  require_once 'config/peripherals/session_management.config.php'; 
 ?>
 <!DOCTYPE html> 
 <html lang="en">
@@ -14,8 +14,15 @@
     <link rel="stylesheet" href="css/templater.css">
     <!-- Javascript -->
     <?php require_once 'config/peripherals/javascript_load.config.php'; ?>
-    <script defer src="javascript/audio.js"></script>
+    <?php include_once 'config/peripherals/inx_taglines.config.php' ?>
+    <!--<script defer src="javascript/audio.js"></script>-->
   </head>
+  <style>
+    p {
+      color: white;
+      font-weight: bold;
+    }
+  </style>
   <body>
     <!-- Upper Navigation Panel -->
     <header>
@@ -44,7 +51,7 @@
           <feDisplacementMap in="SourceGraphic" scale="30"></feDisplacementMap>        
         </filter>
       </svg>
-
+      <div class="tagline"><p>"<?= $selectedTagline; ?>"</p></div>
       <!-- Sign In Window -->
       <div class="window" id="window">
         <div class="window-title">
@@ -60,8 +67,7 @@
           <label for="pwd">Password</label>
           <input type="password" name="pwd" placeholder="Password">
           <button type="submit" name="submit">Login</button>
-          <span>Don't have an account yet? <a href="signup.php">Register</a>
-          </span>
+          <span>Don't have an account yet? <a href="signup.php">Register</a></span>
         </form>
       </div>
 

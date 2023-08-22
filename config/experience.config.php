@@ -2,7 +2,7 @@
     //error_reporting(E_ALL); // bewaren voor errors
     //ini_set('display_errors', 'On');
     // Start a session for resume to userID assignment.
-    require_once 'peripherals/session_start.config.php';
+    require_once 'peripherals/session_management.config.php';
     // Use the (improved) database connection.
     require_once "idb.config.php";
     require_once "Classes/experience.class.config.php";

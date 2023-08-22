@@ -1,6 +1,6 @@
 <?php // Dhr. Allen Pieter
     // Start a session to destroy, and for displaying error messages.
-    require_once 'peripherals/session_start.config.php';
+    require_once 'peripherals/session_management.config.php';
 
     // Use the (improved) database connection.
     require_once 'idb.config.php';

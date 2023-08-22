@@ -1,6 +1,6 @@
 <?php // Dhr. Allen Pieter
     // This session_start is solely for displaying error messages.
-    require_once '././peripherals/session_start.config.php';
+    require_once '././peripherals/session_management.config.php';
     require_once 'errorhandlers.control.config.php';
 
     class RegistrateControl extends Registration {

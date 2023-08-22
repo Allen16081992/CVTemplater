@@ -32,7 +32,12 @@ class updateResume {
             $sql->bindParam(":resumetitle", $resumetitle);
             $sql->bindParam(":user_id", $userID);
             $sql->execute();
-        }
+
+            // Refresh client page.
+            $_SESSION['success'] = 'Resume updated';
+            header('location: ../client.php?');
+            exit();
+        } 
     }
 
     public function getResumetitle()

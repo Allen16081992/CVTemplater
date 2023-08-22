@@ -1,6 +1,6 @@
 <?php // Dhr. Allen Pieter
     // Start a session for displaying error messages.
-    require_once '././peripherals/session_start.config.php';
+    require_once '././peripherals/session_management.config.php';
 
     class Account extends Database {
         protected function setAccount($uid, $email, $passw) {
@@ -8,8 +8,8 @@
                 $stmt = null;
         
                 if (!empty($passw)) {
-                    // New password provided, update it.
-                    $HashThisNOW = password_hash($passw, PASSWORD_DEFAULT);
+                    // New password provided, update it. 
+                    $HashThisNOW = password_hash($passw, PASSWORD_BCRYPT); //(PASSWORD_DEFAULT replaced.)
                     $stmt = $this->connect()->prepare("UPDATE accounts SET username = ?, email = ?, password = ? WHERE userID = ?;");
                     $stmt->execute(array($uid, $email, $HashThisNOW, $_SESSION['user_id']));
                 } else {

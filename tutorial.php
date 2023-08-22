@@ -1,7 +1,8 @@
 <?php // Loubna Faress
   // Start a session for holding the user.
-  require_once 'config/peripherals/session_start.config.php'; 
-  require_once 'config/peripherals/redirect.config.php';
+  require_once 'config/peripherals/session_management.config.php'; 
+  redirectUnauthorized(); // Access denied
+  sessionRegen(); // Call the periodic session regeneration
 ?>
 <!DOCTYPE html>
 <html lang="en">
