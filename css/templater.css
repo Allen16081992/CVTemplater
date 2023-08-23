@@ -40,13 +40,17 @@ header {
     margin:0;
 }
 header #nav-signup { z-index:2; }
-
+nav {
+  display: flex; /* Enable flex layout */
+  justify-content: flex-end; /* Space links from the right side */
+  align-items: center; /* Center links vertically */
+}
 nav a {
     font-size: 1.7rem;
     color: var(--text-color);
-    margin-left: 4rem;
     transition:.3s;
     cursor:pointer;
+    margin-left: 2rem;
 }
 nav a:hover, nav a.current {
     color: var(--primary-color);
@@ -324,9 +328,7 @@ ul li .m-on { color: #ddd; }
     max-width:6.5rem; 
 }
 .window-body { padding:10px; }
-.window-body .error-uid {
-  margin-top:-15px;
-}
+.window-body .error-uid { margin-top:-15px; }
 .window-terms { padding:10px; background-color: rgba(0, 0, 0, 0.868); }
 .terms {
   position:fixed;
@@ -607,6 +609,7 @@ input[type="file"] {
     .left > .tab { display: inline-flex; }
     .tab select { width:3rem; }
     #year-select { width: 4rem; }
+    .window { width: 100%; }
 }
 /* Tablet Specific */
 @media screen and (min-width:700px) and (max-width:912px) {

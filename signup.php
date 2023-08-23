@@ -22,6 +22,7 @@
       <nav>
         <a href="index.php">Home</a>
         <a class="current">Signup</a>
+        <a href="contact.php">Contact</a>
       </nav>
     </header>
     <main class="container">

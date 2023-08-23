@@ -17,6 +17,28 @@ if (loginForm) {
   }
 }
 
+// Target Index - Account Recovery
+var contactForm = document.forms['contact'];
+if (contactForm) {
+  contactForm.onsubmit = function(event) {
+    if(this.username.value.trim() == ""){
+      displayErrorMessage(".error-uid", "&bull; No Name or Username Provided!");
+      event.preventDefault();
+      return false;
+    }
+    if (this.email.value.trim() == "") {
+      displayErrorMessage(".error-uid", "&bull; No Email Provided!");
+      event.preventDefault();
+      return false;
+    }
+    if (this.message.value.trim() == "") {
+      displayErrorMessage(".error-uid", "&bull; Write your message");
+      event.preventDefault();
+      return false;
+    }
+  };
+}
+
 // Target Client - New Resume Window
 var resumeForm = document.forms['popup2'];
 if (resumeForm) {
@@ -56,7 +78,6 @@ if (resumeForm) {
 }
 
 // Target Client - Profile tab (became conditional)
-
 // Target Client - Work tab
 var resumeForm = document.forms['experience'];
 if (resumeForm) {

@@ -44,7 +44,7 @@
       <h5>Account Settings</h5>
       <ul>
         <li><a href="client.php"><i class='bx bxs-file'></i>Resume Builder</a></li>
-        <li><a href="suggestion.php"><i class='bx bxs-videos'></i>Useful Tips</a></li>
+        <li><a href="useful_tips.php"><i class='bx bxs-videos'></i>Useful Tips</a></li>
         <li><a href="tutorial.php"><i class='bx bxs-crown'></i>Tutorial</a></li>
         <li class="on"><i class='bx bxs-cog'></i>Account Settings</li>
       </ul>
@@ -55,7 +55,7 @@
     <section class="m-sidebar">
       <ul>
         <li><a href="client.php"><i class='bx bxs-file bx-md'></i></a></li>
-        <li><a href="./suggestion.php"><i class='bx bxs-videos bx-md'></i></a></li>
+        <li><a href="./useful_tips.php"><i class='bx bxs-videos bx-md'></i></a></li>
         <li><a href="./tutorial.php"><i class='bx bxs-crown bx-md'></i></a></li>
         <li><a class="m-on"><i class='bx bxs-cog bx-md'></i></a></li>
         <li><a data-window-target="#window"><i class='bx bx-x-circle bx-md'></i></a></li>
@@ -80,7 +80,7 @@
             </div>
             <div class="left">
               <label for="pwd">Password</label>
-              <input type="password" name="pwd" placeholder="*Password Protected">
+              <input type="password" name="pwd" placeholder="*Protected">
             </div>
             <div class="left">
               <label for="email">Email</label>

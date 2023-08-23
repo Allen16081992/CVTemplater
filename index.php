@@ -10,6 +10,8 @@
     <title>Welcome to CV Templater</title>
     <!-- Favicon -->
     <?php include_once 'config/peripherals/favicon.config.php';?>
+    <!-- Boxicons - Only used for Hamburger Icon -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="css/templater.css">
     <!-- Javascript -->
@@ -24,14 +26,14 @@
     }
   </style>
   <body>
-    <!-- Upper Navigation Panel -->
-    <header>
+    <header><!-- Upper Navigation Panel -->
       <img class="logo" src="img/CV-headed-eagle.png" alt="Brand Signature">
       <i class='bx bx-menu' id="menu-icon"></i>
       <?php require_once 'config/peripherals/server_messages.config.php'; ?>
       <nav>
         <a class="current">Home</a>
         <a data-window-target="#window">Login</a>
+        <a href="contact.php">Contact</a>
       </nav>
     </header>
 
