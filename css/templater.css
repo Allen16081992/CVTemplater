@@ -128,6 +128,7 @@ ul li .m-on { color: #ddd; }
     background-color: rgba(0,0,0,0.5);
     color: var(--text-color);
     padding: 1rem; 
+    width:14rem;
 }
 .sidebar button { width: 100%; }
 #profile button { margin-left:12px; }

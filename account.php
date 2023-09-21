@@ -24,9 +24,7 @@
     <?php require_once 'config/peripherals/javascript_load.config.php'; ?>
     <script defer src="javascript/clear.fields.js"></script>
   </head>
-  <style>
-    .sidebar { min-width:19rem;}
-  </style>
+
   <body>
     <!-- Upper Navigation Panel -->
     <header>
@@ -64,10 +62,8 @@
 
     <!-- Main Content -->
     <main class="container">
-
       <!-- Account Settings -->
       <div class="collapse">
-
         <!-- Account Info Fields -->
         <input class="check" type="checkbox" id="collapse-head1">
         <label for="collapse-head1">Account Info</label>       

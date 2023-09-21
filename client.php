@@ -84,10 +84,8 @@
 
     <!-- Main Content -->
     <main class="container">
-
       <!-- Resume Builder -->
       <div class="collapse">
-
         <!-- Resume Title Tab -->
         <input class="check" type="checkbox" id="collapse-head1">
         <label for="collapse-head1">Resume Name</label>       

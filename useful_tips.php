@@ -20,9 +20,6 @@
     <script defer src="javascript/popup.window.js"></script>
   </head> 
   <style>
-    .sidebar {
-      min-width:19rem;
-    }
     p {
       color: white;
       font-weight: bold;
