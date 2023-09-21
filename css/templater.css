@@ -116,6 +116,7 @@ ul li .m-on { color: #ddd; }
     border: 1px solid var(--primary-color-dark);
     border-radius:10px;
     background-color: rgba(0,0,0,0.5);
+    z-index: 1;
 }
 .m-sidebar ul { list-style-type: none; }
 
