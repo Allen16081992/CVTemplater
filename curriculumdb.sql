@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 28 jun 2023 om 14:45
+-- Gegenereerd op: 25 aug 2023 om 14:17
 -- Serverversie: 10.4.28-MariaDB
 -- PHP-versie: 8.2.4
 
@@ -31,16 +31,17 @@ CREATE TABLE `accounts` (
   `userID` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `email` varchar(50) NOT NULL
+  `email` varchar(50) NOT NULL,
+  `salt` char(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `accounts`
 --
 
-INSERT INTO `accounts` (`userID`, `username`, `password`, `email`) VALUES
-(1, 'test', '$2y$10$DIf2wwLBCD2ZuCzHZFtJvub84eFfqilLCCplX7YgveQiTQS9r5n4W', 'test@test.com'),
-(3, 'Hallo', '$2y$10$UQgj5c2excyl7qvVc/DBOuqMl55FFw58BVcYl1I9bYgkMxUbu7uMi', 'hallo@yahoo.com');
+INSERT INTO `accounts` (`userID`, `username`, `password`, `email`, `salt`) VALUES
+(1, 'test', '$2y$10$DIf2wwLBCD2ZuCzHZFtJvub84eFfqilLCCplX7YgveQiTQS9r5n4W', 'test@test.com', ''),
+(2, 'Hallo', '$2y$12$0XhdtNZ93Q4AO7DCJm364OODBWKR/k1zhzt7mxM4hqgacKe/RrrQ2', 'hallo@gmail.com', '0111c2d1b9d4bd83bbc521cdf939cb97');
 
 -- --------------------------------------------------------
 
@@ -67,7 +68,7 @@ CREATE TABLE `contact` (
 
 INSERT INTO `contact` (`contactID`, `phone`, `firstname`, `lastname`, `birth`, `nationality`, `streetname`, `postalcode`, `city`, `userID`) VALUES
 (1, '06311224455', 'test', 'test', '07/06/2023', 'dutch', 'sickstreet 1', '100020vv', 'delft', 1),
-(3, '0635899654', 'Hallohallo', 'Pendulum', '9/6/1999', 'Japanese', 'Cemetery 8', '1010XD', 'Nagikawa', 3);
+(2, '+310696588745', 'Hallo', 'Hallo', '10/9/1977', 'Japanese', 'Haunted Av. 2', '30418500', 'Tokyo', 2);
 
 -- --------------------------------------------------------
 
@@ -251,13 +252,13 @@ ALTER TABLE `technical`
 -- AUTO_INCREMENT voor een tabel `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `contactID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `contactID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `education`

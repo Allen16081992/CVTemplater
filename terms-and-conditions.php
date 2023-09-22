@@ -40,15 +40,15 @@
              If you are under 14 years (or not old enough to give your legal consent to use our service at your location), 
              you must first have obtained the consent of your parents or legal guardian to sign up for an Account and use the Service.</p><br>
           <strong>Personal Information</strong>
-          <p>We require your full name, nationality, date of birth, phone number, street, zip code, city and your email address.
-             We collect, hold and process this information to enable our Service to you.</p>
+          <p>We require information such as your name, nationality, date of birth, phone number, street, zip code, city and or email address.
+             We collect, store and process this information to enable our Service to you.</p>
           <p>Your information will be collected and stored until you decide to delete your Account, in which case, everything you have provided us with so far will be erased from our servers. This includes all details related to your account, personal information and any resume you may have created so far.</p><br>
           <strong>Data Processing</strong>
-          <p>Your information will be processed when you sign up, login and update your resume or account settings, in which case, the data will be subjected to our validation and sanitization systems before being safely stored on our servers.</p>
+          <p>Your information will be processed when you sign up, login and update your resume or account settings, in which case, the data will be validated and sanitised before being stored on our servers.</p>
           <p>We do NOT share your information to any third-party services and will never share any data to others. This is because our webApp lacks any third-party services, API's or Cookie-related technologies.</p>
-          <p>We do NOT use any Cookie-related technologies.<br>We do NOT use any third-party services.</p><br>
+          <p>We do NOT use any Cookie-related technologies.<br>We do NOT use any third-party services, besides the FPDF library.</p><br>
           <strong>Data Deletion</strong>
-          <p>If you decide to terminate your Account, you may do so by logging in and heading over to the Account Settings tab. Here you will find an option to delete your account, including any details you had provided us with so far. By using the red button and entering your password, your information will be erased from our servers.</p>
+          <p>If you decide to terminate your Account, you may do so by logging in and heading over to the Account Settings tab. Here you will find an option to delete your account, including any details you had provided us with so far. By using the red button and entering your password, your information will be erased from our servers. These changes cannot be undone.</p>
         </div>
       </div>
     </main>

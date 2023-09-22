@@ -405,6 +405,21 @@
               } ?>
           </form>
         </div>
+
+        <!-- Motivation Tab -->
+        <input class="check" type="checkbox" id="collapse-head6">
+        <label for="collapse-head6">Motivation</label>       
+        <div class="collapse-text" id="field6">
+          <form name="motivation" action="" method="post"> 
+            <p class="error-motivation-tab"></p>        
+            <label for="letter">Motivation Letter</label>
+            <textarea name="letter" placeholder="Ex: Write your motivation..."><?= isset($_SESSION['resumetitle']) ? htmlspecialchars($_SESSION['resumetitle']) : '' ?></textarea>
+            <div class="left"> 
+              <button type="submit" class="Save" name="saveMotivation">Save</button>
+            </div> 
+          </form>
+        </div>
+
       </div>
 
       <!-- Create New Resume Window -->

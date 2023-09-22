@@ -44,6 +44,7 @@
             <input type="text" name="firstname" placeholder="Firstname">
             <label for="lastname">Lastname</label>
             <input type="text" name="lastname" placeholder="Lastname">
+            <span>Please read our <a href="terms-and-conditions.php" target="_blank">privacy policy</a> before creating an account.</span><br>
             <span>Already have an account? <a href="index.php">Login</a></span>
           </div>
           <div class="tab">
