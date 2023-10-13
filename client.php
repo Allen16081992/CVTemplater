@@ -410,16 +410,21 @@
         <input class="check" type="checkbox" id="collapse-head6">
         <label for="collapse-head6">Motivation</label>       
         <div class="collapse-text" id="field6">
-          <form name="motivation" action="" method="post"> 
+          <form name="motivation" action="config/education.config.php" method="post"> 
             <p class="error-motivation-tab"></p>        
             <label for="letter">Motivation Letter</label>
-            <textarea name="letter" placeholder="Ex: Write your motivation..."><?= isset($_SESSION['resumetitle']) ? htmlspecialchars($_SESSION['resumetitle']) : '' ?></textarea>
+            <?php if (isset($userID) && !empty($data['motivation'])) { ?>
+              <?php foreach ($data['motivation'] as $letter): ?>
+                <textarea name="letter" rows="4" placeholder="Write your summary"><?= $letter['motdesc']; ?></textarea>
+              <?php endforeach; ?>
+            <?php } else { ?>
+              <textarea name="letter" rows="4" placeholder="Write your summary"></textarea>
+            <?php } ?>
             <div class="left"> 
               <button type="submit" class="Save" name="saveMotivation">Save</button>
             </div> 
           </form>
         </div>
-
       </div>
 
       <!-- Create New Resume Window -->

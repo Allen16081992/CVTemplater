@@ -46,6 +46,11 @@
             $stmt->execute([$resumeID, $userID]);
             $data['technical'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+            // In addition, fetch data from the 'motivation' table
+            $stmt = $this->pdo->prepare('SELECT * FROM `motivation` WHERE resumeID = ? AND userID = ?');
+            $stmt->execute([$resumeID, $userID]);
+            $data['motivation'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
             if (empty($data)) {
                 $_SESSION['error'] = 'No data found.';  
             }

@@ -81,9 +81,12 @@
     <!-- Main Content -->
     <main class="container">
       <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/IW472-d_8bs?si=GkEOGu5DO4Pz9Mb2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div class="video-container">
         <iframe src="https://www.youtube.com/embed/pjqi_M3SPwY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
-      <p class="tips">Check out this video! It contains useful constructive suggestions for improving your resume and increasing your chance at job offers.</p>
+      <p class="tips">Check out these videos, as they contain useful constructive suggestions for improving your resume and increasing your chance at job offers.</p>
       <div class="video-container">
         <iframe src="https://www.youtube.com/embed/Y2AzUbDLRXs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>

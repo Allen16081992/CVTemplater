@@ -22,7 +22,7 @@ class ResumePDF extends FPDF {
 
     public function fetchData($resumeID, $userID) {
         $result = array();
-        $tables = array('accounts', 'contact', 'experience', 'education', 'interests', 'languages', 'profile', 'technical');
+        $tables = array('accounts', 'contact', 'experience', 'education', 'interests', 'languages', 'profile', 'technical', 'motivation');
 
         // Loop through each table and fetch data
         foreach ($tables as $table) {
@@ -48,15 +48,17 @@ class ResumePDF extends FPDF {
     }
     
     function Header() {
-        //Cell( width, height, text, border, end line, align)
-        // Set the font and size
-        $this->SetFont('Arial', 'B', 16);
-    
-        // Add Custom header
-        $this->Cell(0, 10, 'Curriculum Vitae', 0, 0, 'C');
-    
-        // Add a line break
-        $this->Ln(10);
+        if ($this->PageNo() == 1) {
+            //Cell( width, height, text, border, end line, align)
+            // Set the font and size
+            $this->SetFont('Arial', 'B', 16);
+        
+            // Add Custom header
+            $this->Cell(0, 10, 'Curriculum Vitae', 0, 0, 'C');
+        
+            // Add a line break
+            $this->Ln(10);
+        }
     }
     
     function Footer() {
@@ -148,6 +150,11 @@ class ResumePDF extends FPDF {
             // Sanitize the array values using htmlspecialchars
             $interest = array_map('htmlspecialchars', $interest);
         }
+        if (isset($this->data['motivation'])) {
+            $motivation = array_column($this->data['motivation'], 'motdesc');
+            // Sanitize the array values using htmlspecialchars
+            $motivation = array_map('htmlspecialchars', $motivation);
+        }
 
         //////////////////// HEADER ///////////////////
 
@@ -178,12 +185,13 @@ class ResumePDF extends FPDF {
 
         $this->Ln(10);
         $this->SetFont('Arial', 'B', 14);
-        $this->Cell(0, 5, 'Profile', 0, 1, 'L');
+        $this->Cell(0, 5, 'Profile', 0, 1, 'L'); 
+        $this->Ln(1);
         $this->SetFont('Arial', '', 10);
         if (isset($this->data['profile'][0]['profiledesc'])) {
-            $profiledesc = htmlspecialchars($this->data['profile'][0]['profiledesc']);
-            $this->Cell(0, 10, $profiledesc, 0, 1, 'L');
-        }        
+            $profiledesc = $this->data['profile'][0]['profiledesc'];
+            $this->MultiCell(0, 5, html_entity_decode($profiledesc), 0, 0, '');
+        }
         
         // Add a line break
         $this->Ln(10);
@@ -208,9 +216,10 @@ class ResumePDF extends FPDF {
                 $this->Cell(60, 10, $workTitles[0], 0, 0, 'L');
                 $this->Cell(50, 10, $workCompany[0], 0, 1, '');
             }
-            $this->SetFont('Arial', 'I', 10);       
+            $this->SetFont('Arial', '', 10);    
             if (isset($workSummary[0])) {
-                $this->Cell(30, 5, $workSummary[0], 0, 1, '');
+                $this->SetFontSize(10);
+                $this->MultiCell(0, 5, html_entity_decode($workSummary[0]));
                 $this->Ln(5);
             }
         }
@@ -228,7 +237,8 @@ class ResumePDF extends FPDF {
             }
             $this->SetFont('Arial', 'I', 10);
             if (isset($workSummary[1])) {
-                $this->Cell(30, 5, $workSummary[1], 0, 1, '');
+                $this->SetFontSize(10);
+                $this->MultiCell(0, 5, html_entity_decode($workSummary[1]));
                 $this->Ln(5);
             }
         } 
@@ -246,9 +256,10 @@ class ResumePDF extends FPDF {
             }
             $this->SetFont('Arial', 'I', 10);
             if (isset($workSummary[2])) {
-                $this->Cell(30, 5, $workSummary[2], 0, 1, '');
+                $this->SetFontSize(10);
+                $this->MultiCell(0, 5, html_entity_decode($workSummary[2]));
+                $this->Ln(5);
             }
-            $this->Ln(5);
         }
 
         /////////////////////// EDUCATION ////////////////////////
@@ -273,9 +284,10 @@ class ResumePDF extends FPDF {
             }
             $this->SetFont('Arial', 'I', 10);
             if (isset($eduSummary[0])) {
-                $this->Cell(30, 5, $eduSummary[0], 0, 1, '');
+                $this->SetFontSize(10);
+                $this->MultiCell(0, 5, html_entity_decode($eduSummary[0]));
+                $this->Ln(5);
             }
-            $this->Ln(5);
         }
         if (count($eduTitles) >= 2) {
             $this->SetFont('Arial', '', 10);
@@ -291,9 +303,10 @@ class ResumePDF extends FPDF {
             }
             $this->SetFont('Arial', 'I', 10);
             if (isset($eduSummary[1])) {
-                $this->Cell(30, 5, $eduSummary[1], 0, 1, '');
+                $this->SetFontSize(10);
+                $this->MultiCell(0, 5, html_entity_decode($eduSummary[1]));
+                $this->Ln(5);
             }
-            $this->Ln(5);
         } 
         if (count($eduTitles) >= 3) {
             $this->SetFont('Arial', '', 10);
@@ -309,9 +322,10 @@ class ResumePDF extends FPDF {
             }
             $this->SetFont('Arial', 'I', 10);
             if (isset($eduSummary[2])) {
-                $this->Cell(30, 5, $eduSummary[2], 0, 1, '');
+                $this->SetFontSize(10);
+                $this->MultiCell(0, 5, html_entity_decode($eduSummary[2]));
+                $this->Ln(5);
             }
-            $this->Ln(5);
         }
 
         /////////////////////// SKILLS ////////////////////////
@@ -340,7 +354,22 @@ class ResumePDF extends FPDF {
             $this->Cell(60, 5, isset($language[$i]) ? $language[$i] : '', 0, 0, 'L');
             $this->Cell(60, 5, isset($interest[$i]) ? $interest[$i] : '', 0, 1, 'L');
             $this->Ln(5);
-        }   
+        }
+        
+        // Show motivation
+        if (isset($motivation[0])) {
+            $this->AddPage();
+            $this->SetFont('Arial', '', 15);
+    
+            // Add Custom header
+            $this->Cell(0, 10, 'Motivation', 0, 0, 'C');
+    
+            // Add a line break
+            $this->Ln(15);
+
+            $this->SetFont('Arial', '', 10);
+            $this->MultiCell(0, 5, $motivation[0], 0, 0, '');
+        }
 
         $this->Output();
     }
