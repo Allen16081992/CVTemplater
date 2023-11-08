@@ -141,6 +141,29 @@
 
                 // Error message by sessions instead of URL parsing.
                 $_SESSION['success'] = 'Skills have been trashed';
+
+            } elseif(isset($_POST['trashMotivation'])) { 
+                // Check if we received any row id(s)
+                if (isset($_POST['letter'])) {
+                    $letter = $_POST['letter'];
+                } else {
+                    $letter = null;
+                    // Error message by sessions instead of URL parsing.
+                    $_SESSION['error'] = 'Motivation not found.';
+                    header('location: ../client.php');
+                }
+
+                if ($this->tableHasData('motivation')) {
+                    // Instantiate the Trashing of data
+                    $stmt = $this->connect()->prepare('DELETE FROM `motivation` WHERE letter = :letter AND resumeID = :resumeID AND userID = :userID');
+                    $stmt->bindParam(":letter", $letter);
+                    $stmt->bindParam(":resumeID", $this->resumeID);
+                    $stmt->bindParam(":userID", $this->userID);
+                    $stmt->execute(); $stmt = null;
+
+                    // Error message by sessions instead of URL parsing.
+                    $_SESSION['success'] = 'Motivation has been trashed';
+                }
             }
         }
 

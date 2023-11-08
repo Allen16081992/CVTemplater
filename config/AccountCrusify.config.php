@@ -26,6 +26,7 @@
                     $this->deleteDataIfExists('technical', 'userID');
                     $this->deleteDataIfExists('languages', 'userID');
                     $this->deleteDataIfExists('interests', 'userID');
+                    $this->deleteDataIfExists('motivation', 'userID');
                     $this->deleteDataIfExists('resume', 'userID');
 
                     // Erase data from Accounts
@@ -59,6 +60,7 @@
 
                     // When removal is completed, erase the session and make a new one.
                     session_unset();
+                    session_destroy();
                     session_start();
 
                     // Error Messages by session instead of URL parsing.
