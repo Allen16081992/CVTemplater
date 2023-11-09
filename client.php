@@ -102,7 +102,7 @@
               <button type="submit" class="Save" name="saveResume">Save</button>
             </div> 
           </form>
-          <button class="alt" id="PDF">Download</button><!-- id is needed for js -->
+          <button data-window-target="#window3" class="alt" id="Template">Download</button>
         </div>
 
         <!-- Profile Tab -->
@@ -439,7 +439,7 @@
           <div class="title">Your New Resume</div>
           <button data-window-close class="close-button">&#215;</button>
         </div>
-        <form class="window-body" name="popup2" action="config/createresume.config.php" method="post">
+        <form class="window-body" action="config/createresume.config.php" method="post">
           <p class="error-res"></p>
           <label for="cvname">Let's give it a name</label>
           <input type="text" name="cvname" placeholder="Name your new resume...">
@@ -453,7 +453,7 @@
           <div class="title">Delete Resume</div>
           <button data-window-delclose class="close-button">&#215;</button>
         </div>
-        <form class="window-body" name="popup3" action="config/delete.resume.config.php" method="post">
+        <form class="window-body" action="config/delete.resume.config.php" method="post">
           <p class="error-select"></p>
           <p>Do you really want to delete a resume?</p>
           <label for="selectCv">Select a resume to remove</label>
@@ -465,6 +465,21 @@
             <?php endforeach; ?> <?php } ?>
           </select>
           <button class="Del" type="submit" name="delResume">Delete</button>
+        </form>
+      </div>
+
+      <!-- Download Resume Window -->
+      <div class="window" id="window3">
+        <div class="window-title">
+          <div class="title">Download Resume</div>
+          <button data-window-close class="close-button">&#215;</button>
+        </div>
+        <form class="window-body" method="post">
+          <label for="Templater">Which Template would you like?</label>
+          <div id="PDF">
+            <button type="submit" class="alt" name="default">Default</button>
+            <button type="submit" name="business">Business</button>
+          </div>
         </form>
       </div>
 

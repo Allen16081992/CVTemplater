@@ -82,11 +82,17 @@ class ResumePDF extends FPDF {
         
         //////////////////// TRADEMARK ///////////////////
         $imagePath = '../img/CV-headed-eagle.png';
+        $imagePath2 = '../img/MyInitials.png';
         $building = '../img/icons/buildings-24.png'; 
         $envelope = '../img/icons/envelope-24.png';
         $mobile = '../img/icons/phone-24.png'; 
         $world = '../img/icons/world-24.png';
-        $this->Image($imagePath, 10, 10, 30); // Adjust the positioning and dimensions as needed
+
+        if (isset($_POST['default'])) {
+            $this->Image($imagePath, 10, 10, 30); // Adjust the positioning and dimensions as needed
+        } elseif (isset($_POST['business'])) {
+            $this->Image($imagePath2, 10, 10, 30); // Adjust the positioning and dimensions as needed
+        }
           
         //$this->Image($envelope, 10, 10, 30); 
         //$this->Image($world, 10, 10, 30); 
