@@ -593,7 +593,8 @@ input[type="file"] { display: none; }
     margin-right:0;
     margin-top:1rem; /* Reset the left margin for center alignment */
   }
-  #PDF, .Add, .Save, .Trash { max-width:10rem; }
+  #PDF { width: 100%; }
+  .Add, .Save, .Trash { max-width:10rem; }
   header .error-message, .success-message, .golden-message {
     position:absolute;
     left:0;

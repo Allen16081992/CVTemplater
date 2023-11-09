@@ -22,7 +22,6 @@
     <!-- Javascript -->
     <?php require_once 'config/peripherals/javascript_load.config.php'; ?>
     <script defer src="javascript/dropdown.submit.js"></script>
-    <script defer src="javascript/mobile.pdf.helper.js"></script>
   </head>
   <body>
     <!-- Upper Navigation Panel -->
@@ -474,8 +473,8 @@
           <div class="title">Download Resume</div>
           <button data-window-close class="close-button">&#215;</button>
         </div>
-        <form class="window-body" method="post">
-          <label for="Templater">Which Template would you like?</label>
+        <form class="window-body" action="config/download.config.php" target="_blank" method="post">
+          <p>Which Template would you like?</p>
           <div id="PDF">
             <button type="submit" class="alt" name="default">Default</button>
             <button type="submit" name="business">Business</button>
