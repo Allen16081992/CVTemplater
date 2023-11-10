@@ -42,9 +42,9 @@ header {
 }
 header #nav-signup { z-index:2; }
 nav {
-  display: flex; /* Enable flex layout */
-  justify-content: flex-end; /* Space links from the right side */
-  align-items: center; /* Center links vertically */
+display: flex; /* Enable flex layout */
+justify-content: flex-end; /* Space links from the right side */
+align-items: center; /* Center links vertically */
 }
 nav a {
   font-size: 1.7rem;
@@ -72,19 +72,19 @@ ul li .m-on { color: #ddd; }
   padding: 0 .5rem;
 }
 .tagline {
-  font-style:italic;
-  opacity: 0;
-  transition: opacity 1s ease;
-  animation: fadeIn 1s ease forwards;
-  animation-delay: 1s;
+font-style:italic;
+opacity: 0;
+transition: opacity 1s ease;
+animation: fadeIn 1s ease forwards;
+animation-delay: 1s;
 }
 @keyframes fadeIn {
-  from {
+from {
     opacity: 0;
-  }
-  to {
+}
+to {
     opacity: 1;
-  }
+}
 }
 
 /* (Mobile) Resume Side Panel */
@@ -101,7 +101,6 @@ ul li .m-on { color: #ddd; }
   border: 1px solid var(--primary-color-dark);
   border-radius:10px;
   background:var(--bg-window); 
-  z-index:1;
 }
 .m-dropup option { 
   margin-top:10px;
@@ -118,7 +117,7 @@ ul li .m-on { color: #ddd; }
   border: 1px solid var(--primary-color-dark);
   border-radius:10px;
   background-color: rgba(0,0,0,0.5);
-  z-index:1;
+  z-index: 1;
 }
 .m-sidebar ul { list-style-type: none; }
 
@@ -136,7 +135,8 @@ ul li .m-on { color: #ddd; }
 .sidebar button { width: 100%; }
 #profile button { margin-left:12px; }
 .New, .Add { background: rgb(42, 170, 42); }
-#Template, .Add, .Save, .Trash { 
+#PDF { width: 100%; }
+.Download, .Add, .Save, .Trash { 
   height: 30px; /* Adjust the height as per your requirements */
   line-height: 0; /* Should match the height of the button */
   text-align: center; 
@@ -147,48 +147,48 @@ ul li .m-on { color: #ddd; }
 .Del:hover, .Trash:hover { background: rgb(176, 45, 45); }
 
 .button-container {
-  text-align: left;
-  white-space: nowrap;
-  overflow-x: auto;
+text-align: left;
+white-space: nowrap;
+overflow-x: auto;
 }
 .button-container button {
-  display: inline-block;
-  margin-left: 10px; /* Add a left margin of 5px */
+display: inline-block;
+margin-left: 10px; /* Add a left margin of 5px */
 }
 .button-container button:not(:first-child) {
-  margin-left: 0; /* Remove the left margin from the first button */
+margin-left: 0; /* Remove the left margin from the first button */
 }
 .label-container {
-  display: flex;
-  justify-content: left;
+display: flex;
+justify-content: left;
 }
 .label-group {
-  display: flex;
-  justify-content: left;
-  /*gap: 9rem; /* Adjust the gap between labels if needed */
+display: flex;
+justify-content: left;
+/*gap: 9rem; /* Adjust the gap between labels if needed */
 }
 .label-group > label {
-  pointer-events: none;
-  width: 13rem;
-  margin-bottom:-20px;
+pointer-events: none;
+width: 13rem;
+margin-bottom:-20px;
 }
 
 .input-container {
-  text-align: left;
-  white-space: nowrap;
-  overflow-x: auto;
+text-align: left;
+white-space: nowrap;
+overflow-x: auto;
 }
 .input-group {
-  display: inline-block;
-  margin-right: 10px;
+display: inline-block;
+margin-right: 10px;
 }
 .input-group:last-child {
-  margin-right: 0;
+margin-right: 0;
 }
 .input-group input[type="text"] {
-  display: block;
-  max-width: 12rem;
-  margin:2rem 0 1rem 0;
+display: block;
+max-width: 12rem;
+margin:2rem 0 1rem 0;
 }
 
 .sidebar ul { list-style-type: none; }
@@ -243,26 +243,26 @@ ul li .m-on { color: #ddd; }
   box-shadow: 0 0 50px rgb(204, 0, 255), inset 0 0 50px rgb(204, 0, 255);
 }
 @keyframes animate {
-    0% {
+  0% {
       box-shadow: 0 0 50px #0f0, inset 0 0 50px #0f0;
       filter: hue-rotate(0deg);
-    }
-    20% {
+  }
+  20% {
       box-shadow: 0 0 60px #0f0, inset 0 0 60px #0f0;
-    }
-    40% {
+  }
+  40% {
       box-shadow: 0 0 40px rgba(204, 0, 255, 0.71), inset 0 0 40px rgba(204, 0, 255, 0.71);
-    }
-    60% {
+  }
+  60% {
       box-shadow: 0 0 60px #0f0, inset 0 0 60px #0f0;
-    }
-    80% {
+  }
+  80% {
       box-shadow: 0 0 100px #0f0, inset 0 0 100px #0f0;
-    }
-    100% {
+  }
+  100% {
       box-shadow: 0 0 50px #0f0, inset 0 0 50px #0f0;
       filter: hue-rotate(360deg);
-    }
+  }
 }
 
 /* Resume Icon - Call-to-action Button */
@@ -335,13 +335,13 @@ ul li .m-on { color: #ddd; }
 .window-body .error-uid { margin-top:-15px; }
 .window-terms { padding:10px; background-color: rgba(0, 0, 0, 0.868); }
 .terms {
-  position:fixed;
-  margin-top: 18rem;
-  left:50%;
-  border: 1px solid var(--primary-color-dark);
-  border-radius:10px;
-  background-color:var(--bg-window);
-  color: var(--text-color);
+position:fixed;
+margin-top: 18rem;
+left:50%;
+border: 1px solid var(--primary-color-dark);
+border-radius:10px;
+background-color:var(--bg-window);
+color: var(--text-color);
 }
 .success-message {
   background:rgb(232, 255, 233); 
@@ -381,8 +381,12 @@ ul li .m-on { color: #ddd; }
   top:58%;
   transform:translate(-50%, -50%) scale(1);
 }
-.tab { display: none; }
-input.invalid { background-color: #ffdddd; }
+.tab {
+  display: none;
+}
+input.invalid {
+  background-color: #ffdddd;
+}
 .step {
   height: 15px;
   width: 15px;
@@ -393,21 +397,23 @@ input.invalid { background-color: #ffdddd; }
   display: inline-block;
   opacity: 0.5;
 }
-.step.active { opacity: 1; }
+.step.active {
+  opacity: 1;
+}
 .step.finish {
   background-color: #04AA6D;
   box-shadow: inset 0 0 10px 2px rgba(0, 255, 182, 0.5), 0 0 10px 2px rgba(0, 255, 135, 1);
   animation: pulse 1s alternate infinite;
 }
 @keyframes pulse {
-  0% {
+0% {
     background-color: rgba(255, 255, 255, 0.3);
     box-shadow: inset 0 0 10px 2px rgba(0, 255, 182, 0.5), 0 0 5px 2px rgba(0, 255, 135, 0.3);
-  }
-  100% {
+}
+100% {
     background-color: rgba(255, 255, 255, 1);
     box-shadow: inset 0 0 10px 2px rgba(0, 255, 182, 0.5), 0 0 15px 2px rgba(0, 255, 135, 1);
-  }
+}
 }
 #prevBtn, #nextBtn { width:35%; }
 #nextBtn { float:right; }
@@ -460,7 +466,6 @@ input.invalid { background-color: #ffdddd; }
   transition: all 0.3s ease;
 }
 .collapse-text h5, p { padding: 15px 0 0 15px; }
-.collapse-text form label { pointer-events: none; }
 .collapse-text form input { border: 1px solid transparent; transition: border 0.3s ease; }
 .collapse-text form textarea { border: 2px solid rgba(0,0,0,.2); transition: border 0.3s ease; }
 .collapse-text form textarea:focus { border: 2px solid black; }
@@ -473,7 +478,9 @@ input.invalid { background-color: #ffdddd; }
   max-height:10rem;
   max-width:10rem;
 }
-input[type="file"] { display: none; }
+input[type="file"] {
+  display: none;
+}
 .custom-file-upload {
   margin-top:-2px;
   height: 200px;
@@ -483,9 +490,9 @@ input[type="file"] { display: none; }
 
 .collapse 
   #collapse-head1:checked ~ #field1, 
-    #collapse-head2:checked ~ #field2, 
+   #collapse-head2:checked ~ #field2, 
     #collapse-head3:checked ~ #field3,
-      #collapse-head4:checked ~ #field4,
+     #collapse-head4:checked ~ #field4,
       #collapse-head5:checked ~ #field5,
         #collapse-head6:checked ~ #field6 {
   max-height:520px;
@@ -500,46 +507,46 @@ input[type="file"] { display: none; }
 @media (orientation: landscape) {
   body { background-size: 100%; }
   .logo {
-    height:6rem;
-    width:6rem;
+      height:6rem;
+      width:6rem;
   }
   #action { left:34%; }
   .window { width: 500px; }
   .sidebar { max-width:20vw; }
   .collapse {
-    position:absolute;
-    top:15%;
-    left:20%;
-    max-width: 75%;
+      position:absolute;
+      top:15%;
+      left:20%;
+      max-width: 75%;
   }
 }
 @media (orientation: portrait) {
   body { overflow-x: hidden;}
   .logo {
-    position:relative;
-    height:3rem;
-    width:3rem;
+      position:relative;
+      height:3rem;
+      width:3rem;
   }
   nav { display:flex; }
   nav.active a { display:block; }
   nav a {
-    display:none;
-    font-size: 1.2rem;    
+      display:none;
+      font-size: 1.2rem;    
   }  
   #menu-icon { 
-    position:absolute;
-    margin-left:4rem;
-    opacity:1; 
+      position:absolute;
+      margin-left:4rem;
+      opacity:1; 
   }
   #action { left:30%; }
   .window { width: 80%; }
   .sidebar { display:none; }
   .m-dropup { display:block; }
   .m-sidebar {  
-    position:fixed;  
-    display:block;   
-    height:60px;
-    bottom: -60px;
+      position:fixed;  
+      display:block;   
+      height:60px;
+      bottom: -60px;
   }
   .m-sidebar ul {
     margin: 0.5rem;
@@ -553,16 +560,16 @@ input[type="file"] { display: none; }
     margin: 0 0.85rem; /* Adjust the margin as needed */
     text-align: center;
   }
-  #field6 { margin-bottom: 8rem;}
+
   .collapse {
-    position:absolute;
-    top:15%;
-    left:0;
-    max-width: 100%;
+      position:absolute;
+      top:15%;
+      left:0;
+      max-width: 100%;
   }
   .collapse-text > .alt {
-    max-width: 47%;
-    height: 3.2rem;
+      max-width: 47%;
+      height: 3.2rem;
   }
   .collapse form .left input[name='resumetitle'] { width:210%; }
   .collapse-text button { margin:5px 0 0 0;}
@@ -593,8 +600,7 @@ input[type="file"] { display: none; }
     margin-right:0;
     margin-top:1rem; /* Reset the left margin for center alignment */
   }
-  #PDF { width: 100%; }
-  .Download, .Add, .Save, .Trash { max-width:10rem; }
+  #PDF, .Add, .Save, .Trash { max-width:10rem; }
   header .error-message, .success-message, .golden-message {
     position:absolute;
     left:0;
