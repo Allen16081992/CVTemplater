@@ -109,9 +109,11 @@
                 <input type="text" name="cvname" placeholder="Ex: Professional Dredger" value="<?= isset($_SESSION['resumetitle']) ? htmlspecialchars($_SESSION['resumetitle']) : '' ?>">
               </div>
             </div>
-            <button type="submit" class="Save" name="saveResume">Save</button>
-            <button data-window-target="#window3" class="alt Download" id="Template">Download</button>
+            <div class="left"> 
+              <button type="submit" class="Save" name="saveResume">Save</button>
+            </div> 
           </form>
+          <button data-window-target="#window3" class="alt Dld">Download</button>
         </div>
 
         <!-- Profile Tab -->
