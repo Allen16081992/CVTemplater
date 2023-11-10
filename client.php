@@ -91,17 +91,27 @@
         <label for="collapse-head1">Resume Name</label>       
         <div class="collapse-text" id="field1">
           <form name="resume" action="config/updateresume.config.php" method="post"> 
-            <p class="error-resume-tab"></p>        
-            <label for="resid">Resume ID</label>
-            <input type="text" placeholder="*ID is Protected." disabled>
-            <input type="text" name="resid" value="<?= isset($resumeID) ? htmlspecialchars($resumeID) : '' ?>" hidden>
-            <label for="cvname">Name</label>
-            <input type="text" name="cvname" placeholder="Ex: Professional Dredger" value="<?= isset($_SESSION['resumetitle']) ? htmlspecialchars($_SESSION['resumetitle']) : '' ?>">
-            <div class="left"> 
-              <button type="submit" class="Save" name="saveResume">Save</button>
-            </div> 
+            <p class="error-resume-tab"></p>   
+            <div class="label-container">
+              <div class="label-group">
+                <label for="resid">Resume ID</label>
+                <label for="cvname">Name</label>
+              </div>
+            </div>
+            <div class="input-container">
+              <div class="input-group">
+                <input type="hidden" name="resid" value="<?= isset($resumeID) ? htmlspecialchars($resumeID) : '' ?>">
+              </div>
+              <div class="input-group">
+                <input type="text" placeholder="*ID is Protected." disabled>
+              </div>                     
+              <div class="input-group">
+                <input type="text" name="cvname" placeholder="Ex: Professional Dredger" value="<?= isset($_SESSION['resumetitle']) ? htmlspecialchars($_SESSION['resumetitle']) : '' ?>">
+              </div>
+            </div>
+            <button type="submit" class="Save" name="saveResume">Save</button>
+            <button data-window-target="#window3" class="alt Download" id="Template">Download</button>
           </form>
-          <button data-window-target="#window3" class="alt" id="Template">Download</button>
         </div>
 
         <!-- Profile Tab -->
@@ -111,7 +121,7 @@
           <p>Edit your profile image</p>
           <!-- id 'profile' is needed to target buttons in css -->       
           <form id="profile" name="profile" action="config/profile.config.php" enctype="multipart/form-data" method="post">
-            <input type="text" name="resumeid" value="<?= isset($resumeID) ? htmlspecialchars($resumeID) : '' ?>" hidden>
+            <input type="hidden" name="resumeid" value="<?= isset($resumeID) ? htmlspecialchars($resumeID) : '' ?>">
             <div class="left">
               <?php if (isset($userID) && !empty($data['profile'])) { ?>
                 <?php foreach ($data['profile'] as $profile): ?>
@@ -473,13 +483,17 @@
           <div class="title">Download Resume</div>
           <button data-window-close class="close-button">&#215;</button>
         </div>
-        <form class="window-body" action="config/download.config.php" target="_blank" method="post">
+        <div class="window-body">
           <p>Which Template would you like?</p>
           <div id="PDF">
-            <button type="submit" class="alt" name="default">Default</button>
-            <button type="submit" name="business">Business</button>
+            <form action="config/download.config.php" target="_blank" method="post">
+              <button type="submit" class="alt" name="default">Default</button>
+            </form>
+            <form action="config/download2.config.php" target="_blank" method="post">
+              <button type="submit" name="business">Business</button>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
 
       <!-- When any Window opens, darken the background -->

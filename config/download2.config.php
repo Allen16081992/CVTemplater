@@ -49,18 +49,6 @@ class ResumePDF extends FPDF {
         $this->data = $result; 
     }
     
-    function Header() {
-        if ($this->PageNo() == 1) {
-            //Cell( width, height, text, border, end line, align)
-            // Set the font and size
-            $this->SetFont('Arial', 'B', 16);
-            // Add Custom header
-            $this->Cell(0, 10, 'Curriculum Vitae', 0, 0, 'C');
-            // Add a line break
-            $this->Ln(10);
-        }
-    }
-    
     function Footer() {
         // Check if more than one page exists
         if ($this->PageNo() > 1) {
@@ -78,19 +66,6 @@ class ResumePDF extends FPDF {
         $this->AddPage();
         $this->SetFont('Arial', '', 12);
         
-        //////////////////// TRADEMARK ///////////////////
-        $imagePath = '../img/CV-headed-eagle.png';
-        $building = '../img/icons/buildings-24.png'; 
-        $envelope = '../img/icons/envelope-24.png';
-        $mobile = '../img/icons/phone-24.png'; 
-        $world = '../img/icons/world-24.png';
-
-        // Set Trademark
-        $this->Image($imagePath, 10, 10, 30); // Adjust positioning and dimensions
-
-        // Set font
-        $this->SetFont('Arial', '', 10);
-
         // Sanitize data using htmlspecialchars
         // Resume title becomes Filename
         if (isset($this->data['resume'][0]['resumetitle'])) {
@@ -101,6 +76,7 @@ class ResumePDF extends FPDF {
         if (isset($this->data['contact'][0])) {
             $firstname = htmlspecialchars($this->data['contact'][0]['firstname']);
             $surname = htmlspecialchars($this->data['contact'][0]['lastname']);
+            $initials = substr($firstname, 0, 1) . substr($surname, 0, 1);
             $city = htmlspecialchars($this->data['contact'][0]['city']);
             $nationality = htmlspecialchars($this->data['contact'][0]['nationality']);
             $phone = htmlspecialchars($this->data['contact'][0]['phone']);
@@ -156,49 +132,73 @@ class ResumePDF extends FPDF {
             $motivation = array_map('htmlspecialchars', $motivation);
         }
 
+        //////////////////// TRADEMARK ///////////////////
+        $imagePath = '../img/MyInitials.png';
+        $building = '../img/icons/buildings-24.png'; 
+        $envelope = '../img/icons/envelope-24.png';
+        $mobile = '../img/icons/phone-24.png'; 
+        //$world = '../img/icons/world-24.png';
+
         //////////////////// HEADER ///////////////////
 
-        // Add name and surname
-        $this->SetXY(110, 10); // Set the position for text
-        $this->SetFont('Arial', 'B', 14);
-        $this->Cell(0, 10, $firstname.' '.$surname, 0, 1, 'R');
+        // Set Trademark
+        $this->Image($imagePath, 10, 10, 30); // Adjust positioning and dimensions
 
-        // Add city, phone and email
+        // Set Initials
+        $this->SetXY(13, 24); // Set the position for text
+        $this->SetFont('Arial', 'I', 14);
+        $this->SetFontSize(41); // Set the font size to 16
+        $this->SetTextColor(255,255,255); // Set font color to red (RGB values)
+        $this->Cell(0, 10, $initials, 0, 0, 'L');
+
+        // Set Name
+        $this->SetXY(75, 25); // Set the position for text
+        $this->SetTextColor(0,0,0); // Set font color to red (RGB values)
+        $this->Cell(0, 10, $firstname.' '.$surname, 0, 1, '');
+
+        // Set font
         $this->SetFont('Arial', '', 10);
-        $this->SetX($this->GetPageWidth() - 10); //add an offset margin
-        $this->Cell(-5, 5, $city, 0, 1, 'R'); 
-        $this->Image($building, 195, 20, 5); //add icon
+        $this->SetTextColor(0,0,0); // Set font color to red (RGB values)
 
-        $this->SetX($this->GetPageWidth() - 10); 
-        $this->Cell(-5, 5, $nationality, 0, 1, 'R'); 
-        $this->Image($world, 195, 25, 5); 
-        $this->Ln(4); // add a line break
-
-        //$this->SetX(110); // Set the position for the email
-        $this->SetX($this->GetPageWidth() - 10); 
-        $this->Cell(-5, 5, $phone, 0, 1, 'R'); 
-        $this->Image($mobile, 195, 34, 5); 
-
-        $this->SetX($this->GetPageWidth() - 10); 
-        $this->Cell(-5, 5, $email, 0, 1, 'R'); 
-        $this->Image($envelope, 195, 39, 5); 
-
-        $this->Ln(10);
-        $this->SetFont('Arial', 'B', 14);
-        $this->Cell(0, 5, 'Profile', 0, 1, 'L'); 
-        $this->Ln(1);
-        $this->SetFont('Arial', '', 10);
-        if (isset($this->data['profile'][0]['profiledesc'])) {
-            $profiledesc = $this->data['profile'][0]['profiledesc'];
-            $this->MultiCell(0, 5, html_entity_decode($profiledesc), 0, 0, '');
-        }
-        
         // Add a line break
-        $this->Ln(10);
+        $this->Ln(15);
+
+        //////////////////// Contact ///////////////////
+
+        // Set contact information
+        $this->SetFont('Arial', '', 12);
+        $this->SetDrawColor(0,80,180); //0,155,119 Emerald Green
+        $this->Image($mobile, 10, 50, 5); $this->Cell(50, 5, $phone, 1, 0, 'C'); 
+        $this->Image($envelope, 61, 50, 5);  $this->Cell(90, 5, $email, 1, 0, 'C'); 
+        $this->Image($building, 150, 50, 5); $this->Cell(50, 5, $city, 1, 0, 'C');
+
+        // Add a line break
+        $this->Ln(15);
+
+        //$this->SetX($this->GetPageWidth() - 10); 
+        //$this->Cell(-5, 5, $nationality, 0, 1, 'R'); 
+        //$this->Image($world, 195, 25, 5); 
+        //$this->Ln(4); // add a line break
+
+        //////////////////// Profile ///////////////////
+
+        if (isset($this->data['profile'][0]['profiledesc'])) {
+            // Set Profile
+            $this->SetFont('Arial', 'I', 10);
+            $this->Cell(0, 5, 'Profile', 0, 1, 'C'); 
+            $this->SetFont('Arial', 'B', 14);
+            // Set description
+            $profiledesc = $this->data['profile'][0]['profiledesc'];
+            $this->SetFont('Arial', '', 10);
+            $this->SetFillColor(230,230,0);
+            $this->MultiCell(0, 5, html_entity_decode($profiledesc), 0, 'C', 0);
+            // Add a line break
+            $this->Ln(5);
+        }
 
         /////////////////////// WORK EXPERIENCE ////////////////////////
-        $this->SetFont('Arial', 'B', 14);
-        $this->Cell(0, 10, 'Experience', 1, 1, 'L');
+        $this->SetFont('Arial', 'I', 14);
+        $this->Cell(0, 10, 'Experience', 1, 1, 'C');
         $this->Ln(2);
 
         // Show values from array position specifically. Limit - 3 jobs.
@@ -263,8 +263,8 @@ class ResumePDF extends FPDF {
         }
 
         /////////////////////// EDUCATION ////////////////////////
-        $this->SetFont('Arial', 'B', 14);
-        $this->Cell(0, 10, 'Education', 1, 1, 'L');
+        $this->SetFont('Arial', 'I', 14);
+        $this->Cell(0, 10, 'Education', 1, 1, 'C');
         $this->Ln(2);
 
         // Show values from array position specifically. Limit - 3 jobs.
@@ -327,22 +327,25 @@ class ResumePDF extends FPDF {
                 $this->Ln(5);
             }
         }
+        
+        /////////////////////// HARD & SOFT SKILLS ////////////////////////
 
-        /////////////////////// SKILLS ////////////////////////
-        $this->SetFont('Arial', 'B', 14);
-        $this->Cell(0, 10, 'Skills', 1, 1, 'L');
-        $this->Ln(3);
-
+        $this->SetLineWidth(1);
         $this->SetFont('Arial', 'I', 10);
         $this->Cell(63, 5, 'Abilities', 1, 0, 'C');
-        $this->Cell(63, 5, 'Languages', 1, 0, 'C');
-        $this->Cell(63, 5, 'Interests', 1, 1, 'C');
+        $this->Cell(64, 5, 'Languages', 1, 0, 'C');
+        $this->Cell(63, 5, 'Interests', 1, 0, 'C');
 
-        $this->SetFont('Arial', 'B', 14);
+        // Add a line break
         $this->Ln(2);
 
         // Show values from array position specifically. Limit - 3 jobs.
         // Determine the maximum number of entries to display
+
+        if (isset($this->data['technical'][0]['techtitle']) || isset($this->data['languages'][0]['language']) || isset($this->data['interests'][0]['interest'])) {
+            $this->SetFont('Arial', 'B', 12);
+        }
+        
         $maxEntries = max(count($techTitle), count($language), count($interest));
 
         // Loop through the entries

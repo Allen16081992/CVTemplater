@@ -594,7 +594,7 @@ input[type="file"] { display: none; }
     margin-top:1rem; /* Reset the left margin for center alignment */
   }
   #PDF { width: 100%; }
-  .Add, .Save, .Trash { max-width:10rem; }
+  .Download, .Add, .Save, .Trash { max-width:10rem; }
   header .error-message, .success-message, .golden-message {
     position:absolute;
     left:0;
