@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 25 aug 2023 om 14:17
+-- Gegenereerd op: 17 nov 2023 om 21:45
 -- Serverversie: 10.4.28-MariaDB
 -- PHP-versie: 8.2.4
 
@@ -133,6 +133,19 @@ CREATE TABLE `languages` (
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `motivation`
+--
+
+CREATE TABLE `motivation` (
+  `motID` int(11) NOT NULL,
+  `letter` text DEFAULT NULL,
+  `resumeID` int(11) NOT NULL,
+  `userID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `profile`
 --
 
@@ -146,6 +159,13 @@ CREATE TABLE `profile` (
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `profile`
+--
+
+INSERT INTO `profile` (`profileID`, `profileintro`, `profiledesc`, `filePath`, `fileName`, `resumeID`, `userID`) VALUES
+(1, 'I am a halloween pumpkin.', 'I am a girl and I am amazigh.', '', '', 1, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -157,6 +177,13 @@ CREATE TABLE `resume` (
   `resumetitle` varchar(50) DEFAULT NULL,
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `resume`
+--
+
+INSERT INTO `resume` (`resumeID`, `resumetitle`, `userID`) VALUES
+(1, 'Data Analist', 2);
 
 -- --------------------------------------------------------
 
@@ -222,6 +249,14 @@ ALTER TABLE `languages`
   ADD KEY `fk_lang_res` (`resumeID`);
 
 --
+-- Indexen voor tabel `motivation`
+--
+ALTER TABLE `motivation`
+  ADD PRIMARY KEY (`motID`),
+  ADD KEY `userID` (`userID`),
+  ADD KEY `resumeID` (`resumeID`);
+
+--
 -- Indexen voor tabel `profile`
 --
 ALTER TABLE `profile`
@@ -285,16 +320,22 @@ ALTER TABLE `languages`
   MODIFY `langID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT voor een tabel `motivation`
+--
+ALTER TABLE `motivation`
+  MODIFY `motID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT voor een tabel `profile`
 --
 ALTER TABLE `profile`
-  MODIFY `profileID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `profileID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT voor een tabel `resume`
 --
 ALTER TABLE `resume`
-  MODIFY `resumeID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `resumeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT voor een tabel `technical`
@@ -339,6 +380,13 @@ ALTER TABLE `interests`
 ALTER TABLE `languages`
   ADD CONSTRAINT `fk_lang_res` FOREIGN KEY (`resumeID`) REFERENCES `resume` (`resumeID`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_lang_user` FOREIGN KEY (`userID`) REFERENCES `accounts` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Beperkingen voor tabel `motivation`
+--
+ALTER TABLE `motivation`
+  ADD CONSTRAINT `motivation_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `accounts` (`userID`),
+  ADD CONSTRAINT `motivation_ibfk_2` FOREIGN KEY (`resumeID`) REFERENCES `resume` (`resumeID`);
 
 --
 -- Beperkingen voor tabel `profile`
