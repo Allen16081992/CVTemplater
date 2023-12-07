@@ -421,7 +421,7 @@
         <!-- Motivation Tab -->
         <input class="check" type="checkbox" id="collapse-head6">
         <label for="collapse-head6">Motivation</label>       
-        <div class="collapse-text" id="field6">
+        <div class="collapse-text last" id="field6">
           <form name="motivation" action="config/motivation.config.php" method="post"> 
             <p class="error-motivation-tab"></p>        
             <label for="letter">Motivation Letter</label>

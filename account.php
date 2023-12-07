@@ -125,7 +125,7 @@
         <!-- Personal Info Fields -->
         <input class="check" type="checkbox" id="collapse-head3">
         <label for="collapse-head3">Personal Info</label>
-        <div class="collapse-text" id="field3">
+        <div class="collapse-text last" id="field3">
           <p>You can even use our App on your mobile device, how convenient is that?</p>
           <form name="personal" action="config/AccountUpdate.config.php" method="post">
             <div class="left">

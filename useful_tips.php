@@ -25,25 +25,11 @@
       font-weight: bold;
       margin-bottom: 10%;
     }
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio (change this value as needed) */
-      height: 0; margin-top:8rem;
-      overflow: hidden;
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
     .tips {
       background: var(--bg-color);
       border-radius: 25px;
       padding:20px;
       border: 1px solid var(--primary-color-dark);
-      margin: 25px; margin-bottom:8rem;
     }
   </style>
 <body>
@@ -80,17 +66,8 @@
 
     <!-- Main Content -->
     <main class="container">
-      <div class="video-container">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/IW472-d_8bs?si=GkEOGu5DO4Pz9Mb2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-      <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/pjqi_M3SPwY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-      <p class="tips">Check out these videos, as they contain useful constructive suggestions for improving your resume and increasing your chance at job offers.</p>
-      <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/Y2AzUbDLRXs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-      <p class="tips">Watch this video so you can arrow down your resume to specific targets. Be sure to enable subtitles to follow the Dutch language in this video.</p>
+      <p class="tips">Check out <a href="https://www.youtube.com/watch?v=pjqi_M3SPwY" target="_blank">video 1</a> or <a href="https://www.youtube.com/watch?v=IW472-d_8bs" target="_blank">video 2</a>. They contain useful advice for improving your resume and increasing your chance at interviews.</p>
+      <p class="tips">Watch this <a href="https://www.youtube.com/watch?v=Y2AzUbDLRXs" target="_blank">video</a> so you can arrow down your resume to specific targets. Be sure to enable subtitles to follow the Dutch language in this video.</p>
     </main>
 </body>
 </html>
