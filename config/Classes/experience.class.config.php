@@ -27,21 +27,16 @@ class Experience {
         if (isset($this->userID) && isset($this->resumeID) && !empty($this->resumeID)) {
 
             $connection = $this->database->connect();
-            $worktitle = $this->getWorktitle();
-            $workdesc = $this->getWorkdesc();
-            $company = $this->getCompany();
-            $firstDate = $this->getFirstDate();
-            $lastDate = $this->getLastDate();
             $sql = $connection->prepare(
                 "INSERT INTO experience (worktitle, workdesc, company, firstDate, lastDate, resumeID, userID) 
                  VALUES (:worktitle, :workdesc, :company, :firstDate, :lastDate, :resumeID, :userID);"
             );
 
-            $sql->bindParam(":worktitle", $worktitle);
-            $sql->bindParam(":workdesc", $workdesc);
-            $sql->bindParam(":company", $company);
-            $sql->bindParam(":firstDate", $firstDate);
-            $sql->bindParam(":lastDate", $lastDate);
+            $sql->bindParam(":worktitle", $this->worktitle);
+            $sql->bindParam(":workdesc", $this->workdesc);
+            $sql->bindParam(":company", $this->company);
+            $sql->bindParam(":firstDate", $this->firstDate);
+            $sql->bindParam(":lastDate", $this->lastDate);
             $sql->bindParam(":userID", $this->userID); // Dhr. Allen Pieter. It now handles the logged in user value correctly.
             $sql->bindParam(":resumeID", $this->resumeID); // Dhr. Allen Pieter. It now handles the resume value correctly.
             $sql->execute();
@@ -61,24 +56,27 @@ class Experience {
     public function Updateexperience() {
         // Dhr. Allen Pieter: New if. We can't let users save resume related data without creating a resume.
         if (isset($this->userID) && isset($this->resumeID) && !empty($this->resumeID)) {  
-
+            // Check if a row id was submitted
+            if(isset($_POST['workID'])) {
+                $workID = $_POST['workID'];
+            } else {
+                // Error message by sessions instead of URL parsing.
+                $_SESSION['error'] = 'Failed to verify Experience.';
+                header('location: ../client.php');
+            }
             $connection = $this->database->connect();
-            $worktitle = $this->getWorktitle();
-            $workdesc = $this->getWorkdesc();
-            $company = $this->getCompany();
-            $firstDate = $this->getFirstDate();
-            $lastDate = $this->getLastDate();
             $sql = $connection->prepare(
-                "UPDATE `experience` SET worktitle = :worktitle, workdesc = :workdesc, company = :company, firstDate = :firstDate, lastDate = :lastDate, resumeID = :resumeID, userID = :userID;"
+                "UPDATE `experience` SET worktitle = :worktitle, workdesc = :workdesc, company = :company, firstDate = :firstDate, lastDate = :lastDate WHERE workID = :workID AND resumeID = :resumeID AND userID = :userID;"
             );
 
-            $sql->bindParam(":worktitle", $worktitle);
-            $sql->bindParam(":workdesc", $workdesc);
-            $sql->bindParam(":company", $company);
-            $sql->bindParam(":firstDate", $firstDate);
-            $sql->bindParam(":lastDate", $lastDate);
-            $sql->bindParam(":userID", $this->userID); // Dhr. Allen Pieter. It now handles the logged in user value correctly.
+            $sql->bindParam(":worktitle", $this->worktitle);
+            $sql->bindParam(":workdesc", $this->workdesc);
+            $sql->bindParam(":company", $this->company);
+            $sql->bindParam(":firstDate", $this->firstDate);
+            $sql->bindParam(":lastDate", $this->lastDate);
+            $sql->bindParam(":workID", $workID);
             $sql->bindParam(":resumeID", $this->resumeID); // Dhr. Allen Pieter. It now handles the resume value correctly.
+            $sql->bindParam(":userID", $this->userID); // Dhr. Allen Pieter. It now handles the logged in user value correctly.
             $sql->execute(); 
 
             // Refresh client page.
@@ -117,86 +115,6 @@ class Experience {
         );
     }
     //////////////////////////////////////////////////////////
-
-    /**
-     * @return mixed
-     */
-    public function getWorktitle()
-    {
-        return $this->worktitle;
-    }
-
-    /**
-     * @param mixed $worktitle
-     */
-    public function setWorktitle($worktitle): void
-    {
-        $this->worktitle = $worktitle;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getWorkdesc()
-    {
-        return $this->workdesc;
-    }
-
-    /**
-     * @param mixed $workdesc
-     */
-    public function setWorkdesc($workdesc): void
-    {
-        $this->workdesc = $workdesc;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCompany()
-    {
-        return $this->company;
-    }
-
-    /**
-     * @param mixed $company
-     */
-    public function setCompany($company): void
-    {
-        $this->company = $company;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFirstDate()
-    {
-        return $this->firstDate;
-    }
-
-    /**
-     * @param mixed $firstDate
-     */
-    public function setFirstDate($firstDate): void
-    {
-        $this->firstDate = $firstDate;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLastDate()
-    {
-        return $this->lastDate;
-    }
-
-    /**
-     * @param mixed $lastDate
-     */
-    public function setLastDate($lastDate): void
-    {
-        $this->lastDate = $lastDate;
-    }
 
     /**
      * @return Database

@@ -30,20 +30,20 @@ class Education {
             // Khaqan
             $connection = $this->database->connect();
             //$edutitle = $this->getedutitle();
-            $edudesc = $this->getedudesc();
-            $company = $this->getcompany();
-            $firstDate = $this->getfirstDate();
-            $lastDate = $this->getlastDate();
+            // $edudesc = $this->getedudesc();
+            // $company = $this->getcompany();
+            // $firstDate = $this->getfirstDate();
+            // $lastDate = $this->getlastDate();
 
             $sql = $connection->prepare(
                 "INSERT INTO education (edutitle, edudesc, company, firstDate, lastDate, resumeID, userID) 
                  VALUES (:edutitle, :edudesc, :company, :firstDate, :lastDate, :resumeID, :userID);"
             );
             $sql->bindParam(":edutitle", $this->edutitle);
-            $sql->bindParam(":edudesc", $edudesc);
-            $sql->bindParam(":company", $company);
-            $sql->bindParam(":firstDate", $firstDate);
-            $sql->bindParam(":lastDate", $lastDate);
+            $sql->bindParam(":edudesc", $this->edudesc);
+            $sql->bindParam(":company", $this->company);
+            $sql->bindParam(":firstDate", $this->firstDate);
+            $sql->bindParam(":lastDate", $this->lastDate);
             $sql->bindParam(":resumeID", $this->resumeID); // Dhr. Allen Pieter. It now handles the resume value correctly.
             $sql->bindParam(":userID", $this->userID); // Dhr. Allen Pieter. It now handles the logged in user value correctly.
             $sql->execute();
@@ -63,22 +63,29 @@ class Education {
     public function Updateeducation() {
         // Dhr. Allen Pieter: New if. We can't let users save resume related data without creating a resume.
         if (isset($this->userID) && isset($this->resumeID) && !empty($this->resumeID)) {       
-
+            if(isset($_POST['eduID'])) {
+                $eduID = $_POST['eduID'];
+            } else {
+                // Error message by sessions instead of URL parsing.
+                $_SESSION['error'] = 'Failed to verify Experience.';
+                header('location: ../client.php');
+            }
             $connection = $this->database->connect();
             //$edutitle = $this->getedutitle();
-            $edudesc = $this->getedudesc();
-            $company = $this->getcompany();
-            $firstDate = $this->getfirstDate();
-            $lastDate = $this->getlastDate();
+            // $edudesc = $this->getedudesc();
+            // $company = $this->getcompany();
+            // $firstDate = $this->getfirstDate();
+            // $lastDate = $this->getlastDate();
 
             $sql = $connection->prepare(
-                "UPDATE `education` SET edutitle = :edutitle, edudesc = :edudesc, company = :company, firstDate = :firstDate, lastDate = :lastDate, resumeID = :resumeID, userID = :userID;"
+                "UPDATE `education` SET edutitle = :edutitle, edudesc = :edudesc, company = :company, firstDate = :firstDate, lastDate = :lastDate WHERE eduID = :eduID AND resumeID = :resumeID AND userID = :userID;"
             );
             $sql->bindParam(":edutitle", $this->edutitle);
-            $sql->bindParam(":edudesc", $edudesc);
-            $sql->bindParam(":company", $company);
-            $sql->bindParam(":firstDate", $firstDate);
-            $sql->bindParam(":lastDate", $lastDate);
+            $sql->bindParam(":edudesc", $this->edudesc);
+            $sql->bindParam(":company", $this->company);
+            $sql->bindParam(":firstDate", $this->firstDate);
+            $sql->bindParam(":lastDate", $this->lastDate);
+            $sql->bindParam(":eduID", $eduID);
             $sql->bindParam(":resumeID", $this->resumeID); // Dhr. Allen Pieter. It now handles the resume value correctly.
             $sql->bindParam(":userID", $this->userID); // Dhr. Allen Pieter. It now handles the logged in user value correctly.
             $sql->execute();  
@@ -121,70 +128,70 @@ class Education {
     }
     //////////////////////////////////////////////////////////
 
-    public function getedutitle()
-    {
-        return $this->edutitle;
-    }
+    // public function getedutitle()
+    // {
+    //     return $this->edutitle;
+    // }
 
-    public function setedutitle($edutitle)
-    {
-        $this->edutitle = $edutitle;
-    }
+    // public function setedutitle($edutitle)
+    // {
+    //     $this->edutitle = $edutitle;
+    // }
 
-    public function getedudesc()
-    {
-        return $this->edudesc;
-    }
-
-
-    public function setedudesc($edudesc)
-    {
-        $this->edudesc = $edudesc;
-    }
+    // public function getedudesc()
+    // {
+    //     return $this->edudesc;
+    // }
 
 
-    public function getcompany()
-    {
-        return $this->company;
-    }
+    // public function setedudesc($edudesc)
+    // {
+    //     $this->edudesc = $edudesc;
+    // }
 
 
-    public function setcompany($company)
-    {
-        $this->company = $company;
-    }
+    // public function getcompany()
+    // {
+    //     return $this->company;
+    // }
 
 
-    public function getfirstDate()
-    {
-        return $this->firstDate;
-    }
+    // public function setcompany($company)
+    // {
+    //     $this->company = $company;
+    // }
 
 
-    public function setfirstDate($firstDate)
-    {
-        $this->firstDate = $firstDate;
-    }
+    // public function getfirstDate()
+    // {
+    //     return $this->firstDate;
+    // }
 
 
-    public function getlastDate()
-    {
-        return $this->lastDate;
-    }
+    // public function setfirstDate($firstDate)
+    // {
+    //     $this->firstDate = $firstDate;
+    // }
 
 
-    public function setlastDate($lastDate)
-    {
-        $this->lastDate = $lastDate;
-    }
+    // public function getlastDate()
+    // {
+    //     return $this->lastDate;
+    // }
 
-    public function getdatabase()
-    {
-        return $this->database;
-    }
 
-    public function setdatabase($database)
-    {
-        $this->database = $database;
-    }
+    // public function setlastDate($lastDate)
+    // {
+    //     $this->lastDate = $lastDate;
+    // }
+
+    // public function getdatabase()
+    // {
+    //     return $this->database;
+    // }
+
+    // public function setdatabase($database)
+    // {
+    //     $this->database = $database;
+    // }
 }

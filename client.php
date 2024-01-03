@@ -305,7 +305,7 @@
                       <input type="text" name="company" placeholder="LTS Technical School">
                   </div>
                 </div>
-                <textarea name="workdesc" rows="2" placeholder="Write your program description here..."></textarea>
+                <textarea name="edudesc" rows="2" placeholder="Write your program description here..."></textarea>
                 <div class="button-container">
                   <button type="submit" class="Add" name="addEducation">Add</button>
                 </div>
@@ -326,7 +326,7 @@
                       <input type="text" name="company" placeholder="LTS Technical School">
                   </div>
                 </div>
-                <textarea name="workdesc" rows="2" placeholder="Write your program description here..."></textarea>
+                <textarea name="edudesc" rows="2" placeholder="Write your program description here..."></textarea>
                 <div class="button-container">
                   <button type="submit" class="Add" name="addEducation">Add</button>
                 </div>

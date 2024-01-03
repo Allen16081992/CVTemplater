@@ -59,11 +59,6 @@
       width: 900px;
     }
     @media (orientation: portrait) {
-      header > h1 {
-        margin-top:-3rem;
-        margin-left:-8px;
-        font-size:1rem;
-      }
       img, p, .Builder, .Delete, .Experience {
         width:100%;
       }
@@ -74,7 +69,6 @@
     <!-- Upper Navigation Panel -->
     <header>
       <img class="logo" src="img/CV-headed-eagle.png" alt="Brand Signature">
-      <h1>Tutorial</h1>
       <i class='bx bx-menu' id="menu-icon"></i>
       <nav> 
         <?php include_once 'config/peripherals/nav_username.config.php'; ?>
