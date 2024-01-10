@@ -185,7 +185,7 @@ class ResumePDF extends FPDF {
 
         $this->Ln(10);
         $this->SetFont('Arial', 'B', 14);
-        $this->Cell(0, 5, 'Profile', 0, 1, 'L'); 
+        $this->Cell(0, 5, 'Profiel', 0, 1, 'L'); 
         $this->Ln(1);
         $this->SetFont('Arial', '', 10);
         if (isset($this->data['profile'][0]['profiledesc'])) {
@@ -198,7 +198,7 @@ class ResumePDF extends FPDF {
 
         /////////////////////// WORK EXPERIENCE ////////////////////////
         $this->SetFont('Arial', 'B', 14);
-        $this->Cell(0, 10, 'Experience', 1, 1, 'L');
+        $this->Cell(0, 10, 'Werkervaring', 1, 1, 'L');
         $this->Ln(2);
 
         // Show values from array position specifically. Limit - 3 jobs.
@@ -264,7 +264,7 @@ class ResumePDF extends FPDF {
 
         /////////////////////// EDUCATION ////////////////////////
         $this->SetFont('Arial', 'B', 14);
-        $this->Cell(0, 10, 'Education', 1, 1, 'L');
+        $this->Cell(0, 10, 'Opleiding', 1, 1, 'L');
         $this->Ln(2);
 
         // Show values from array position specifically. Limit - 3 jobs.
@@ -330,13 +330,13 @@ class ResumePDF extends FPDF {
 
         /////////////////////// SKILLS ////////////////////////
         $this->SetFont('Arial', 'B', 14);
-        $this->Cell(0, 10, 'Skills', 1, 1, 'L');
+        $this->Cell(0, 10, 'Vaardigheden', 1, 1, 'L');
         $this->Ln(3);
 
         $this->SetFont('Arial', 'I', 10);
-        $this->Cell(63, 5, 'Abilities', 1, 0, 'C');
-        $this->Cell(63, 5, 'Languages', 1, 0, 'C');
-        $this->Cell(63, 5, 'Interests', 1, 1, 'C');
+        $this->Cell(63, 5, 'Vaardigheden', 1, 0, 'C');
+        $this->Cell(63, 5, 'Talen', 1, 0, 'C');
+        $this->Cell(63, 5, 'Interessen', 1, 1, 'C');
 
         $this->SetFont('Arial', 'B', 14);
         $this->Ln(2);
@@ -362,7 +362,7 @@ class ResumePDF extends FPDF {
             $this->SetFont('Arial', '', 15);
     
             // Add Custom header
-            $this->Cell(0, 10, 'Motivation', 0, 0, 'C');
+            $this->Cell(0, 10, 'Motivatie', 0, 0, 'C');
     
             // Add a line break
             $this->Ln(15);
