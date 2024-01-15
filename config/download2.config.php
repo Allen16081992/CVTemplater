@@ -332,12 +332,12 @@ class ResumePDF extends FPDF {
 
         $this->SetLineWidth(1);
         $this->SetFont('Arial', 'I', 10);
-        $this->Cell(63, 5, 'Vaardigheden', 1, 0, 'C');
-        $this->Cell(64, 5, 'Talen', 1, 0, 'C');
-        $this->Cell(63, 5, 'Interessen', 1, 0, 'C');
+        $this->Cell(63, 6, 'Vaardigheden', 1, 0, 'C');
+        $this->Cell(64, 6, 'Talen', 1, 0, 'C');
+        $this->Cell(63, 6, 'Interessen', 1, 0, 'C');
 
         // Add a line break
-        $this->Ln(6);
+        $this->Ln(8);
 
         // Show values from array position specifically. Limit - 3 jobs.
         // Determine the maximum number of entries to display
