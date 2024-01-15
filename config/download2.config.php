@@ -337,7 +337,7 @@ class ResumePDF extends FPDF {
         $this->Cell(63, 5, 'Interessen', 1, 0, 'C');
 
         // Add a line break
-        $this->Ln(2);
+        $this->Ln(6);
 
         // Show values from array position specifically. Limit - 3 jobs.
         // Determine the maximum number of entries to display
