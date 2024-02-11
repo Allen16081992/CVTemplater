@@ -357,7 +357,7 @@
               </div>
             </div>
             <?php if (isset($userID) && !empty($data['techskills'])) { ?>
-              <form name="technical" action="config/education.config.php" method="post">
+              <form name="technical" action="config/technical.skills.config.php" method="post">
                 <?php foreach ($data['techskills'] as $skill): ?>
                   <?php if (isset($skill['techtitle'])): ?>
                     <div class="input-group">

@@ -8,7 +8,7 @@ require_once "idb.config.php";
 require_once "Classes/technical.skills.class.config.php";
 require_once "Classes/TrashTables.class.config.php";
 
-if (isset($_POST['addSkill']) || isset($_POST['saveSkill'])){
+if (isset($_POST['addSkill'])){
     $language = $_POST['language'];
     $interest = $_POST['interest'];
     $techtitle = $_POST['technical'];
