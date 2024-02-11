@@ -43,7 +43,7 @@
       <!-- Sphere of Influence -->
       <div id="round"></div>
       <!-- Resume Icon Call-to-action -->
-      <button data-window-target="#window" id="action" onmouseover="PlaySound('mySound')"><img  src="img/logo_CV_Icon.png" alt=""></button><!--<button data-window-target="#window">Let's get started!</button>-->
+      <button data-window-target="#window" id="action" ><!-- onmouseover="PlaySound('mySound')" --><img  src="img/logo_CV_Icon.png" alt=""></button>
       <!-- Sphere Animation -->
       <svg>
         <filter id="wavy">
@@ -77,7 +77,7 @@
       <div id="overlay"></div>
 
       <!-- Audio file -->
-      <audio id="mySound" src="audio/The Wolf and the Moon.mp3"></audio>
+      <!--<audio id="mySound" src="audio/The Wolf and the Moon.mp3"></audio>-->
     </main>
   </body>
 </html>

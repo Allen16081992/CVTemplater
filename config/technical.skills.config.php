@@ -15,7 +15,16 @@ if (isset($_POST['addSkill']) || isset($_POST['saveSkill'])){
     $resumeID = $_SESSION["resumeID"];
     $userID = $_SESSION["user_id"];
     $nieuwelanguage = new Skills($interest, $language, $techtitle, $resumeID, $userID);
-    $nieuwelanguage->verifySkills();
+    $nieuwelanguage->Createskills();
+
+} elseif (isset($_POST['saveSkill'])){
+    $language = $_POST['language'];
+    $interest = $_POST['interest'];
+    $techtitle = $_POST['technical'];
+    $resumeID = $_SESSION["resumeID"];
+    $userID = $_SESSION["user_id"];
+    $nieuwelanguage = new Skills($interest, $language, $techtitle, $resumeID, $userID);
+    $nieuwelanguage->Updateskills();
 
 } elseif(isset($_POST['trashSkill'])) {
     $resumeID = $_SESSION['resumeID'];

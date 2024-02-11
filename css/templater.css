@@ -42,9 +42,9 @@ header {
 }
 header #nav-signup { z-index:2; }
 nav {
-  display: flex; /* Enable flex layout */
-  justify-content: flex-end; /* Space links from the right side */
-  align-items: center; /* Center links vertically */
+  display: flex; 
+  justify-content: flex-end; 
+  align-items: center; 
 }
 nav a {
   font-size: 1.7rem;
@@ -454,7 +454,7 @@ input.invalid {
   width:50%;
   padding: 0 10px;
 }
-.collapse form .left label { cursor:default; }
+.collapse-text label { cursor:default; }
 .left > .tab { display: block; }
 .tab select { width:4rem; }
 #year-select { width: 5rem; }
@@ -583,18 +583,24 @@ input[type="file"] {
   .input-group select {
     max-width: 2.1rem;
   }
-  .collapse-text form textarea { font-size:12px; }
+  .collapse-text form textarea { font-size:0.9rem; }
   .label-group {
     width: 100%;
   }
   .input-group > input[name="technical"] {
-    max-width: 7rem;
+    max-width: 7rem; font-size: 0.9rem;
   }
   .input-group > input[name="language"] {
-    max-width: 7rem;
+    max-width: 7rem; font-size: 0.9rem;
   }
   .input-group > input[name="interest"] {
-    max-width: 7rem;
+    max-width: 7rem; font-size: 0.9rem;
+  }
+  .input-group > [name="cvid"] {
+    max-width: 11rem; font-size: 0.9rem;
+  }
+  .input-group > [name="cvname"] {
+    max-width: 12rem; font-size: 0.9rem;
   }
   .button-container {
     text-align: center; /* Center align the buttons */

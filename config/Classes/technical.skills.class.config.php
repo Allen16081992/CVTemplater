@@ -21,8 +21,10 @@ class Skills
         $this->userID = $userID;
     }
 
-    public function Createskills()
-    {   // Dhr. Allen Pieter: New if. We can't let users save resume related data without creating a resume.
+    public function Createskills() {   
+        $this->verifySkills();
+
+        // Dhr. Allen Pieter: New if. We can't let users save resume related data without creating a resume.
         if (isset($this->userID) && isset($this->resumeID) && !empty($this->resumeID)) {
 
             $connection = $this->database->connect();
@@ -68,7 +70,8 @@ class Skills
     }
 
     public function Updateskills() {
-
+        $this->verifySkills();
+        
         if (isset($this->userID) && isset($this->resumeID) && !empty($this->resumeID)) {
 
             $connection = $this->database->connect();
@@ -126,14 +129,6 @@ class Skills
             $_SESSION['error'] = 'Please fill in your skills.';
             header('location: ../client.php');
 
-        }
-
-        // Push the submitted values to the correct function
-        if (isset($_POST['addSkill'])){
-            $this->Createskills();
-
-        } elseif (isset($_POST['saveSkill'])){
-            $this->Updateskills();
         }
     }
 }

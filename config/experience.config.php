@@ -13,10 +13,8 @@
         $worktitle = $_POST['profession'];
         $workdesc = $_POST['workdesc'];
         $company = $_POST['company'];
-        $firstDate = $_POST['fday'].'/'.$_POST['fmonth'].'/'.$_POST['fyear'];
-        // $firstDate = $_POST['from'];
-        $lastDate = $_POST['uday'].'/'.$_POST['umonth'].'/'.$_POST['uyear'];
-        // $lastDate = $_POST['until'];
+        $firstDate = $_POST['day'].'/'.$_POST['month'].'/'.$_POST['year'];
+        $lastDate = $_POST['day'].'/'.$_POST['month'].'/'.$_POST['year'];
         $nieuweworktitle = new Experience($worktitle, $workdesc, $company, $firstDate, $lastDate, $userID, $resumeID);
         $nieuweworktitle->verifyExperience();
 
