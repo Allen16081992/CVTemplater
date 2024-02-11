@@ -182,38 +182,38 @@
             </div>
           </div>
           <?php if (isset($userID) && !empty($data['experience'])) { ?>
-            <?php foreach ($data['experience'] as $experience): 
-            echo '<form name="experience" action="config/experience.config.php" method="post">
+            <?php foreach ($data['experience'] as $experience): ?>
+              <form name="experience" action="config/experience.config.php" method="post">
                 <div class="input-container">
                   <div class="input-group">
-                      <input type="text" name="from" placeholder="1956-02-01" value="'.htmlspecialchars($experience['firstDate']).'">
+                      <input type="text" name="from" placeholder="1956-02-01" value="<?= htmlspecialchars($experience['firstDate']); ?>">
                   </div>
                   <div class="input-group">
-                      <input type="text" name="until" placeholder="1956-02-01" value="'.htmlspecialchars($experience['lastDate']).'">
+                      <input type="text" name="until" placeholder="1956-02-01" value="<?= htmlspecialchars($experience['lastDate']); ?>">
                   </div>
                   <div class="input-group">
-                      <input type="text" name="profession" placeholder="Marketing Manager" value="'.htmlspecialchars($experience['worktitle']).'">
+                      <input type="text" name="profession" placeholder="Marketing Manager" value="<?= htmlspecialchars($experience['worktitle']); ?>">
                   </div>
                   <div class="input-group">
-                      <input type="text" name="company" placeholder="DHL" value="'.htmlspecialchars($experience['company']).'">
+                      <input type="text" name="company" placeholder="DHL" value="<?= htmlspecialchars($experience['company']); ?>">
                   </div>
                 </div>
-                <textarea name="workdesc" rows="2" placeholder="Write your job description here...">'.htmlspecialchars($experience['workdesc']).'</textarea>
-                <input type="hidden" name="workID" value="'.$experience['workID'].'">
+                <textarea name="workdesc" rows="2" placeholder="Write your job description here..."><?php htmlspecialchars($experience['workdesc']); ?></textarea>
+                <input type="hidden" name="workID" value="<?= $experience['workID']; ?>">
                 <div class="button-container"> 
                   <button type="submit" class="Save" name="saveExperience">Save</button> 
                   <button type="submit" class="Trash" name="trashExperience">Trash</button>     
                 </div>
-              </form>';
-            endforeach; ?> 
+              </form>
+            <?php endforeach; ?> 
             <!-- Dynamically produce an empty form as well -->
             <form name="experience" action="config/experience.config.php" method="post">
               <div class="input-container">
                 <div class="input-group">
-                    <input type="text" name="from" placeholder="1956-02-01">
+                  <?php require 'config/peripherals/datefrom_select.config.php'; ?>
                 </div>
                 <div class="input-group">
-                    <input type="text" name="until" placeholder="1956-02-01">
+                  <?php require 'config/peripherals/dateuntil_select.config.php'; ?>
                 </div>
                 <div class="input-group">
                     <input type="text" name="profession" placeholder="Marketing Manager">
@@ -227,14 +227,14 @@
                 <button type="submit" class="Add" name="addExperience">Add</button>
               </div>
             </form>               
-          <?php } else { 
-            echo '<form name="experience" action="config/experience.config.php" method="post">
+          <?php } else { ?>
+            <form name="experience" action="config/experience.config.php" method="post">
               <div class="input-container">
                 <div class="input-group">
-                    <input type="text" name="from" placeholder="1956-02-01">
+                  <?php require 'config/peripherals/datefrom_select.config.php'; ?>
                 </div>
                 <div class="input-group">
-                    <input type="text" name="until" placeholder="1956-02-01">
+                  <?php require 'config/peripherals/dateuntil_select.config.php'; ?>
                 </div>
                 <div class="input-group">
                     <input type="text" name="profession" placeholder="Marketing Manager">
@@ -247,8 +247,8 @@
               <div class="button-container">
                 <button type="submit" class="Add" name="addExperience">Add</button>
               </div>
-            </form>'; 
-          } ?>
+            </form>
+          <?php } ?>
         </div>
 
         <!-- Education Tab -->
@@ -265,38 +265,38 @@
               </div>
             </div>
             <?php if (isset($userID) && !empty($data['education'])) { ?>
-              <?php foreach ($data['education'] as $college):
-                echo '<form name="education" action="config/education.config.php" method="post">
+              <?php foreach ($data['education'] as $college): ?>
+                <form name="education" action="config/education.config.php" method="post">
                   <div class="input-container">
                     <div class="input-group">
-                        <input type="text" name="from" placeholder="1956-02-01" value="'.htmlspecialchars($college['firstDate']).'">
+                        <input type="text" name="from" placeholder="1956-02-01" value="<?= htmlspecialchars($college['firstDate']); ?>">
                     </div>
                     <div class="input-group">
-                        <input type="text" name="until" placeholder="1956-02-01" value="'.htmlspecialchars($college['lastDate']).'">
+                        <input type="text" name="until" placeholder="1956-02-01" value="<?= htmlspecialchars($college['lastDate']); ?>">
                     </div>
                     <div class="input-group">
-                        <input type="text" name="program" placeholder="Electrical Engineering" value="'.htmlspecialchars($college['edutitle']).'">
+                        <input type="text" name="program" placeholder="Electrical Engineering" value="<?= htmlspecialchars($college['edutitle']); ?>">
                     </div>
                     <div class="input-group">
-                        <input type="text" name="company" placeholder="LTS Technical School" value="'.htmlspecialchars($college['company']).'">
+                        <input type="text" name="company" placeholder="LTS Technical School" value="<?= htmlspecialchars($college['company']); ?>">
                     </div>
                   </div>
-                  <textarea name="edudesc" rows="2" placeholder="Write your program description here...">'.$college['edudesc'].'</textarea>
-                  <input type="hidden" name="eduID" value="'.$college['eduID'].'">
+                  <textarea name="edudesc" rows="2" placeholder="Write your program description here..."><?= $college['edudesc']; ?></textarea>
+                  <input type="hidden" name="eduID" value="<?= $college['eduID']; ?>">
                   <div class="button-container"> 
                     <button type="submit" class="Save" name="saveEducation">Save</button> 
                     <button type="submit" class="Trash" name="trashEducation">Trash</button>     
                   </div>
-                </form>';
-              endforeach; ?>
+                </form>
+              <?php endforeach; ?>
               <!-- Dynamically produce an empty form as well -->
               <form name="education" action="config/education.config.php" method="post">
                 <div class="input-container">
                   <div class="input-group">
-                      <input type="text" name="from" placeholder="1956-02-01">
+                    <?php require 'config/peripherals/datefrom_select.config.php'; ?>
                   </div>
                   <div class="input-group">
-                      <input type="text" name="until" placeholder="1956-02-01">
+                    <?php require 'config/peripherals/dateuntil_select.config.php'; ?>
                   </div>
                   <div class="input-group">
                       <input type="text" name="program" placeholder="Electrical Engineering">
@@ -310,14 +310,14 @@
                   <button type="submit" class="Add" name="addEducation">Add</button>
                 </div>
               </form>
-            <?php } else {
-              echo '<form name="education" action="config/education.config.php" method="post">
+            <?php } else { ?>
+              <form name="education" action="config/education.config.php" method="post">
                 <div class="input-container">
                   <div class="input-group">
-                      <input type="text" name="from" placeholder="1956-02-01">
+                    <?php require 'config/peripherals/datefrom_select.config.php'; ?>
                   </div>
                   <div class="input-group">
-                      <input type="text" name="until" placeholder="1956-02-01">
+                    <?php require 'config/peripherals/dateuntil_select.config.php'; ?>
                   </div>
                   <div class="input-group">
                       <input type="text" name="program" placeholder="Electrical Engineering">
@@ -330,8 +330,8 @@
                 <div class="button-container">
                   <button type="submit" class="Add" name="addEducation">Add</button>
                 </div>
-              </form>'; 
-            } ?>
+              </form>
+            <?php  } ?>
           </div>
 
         <!-- Technical Skills Tab -->

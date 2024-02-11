@@ -191,6 +191,9 @@ ul li .m-on { color: #ddd; }
   max-width: 12rem;
   margin:2rem 0 1rem 0;
 }
+.input-group select {
+  margin:2rem 0 1rem 0;
+}
 
 .sidebar ul { list-style-type: none; }
 .sidebar ul li {
@@ -574,8 +577,11 @@ input[type="file"] {
   .collapse-text button { margin:5px 0 0 0;}
   .input-group input[type="text"] {
     font-size:10px;
-    max-width: 5rem;
+    max-width: 4.5rem;
     margin:2rem 0 1rem 0;
+  }
+  .input-group select {
+    max-width: 2.1rem;
   }
   .collapse-text form textarea { font-size:12px; }
   .label-group {
@@ -757,13 +763,16 @@ input[type="file"] {
   
   input[type="text"],
   input[type="email"],
-  input[type="password"],
-  select {
+  input[type="password"] {
     padding: 0.6em 0.6em;
     font-family: var(--font-sans);
     font-size: 1em;
     width: 100%;
     border: 1px var(--text-dark) solid;
+  }
+  select {
+    padding: 0.5em 0.5em;
+
   }
   
   input[type="text"]:focus,

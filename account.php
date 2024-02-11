@@ -171,6 +171,7 @@
                     }
                   ?>
                 </select>  
+                <input type="text" disabled> <!-- nodig, anders gaan Save en Clear raar staan. -->
               </div>        
             </div>
             <div class="left">   

@@ -32,7 +32,6 @@
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
         $phone = $_POST['phone'];
-        //$birth = $_POST['birth'];
         $birth = $_POST['day'].'/'.$_POST['month'].'/'.$_POST['year'];
 
         $update = new UpdatePersonal($firstname, $lastname, $phone, $birth);

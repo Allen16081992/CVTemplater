@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 17 nov 2023 om 21:45
--- Serverversie: 10.4.28-MariaDB
--- PHP-versie: 8.2.4
+-- Gegenereerd op: 11 feb 2024 om 02:05
+-- Serverversie: 10.4.32-MariaDB
+-- PHP-versie: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -54,7 +54,7 @@ CREATE TABLE `contact` (
   `phone` varchar(20) DEFAULT NULL,
   `firstname` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
-  `birth` varchar(255) DEFAULT NULL,
+  `birth` varchar(20) DEFAULT NULL,
   `nationality` varchar(255) DEFAULT NULL,
   `streetname` varchar(255) DEFAULT NULL,
   `postalcode` varchar(20) DEFAULT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `contact` (
 
 INSERT INTO `contact` (`contactID`, `phone`, `firstname`, `lastname`, `birth`, `nationality`, `streetname`, `postalcode`, `city`, `userID`) VALUES
 (1, '06311224455', 'test', 'test', '07/06/2023', 'dutch', 'sickstreet 1', '100020vv', 'delft', 1),
-(2, '+310696588745', 'Hallo', 'Hallo', '10/9/1977', 'Japanese', 'Haunted Av. 2', '30418500', 'Tokyo', 2);
+(2, '+310696588745', 'Hallo', 'Hallo', '16/4/1989', 'Japanese', 'Haunted Av. 2', '30418500', 'Tokyo', 2);
 
 -- --------------------------------------------------------
 
@@ -81,8 +81,8 @@ CREATE TABLE `education` (
   `edutitle` varchar(50) DEFAULT NULL,
   `edudesc` varchar(255) DEFAULT NULL,
   `company` varchar(100) DEFAULT NULL,
-  `firstDate` date DEFAULT NULL,
-  `lastDate` date DEFAULT NULL,
+  `firstDate` varchar(20) DEFAULT NULL,
+  `lastDate` varchar(20) DEFAULT NULL,
   `resumeID` int(11) NOT NULL,
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -98,8 +98,8 @@ CREATE TABLE `experience` (
   `worktitle` varchar(50) DEFAULT NULL,
   `workdesc` varchar(255) DEFAULT NULL,
   `company` varchar(100) DEFAULT NULL,
-  `firstDate` date DEFAULT NULL,
-  `lastDate` date DEFAULT NULL,
+  `firstDate` varchar(20) DEFAULT NULL,
+  `lastDate` varchar(20) DEFAULT NULL,
   `resumeID` int(11) NOT NULL,
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
