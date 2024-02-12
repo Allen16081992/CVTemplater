@@ -354,6 +354,7 @@ class ResumePDF extends FPDF {
             $this->Cell(20, 5, '', 0, 0, '');
             // SKILLS, LANGUAGES, INTERESTS
             $this->Cell(60, 5, isset($techTitle[$i]) ? $techTitle[$i] : '', 0, 0, 'L');
+            $this->Cell(8, 5, '', 0, 0, 'L');
             $this->Cell(60, 5, isset($language[$i]) ? $language[$i] : '', 0, 0, 'L');
             $this->Cell(60, 5, isset($interest[$i]) ? $interest[$i] : '', 0, 1, 'L');
             $this->Ln(5);

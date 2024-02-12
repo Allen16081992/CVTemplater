@@ -2,7 +2,9 @@
 <option selected><?= isset($edu_last_day) ? htmlspecialchars($edu_last_day) : '--' ?></option>
 <?php
     for ($day = 1; $day <= 31; $day++) {
-        echo '<option value="'.$day.'">'.$day.'</option>';
+        // Format the day with leading zero if it's a single digit
+        $formattedDay = sprintf('%02d', $day);
+        echo '<option value="'.$formattedDay.'">'.$formattedDay.'</option>';
     }
 ?>
 </select>
@@ -10,7 +12,9 @@
 <option selected><?= isset($edu_last_month) ? htmlspecialchars($edu_last_month) : '-' ?></option>
 <?php
     for ($month = 1; $month <= 12; $month++) {
-        echo '<option value="'.$month.'">'.$month.'</option>';
+        // Format the month with leading zero if it's a single digit
+        $formattedMonth = sprintf('%02d', $month);
+        echo '<option value="'.$formattedMonth.'">'.$formattedMonth.'</option>';
     }
 ?>
 </select>

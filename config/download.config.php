@@ -198,7 +198,7 @@ class ResumePDF extends FPDF {
 
         /////////////////////// WORK EXPERIENCE ////////////////////////
         $this->SetFont('Arial', 'B', 14);
-        $this->Cell(0, 10, 'Werkervaring', 1, 1, 'L');
+        $this->Cell(0, 10, 'Werkervaring', 1, 1, 'C');
         $this->Ln(2);
 
         // Show values from array position specifically. Limit - 3 jobs.
@@ -264,7 +264,7 @@ class ResumePDF extends FPDF {
 
         /////////////////////// EDUCATION ////////////////////////
         $this->SetFont('Arial', 'B', 14);
-        $this->Cell(0, 10, 'Opleiding', 1, 1, 'L');
+        $this->Cell(0, 10, 'Opleiding', 1, 1, 'C');
         $this->Ln(2);
 
         // Show values from array position specifically. Limit - 3 jobs.
@@ -282,7 +282,7 @@ class ResumePDF extends FPDF {
                 $this->Cell(60, 10, $eduTitles[0], 0, 0, 'L');
                 $this->Cell(50, 10, $eduCompany[0], 0, 1, '');
             }
-            $this->SetFont('Arial', 'I', 10);
+            $this->SetFont('Arial', '', 10);
             if (isset($eduSummary[0])) {
                 $this->SetFontSize(10);
                 $this->MultiCell(0, 5, html_entity_decode($eduSummary[0]));
@@ -301,7 +301,7 @@ class ResumePDF extends FPDF {
                 $this->Cell(60, 10, $eduTitles[1], 0, 0, 'L');
                 $this->Cell(50, 10, $eduCompany[1], 0, 1, '');
             }
-            $this->SetFont('Arial', 'I', 10);
+            $this->SetFont('Arial', '', 10);
             if (isset($eduSummary[1])) {
                 $this->SetFontSize(10);
                 $this->MultiCell(0, 5, html_entity_decode($eduSummary[1]));
@@ -320,7 +320,7 @@ class ResumePDF extends FPDF {
                 $this->Cell(60, 10, $eduTitles[2], 0, 0, 'L');
                 $this->Cell(50, 10, $eduCompany[2], 0, 1, '');
             }
-            $this->SetFont('Arial', 'I', 10);
+            $this->SetFont('Arial', '', 10);
             if (isset($eduSummary[2])) {
                 $this->SetFontSize(10);
                 $this->MultiCell(0, 5, html_entity_decode($eduSummary[2]));
@@ -330,10 +330,10 @@ class ResumePDF extends FPDF {
 
         /////////////////////// SKILLS ////////////////////////
         $this->SetFont('Arial', 'B', 14);
-        $this->Cell(0, 10, 'Vaardigheden', 1, 1, 'L');
+        $this->Cell(0, 10, 'Vaardigheden', 1, 1, 'C');
         $this->Ln(3);
 
-        $this->SetFont('Arial', 'I', 10);
+        $this->SetFont('Arial', '', 10);
         $this->Cell(63, 5, 'Vaardigheden', 1, 0, 'C');
         $this->Cell(63, 5, 'Talen', 1, 0, 'C');
         $this->Cell(63, 5, 'Interessen', 1, 1, 'C');
@@ -351,6 +351,7 @@ class ResumePDF extends FPDF {
             $this->Cell(20, 5, '', 0, 0, '');
             // SKILLS, LANGUAGES, INTERESTS
             $this->Cell(60, 5, isset($techTitle[$i]) ? $techTitle[$i] : '', 0, 0, 'L');
+            $this->Cell(8, 5, '', 0, 0, 'L');
             $this->Cell(60, 5, isset($language[$i]) ? $language[$i] : '', 0, 0, 'L');
             $this->Cell(60, 5, isset($interest[$i]) ? $interest[$i] : '', 0, 1, 'L');
             $this->Ln(5);
