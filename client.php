@@ -184,18 +184,16 @@
           <?php if (isset($userID) && !empty($data['experience'])) { ?>
             <?php foreach ($data['experience'] as $experience): 
               // Split the firstDate into day, month, and year
-              list($first_day, $first_month, $first_year) = explode('/', $experience['firstDate']);
-              list($last_day, $last_month, $last_year) = explode('/', $experience['lastDate']);       
+              list($work_first_day, $work_first_month, $work_first_year) = explode('/', $experience['firstDate']);
+              list($work_last_day, $work_last_month, $work_last_year) = explode('/', $experience['lastDate']);       
             ?>
               <form name="experience" action="config/experience.config.php" method="post">
                 <div class="input-container">
                   <div class="input-group">
-                      <?php require 'config/peripherals/datefrom_select.config.php'; ?>
-                      <!--<input type="text" name="from" placeholder="1956-02-01" value="htmlspecialchars($experience['firstDate']);">-->
+                      <?php require 'config/peripherals/date_select/work_date_select_1.config.php'; ?>
                   </div>
                   <div class="input-group">
-                      <?php require 'config/peripherals/dateuntil_select.config.php'; ?>
-                      <!--<input type="text" name="until" placeholder="1956-02-01" value="htmlspecialchars($experience['lastDate']);">-->
+                      <?php require 'config/peripherals/date_select/work_date_select_2.config.php'; ?>
                   </div>
                   <div class="input-group">
                       <input type="text" name="profession" placeholder="Marketing Manager" value="<?= htmlspecialchars($experience['worktitle']); ?>">
@@ -216,10 +214,10 @@
             <form name="experience" action="config/experience.config.php" method="post">
               <div class="input-container">
                 <div class="input-group">
-                  <?php require 'config/peripherals/date_clear_select.config.php'; ?>
+                  <?php require 'config/peripherals/date_select/empty_date_select_1.config.php'; ?>
                 </div>
                 <div class="input-group">
-                  <?php require 'config/peripherals/date_clear_select.config.php'; ?>
+                  <?php require 'config/peripherals/date_select/empty_date_select_2.config.php'; ?>
                 </div>
                 <div class="input-group">
                     <input type="text" name="profession" placeholder="Marketing Manager">
@@ -237,10 +235,10 @@
             <form name="experience" action="config/experience.config.php" method="post">
               <div class="input-container">
                 <div class="input-group">
-                  <?php require 'config/peripherals/date_clear_select.config.php'; ?>
+                  <?php require 'config/peripherals/date_select/empty_date_select_1.config.php'; ?>
                 </div>
                 <div class="input-group">
-                  <?php require 'config/peripherals/date_clear_select.config.php'; ?>
+                  <?php require 'config/peripherals/date_select/empty_date_select_2.config.php'; ?>
                 </div>
                 <div class="input-group">
                     <input type="text" name="profession" placeholder="Marketing Manager">
@@ -273,16 +271,16 @@
           <?php if (isset($userID) && !empty($data['education'])) { ?>
             <?php foreach ($data['education'] as $college): 
               // Split the firstDate into day, month, and year
-              list($first_day, $first_month, $first_year) = explode('/', $college['firstDate']);
-              list($last_day, $last_month, $last_year) = explode('/', $college['lastDate']);
+              list($edu_first_day, $edu_first_month, $edu_first_year) = explode('/', $college['firstDate']);
+              list($edu_last_day, $edu_last_month, $edu_last_year) = explode('/', $college['lastDate']);
             ?>
               <form name="education" action="config/education.config.php" method="post">
                 <div class="input-container">
                   <div class="input-group">
-                    <?php require 'config/peripherals/datefrom_select.config.php'; ?>
+                    <?php require 'config/peripherals/date_select/edu_date_select_1.config.php'; ?>
                   </div>
                   <div class="input-group">
-                    <?php require 'config/peripherals/dateuntil_select.config.php'; ?>
+                    <?php require 'config/peripherals/date_select/edu_date_select_2.config.php'; ?>
                   </div>
                   <div class="input-group">
                       <input type="text" name="program" placeholder="Electrical Engineering" value="<?= htmlspecialchars($college['edutitle']); ?>">
@@ -303,10 +301,10 @@
             <form name="education" action="config/education.config.php" method="post">
               <div class="input-container">
                 <div class="input-group">
-                  <?php require 'config/peripherals/date_clear_select.config.php'; ?>
+                  <?php require 'config/peripherals/date_select/empty_date_select_1.config.php'; ?>
                 </div>
                 <div class="input-group">
-                  <?php require 'config/peripherals/date_clear_select.config.php'; ?>
+                  <?php require 'config/peripherals/date_select/empty_date_select_2.config.php'; ?>
                 </div>
                 <div class="input-group">
                     <input type="text" name="program" placeholder="Electrical Engineering">
@@ -324,10 +322,10 @@
             <form name="education" action="config/education.config.php" method="post">
               <div class="input-container">
                 <div class="input-group">
-                  <?php require 'config/peripherals/date_clear_select.config.php'; ?>
+                  <?php require 'config/peripherals/date_select/empty_date_select_1.config.php'; ?>
                 </div>
                 <div class="input-group">
-                  <?php require 'config/peripherals/date_clear_select.config.php'; ?>
+                  <?php require 'config/peripherals/date_select/empty_date_select_2.config.php'; ?>
                 </div>
                 <div class="input-group">
                     <input type="text" name="program" placeholder="Electrical Engineering">
@@ -429,6 +427,7 @@
             <label for="letter">Letter</label>
             <?php if (isset($userID) && !empty($data['motivation'])) { ?>
               <textarea name="letter" rows="4" placeholder="Write your summary"><?= htmlspecialchars($data['motivation'][0]['letter']); ?></textarea>
+              <input type="hidden" name="motID" value="<?= $data['motivation'][0]['motID'] ?? ''; ?>"> 
               <div class="left"> 
                 <button type="submit" class="Save" name="saveMotivation">Save</button>
                 <button type="submit" class="Trash" name="trashMotivation">Trash</button> 

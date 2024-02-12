@@ -37,136 +37,118 @@
                     $stmt->bindParam(":userID", $this->userID);
                     $stmt->execute(); $stmt = null;
 
-                    // Error message by sessions instead of URL parsing.
+                    // message by sessions instead of URL parsing.
                     $_SESSION['success'] = 'Profile is trashed';
                 } else {
                     $stmt = null;
-                    // Error message by sessions instead of URL parsing.
+                    // message by sessions instead of URL parsing.
                     $_SESSION['error'] = "Profile data doesn't exist.";           
                 }
 
             } elseif(isset($_POST['trashExperience'])) {
                 // Check if a row id was submitted
-                if(isset($_POST['workID'])) {
-                    $workID = $_POST['workID'];
-                } else {
-                    $workID = null;
-                    // Error message by sessions instead of URL parsing.
+                if(!isset($_POST['workID'])) {
+                    // message by sessions instead of URL parsing.
                     $_SESSION['error'] = 'Failed to verify Experience.';
                     header('location: ../client.php');
                 }
 
                 if ($this->tableHasData('experience')) {
-                    // Instantiate the Trashing of data
-                    $stmt = $this->connect()->prepare('DELETE FROM `experience` WHERE workID = :workID AND resumeID = :resumeID AND userID = :userID');
-                    $stmt->bindParam(":workID", $workID);
-                    $stmt->bindParam(":resumeID", $this->resumeID);
-                    $stmt->bindParam(":userID", $this->userID);
-                    $stmt->execute(); $stmt = null;
+                    // Instantiate the Trashing of data. Add row, table name and column name.
+                    $rowID = $_POST['workID']; 
+                    $this->tableTrasher('experience', 'workID', $rowID);
 
-                    // Error message by sessions instead of URL parsing.
-                    $_SESSION['success'] = 'Experience is trashed';
+                    // message by sessions instead of URL parsing.
+                    $_SESSION['success'] = 'Experience has been trashed';
                 } else {
-                    $stmt = null;
-                    // Error message by sessions instead of URL parsing.
+                    // message by sessions instead of URL parsing.
                     $_SESSION['error'] = "Experience data doesn't exist.";
                 }
 
             } elseif(isset($_POST['trashEducation'])) {
                 // Check if a row id was submitted
-                if(isset($_POST['eduID'])) {
-                    $eduID = $_POST['eduID'];
-                } else {
-                    $eduID = null;
-                    // Error message by sessions instead of URL parsing.
+                if(!isset($_POST['eduID'])) {
+                    // message by sessions instead of URL parsing.
                     $_SESSION['error'] = 'Failed to verify Education.';
                     header('location: ../client.php');
                 }
 
                 if ($this->tableHasData('education')) {
-                    // Instantiate the Trashing of data
-                    $stmt = $this->connect()->prepare('DELETE FROM `education` WHERE eduID = :eduID AND resumeID = :resumeID AND userID = :userID');
-                    $stmt->bindParam(":eduID", $eduID);
-                    $stmt->bindParam(":resumeID", $this->resumeID);
-                    $stmt->bindParam(":userID", $this->userID);
-                    $stmt->execute(); $stmt = null; 
+                    // Instantiate the Trashing of data. Add row, table name and column name.
+                    $rowID = $_POST['eduID'];
+                    $this->tableTrasher('education', 'eduID', $rowID);
 
-                    // Error message by sessions instead of URL parsing.
-                    $_SESSION['success'] = 'Education is trashed';
+                    // message by sessions instead of URL parsing.
+                    $_SESSION['success'] = 'Education has been trashed';
                 } else {
-                    $stmt = null;
-                    // Error message by sessions instead of URL parsing.
-                    $_SESSION['error'] = 'Failed to verify Education.';
+                    // message by sessions instead of URL parsing.
+                    $_SESSION['error'] = "Education data doesn't exist.";
                 }
 
             } elseif(isset($_POST['trashSkill'])) {
                 // Check if we received any row id(s)
-                if(isset($_POST['techID']) && isset($_POST['langID']) && isset($_POST['interestID'])) {
-                    $techID = $_POST['techID'];
-                    $langID = $_POST['langID'];
-                    $interestID = $_POST['interestID'];
-                } else {
-                    $techID = null; $langID = null; $interestID = null;
-                    // Error message by sessions instead of URL parsing.
-                    $_SESSION['error'] = 'Technical Skills not found.';
+                if(!isset($_POST['techID']) || !isset($_POST['langID']) || !isset($_POST['interestID'])) {
+                    // message by sessions instead of URL parsing.
+                    $_SESSION['error'] = 'Technical Skills not received.';
                     header('location: ../client.php');
                 }
                 
                 if ($this->tableHasData('technical')) {
-                    // Instantiate the Trashing of data
-                    $stmt = $this->connect()->prepare('DELETE FROM `technical` WHERE `techID` = :techID AND resumeID = :resumeID AND userID = :userID');
-                    $stmt->bindParam(":techID", $techID);
-                    $stmt->bindParam(":resumeID", $this->resumeID);
-                    $stmt->bindParam(":userID", $this->userID);
-                    $stmt->execute(); $stmt = null; 
-                }
-
-                if ($this->tableHasData('languages')) {
-                    // Instantiate the Trashing of data
-                    $stmt = $this->connect()->prepare('DELETE FROM `languages` WHERE `langID` = :langID AND resumeID = :resumeID AND userID = :userID');
-                    $stmt->bindParam(":langID", $langID);
-                    $stmt->bindParam(":resumeID", $this->resumeID);
-                    $stmt->bindParam(":userID", $this->userID);
-                    $stmt->execute(); $stmt = null; 
-                }
-                
-                if ($this->tableHasData('interests')) {
-                    // Instantiate the Trashing of data
-                    $stmt = $this->connect()->prepare('DELETE FROM `interests` WHERE `interestID` = :interestID AND resumeID = :resumeID AND userID = :userID');
-                    $stmt->bindParam(":interestID", $interestID);
-                    $stmt->bindParam(":resumeID", $this->resumeID);
-                    $stmt->bindParam(":userID", $this->userID);
-                    $stmt->execute(); $stmt = null; 
-                }
-
-                // Error message by sessions instead of URL parsing.
-                $_SESSION['success'] = 'Skills have been trashed';
-
-            } elseif(isset($_POST['trashMotivation'])) { 
-                // Check if we received any row id(s)
-                if (isset($_POST['letter'])) {
-                    $letter = $_POST['letter'];
+                    // Instantiate the Trashing of data. Add row, table name and column name.
+                    $rowID = $_POST['techID'];
+                    $this->tableTrasher('technical', 'techID', $rowID);
                 } else {
-                    $letter = null;
-                    // Error message by sessions instead of URL parsing.
-                    $_SESSION['error'] = 'Motivation not found.';
+                    // message by sessions instead of URL parsing.
+                    $_SESSION['error'] = "Technical Skills not found.";
                     header('location: ../client.php');
                 }
 
-                if ($this->tableHasData('motivation')) {
-                    // Instantiate the Trashing of data
-                    $stmt = $this->connect()->prepare('DELETE FROM `motivation` WHERE letter = :letter AND resumeID = :resumeID AND userID = :userID');
-                    $stmt->bindParam(":letter", $letter);
-                    $stmt->bindParam(":resumeID", $this->resumeID);
-                    $stmt->bindParam(":userID", $this->userID);
-                    $stmt->execute(); $stmt = null;
+                if ($this->tableHasData('languages')) {
+                    // Instantiate the Trashing of data. Add row, table name and column name.
+                    $rowID = $_POST['langID'];
+                    $this->tableTrasher('languages', 'langID', $rowID);
+                } else {
+                    // message by sessions instead of URL parsing.
+                    $_SESSION['error'] = "Technical Skills not found.";
+                    header('location: ../client.php');
+                }
+                
+                if ($this->tableHasData('interests')) {
+                    // Instantiate the Trashing of data. Add row, table name and column name.
+                    $rowID = $_POST['interestID'];
+                    $this->tableTrasher('interests', 'interestID', $rowID);
+                } else {
+                    // message by sessions instead of URL parsing.
+                    $_SESSION['error'] = "Technical Skills not found.";
+                    header('location: ../client.php');
+                }
 
-                    // Error message by sessions instead of URL parsing.
+                // message by sessions instead of URL parsing.
+                $_SESSION['success'] = "Technical Skills trashed";
+
+            } elseif(isset($_POST['trashMotivation'])) { 
+                // Check if we received any row id(s)
+                if (!isset($_POST['motID'])) {
+                    // message by sessions instead of URL parsing.
+                    $_SESSION['error'] = 'Motivation not found.';
+                    header('location: ../client.php');  
+                } 
+
+                if ($this->tableHasData('motivation')) {
+                    // Instantiate the Trashing of data. Add row, table name and column name.
+                    $rowID = $_POST['motID'];
+                    $this->tableTrasher('motivation', 'motID', $rowID);
+
+                    // message by sessions instead of URL parsing.
                     $_SESSION['success'] = 'Motivation has been trashed';
+                } else {
+                    // message by sessions instead of URL parsing.
+                    $_SESSION['error'] = "Motivation doesn't exist.";
                 }
             }
         }
 
+        // Table Data Finder
         private function tableHasData($tableName) {
             $stmt = $this->connect()->prepare("SELECT COUNT(*) FROM `$tableName` WHERE resumeID = :resumeID AND userID = :userID");
             $stmt->bindParam(":resumeID", $this->resumeID);
@@ -174,5 +156,21 @@
             $stmt->execute();
             $count = $stmt->fetchColumn();
             return $count > 0;
+        }
+
+        // Table Data Deletor. (pun intended to Cardfight Vanguard)
+        private function tableTrasher($tableName, $column, $rowID) {
+            // Instantiate the Trashing of data
+            $stmt = $this->connect()->prepare("DELETE FROM `$tableName` WHERE `$column` = :rowID AND resumeID = :resumeID AND userID = :userID");
+            $stmt->bindParam(":rowID", $rowID);
+            $stmt->bindParam(":resumeID", $this->resumeID);
+            $stmt->bindParam(":userID", $this->userID);
+
+            if (!$stmt->execute()) {
+                $stmt = null;
+                // message by sessions instead of URL parsing.
+                $_SESSION['error'] = 'Failed to delete '.$tableName.'';
+                header('location: ../client.php');
+            } 
         }
     }

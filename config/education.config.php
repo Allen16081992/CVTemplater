@@ -13,8 +13,8 @@
         $edutitle = $_POST['program'];
         $edudesc = $_POST['edudesc'];
         $company = $_POST['company'];
-        $firstDate = $_POST['day'].'/'.$_POST['month'].'/'.$_POST['year'];
-        $lastDate = $_POST['day'].'/'.$_POST['month'].'/'.$_POST['year'];
+        $firstDate = $_POST['first_day'].'/'.$_POST['first_month'].'/'.$_POST['first_year'];
+        $lastDate = $_POST['last_day'].'/'.$_POST['last_month'].'/'.$_POST['last_year'];
         $nieuweedutitle = new Education($edutitle, $edudesc, $company, $firstDate, $lastDate, $userID, $resumeID);
         $nieuweedutitle->verifyEducation();
 
