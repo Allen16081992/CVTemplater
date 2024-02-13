@@ -143,26 +143,33 @@
             <div class="left"> 
               <label for="birth">Date of Birth</label>
               <!-- <input type="text" name="birth" placeholder="Example: 1956-06-18" value="<?php //$contact['birth'];?>"> -->
-              <?php include_once 'config/peripherals/date_reformat.config.php';?>
+              <?php list($day, $month, $year) = explode('/', $contact['birth']); ?>
               <div class="tab">
                 <select name="day" id="birthday">
                   <option selected><?=$day;?></option>
+                  <option>--</option>
                   <?php
                       for ($day = 1; $day <= 31; $day++) {
-                          echo '<option value="'.$day.'">'.$day.'</option>';
+                        // Format the day with leading zero if it's a single digit
+                        $formattedDay = sprintf('%02d', $day);
+                        echo '<option value="'.$formattedDay.'">'.$formattedDay.'</option>';
                       }
                   ?>
                 </select>
                 <select name="month" id="birthday">
                   <option selected><?=$month;?></option>
+                  <option>-</option>
                   <?php
                       for ($month = 1; $month <= 12; $month++) {
-                          echo '<option value="'.$month.'">'.$month.'</option>';
+                        // Format the month with leading zero if it's a single digit
+                        $formattedMonth = sprintf('%02d', $month);
+                        echo '<option value="'.$formattedMonth.'">'.$formattedMonth.'</option>';
                       }
                   ?>
                 </select>
                 <select name="year" id="year-select">
                   <option selected><?=$year;?></option>
+                  <option>----</option>
                   <?php
                     $currentYear = date('Y');
                     $targetYear = 1908;
@@ -171,7 +178,8 @@
                     }
                   ?>
                 </select>  
-                <input type="text" disabled> <!-- nodig, anders gaan Save en Clear raar staan. -->
+                <!-- deze disabled element is nodig, anders gaat Save en Clear raar staan. -->
+                <input type="text" disabled> 
               </div>        
             </div>
             <div class="left">   

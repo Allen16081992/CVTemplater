@@ -114,9 +114,9 @@ class Skills
     // Some checking on empty fields is preferred.
     public function verifySkills() {
         // Invoke validation.
-        if(!$this->emptyInterest()) {
-            // No interest provided.
-            $_SESSION['error'] = 'Please fill in your interest.';
+        if(!$this->emptyTech()) { 
+            // No skill provided.
+            $_SESSION['error'] = 'Please fill in your skills.';
             header('location: ../client.php');
 
         } elseif(!$this->emptyLanguage()) {
@@ -124,11 +124,11 @@ class Skills
             $_SESSION['error'] = 'Please fill in your languages.';
             header('location: ../client.php');
         
-        } elseif(!$this->emptyTech()) { 
-            // No skill provided.
-            $_SESSION['error'] = 'Please fill in your skills.';
+        } elseif(!$this->emptyInterest()) {
+            // No interest provided.
+            $_SESSION['error'] = 'Please fill in your interest.';
             header('location: ../client.php');
 
-        }
+        } 
     }
 }

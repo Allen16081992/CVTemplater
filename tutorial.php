@@ -122,7 +122,6 @@
       <p>1. The Resume Id is the serienumber.<br></br>
          2. The name is changeable.<br></br>
          3. click on Download to save your Resume.<br></br>
-         4. click on View Resume to see it.  
       </p>
       <img src="img/tutorials/tutorial2.PNG" alt="Profile">
       <p>1. Introduce yourself.<br></br>

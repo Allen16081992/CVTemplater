@@ -52,7 +52,7 @@
             <input type="text" name="nationality" placeholder="Nationality">
             <label for="birthday">Date of Birth</label>
             <!--<input type="date" name="birth" placeholder="Birthday">-->
-            <select name="day" id="birthday">
+            <select name="day">
                 <option selected>--</option>
                 <?php
                     for ($day = 1; $day <= 31; $day++) {
@@ -60,7 +60,7 @@
                     }
                 ?>
             </select>
-            <select name="month" id="birthday">
+            <select name="month">
                 <option selected>-</option>
                 <?php
                     for ($month = 1; $month <= 12; $month++) {

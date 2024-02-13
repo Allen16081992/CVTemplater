@@ -129,7 +129,7 @@
                 <?php foreach ($data['profile'] as $profile): ?>
                   <!-- Verify if the image is readable -->
                   <?php $filePath = "img/avatars/".$profile['fileName'];
-                  if (is_readable($filePath)) {
+                  if (!empty($profile['fileName'])) {
                       echo 'File is readable.';
                   } else {
                     echo 'File is not readable.';
@@ -355,7 +355,7 @@
               </div>
             </div>
             <?php if (isset($userID) && !empty($data['techskills'])) { ?>
-              <form name="technical" action="config/technical.skills.config.php" method="post">
+              <form name="skills" action="config/technical.skills.config.php" method="post">
                 <?php foreach ($data['techskills'] as $skill): ?>
                   <?php if (isset($skill['techtitle'])): ?>
                     <div class="input-group">
@@ -382,7 +382,7 @@
                 </div>
               </form>
               <!-- Dynamically produce an empty form as well -->
-              <form name="technical" action="config/education.config.php" method="post">
+              <form name="skills" action="config/education.config.php" method="post">
                 <div class="input-container">
                   <div class="input-group">
                       <input type="text" name="technical" placeholder="Office 365">
@@ -399,7 +399,7 @@
                 </div>
               </form>
             <?php } else { ?>
-              <form name="technical" action="config/education.config.php" method="post">
+              <form name="skills" action="config/education.config.php" method="post">
                 <div class="input-container">
                   <div class="input-group">
                       <input type="text" name="technical" placeholder="Office 365">

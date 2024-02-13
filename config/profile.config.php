@@ -36,14 +36,28 @@
                     $_SESSION['error'] = 'Profile database query failed.';
                     header('location: ../client.php');
                     exit(); 
-                } 
+                }
 
                 if($stmt->rowCount() == 0 ) {
                     $stmt = null;
                     // SQL statement for all data and file details
                     $stmt = $this->pdo->prepare('INSERT INTO `profile` (resumeID, userID, profileintro, profiledesc, filePath, fileName) VALUES (:resumeID, :userID, :intro, :desc, :filepath, :filename)');
                 } else { 
-                    $stmt = null;
+                    // Fetch the data from the executed statement as an associative array
+                    $profile = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    if(!empty($profile['fileName']) || !empty($profile['filePath'])) {
+                        // Remove the associated image file
+                        $imageFilePath = '../img/avatars/' . $profile['fileName'];
+                        if (file_exists($imageFilePath)) {
+                            unlink($imageFilePath);
+                        }
+
+                        // manage system memory management
+                        $imageFilePath = null; unset($imageFilePath);
+                        $profile = null; unset($profile);                        
+                    }
+
                     // Existing profile record found, use syntax update
                     $stmt = $this->pdo->prepare('UPDATE `profile` SET profileintro = IF(:intro <> "", :intro, profileintro), profiledesc = IF(:desc <> "", :desc, profiledesc), filePath = IF(:filepath <> "", :filepath, filePath), fileName = IF(:filename <> "", :filename, fileName) WHERE resumeID = :resumeID AND userID = :userID');
                 }
@@ -70,25 +84,25 @@
                     move_uploaded_file($this->fileUpload['tmp_name'], $filepath);
                 } else {
                     // Generate a unique file name
-                    $filename = uniqid() . '_' . $this->fileUpload['name'];
-                    $filepath = '../img/avatars/' . $filename;
+                    //$filename = uniqid() . '_' . $this->fileUpload['name'];
+                    //$filepath = '../img/avatars/' . $filename;
                     $stmt->bindValue(':filepath', '');
                     $stmt->bindValue(':filename', '');
 
                     // Move the uploaded file to the desired location
-                    move_uploaded_file($this->fileUpload['tmp_name'], $filepath);
+                    //move_uploaded_file($this->fileUpload['tmp_name'], $filepath);
                 }
 
                 $stmt->bindParam(':resumeID', $this->resumeID);
                 $stmt->bindParam(':userID', $this->userID);
 
-                echo "Query: ";
-                echo $stmt->queryString;
-                echo "<br>";
+                // echo "Query: ";
+                // echo $stmt->queryString;
+                // echo "<br>";
 
-                echo "Bound Parameters: ";
-                print_r($stmt->debugDumpParams());
-                echo "<br>";
+                // echo "Bound Parameters: ";
+                // print_r($stmt->debugDumpParams());
+                // echo "<br>";
 
                 if (!$stmt->execute()) {
                     $stmt = null;
@@ -132,7 +146,7 @@
         }
         private function invalidInput() {
             // Make sure the submitted values are valid.
-            $regex = '/^[a-zA-Z0-9,]+$/';
+            $regex = '/^[a-zA-Z0-9,\.]+$/';
             return !preg_match($regex, $this->intro) || !preg_match($regex, $this->desc);
         }
         

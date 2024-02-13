@@ -1,7 +1,6 @@
 <?php // Khaqan Ul Haq Awan
     // Start a session for resume to userID assignment.
     require_once 'peripherals/session_management.config.php';
-
     require_once "idb.config.php";
     require_once "Classes/createresume.class.config.php";
 

@@ -19,7 +19,7 @@
   --error-max-w:100%; --error-marg-b:10px; --error-marg-t:-5px;
 }
 body {
-  background: url("../img/templater-main.jpg") no-repeat;
+  background: var(--bg-cover) no-repeat;
   background-color:#00221F; /* to blend-in with background image */
 }
 

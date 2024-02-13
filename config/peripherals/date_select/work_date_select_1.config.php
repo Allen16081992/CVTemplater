@@ -1,5 +1,5 @@
 <select name="first_day">
-<option selected><?= isset($work_first_day) ? htmlspecialchars($work_first_day) : '--' ?></option>
+<?= isset($work_first_day) ? '<option selected>'.htmlspecialchars($work_first_day).'</option><option>--</option>' : '<option selected>--</option>' ?>
 <?php
     for ($day = 1; $day <= 31; $day++) {
         // Format the day with leading zero if it's a single digit
@@ -9,7 +9,7 @@
 ?>
 </select>
 <select name="first_month">
-<option selected><?= isset($work_first_month) ? htmlspecialchars($work_first_month) : '-' ?></option>
+<?= isset($work_first_month) ? '<option selected>'.htmlspecialchars($work_first_month).'</option><option>--</option>' : '<option selected>--</option>' ?>
 <?php
     for ($month = 1; $month <= 12; $month++) {
         // Format the month with leading zero if it's a single digit
@@ -19,7 +19,7 @@
 ?>
 </select>
 <select name="first_year">
-<option selected><?= isset($work_first_year) ? htmlspecialchars($work_first_year) : '----' ?></option>
+<?= isset($work_first_year) ? '<option selected>'.htmlspecialchars($work_first_year).'</option><option>----</option>' : '<option selected>----</option>' ?>
 <?php
     $currentYear = date('Y');
     $targetYear = 1926;

@@ -1,5 +1,5 @@
 <select name="last_day">
-<option selected><?= isset($edu_last_day) ? htmlspecialchars($edu_last_day) : '--' ?></option>
+<?= isset($edu_last_day) ? '<option selected>'.htmlspecialchars($edu_last_day).'</option><option>--</option>' : '<option selected>--</option>' ?>
 <?php
     for ($day = 1; $day <= 31; $day++) {
         // Format the day with leading zero if it's a single digit
@@ -9,7 +9,7 @@
 ?>
 </select>
 <select name="last_month">
-<option selected><?= isset($edu_last_month) ? htmlspecialchars($edu_last_month) : '-' ?></option>
+<?= isset($edu_last_month) ? '<option selected>'.htmlspecialchars($edu_last_month).'</option><option>--</option>' : '<option selected>--</option>' ?>
 <?php
     for ($month = 1; $month <= 12; $month++) {
         // Format the month with leading zero if it's a single digit
@@ -19,7 +19,7 @@
 ?>
 </select>
 <select name="last_year">
-<option selected><?= isset($edu_last_year) ? htmlspecialchars($edu_last_year) : '----' ?></option>
+<?= isset($edu_last_year) ? '<option selected>'.htmlspecialchars($edu_last_year).'</option><option>----</option>' : '<option selected>----</option>' ?>
 <?php
     $currentYear = date('Y');
     $targetYear = 1926;

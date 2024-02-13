@@ -9,7 +9,7 @@
 ?>
 </select>
 <select name="last_month">
-<option selected>-</option>
+<option selected>--</option>
 <?php
     for ($month = 1; $month <= 12; $month++) {
         // Format the month with leading zero if it's a single digit
