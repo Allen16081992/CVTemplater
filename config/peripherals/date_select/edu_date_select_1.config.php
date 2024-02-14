@@ -1,4 +1,4 @@
-<select name="first_day">
+<select class="select-date" name="first_day">
 <?= isset($edu_first_day) ? '<option selected>'.htmlspecialchars($edu_first_day).'</option><option>--</option>' : '<option selected>--</option>' ?>
 <?php
     for ($day = 1; $day <= 31; $day++) {
@@ -8,7 +8,7 @@
     }
 ?>
 </select>
-<select name="first_month">
+<select class="select-date" name="first_month">
 <?= isset($edu_first_month) ? '<option selected>'.htmlspecialchars($edu_first_month).'</option><option>--</option>' : '<option selected>--</option>' ?>
 <?php
     for ($month = 1; $month <= 12; $month++) {
@@ -18,7 +18,7 @@
     }
 ?>
 </select>
-<select name="first_year">
+<select class="select-date" name="first_year">
 <?= isset($edu_first_year) ? '<option selected>'.htmlspecialchars($edu_first_year).'</option><option>----</option>' : '<option selected>----</option>' ?>
 <?php
     $currentYear = date('Y');

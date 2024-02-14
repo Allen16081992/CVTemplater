@@ -1,4 +1,4 @@
-<select name="last_day">
+<select class="select-date" name="last_day">
 <option selected>--</option>
 <?php
     for ($day = 1; $day <= 31; $day++) {
@@ -8,7 +8,7 @@
     }
 ?>
 </select>
-<select name="last_month">
+<select class="select-date" name="last_month">
 <option selected>--</option>
 <?php
     for ($month = 1; $month <= 12; $month++) {
@@ -18,7 +18,7 @@
     }
 ?>
 </select>
-<select name="last_year">
+<select class="select-date" name="last_year">
 <option selected>----</option>
 <?php
     $currentYear = date('Y');

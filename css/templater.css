@@ -159,10 +159,10 @@ ul li .m-on { color: #ddd; }
 .button-container button:not(:first-child) {
   margin-left: 0; /* Remove the left margin from the first button */
 }
-.label-container {
+/* .label-container {
   display: flex;
   justify-content: left;
-}
+} */
 .label-group {
   display: flex;
   justify-content: left;
@@ -189,11 +189,11 @@ ul li .m-on { color: #ddd; }
 .input-group input[type="text"] {
   display: block;
   max-width: 12rem;
-  margin:2rem 0 1rem 0;
+  margin:0 0 1rem 0;
 }
-.input-group select {
-  margin:2rem 0 1rem 0;
-}
+.button-container {
+  margin:0 0 1rem 0;
+} 
 
 .sidebar ul { list-style-type: none; }
 .sidebar ul li {
@@ -432,7 +432,20 @@ input.invalid {
   overflow:auto;
   font-weight:500;
 }
-.collapse .check { display: none; }
+.check { display: none; }
+label {
+  animation: fadeInAnimation ease 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards; 
+}
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
 
 .collapse label {
   position:relative;
@@ -482,6 +495,7 @@ input.invalid {
   max-height:10rem;
   max-width:10rem;
 }
+
 input[type="file"] {
   display: none;
 }
@@ -563,6 +577,7 @@ input[type="file"] {
     margin: 0 0.85rem; /* Adjust the margin as needed */
     text-align: center;
   }
+
   .collapse {
       position:absolute;
       top:15%;
@@ -575,32 +590,33 @@ input[type="file"] {
   }
   .collapse form .left input[name='resumetitle'] { width:210%; }
   .collapse-text button { margin:5px 0 0 0;}
+  .input-container {
+    position:relative;
+    display:flex;
+    flex-wrap: wrap;
+    margin-top:2rem;
+  }
+  .input-container > div {
+    flex: 1 1 45%; /* Take up to 45% of the container width, with flexibility to wrap */
+    margin: 5px; /* Add some spacing between input groups */
+  }
   .input-group input[type="text"] {
-    font-size:10px;
-    max-width: 4.5rem;
+    /* max-width: 5rem; */
     margin:2rem 0 1rem 0;
   }
-  .input-group select {
-    max-width: 2.1rem;
-  }
+  
   .collapse-text form textarea { font-size:0.9rem; }
   .label-group {
     width: 100%;
   }
   .input-group > input[name="technical"] {
-    max-width: 7rem; font-size: 0.9rem;
+    max-width: 7rem; /*font-size: 0.9rem;*/
   }
   .input-group > input[name="language"] {
-    max-width: 7rem; font-size: 0.9rem;
+    max-width: 7rem; /*font-size: 0.9rem;*/
   }
   .input-group > input[name="interest"] {
-    max-width: 7rem; font-size: 0.9rem;
-  }
-  .input-group > [name="cvid"] {
-    max-width: 11rem; font-size: 0.9rem;
-  }
-  .input-group > [name="cvname"] {
-    max-width: 12rem; font-size: 0.9rem;
+    max-width: 7rem; /*font-size: 0.9rem;*/
   }
   .button-container {
     text-align: center; /* Center align the buttons */
@@ -769,16 +785,17 @@ input[type="file"] {
   
   input[type="text"],
   input[type="email"],
-  input[type="password"] {
+  input[type="password"], select {
     padding: 0.6em 0.6em;
     font-family: var(--font-sans);
-    font-size: 1em;
+    font-size: 0.9rem;
     width: 100%;
     border: 1px var(--text-dark) solid;
   }
-  select {
-    padding: 0.5em 0.5em;
 
+  .select-date {
+    padding: 0.5em 0.5em;
+    width: auto;
   }
   
   input[type="text"]:focus,

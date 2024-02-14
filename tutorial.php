@@ -182,7 +182,7 @@
           <button data-window-delclose class="close-button">&#215;</button>
         </div>
         <form class="window-body" name="popup3">
-          <p>Do you really want to delete a resume?</p>
+          <p>Do you really want to delete your resume?</p>
           <label for="selectCv">Select a resume to remove</label>
           <select name="selectCv">
             <option>(None selected)</option>

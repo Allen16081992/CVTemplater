@@ -91,13 +91,11 @@
         <label for="collapse-head1">Resume Name</label>       
         <div class="collapse-text" id="field1">
           <form name="resume" action="config/updateresume.config.php" method="post"> 
-            <p class="error-resume-tab"></p>   
-            <div class="label-container">
+            <p class="error-resume-tab"></p>
               <div class="label-group">
                 <label for="resid">Resume ID</label>
                 <label for="cvname">Name</label>
               </div>
-            </div>
             <div class="input-container">
               <div class="input-group">
                 <input type="hidden" name="resid" value="<?= isset($resumeID) ? htmlspecialchars($resumeID) : '' ?>">
@@ -173,14 +171,12 @@
         <label for="collapse-head3">Work Experience</label>
         <div class="collapse-text" id="field3">
           <p class="error-work-tab"></p>
-          <div class="label-container">
-            <div class="label-group">
-              <label for="from">From</label>
-              <label for="until">Until</label>
-              <label for="profession">Profession</label>
-              <label for="company">Company</label>
-            </div>
-          </div>
+          <!--<div class="label-group">
+            <label for="from">From</label>
+            <label for="until">Until</label>
+            <label for="profession">Profession</label>
+            <label for="company">Company</label>
+          </div>-->
           <?php if (isset($userID) && !empty($data['experience'])) { ?>
             <?php foreach ($data['experience'] as $experience): 
               // Split the firstDate into day, month, and year
@@ -190,16 +186,20 @@
               <form name="experience" action="config/experience.config.php" method="post">
                 <div class="input-container">
                   <div class="input-group">
+                      <label for="from">From</label>
                       <?php require 'config/peripherals/date_select/work_date_select_1.config.php'; ?>
                   </div>
                   <div class="input-group">
+                      <label for="until">Until</label>
                       <?php require 'config/peripherals/date_select/work_date_select_2.config.php'; ?>
                   </div>
                   <div class="input-group">
-                      <input type="text" name="profession" placeholder="Marketing Manager" value="<?= htmlspecialchars($experience['worktitle']); ?>">
+                      <label for="profession">Profession</label>
+                      <input type="text" name="profession" placeholder="Profession" value="<?= htmlspecialchars($experience['worktitle']); ?>">
                   </div>
                   <div class="input-group">
-                      <input type="text" name="company" placeholder="DHL" value="<?= htmlspecialchars($experience['company']); ?>">
+                      <label for="company">Company</label>
+                      <input type="text" name="company" placeholder="Company" value="<?= htmlspecialchars($experience['company']); ?>">
                   </div>
                 </div>
                 <textarea name="workdesc" rows="2" placeholder="Write your job description here..."><?= htmlspecialchars($experience['workdesc']); ?></textarea>
@@ -220,10 +220,10 @@
                   <?php require 'config/peripherals/date_select/empty_date_select_2.config.php'; ?>
                 </div>
                 <div class="input-group">
-                    <input type="text" name="profession" placeholder="Marketing Manager">
+                    <input type="text" name="profession" placeholder="Profession">
                 </div>
                 <div class="input-group">
-                    <input type="text" name="company" placeholder="DHL">
+                    <input type="text" name="company" placeholder="Company">
                 </div>
               </div>
               <textarea name="workdesc" rows="2" placeholder="Write your job description here..."></textarea>
@@ -241,10 +241,10 @@
                   <?php require 'config/peripherals/date_select/empty_date_select_2.config.php'; ?>
                 </div>
                 <div class="input-group">
-                    <input type="text" name="profession" placeholder="Marketing Manager">
+                    <input type="text" name="profession" placeholder="Profession">
                 </div>
                 <div class="input-group">
-                    <input type="text" name="company" placeholder="DHL">
+                    <input type="text" name="company" placeholder="Company">
                 </div>
               </div>
               <textarea name="workdesc" rows="2" placeholder="Write your job description here..."></textarea>
@@ -260,14 +260,14 @@
         <label for="collapse-head4">Education</label>
         <div class="collapse-text" id="field4">
           <p class="error-education-tab"></p>
-          <div class="label-container">
+
             <div class="label-group">
               <label for="from">From</label>
               <label for="until">Until</label>
               <label for="edutitle">Program</label>
               <label for="company">Institution</label>
             </div>
-          </div>
+
           <?php if (isset($userID) && !empty($data['education'])) { ?>
             <?php foreach ($data['education'] as $college): 
               // Split the firstDate into day, month, and year
@@ -347,13 +347,13 @@
         <label for="collapse-head5">Technical Skills</label>
         <div class="collapse-text" id="field5">
             <p class="error-education-tab"></p>
-            <div class="label-container">
+
               <div class="label-group">
                 <label for="technical">Hard Skills</label>
                 <label for="language">Languages</label>
                 <label for="interest">Interests</label>
               </div>
-            </div>
+
             <?php if (isset($userID) && !empty($data['techskills'])) { ?>
               <form name="skills" action="config/technical.skills.config.php" method="post">
                 <?php foreach ($data['techskills'] as $skill): ?>
@@ -465,7 +465,7 @@
         </div>
         <form class="window-body" action="config/delete.resume.config.php" method="post">
           <p class="error-select"></p>
-          <p>Do you really want to delete a resume?</p>
+          <p>Do you really want to delete your resume?</p>
           <label for="selectCv">Select a resume to remove</label>
           <select name="selectCv">
             <option value="">(None selected)</option><!-- the value="" is needed for javascript -->
