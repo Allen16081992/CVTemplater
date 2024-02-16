@@ -92,18 +92,14 @@
         <div class="collapse-text" id="field1">
           <form name="resume" action="config/updateresume.config.php" method="post"> 
             <p class="error-resume-tab"></p>
-              <div class="label-group">
-                <label for="resid">Resume ID</label>
-                <label for="cvname">Name</label>
-              </div>
             <div class="input-container">
               <div class="input-group">
-                <input type="hidden" name="resid" value="<?= isset($resumeID) ? htmlspecialchars($resumeID) : '' ?>">
-              </div>
-              <div class="input-group">
+                <label for="resid">Resume ID</label>
                 <input type="text" name="cvid" placeholder="*ID is Protected." disabled>
+                <input type="hidden" name="resid" value="<?= isset($resumeID) ? htmlspecialchars($resumeID) : '' ?>">
               </div>                     
               <div class="input-group">
+                <label for="cvname">Name</label>
                 <input type="text" name="cvname" placeholder="Ex: Professional Dredger" value="<?= isset($_SESSION['resumetitle']) ? htmlspecialchars($_SESSION['resumetitle']) : '' ?>">
               </div>
             </div>
@@ -127,11 +123,10 @@
                 <?php foreach ($data['profile'] as $profile): ?>
                   <!-- Verify if the image is readable -->
                   <?php $filePath = "img/avatars/".$profile['fileName'];
-                  if (!empty($profile['fileName'])) {
-                      echo 'File is readable.';
-                  } else {
-                    echo 'File is not readable.';
-                  } ?>
+                    if (!empty($profile['fileName'])) {
+                        echo 'File is readable.';
+                    } 
+                  ?>
                   <?php if (!empty($profile['fileName'])) { ?>
                     <label for="file-upload" class="custom-file-upload"><img src="img/avatars/<?= $profile['fileName']; ?>" alt=""></label>
                   <?php } else { ?><label for="file-upload" class="custom-file-upload"><img src="img/av-placehold.png" alt=""></label><?php } ?>
@@ -160,9 +155,9 @@
               <?php } else { ?>
                 <textarea name="desc" rows="2" placeholder="Write your summary"></textarea>
               <?php } ?>
-            </div>           
+            </div>  
             <button type="submit" class="Save" name="saveProfile">Save</button> 
-            <button type="submit" class="Trash" name="trashProfile">Trash</button>           
+            <button type="submit" class="Trash" name="trashProfile">Trash</button>   
           </form> 
         </div>
 
@@ -171,12 +166,6 @@
         <label for="collapse-head3">Work Experience</label>
         <div class="collapse-text" id="field3">
           <p class="error-work-tab"></p>
-          <!--<div class="label-group">
-            <label for="from">From</label>
-            <label for="until">Until</label>
-            <label for="profession">Profession</label>
-            <label for="company">Company</label>
-          </div>-->
           <?php if (isset($userID) && !empty($data['experience'])) { ?>
             <?php foreach ($data['experience'] as $experience): 
               // Split the firstDate into day, month, and year
@@ -214,16 +203,20 @@
             <form name="experience" action="config/experience.config.php" method="post">
               <div class="input-container">
                 <div class="input-group">
+                  <label for="from">From</label>
                   <?php require 'config/peripherals/date_select/empty_date_select_1.config.php'; ?>
                 </div>
                 <div class="input-group">
+                  <label for="until">Until</label>
                   <?php require 'config/peripherals/date_select/empty_date_select_2.config.php'; ?>
                 </div>
                 <div class="input-group">
-                    <input type="text" name="profession" placeholder="Profession">
+                  <label for="profession">Profession</label>
+                  <input type="text" name="profession" placeholder="Profession">
                 </div>
                 <div class="input-group">
-                    <input type="text" name="company" placeholder="Company">
+                  <label for="company">Company</label>
+                  <input type="text" name="company" placeholder="Company">
                 </div>
               </div>
               <textarea name="workdesc" rows="2" placeholder="Write your job description here..."></textarea>
@@ -235,16 +228,20 @@
             <form name="experience" action="config/experience.config.php" method="post">
               <div class="input-container">
                 <div class="input-group">
+                  <label for="from">From</label>
                   <?php require 'config/peripherals/date_select/empty_date_select_1.config.php'; ?>
                 </div>
                 <div class="input-group">
+                  <label for="until">Until</label>
                   <?php require 'config/peripherals/date_select/empty_date_select_2.config.php'; ?>
                 </div>
                 <div class="input-group">
-                    <input type="text" name="profession" placeholder="Profession">
+                  <label for="profession">Profession</label>
+                  <input type="text" name="profession" placeholder="Profession">
                 </div>
                 <div class="input-group">
-                    <input type="text" name="company" placeholder="Company">
+                  <label for="company">Company</label>
+                  <input type="text" name="company" placeholder="Company">
                 </div>
               </div>
               <textarea name="workdesc" rows="2" placeholder="Write your job description here..."></textarea>
@@ -260,14 +257,6 @@
         <label for="collapse-head4">Education</label>
         <div class="collapse-text" id="field4">
           <p class="error-education-tab"></p>
-
-            <div class="label-group">
-              <label for="from">From</label>
-              <label for="until">Until</label>
-              <label for="edutitle">Program</label>
-              <label for="company">Institution</label>
-            </div>
-
           <?php if (isset($userID) && !empty($data['education'])) { ?>
             <?php foreach ($data['education'] as $college): 
               // Split the firstDate into day, month, and year
@@ -277,16 +266,20 @@
               <form name="education" action="config/education.config.php" method="post">
                 <div class="input-container">
                   <div class="input-group">
+                    <label for="from">From</label>
                     <?php require 'config/peripherals/date_select/edu_date_select_1.config.php'; ?>
                   </div>
                   <div class="input-group">
+                    <label for="until">Until</label>
                     <?php require 'config/peripherals/date_select/edu_date_select_2.config.php'; ?>
                   </div>
                   <div class="input-group">
-                      <input type="text" name="program" placeholder="Electrical Engineering" value="<?= htmlspecialchars($college['edutitle']); ?>">
+                    <label for="edutitle">Program</label>
+                    <input type="text" name="program" placeholder="Electrical Engineering" value="<?= htmlspecialchars($college['edutitle']); ?>">
                   </div>
                   <div class="input-group">
-                      <input type="text" name="company" placeholder="LTS Technical School" value="<?= htmlspecialchars($college['company']); ?>">
+                    <label for="company">Institution</label>
+                    <input type="text" name="company" placeholder="LTS Technical School" value="<?= htmlspecialchars($college['company']); ?>">
                   </div>
                 </div>
                 <textarea name="edudesc" rows="2" placeholder="Write your program description here..."><?= htmlspecialchars($college['edudesc']); ?></textarea>
@@ -301,16 +294,20 @@
             <form name="education" action="config/education.config.php" method="post">
               <div class="input-container">
                 <div class="input-group">
+                  <label for="from">From</label>
                   <?php require 'config/peripherals/date_select/empty_date_select_1.config.php'; ?>
                 </div>
                 <div class="input-group">
+                  <label for="until">Until</label>
                   <?php require 'config/peripherals/date_select/empty_date_select_2.config.php'; ?>
                 </div>
                 <div class="input-group">
-                    <input type="text" name="program" placeholder="Electrical Engineering">
+                  <label for="edutitle">Program</label>
+                  <input type="text" name="program" placeholder="Electrical Engineering">
                 </div>
                 <div class="input-group">
-                    <input type="text" name="company" placeholder="LTS Technical School">
+                  <label for="company">Institution</label>
+                  <input type="text" name="company" placeholder="LTS Technical School">
                 </div>
               </div>
               <textarea name="edudesc" rows="2" placeholder="Write your program description here..."></textarea>
@@ -322,16 +319,20 @@
             <form name="education" action="config/education.config.php" method="post">
               <div class="input-container">
                 <div class="input-group">
+                  <label for="from">From</label>
                   <?php require 'config/peripherals/date_select/empty_date_select_1.config.php'; ?>
                 </div>
                 <div class="input-group">
+                  <label for="until">Until</label>
                   <?php require 'config/peripherals/date_select/empty_date_select_2.config.php'; ?>
                 </div>
                 <div class="input-group">
-                    <input type="text" name="program" placeholder="Electrical Engineering">
+                  <label for="edutitle">Program</label>
+                  <input type="text" name="program" placeholder="Electrical Engineering">
                 </div>
                 <div class="input-group">
-                    <input type="text" name="company" placeholder="LTS Technical School">
+                  <label for="company">Institution</label>
+                  <input type="text" name="company" placeholder="LTS Technical School">
                 </div>
               </div>
               <textarea name="edudesc" rows="2" placeholder="Write your program description here..."></textarea>
@@ -347,28 +348,24 @@
         <label for="collapse-head5">Technical Skills</label>
         <div class="collapse-text" id="field5">
             <p class="error-education-tab"></p>
-
-              <div class="label-group">
-                <label for="technical">Hard Skills</label>
-                <label for="language">Languages</label>
-                <label for="interest">Interests</label>
-              </div>
-
             <?php if (isset($userID) && !empty($data['techskills'])) { ?>
               <form name="skills" action="config/technical.skills.config.php" method="post">
                 <?php foreach ($data['techskills'] as $skill): ?>
                   <?php if (isset($skill['techtitle'])): ?>
                     <div class="input-group">
+                      <label for="technical">Hard Skills</label>
                       <input type="text" name="technical" placeholder="Office 365" value="<?= htmlspecialchars($skill['techtitle']); ?>">
                     </div>
                   <?php endif; ?>
                   <?php if (isset($skill['language'])): ?>
                     <div class="input-group">
+                      <label for="language">Languages</label>
                       <input type="text" name="language" placeholder="Maghrebi Arabic" value="<?= htmlspecialchars($skill['language']); ?>">
                     </div>
                   <?php endif; ?>
                   <?php if (isset($skill['interest'])): ?>
                     <div class="input-group">
+                      <label for="interest">Interests</label>
                       <input type="text" name="interest" placeholder="Photography" value="<?= htmlspecialchars($skill['interest']); ?>">
                     </div>
                   <?php endif; ?>
@@ -382,16 +379,19 @@
                 </div>
               </form>
               <!-- Dynamically produce an empty form as well -->
-              <form name="skills" action="config/education.config.php" method="post">
+              <form name="skills" action="config/technical.skills.config.php" method="post">
                 <div class="input-container">
                   <div class="input-group">
-                      <input type="text" name="technical" placeholder="Office 365">
+                    <label for="technical">Hard Skills</label>
+                    <input type="text" name="technical" placeholder="Office 365">
                   </div>
                   <div class="input-group">
-                      <input type="text" name="language" placeholder="Maghrebi Arabic">
+                    <label for="language">Languages</label>
+                    <input type="text" name="language" placeholder="Maghrebi Arabic">
                   </div>
                   <div class="input-group">
-                      <input type="text" name="interest" placeholder="Photography">
+                    <label for="interest">Interests</label>
+                    <input type="text" name="interest" placeholder="Photography">
                   </div>
                 </div>
                 <div class="button-container"> 
@@ -399,16 +399,19 @@
                 </div>
               </form>
             <?php } else { ?>
-              <form name="skills" action="config/education.config.php" method="post">
+              <form name="skills" action="config/technical.skills.config.php" method="post">
                 <div class="input-container">
                   <div class="input-group">
-                      <input type="text" name="technical" placeholder="Office 365">
+                    <label for="technical">Hard Skills</label>
+                    <input type="text" name="technical" placeholder="Office 365">
                   </div>
                   <div class="input-group">
-                      <input type="text" name="language" placeholder="Maghrebi Arabic">
+                    <label for="language">Languages</label>
+                    <input type="text" name="language" placeholder="Maghrebi Arabic">
                   </div>
                   <div class="input-group">
-                      <input type="text" name="interest" placeholder="Photography">
+                    <label for="interest">Interests</label>
+                    <input type="text" name="interest" placeholder="Photography">
                   </div>
                 </div>
                 <div class="button-container"> 
@@ -428,13 +431,13 @@
             <?php if (isset($userID) && !empty($data['motivation'])) { ?>
               <textarea name="letter" rows="4" placeholder="Write your summary"><?= htmlspecialchars($data['motivation'][0]['letter']); ?></textarea>
               <input type="hidden" name="motID" value="<?= $data['motivation'][0]['motID'] ?? ''; ?>"> 
-              <div class="left"> 
+              <div class="button-container"> 
                 <button type="submit" class="Save" name="saveMotivation">Save</button>
                 <button type="submit" class="Trash" name="trashMotivation">Trash</button> 
               </div> 
             <?php } else { ?>
               <textarea name="letter" rows="4" placeholder="Write your summary"></textarea>
-              <div class="left"> 
+              <div class="button-container"> 
                 <button type="submit" class="Save" name="saveMotivation">Save</button> 
               </div> 
             <?php } ?> 

@@ -89,38 +89,21 @@
                 // Check if we received any row id(s)
                 if(!isset($_POST['techID']) || !isset($_POST['langID']) || !isset($_POST['interestID'])) {
                     // message by sessions instead of URL parsing.
-                    $_SESSION['error'] = 'Technical Skills not received.';
+                    $_SESSION['error'] = 'Technical Skills not found.';
                     header('location: ../client.php');
                 }
                 
-                if ($this->tableHasData('technical')) {
+                if (isset($_POST['techID']) && $this->tableHasData('technical')) {
                     // Instantiate the Trashing of data. Add row, table name and column name.
-                    $rowID = $_POST['techID'];
-                    $this->tableTrasher('technical', 'techID', $rowID);
-                } else {
-                    // message by sessions instead of URL parsing.
-                    $_SESSION['error'] = "Technical Skills not found.";
-                    header('location: ../client.php');
+                    $this->tableTrasher('technical', 'techID', $_POST['techID']);
                 }
-
-                if ($this->tableHasData('languages')) {
+                if (isset($_POST['langID']) && $this->tableHasData('languages')) {
                     // Instantiate the Trashing of data. Add row, table name and column name.
-                    $rowID = $_POST['langID'];
-                    $this->tableTrasher('languages', 'langID', $rowID);
-                } else {
-                    // message by sessions instead of URL parsing.
-                    $_SESSION['error'] = "Technical Skills not found.";
-                    header('location: ../client.php');
+                    $this->tableTrasher('languages', 'langID', $_POST['langID']);
                 }
-                
-                if ($this->tableHasData('interests')) {
+                if (isset($_POST['interestID']) && $this->tableHasData('interests')) {
                     // Instantiate the Trashing of data. Add row, table name and column name.
-                    $rowID = $_POST['interestID'];
-                    $this->tableTrasher('interests', 'interestID', $rowID);
-                } else {
-                    // message by sessions instead of URL parsing.
-                    $_SESSION['error'] = "Technical Skills not found.";
-                    header('location: ../client.php');
+                    $this->tableTrasher('interests', 'interestID', $_POST['interestID']);
                 }
 
                 // message by sessions instead of URL parsing.

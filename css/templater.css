@@ -159,20 +159,6 @@ ul li .m-on { color: #ddd; }
 .button-container button:not(:first-child) {
   margin-left: 0; /* Remove the left margin from the first button */
 }
-/* .label-container {
-  display: flex;
-  justify-content: left;
-} */
-.label-group {
-  display: flex;
-  justify-content: left;
-  /*gap: 9rem; /* Adjust the gap between labels if needed */
-}
-.label-group > label {
-  pointer-events: none;
-  width: 13rem;
-  margin-bottom:-20px;
-}
 
 .input-container {
   text-align: left;
@@ -433,19 +419,6 @@ input.invalid {
   font-weight:500;
 }
 .check { display: none; }
-label {
-  animation: fadeInAnimation ease 2s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards; 
-}
-@keyframes fadeInAnimation {
-  0% {
-      opacity: 0;
-  }
-  100% {
-      opacity: 1;
-  }
-}
 
 .collapse label {
   position:relative;
@@ -606,9 +579,6 @@ input[type="file"] {
   }
   
   .collapse-text form textarea { font-size:0.9rem; }
-  .label-group {
-    width: 100%;
-  }
   .input-group > input[name="technical"] {
     max-width: 7rem; /*font-size: 0.9rem;*/
   }
