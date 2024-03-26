@@ -20,7 +20,7 @@ class ResumePDF extends FPDF {
 
     public function fetchData($resumeID, $userID) {
         $result = array();
-        $tables = array('resume', 'accounts', 'contact', 'experience', 'education', 'interests', 'languages', 'profile', 'technical', 'motivation');
+        $tables = array('resume', 'accounts', 'contact', 'profile', 'experience', 'education', 'techskill', 'motivation');
 
         // Loop through each table and fetch data
         foreach ($tables as $table) {
@@ -135,21 +135,16 @@ class ResumePDF extends FPDF {
             $eduSummary = array_map('htmlspecialchars', $eduSummary);
         }
         // Skills
-        if (isset($this->data['technical'])) {
-            $techTitle = array_column($this->data['technical'], 'techtitle');
+        if (isset($this->data['techskill'])) {
+            $techTitle = array_column($this->data['techskill'], 'techtitle');
+            $language = array_column($this->data['techskill'], 'language');
+            $interest = array_column($this->data['techskill'], 'interest');
             // Sanitize
             $techTitle = array_map('htmlspecialchars', $techTitle);
-        }
-        if (isset($this->data['languages'])) {
-            $language = array_column($this->data['languages'], 'language');
-            // Sanitize
             $language = array_map('htmlspecialchars', $language);
-        }
-        if (isset($this->data['interests'])) {
-            $interest = array_column($this->data['interests'], 'interest');
-            // Sanitize
             $interest = array_map('htmlspecialchars', $interest);
         }
+        // Motivation
         if (isset($this->data['motivation'])) {
             $motivation = array_column($this->data['motivation'], 'motdesc');
             // Sanitize

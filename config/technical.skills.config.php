@@ -5,35 +5,32 @@
 require_once 'peripherals/session_management.config.php';
 // Use the (improved) database connection.
 require_once "idb.config.php";
-require_once "Classes/technical.skills.class.config.php";
+require_once "Classes/technical.class.php";
 require_once "Classes/TrashTables.class.config.php";
 
-if (isset($_POST['addSkill'])){
-    $language = $_POST['language'];
-    $interest = $_POST['interest'];
-    $techtitle = $_POST['technical'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $technical = htmlspecialchars($_POST['technical']);
+    $language = htmlspecialchars($_POST['language']);
+    $interest = htmlspecialchars($_POST['interest']);
     $resumeID = $_SESSION["resumeID"];
     $userID = $_SESSION["user_id"];
-    $nieuwelanguage = new Skills($interest, $language, $techtitle, $resumeID, $userID);
-    $nieuwelanguage->Createskills();
 
-} elseif (isset($_POST['saveSkill'])){
-    $language = $_POST['language'];
-    $interest = $_POST['interest'];
-    $techtitle = $_POST['technical'];
-    $resumeID = $_SESSION["resumeID"];
-    $userID = $_SESSION["user_id"];
-    $nieuwelanguage = new Skills($interest, $language, $techtitle, $resumeID, $userID);
-    $nieuwelanguage->Updateskills();
-
-} elseif(isset($_POST['trashSkill'])) {
-    $resumeID = $_SESSION['resumeID'];
-    $userID = $_SESSION['user_id'];
-
-    // Initialise the Multipurose trash class
-    $multidelete = new MultiTrash($resumeID, $userID);
-    $multidelete->multiTrash();
-
-    // When trashing process completes, open the client environment MyResume.
-    header('location: ../client.php');  
+    if (isset($_POST['addSkill'])){
+        // Initialise the Multipurose trash class
+        $nt = new Technicals($technical, $language, $interest, $resumeID, $userID);
+        $nt->Createskills();
+    
+    } elseif (isset($_POST['saveSkill'])){
+        // Initialise the Multipurose trash class
+        $nt = new Technicals($technical, $language, $interest, $resumeID, $userID);
+        $nt->Updateskills();
+    
+    } elseif(isset($_POST['trashSkill'])) {
+        // Initialise the Multipurose trash class
+        $multidelete = new MultiTrash($resumeID, $userID);
+        $multidelete->multiTrash();
+    
+        // When trashing is completed, open the client environment MyResume.
+        header('location: ../client.php');  
+    }
 }

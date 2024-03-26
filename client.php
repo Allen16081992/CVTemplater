@@ -348,50 +348,44 @@
         <label for="collapse-head5">Technical Skills</label>
         <div class="collapse-text" id="field5">
             <p class="error-education-tab"></p>
-            <?php if (isset($userID) && !empty($data['techskills'])) { ?>
-              <form name="skills" action="config/technical.skills.config.php" method="post">
-                <?php foreach ($data['techskills'] as $skill): ?>
-                  <?php if (isset($skill['techtitle'])): ?>
+            <?php if (isset($userID) && !empty($data['techskill'])) { ?>  
+              <?php foreach ($data['techskill'] as $skills): ?>
+                <form name="techskill" action="config/technical.skills.config.php" method="post">
+                  <div class="input-container">
                     <div class="input-group">
-                      <label for="technical">Hard Skills</label>
-                      <input type="text" name="technical" placeholder="Office 365" value="<?= htmlspecialchars($skill['techtitle']); ?>">
+                      <label for="technical">Hard Skill</label>
+                      <input type="text" name="technical" placeholder="Office 365" value="<?= htmlspecialchars($skills['techtitle']); ?>" required>
                     </div>
-                  <?php endif; ?>
-                  <?php if (isset($skill['language'])): ?>
                     <div class="input-group">
-                      <label for="language">Languages</label>
-                      <input type="text" name="language" placeholder="Maghrebi Arabic" value="<?= htmlspecialchars($skill['language']); ?>">
+                      <label for="language">Language</label>
+                      <input type="text" name="language" placeholder="Swedish" value="<?= htmlspecialchars($skills['language']); ?>" required>
                     </div>
-                  <?php endif; ?>
-                  <?php if (isset($skill['interest'])): ?>
                     <div class="input-group">
                       <label for="interest">Interests</label>
-                      <input type="text" name="interest" placeholder="Photography" value="<?= htmlspecialchars($skill['interest']); ?>">
+                      <input type="text" name="interest" placeholder="Theatre" value="<?= htmlspecialchars($skills['interest']); ?>" required>
                     </div>
-                  <?php endif; ?>
-                  <input type="hidden" name="techID" value="<?= $skill['techID'] ?? ''; ?>"> 
-                  <input type="hidden" name="langID" value="<?= $skill['langID'] ?? ''; ?>">  
-                  <input type="hidden" name="interestID" value="<?= $skill['interestID'] ?? ''; ?>"> 
-                <?php endforeach; ?>
-                <div class="button-container"> 
-                  <button type="submit" class="Save" name="saveSkill">Save</button> 
-                  <button type="submit" class="Trash" name="trashSkill">Trash</button>     
-                </div>
-              </form>
+                  </div>
+                  <input type="hidden" name="techID" value="<?= $skills['techID']; ?>">
+                  <div class="button-container"> 
+                    <button type="submit" class="Save" name="saveSkill">Save</button> 
+                    <button type="submit" class="Trash" name="trashSkill">Trash</button>     
+                  </div>
+                </form>
+              <?php endforeach; ?>
               <!-- Dynamically produce an empty form as well -->
               <form name="skills" action="config/technical.skills.config.php" method="post">
                 <div class="input-container">
                   <div class="input-group">
                     <label for="technical">Hard Skills</label>
-                    <input type="text" name="technical" placeholder="Office 365">
+                    <input type="text" name="technical" placeholder="Office 365" required>
                   </div>
                   <div class="input-group">
                     <label for="language">Languages</label>
-                    <input type="text" name="language" placeholder="Maghrebi Arabic">
+                    <input type="text" name="language" placeholder="Maghrebi Arabic" required>
                   </div>
                   <div class="input-group">
                     <label for="interest">Interests</label>
-                    <input type="text" name="interest" placeholder="Photography">
+                    <input type="text" name="interest" placeholder="Photography" required>
                   </div>
                 </div>
                 <div class="button-container"> 
@@ -403,15 +397,15 @@
                 <div class="input-container">
                   <div class="input-group">
                     <label for="technical">Hard Skills</label>
-                    <input type="text" name="technical" placeholder="Office 365">
+                    <input type="text" name="technical" placeholder="Office 365" required>
                   </div>
                   <div class="input-group">
                     <label for="language">Languages</label>
-                    <input type="text" name="language" placeholder="Maghrebi Arabic">
+                    <input type="text" name="language" placeholder="Maghrebi Arabic" required>
                   </div>
                   <div class="input-group">
                     <label for="interest">Interests</label>
-                    <input type="text" name="interest" placeholder="Photography">
+                    <input type="text" name="interest" placeholder="Photography" required>
                   </div>
                 </div>
                 <div class="button-container"> 

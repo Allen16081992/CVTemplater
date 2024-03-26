@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 11 feb 2024 om 02:05
+-- Gegenereerd op: 26 mrt 2024 om 17:27
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -104,31 +104,13 @@ CREATE TABLE `experience` (
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Tabelstructuur voor tabel `interests`
+-- Gegevens worden geëxporteerd voor tabel `experience`
 --
 
-CREATE TABLE `interests` (
-  `interestID` int(11) NOT NULL,
-  `interest` varchar(50) DEFAULT NULL,
-  `resumeID` int(11) NOT NULL,
-  `userID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `languages`
---
-
-CREATE TABLE `languages` (
-  `langID` int(11) NOT NULL,
-  `language` varchar(50) DEFAULT NULL,
-  `resumeID` int(11) NOT NULL,
-  `userID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+INSERT INTO `experience` (`workID`, `worktitle`, `workdesc`, `company`, `firstDate`, `lastDate`, `resumeID`, `userID`) VALUES
+(1, 'Gay', 'nasdkdjsasadjkasd', 'Escort', '11/10/2012', '12/09/2012', 1, 2),
+(2, 'Handball', 'Stan stan stan stan', 'Corvete', '10/04/2023', '27/08/1976', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -188,15 +170,17 @@ INSERT INTO `resume` (`resumeID`, `resumetitle`, `userID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `technical`
+-- Tabelstructuur voor tabel `techskill`
 --
 
-CREATE TABLE `technical` (
+CREATE TABLE `techskill` (
   `techID` int(11) NOT NULL,
-  `techtitle` varchar(50) DEFAULT NULL,
+  `techtitle` varchar(20) DEFAULT NULL,
+  `language` varchar(20) DEFAULT NULL,
+  `interest` varchar(20) DEFAULT NULL,
   `resumeID` int(11) NOT NULL,
   `userID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -233,22 +217,6 @@ ALTER TABLE `experience`
   ADD KEY `fk_exp_res` (`resumeID`);
 
 --
--- Indexen voor tabel `interests`
---
-ALTER TABLE `interests`
-  ADD PRIMARY KEY (`interestID`),
-  ADD KEY `fk_int_user` (`userID`),
-  ADD KEY `fk_int_res` (`resumeID`);
-
---
--- Indexen voor tabel `languages`
---
-ALTER TABLE `languages`
-  ADD PRIMARY KEY (`langID`),
-  ADD KEY `fk_lang_user` (`userID`),
-  ADD KEY `fk_lang_res` (`resumeID`);
-
---
 -- Indexen voor tabel `motivation`
 --
 ALTER TABLE `motivation`
@@ -272,12 +240,12 @@ ALTER TABLE `resume`
   ADD KEY `fk_res_user` (`userID`);
 
 --
--- Indexen voor tabel `technical`
+-- Indexen voor tabel `techskill`
 --
-ALTER TABLE `technical`
+ALTER TABLE `techskill`
   ADD PRIMARY KEY (`techID`),
-  ADD KEY `fk_tech_user` (`userID`),
-  ADD KEY `fk_tech_res` (`resumeID`);
+  ADD KEY `fk_tech_res` (`resumeID`) USING BTREE,
+  ADD KEY `fk_tech_user` (`userID`) USING BTREE;
 
 --
 -- AUTO_INCREMENT voor geëxporteerde tabellen
@@ -305,19 +273,7 @@ ALTER TABLE `education`
 -- AUTO_INCREMENT voor een tabel `experience`
 --
 ALTER TABLE `experience`
-  MODIFY `workID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT voor een tabel `interests`
---
-ALTER TABLE `interests`
-  MODIFY `interestID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT voor een tabel `languages`
---
-ALTER TABLE `languages`
-  MODIFY `langID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `workID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `motivation`
@@ -338,10 +294,10 @@ ALTER TABLE `resume`
   MODIFY `resumeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT voor een tabel `technical`
+-- AUTO_INCREMENT voor een tabel `techskill`
 --
-ALTER TABLE `technical`
-  MODIFY `techID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `techskill`
+  MODIFY `techID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
@@ -368,20 +324,6 @@ ALTER TABLE `experience`
   ADD CONSTRAINT `fk_exp_user` FOREIGN KEY (`userID`) REFERENCES `accounts` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Beperkingen voor tabel `interests`
---
-ALTER TABLE `interests`
-  ADD CONSTRAINT `fk_int_res` FOREIGN KEY (`resumeID`) REFERENCES `resume` (`resumeID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_int_user` FOREIGN KEY (`userID`) REFERENCES `accounts` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Beperkingen voor tabel `languages`
---
-ALTER TABLE `languages`
-  ADD CONSTRAINT `fk_lang_res` FOREIGN KEY (`resumeID`) REFERENCES `resume` (`resumeID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_lang_user` FOREIGN KEY (`userID`) REFERENCES `accounts` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Beperkingen voor tabel `motivation`
 --
 ALTER TABLE `motivation`
@@ -400,13 +342,6 @@ ALTER TABLE `profile`
 --
 ALTER TABLE `resume`
   ADD CONSTRAINT `fk_res_user` FOREIGN KEY (`userID`) REFERENCES `accounts` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Beperkingen voor tabel `technical`
---
-ALTER TABLE `technical`
-  ADD CONSTRAINT `fk_tech_res` FOREIGN KEY (`resumeID`) REFERENCES `resume` (`resumeID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_tech_user` FOREIGN KEY (`userID`) REFERENCES `accounts` (`userID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

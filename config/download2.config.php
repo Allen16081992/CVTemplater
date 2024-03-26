@@ -20,7 +20,7 @@ class ResumePDF extends FPDF {
 
     public function fetchData($resumeID, $userID) {
         $result = array();
-        $tables = array('resume', 'accounts', 'contact', 'experience', 'education', 'interests', 'languages', 'profile', 'technical', 'motivation');
+        $tables = array('resume', 'accounts', 'contact', 'profile', 'experience', 'education', 'techskill', 'motivation');
 
         // Loop through each table and fetch data
         foreach ($tables as $table) {
@@ -111,21 +111,16 @@ class ResumePDF extends FPDF {
             $eduSummary = array_map('htmlspecialchars', $eduSummary);
         }
         // Skills
-        if (isset($this->data['technical'])) {
-            $techTitle = array_column($this->data['technical'], 'techtitle');
+        if (isset($this->data['techskill'])) {
+            $techTitle = array_column($this->data['techskill'], 'techtitle');
+            $language = array_column($this->data['techskill'], 'language');
+            $interest = array_column($this->data['techskill'], 'interest');
             // Sanitize
             $techTitle = array_map('htmlspecialchars', $techTitle);
-        }
-        if (isset($this->data['languages'])) {
-            $language = array_column($this->data['languages'], 'language');
-            // Sanitize
             $language = array_map('htmlspecialchars', $language);
-        }
-        if (isset($this->data['interests'])) {
-            $interest = array_column($this->data['interests'], 'interest');
-            // Sanitize
             $interest = array_map('htmlspecialchars', $interest);
         }
+        // Motivation
         if (isset($this->data['motivation'])) {
             $motivation = array_column($this->data['motivation'], 'motdesc');
             // Sanitize
@@ -184,12 +179,12 @@ class ResumePDF extends FPDF {
 
         if (isset($this->data['profile'][0]['profiledesc'])) {
             // Set Profile
-            $this->SetFont('Arial', 'I', 10);
-            $this->Cell(0, 5, 'Profiel', 0, 1, 'C'); 
+            $this->SetFont('Arial', '', 10);
+            //$this->Cell(0, 5, 'Profiel', 0, 1, 'C'); 
             $this->SetFont('Arial', 'B', 14);
             // Set description
             $profiledesc = $this->data['profile'][0]['profiledesc'];
-            $this->SetFont('Arial', '', 10);
+            $this->SetFont('Arial', 'I', 10);
             $this->SetFillColor(230,230,0);
             $this->MultiCell(0, 5, html_entity_decode($profiledesc), 0, 'C', 0);
             // Add a line break
@@ -197,7 +192,7 @@ class ResumePDF extends FPDF {
         }
 
         /////////////////////// WORK EXPERIENCE ////////////////////////
-        $this->SetFont('Arial', 'I', 14);
+        $this->SetFont('Arial', '', 14);
         $this->Cell(0, 10, 'Werkervaring', 1, 1, 'C');
         $this->Ln(2);
 
@@ -263,7 +258,7 @@ class ResumePDF extends FPDF {
         }
 
         /////////////////////// EDUCATION ////////////////////////
-        $this->SetFont('Arial', 'I', 14);
+        $this->SetFont('Arial', '', 14);
         $this->Cell(0, 10, 'Opleiding', 1, 1, 'C');
         $this->Ln(2);
 
@@ -331,7 +326,7 @@ class ResumePDF extends FPDF {
         /////////////////////// HARD & SOFT SKILLS ////////////////////////
 
         $this->SetLineWidth(1);
-        $this->SetFont('Arial', 'I', 10);
+        $this->SetFont('Arial', '', 10);
         $this->Cell(63, 6, 'Vaardigheden', 1, 0, 'C');
         $this->Cell(64, 6, 'Talen', 1, 0, 'C');
         $this->Cell(63, 6, 'Interessen', 1, 0, 'C');
@@ -339,13 +334,12 @@ class ResumePDF extends FPDF {
         // Add a line break
         $this->Ln(8);
 
-        // Show values from array position specifically. Limit - 3 jobs.
-        // Determine the maximum number of entries to display
-
-        if (isset($this->data['technical'][0]['techtitle']) || isset($this->data['languages'][0]['language']) || isset($this->data['interests'][0]['interest'])) {
+        if (isset($this->data['techskill'][0]['techtitle']) || isset($this->data['techskill'][0]['language']) || isset($this->data['techskill'][0]['interest'])) {
             $this->SetFont('Arial', 'B', 12);
         }
         
+        // Show values from array position specifically. Limit - 3 jobs.
+        // Determine the maximum number of entries to display    
         $maxEntries = max(count($techTitle), count($language), count($interest));
 
         // Loop through the entries

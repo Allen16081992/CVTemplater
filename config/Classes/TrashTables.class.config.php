@@ -87,23 +87,9 @@
 
             } elseif(isset($_POST['trashSkill'])) {
                 // Check if we received any row id(s)
-                if(!isset($_POST['techID']) || !isset($_POST['langID']) || !isset($_POST['interestID'])) {
-                    // message by sessions instead of URL parsing.
-                    $_SESSION['error'] = 'Technical Skills not found.';
-                    header('location: ../client.php');
-                }
-                
-                if (isset($_POST['techID']) && $this->tableHasData('technical')) {
+                if (isset($_POST['techID']) && $this->tableHasData('techskill')) {
                     // Instantiate the Trashing of data. Add row, table name and column name.
-                    $this->tableTrasher('technical', 'techID', $_POST['techID']);
-                }
-                if (isset($_POST['langID']) && $this->tableHasData('languages')) {
-                    // Instantiate the Trashing of data. Add row, table name and column name.
-                    $this->tableTrasher('languages', 'langID', $_POST['langID']);
-                }
-                if (isset($_POST['interestID']) && $this->tableHasData('interests')) {
-                    // Instantiate the Trashing of data. Add row, table name and column name.
-                    $this->tableTrasher('interests', 'interestID', $_POST['interestID']);
+                    $this->tableTrasher('techskill', 'techID', $_POST['techID']);
                 }
 
                 // message by sessions instead of URL parsing.
