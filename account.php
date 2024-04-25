@@ -145,9 +145,8 @@
               <!-- <input type="text" name="birth" placeholder="Example: 1956-06-18" value="<?php //$contact['birth'];?>"> -->
               <?php list($day, $month, $year) = explode('/', $contact['birth']); ?>
               <div class="tab">
-                <select name="day" id="birthday">
-                  <option selected><?=$day;?></option>
-                  <option>--</option>
+                <select name="day">
+                  <?= isset($day) ? '<option selected>'.htmlspecialchars($day).'</option><option>--</option>' : '<option selected>--</option>' ?>
                   <?php
                       for ($day = 1; $day <= 31; $day++) {
                         // Format the day with leading zero if it's a single digit
@@ -156,9 +155,8 @@
                       }
                   ?>
                 </select>
-                <select name="month" id="birthday">
-                  <option selected><?=$month;?></option>
-                  <option>-</option>
+                <select name="month">
+                  <?= isset($month) ? '<option selected>'.htmlspecialchars($month).'</option><option>--</option>' : '<option selected>--</option>' ?>
                   <?php
                       for ($month = 1; $month <= 12; $month++) {
                         // Format the month with leading zero if it's a single digit
@@ -167,9 +165,8 @@
                       }
                   ?>
                 </select>
-                <select name="year" id="year-select">
-                  <option selected><?=$year;?></option>
-                  <option>----</option>
+                <select name="year">
+                  <?= isset($year) ? '<option selected>'.htmlspecialchars($year).'</option><option>----</option>' : '<option selected>----</option>' ?>
                   <?php
                     $currentYear = date('Y');
                     $targetYear = 1908;

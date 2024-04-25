@@ -443,7 +443,7 @@ input.invalid {
 .collapse-text label { cursor:default; }
 .left > .tab { display: block; }
 .tab select { width:4rem; }
-#year-select { width: 5rem; }
+select[name="year"] { width: 5rem; }
 
 .collapse-text {
   max-height:1px;
@@ -477,7 +477,6 @@ input[type="file"] {
   height: 200px;
   max-width: 200px;
 }
-.row-field {display: block;}
 
 .collapse 
   #collapse-head1:checked ~ #field1, 
@@ -610,7 +609,7 @@ input[type="file"] {
   }
   .left > .tab { display: inline-flex; }
   .tab select { width:3rem; }
-  #year-select { width: 4rem; }
+  select[name="year"] { width: 4rem; }
   .window { width: 100%; }
   .last { margin-bottom: 8rem;}
 }

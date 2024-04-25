@@ -9,7 +9,7 @@
         "Your Path to Success Starts Here: Forge Your Resume",
         "Your Resume, Your Way: Start Building Today",
         "Occupy That Job Offer by Creating A Resume Today!",
-        "Aim Your Resume at a Sector and Land A Tactical Advantage"
+        "Aim Your Resume at 1 Job to Land A Tactical Advantage"
     ];
 
     // Randomly select a tagline
