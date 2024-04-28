@@ -472,7 +472,7 @@ select[name="year"] { width: 5rem; }
 input[type="file"] {
   display: none;
 }
-.custom-file-upload {
+.custom-file-upload img {
   margin-top:-2px;
   height: 200px;
   max-width: 200px;

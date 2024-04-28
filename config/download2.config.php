@@ -162,7 +162,7 @@ class ResumePDF extends FPDF {
 
         // Set contact information
         $this->SetFont('Arial', '', 12);
-        $this->SetDrawColor(0,80,180); //0,155,119 Emerald Green
+        $this->SetDrawColor(0,80,180); //0,155,119 Emerald Green //0,80,180 Baltic Blue
         $this->Image($mobile, 10, 50, 5); $this->Cell(50, 5, $phone, 1, 0, 'C'); 
         $this->Image($envelope, 61, 50, 5);  $this->Cell(90, 5, $email, 1, 0, 'C'); 
         $this->Image($building, 150, 50, 5); $this->Cell(50, 5, $city, 1, 0, 'C');

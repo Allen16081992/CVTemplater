@@ -348,6 +348,7 @@
         <label for="collapse-head5">Technical Skills</label>
         <div class="collapse-text" id="field5">
             <p class="error-education-tab"></p>
+            <p>Only list Interests that are relevant to the job you seek.</p>
             <?php if (isset($userID) && !empty($data['techskill'])) { ?>  
               <?php foreach ($data['techskill'] as $skills): ?>
                 <form name="techskill" action="config/technical.skills.config.php" method="post">
@@ -489,6 +490,9 @@
             </form>
             <form action="config/download2.config.php" target="_blank" method="post">
               <button type="submit" name="business">Business</button>
+            </form>
+            <form action="config/download3.config.php" target="_blank" method="post">
+              <button type="submit" class="New" name="minimalist">Minimalist</button>
             </form>
           </div>
         </div>
