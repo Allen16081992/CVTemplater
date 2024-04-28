@@ -132,7 +132,7 @@
                exit(); 
             } elseif(!$this->invalidInput()) {
                 // Invalid characters.
-                $_SESSION['error'] = 'Only letters, "," and numbers allowed.';
+                $_SESSION['error'] = 'Only alphabetical and numerical characters allowed.';
                 header('location: ../client.php');
                 exit(); 
             } else {
@@ -146,7 +146,7 @@
         }
         private function invalidInput() {
             // Make sure the submitted values are valid.
-            return !!ctype_alnum($this->intro) || !ctype_alnum($this->desc);
+            return !ctype_alnum($this->intro) || !ctype_alnum($this->desc);
         }
         
     }
