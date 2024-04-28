@@ -127,7 +127,7 @@
         public function verifyProfile() {
             if(!$this->emptyInput()) {
                // No resume name.
-               $_SESSION['error'] = 'No introduction provided.';
+               $_SESSION['error'] = 'Add something before saving.';
                header('location: ../client.php');
                exit(); 
             } elseif(!$this->invalidInput()) {
@@ -146,8 +146,7 @@
         }
         private function invalidInput() {
             // Make sure the submitted values are valid.
-            $regex = '/^[a-zA-Z0-9,\.]+$/';
-            return !preg_match($regex, $this->intro) || !preg_match($regex, $this->desc);
+            return !!ctype_alnum($this->intro) || !ctype_alnum($this->desc);
         }
         
     }
