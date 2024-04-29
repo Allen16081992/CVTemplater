@@ -39,7 +39,7 @@
 
     <!-- Resume Side Panel -->
     <section class="sidebar">
-      <h5>Account Settings</h5>
+      <h5>Account</h5>
       <ul>
         <li><a href="client.php"><i class='bx bxs-file'></i>Resume Builder</a></li>
         <li><a href="useful_tips.php"><i class='bx bxs-videos'></i>Useful Tips</a></li>

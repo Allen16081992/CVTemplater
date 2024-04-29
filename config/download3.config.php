@@ -204,8 +204,7 @@ class ResumePDF extends FPDF {
         $this->Cell(9, 8, '', 0, 0, 'L'); // Add cell space for icon
         $this->Image($building, 12, 80.5, 5); 
         $this->Cell(56, 8, $postal.', '.$city, 0, 1, 'L');
-
-        //$this->Cell(65, 8, '', 0, 1, 'L'); // Add cell space
+        $this->Ln(2);
 
         /////////////////////// EDUCATION ////////////////////////
         $this->SetFont('Arial', 'B', 10);
@@ -334,6 +333,7 @@ class ResumePDF extends FPDF {
 
         //////////////////// Profile ///////////////////
         
+        //////////////////////////// Side 2 ////////////////////////////
         /////////////////////// WORK EXPERIENCE ////////////////////////
         $this->SetFont('Arial', '', 14);
         $this->SetXY(80, 55); // Set the position for text

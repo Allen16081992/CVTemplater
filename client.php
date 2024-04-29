@@ -492,7 +492,7 @@
               <button type="submit" name="business">Business</button>
             </form>
             <form action="config/download3.config.php" target="_blank" method="post">
-              <button type="submit" class="New" name="minimalist">Minimalist</button>
+              <button type="submit" class="New" name="ctiger">Career Tiger</button>
             </form>
           </div>
         </div>

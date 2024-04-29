@@ -17,7 +17,7 @@
     <!-- Styling Sheets -->
     <link rel="stylesheet" href="css/templater.css">
     <!-- Javascript -->
-    <?php require_once 'config/peripherals/javascript_load.config.php'; ?>
+    <script defer src="javascript/error.messages.js"></script>
   </head> 
   <style>
     header > h1 {
@@ -79,15 +79,15 @@
     <!-- Resume Side Panel -->
     <section class="sidebar">
       <h5>Tutorial</h5>
-      <button class="New" data-window-target="#window">New Resume</button>
-      <button data-window-target="#window2">Delete Resume</button>        
+      <!--<button class="New" data-window-target="#window">New Resume</button>
+      <button data-window-target="#window2">Delete Resume</button>-->    
       <ul>
-        <form>
+        <!--<form>
           <select class="dropdown" name="selectCv">
             <option selected>Select Resume:</option>
             <option class="resume-select">This is an example</option>
           </select>
-        </form>
+        </form>-->
         <li><a href="./client.php"><i class='bx bxs-file'></i>Resume Builder</li>
         <li><a href="useful_tips.php"><i class='bx bxs-videos'></i>Useful Tips</a></li>
         <li class="on"><i class='bx bxs-crown'></i>Tutorial</a></li>
@@ -107,8 +107,8 @@
     
     <section class="m-sidebar">
       <ul>
-        <li><a data-window-target="#window"><i class='bx bx-plus-circle bx-md'></i></a></li>
-        <li><a data-window-target="#window2"><i class='bx bx-x-circle bx-md'></i></a></li>
+        <!--<li><a style="color:grey;"><i class='bx bx-plus-circle bx-md'></i></a></li>
+        <li><a style="color:grey;"><i class='bx bx-x-circle bx-md'></i></a></li>-->
         <li><a href="./client.php"><i class='bx bxs-file bx-md'></i></li>
         <li><a href="./useful_tips.php"><i class='bx bxs-videos bx-md'></i></a></li>
         <li><a class="m-on"><i class='bx bxs-crown bx-md'></i></a></li>
