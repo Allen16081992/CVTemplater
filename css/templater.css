@@ -5,11 +5,10 @@
 }
 :root {
   --bg-color:rgba(0, 0, 0, 0.9);
-  --bg-cover: url("../img/templater-main.jpg");
   --second-bg-color:#111e2f,#323946;
   --text-color:azure;
   --main-color:#0ef;
-  --bg-window: rgba(0,0,0,0.5);
+  --bg-window: rgba(0,0,0,0.8);
 
   /* Window Error Messages style */  
   --error-bg:rgba(255, 232, 232); --error-color: crimson;
@@ -19,8 +18,8 @@
   --error-max-w:100%; --error-marg-b:10px; --error-marg-t:-5px;
 }
 body {
-  background: var(--bg-cover) no-repeat;
-  background-color:#00221F; /* to blend-in with background image */
+  background: url("../img/templater-main.jpg") no-repeat; 
+  background-color:#ddd; /* to blend-in with background image */
 }
 
 /* Upper Navigation Panel */
