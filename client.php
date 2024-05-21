@@ -122,11 +122,8 @@
               <?php if (isset($userID) && !empty($data['profile'])) { ?>
                 <?php foreach ($data['profile'] as $profile): ?>
                   <!-- Verify if the image is readable -->
-                  <?php $filePath = "img/avatars/".$profile['fileName'];
-                    if (!empty($profile['fileName'])) {
-                        echo 'File is readable.';
-                    } 
-                  ?>
+                  <?php $filePath = "img/avatars/".$profile['fileName']; ?>
+                  
                   <?php if (!empty($profile['fileName'])) { ?>
                     <label for="file-upload" class="custom-file-upload"><img src="img/avatars/<?= $profile['fileName']; ?>" alt=""></label>
                   <?php } else { ?><label for="file-upload" class="custom-file-upload"><img src="img/av-placehold.png" alt=""></label><?php } ?>

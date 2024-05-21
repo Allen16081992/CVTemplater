@@ -18,8 +18,7 @@
   --error-max-w:100%; --error-marg-b:10px; --error-marg-t:-5px;
 }
 body {
-  background: url("../img/templater-main.jpg") no-repeat; 
-  background-color:#ddd; /* to blend-in with background image */
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(13,66,144,1) 35%, rgba(0,212,255,1) 100%);
 }
 
 /* Upper Navigation Panel */
@@ -318,7 +317,7 @@ ul li .m-on { color: #ddd; }
   font-weight: normal;
   background:none;
   border: 1px solid var(--primary-color);
-  max-width:6.5rem; 
+  max-width:5rem; 
 }
 .window-body { padding:10px; }
 .window-body .error-uid { margin-top:-15px; }
@@ -545,7 +544,7 @@ input[type="file"] {
   }
   .m-sidebar ul li {
     flex: 1;
-    margin: 0 0.85rem; /* Adjust the margin as needed */
+    margin: 0 0.45rem; /* Adjust the margin as needed */
     text-align: center;
   }
 
@@ -594,6 +593,10 @@ input[type="file"] {
     margin-left:0;
     margin-right:0;
     margin-top:1rem; /* Reset the left margin for center alignment */
+  }
+  .custom-file-upload img {
+    height: 120px;
+    max-width: 120px;
   }
   #PDF, .Add, .Save, .Trash { max-width:10rem; }
   header .error-message, .success-message, .golden-message {
