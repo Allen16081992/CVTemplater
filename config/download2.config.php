@@ -70,7 +70,7 @@ class ResumePDF extends FPDF {
         // Resume title becomes Filename
         if (isset($this->data['resume'][0]['resumetitle'])) {
             $doc = htmlspecialchars($this->data['resume'][0]['resumetitle']); 
-            $this->SetTitle('My '.$doc);
+            $this->SetTitle('My '.$doc.' BT');
         }
         // Name and Contact
         if (isset($this->data['contact'][0])) {
@@ -140,7 +140,7 @@ class ResumePDF extends FPDF {
         $this->Image($imagePath, 10, 10, 30); // Adjust positioning and dimensions
 
         // Set Initials
-        $this->SetXY(13, 24); // Set the position for text
+        $this->SetXY(14, 24); // Set the position for text
         $this->SetFont('Arial', 'I', 14);
         $this->SetFontSize(41); // Set the font size to 16
         $this->SetTextColor(255,255,255); // Set font color to red (RGB values)

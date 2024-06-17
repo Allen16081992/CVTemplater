@@ -95,7 +95,7 @@ class ResumePDF extends FPDF {
         // Resume title becomes Filename
         if (isset($this->data['resume'][0]['resumetitle'])) {
             $doc = htmlspecialchars($this->data['resume'][0]['resumetitle']); 
-            $this->SetTitle('My '.$doc);
+            $this->SetTitle('My '.$doc.' DT');
         }
         // Name and Contact
         if (isset($this->data['contact'][0])) {

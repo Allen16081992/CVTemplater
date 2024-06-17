@@ -70,7 +70,7 @@ class ResumePDF extends FPDF {
         // Resume title becomes Filename
         if (isset($this->data['resume'][0]['resumetitle'])) {
             $doc = htmlspecialchars($this->data['resume'][0]['resumetitle']); 
-            $this->SetTitle('My '.$doc);
+            $this->SetTitle('My '.$doc.' CT');
         }
         // Name and Contact
         if (isset($this->data['contact'][0])) {
@@ -78,7 +78,7 @@ class ResumePDF extends FPDF {
             $surname = htmlspecialchars($this->data['contact'][0]['lastname']);
             $initials = substr($firstname, 0, 1) . substr($surname, 0, 1);
             $city = htmlspecialchars($this->data['contact'][0]['city']);
-            $nationality = htmlspecialchars($this->data['contact'][0]['nationality']);
+            //$nationality = htmlspecialchars($this->data['contact'][0]['nationality']);
             $phone = htmlspecialchars($this->data['contact'][0]['phone']);
             $email = htmlspecialchars($this->data['accounts'][0]['email']);
             $postal = htmlspecialchars($this->data['contact'][0]['postalcode']);
@@ -95,7 +95,7 @@ class ResumePDF extends FPDF {
             $workCompany = array_map('htmlspecialchars', $workCompany);
             $workFirstDate = array_map('htmlspecialchars', $workFirstDate);
             $workLastDate = array_map('htmlspecialchars', $workLastDate);
-            $workSummary = array_map('htmlspecialchars', $workSummary);
+            // $workSummary = array_map('htmlspecialchars', $workSummary);
         }
         // Education
         if (isset($this->data['education'])) {
@@ -158,7 +158,7 @@ class ResumePDF extends FPDF {
             $this->SetFontSize(38); // Set the font size to 41
             $this->SetTextColor(255,255,255); // Set font color to red (RGB values)
 
-            $this->Cell(19, 10, '', 0, 0, 'L'); // Add cell space
+            $this->Cell(20, 10, '', 0, 0, 'L'); // Add cell space
             $this->Cell(25, 10, $initials, 0, 0, '');
             $this->SetTextColor(0,0,0); // Set font color to red (RGB values)
         }
@@ -169,22 +169,15 @@ class ResumePDF extends FPDF {
         $this->Cell(25, 21, '', 0, 0, 'L'); // Add cell space
 
         $this->SetXY(90, 18); // Set the position for text
-        $this->Cell(0, 13, $firstname, 0, 1, 'L');
-        $this->Cell(65, 14, '', 0, 0, 'L'); // Add cell space
-        $this->SetXY(90, 32); // Set the position for text
-        $this->Cell(0, 13, $surname, 0, 1, '');
+        $this->Cell(0, 13, $firstname.' '.$surname, 0, 1, 'L');
+        $this->SetXY(10, 50); // Set the position for text
 
         // Set Resume Title
-        $this->SetFontSize(12); // Set the font size
-        $this->Cell(80, 10, '', 0, 0, 'L'); // Add cell space
-        $this->Cell(0, 10, $doc, 0, 0, 'L');
-
-        // Add a line break
-        $this->Ln(10);
+        // $this->SetFontSize(12); // Set the font size
+        // $this->Cell(80, 10, '', 0, 0, 'L'); // Add cell space
+        // $this->Cell(0, 10, $doc, 0, 0, 'L');
 
         //////////////////// Contact ///////////////////
-
-        // Set contact information
         $this->SetFont('Arial', '', 12);
         $this->SetFontSize(10); // Set the font size
         
@@ -194,15 +187,15 @@ class ResumePDF extends FPDF {
 
         $this->SetFont('Arial', '', 10);
         $this->Cell(9, 8, '', 0, 0, 'L'); // Add cell space for icon
-        $this->Image($mobile, 12, 64, 5); 
+        $this->Image($mobile, 12, 59, 5); 
         $this->Cell(56, 8, $phone, 0, 1, 'L'); 
 
         $this->Cell(9, 8, '', 0, 0, 'L'); // Add cell space for icon
-        $this->Image($envelope, 12, 72.5, 5);  
+        $this->Image($envelope, 12, 67.5, 5);  
         $this->Cell(56, 8, $email, 0, 1, 'L');
         
         $this->Cell(9, 8, '', 0, 0, 'L'); // Add cell space for icon
-        $this->Image($building, 12, 80.5, 5); 
+        $this->Image($building, 12, 75, 5); 
         $this->Cell(56, 8, $postal.', '.$city, 0, 1, 'L');
         $this->Ln(2);
 
@@ -214,8 +207,8 @@ class ResumePDF extends FPDF {
             // STUDY & COMPANY
             if (isset($eduTitles[0]) && isset($eduCompany[0])) {
                 $this->SetFont('Arial', 'B', 10);
-                $this->Cell(65, 6, $eduTitles[0], 0, 1, 'L');
-                $this->Cell(65, 6, $eduCompany[0], 0, 1, '');
+                $this->Cell(17, 6, $eduTitles[0], 0, 0, 'L');
+                $this->Cell(65, 6, $eduCompany[0], 0, 1, 'C');
             }
             // DATES
             if (isset($eduFirstDate[0]) && isset($eduLastDate[0])) {
@@ -230,8 +223,8 @@ class ResumePDF extends FPDF {
             // STUDY & COMPANY
             if (isset($eduTitles[1]) && isset($eduCompany[1])) {
                 $this->SetFont('Arial', 'B', 10);
-                $this->Cell(65, 6, $eduTitles[1], 0, 1, 'L');
-                $this->Cell(65, 6, $eduCompany[1], 0, 1, '');
+                $this->Cell(17, 6, $eduTitles[1], 0, 0, 'L');
+                $this->Cell(65, 6, $eduCompany[1], 0, 1, 'C');
             }
             // DATES
             if (isset($eduFirstDate[1]) && isset($eduLastDate[1])) {
@@ -246,8 +239,8 @@ class ResumePDF extends FPDF {
             // STUDY & COMPANY
             if (isset($eduTitles[2]) && isset($eduCompany[2])) {
                 $this->SetFont('Arial', 'B', 10);
-                $this->Cell(65, 6, $eduTitles[2], 0, 1, 'L');
-                $this->Cell(65, 6, $eduCompany[2], 0, 1, '');
+                $this->Cell(17, 6, $eduTitles[2], 0, 0, 'L');
+                $this->Cell(65, 6, $eduCompany[2], 0, 1, 'C');
             }
             // DATES
             if (isset($eduFirstDate[2]) && isset($eduLastDate[2])) {
@@ -262,8 +255,8 @@ class ResumePDF extends FPDF {
             // STUDY & COMPANY
             if (isset($eduTitles[3]) && isset($eduCompany[3])) {
                 $this->SetFont('Arial', 'B', 10);
-                $this->Cell(65, 6, $eduTitles[3], 0, 1, 'L');
-                $this->Cell(65, 6, $eduCompany[3], 0, 1, '');
+                $this->Cell(17, 6, $eduTitles[3], 0, 0, 'L');
+                $this->Cell(65, 6, $eduCompany[3], 0, 1, 'C');
             }
             // DATES
             if (isset($eduFirstDate[3]) && isset($eduLastDate[3])) {
@@ -278,8 +271,8 @@ class ResumePDF extends FPDF {
             // STUDY & COMPANY
             if (isset($eduTitles[4]) && isset($eduCompany[4])) {
                 $this->SetFont('Arial', 'B', 10);
-                $this->Cell(65, 6, $eduTitles[4], 0, 1, 'L');
-                $this->Cell(65, 6, $eduCompany[4], 0, 1, '');
+                $this->Cell(17, 6, $eduTitles[4], 0, 0, 'L');
+                $this->Cell(65, 6, $eduCompany[4], 0, 1, 'C');
             }
             // DATES
             if (isset($eduFirstDate[4]) && isset($eduLastDate[4])) {
@@ -294,8 +287,8 @@ class ResumePDF extends FPDF {
             // STUDY & COMPANY
             if (isset($eduTitles[5]) && isset($eduCompany[5])) {
                 $this->SetFont('Arial', 'B', 10);
-                $this->Cell(65, 6, $eduTitles[5], 0, 1, 'L');
-                $this->Cell(65, 6, $eduCompany[5], 0, 1, '');
+                $this->Cell(17, 6, $eduTitles[5], 0, 0, 'L');
+                $this->Cell(65, 6, $eduCompany[5], 0, 1, 'C');
             }
             // DATES
             if (isset($eduFirstDate[5]) && isset($eduLastDate[5])) {
@@ -308,44 +301,51 @@ class ResumePDF extends FPDF {
         }
 
         ////////////////////// HARD & SOFT SKILLS //////////////////////
-
         if (isset($this->data['techskill'][0]['techtitle']) || isset($this->data['techskill'][0]['language']) || isset($this->data['techskill'][0]['interest'])) {
 
             // Show values from array position specifically. Limit - 3 jobs.
             // Determine the maximum number of entries to display 
-            $maxEntries = max(count($techTitle), count($language), count($interest));
+            $maxEntries = max(count($techTitle), count($language), count($interest)); 
 
             $this->SetFont('Arial', 'B', 10);
-            $this->Cell(17, 8, 'Talen', 1, 0, 'C'); // Add cell title
-            $this->Cell(27, 8, 'Vaardigheden', 1, 0, 'C'); // Add cell title
-            $this->Cell(22, 8, 'Interesses', 1, 1, 'L'); // Add cell title           
+            $this->Cell(33, 8, 'Talen', 1, 0, 'C'); // Add cell title
+            $this->Cell(33, 8, 'Vaardigheden', 1, 1, 'C'); // Add cell title
 
             // Loop through the entries
             for ($i = 0; $i < $maxEntries; $i++) {
 
-                // SKILLS, LANGUAGES, INTERESTS
+                // SKILLS, LANGUAGES
                 $this->SetFont('Arial', '', 10);
                 $this->Cell(22, 5, isset($language[$i]) ? $language[$i] : '', 0, 0, 'L');
-                $this->Cell(22, 5, isset($techTitle[$i]) ? $techTitle[$i] : '', 0, 0, 'L');
-                $this->Cell(22, 5, isset($interest[$i]) ? $interest[$i] : '', 0, 1, 'L');
+                $this->Cell(12, 5, '', 0, 0, 'L');
+                $this->Cell(22, 5, isset($techTitle[$i]) ? $techTitle[$i] : '', 0, 1, 'L');
+            }
+
+            $this->Ln(2);
+            $this->SetFont('Arial', 'B', 10);
+            $this->Cell(66, 8, 'Interessen', 1, 1, 'C'); // Add cell title
+
+            // Loop through the entries
+            for ($i = 0; $i < $maxEntries; $i++) {
+
+                // INTERESTS
+                $this->SetFont('Arial', '', 10);
+                $this->Cell(0, 5, isset($interest[$i]) ? $interest[$i] : '', 0, 1, 'L');
             }
         }
 
-        //////////////////// Profile ///////////////////
-        
-        //////////////////////////// Side 2 ////////////////////////////
+        //////////////////////////// Main ////////////////////////////
         /////////////////////// WORK EXPERIENCE ////////////////////////
         $this->SetFont('Arial', '', 14);
-        $this->SetXY(80, 55); // Set the position for text
+        $this->SetXY(80, 50); // Set the position for text
         $this->Cell(0, 8, 'Werkervaring', 1, 1, 'C');
-
-        //$this->Ln(2);
+        $this->Ln(2);
 
         // Show values from array position specifically. Limit - 3 jobs.
         if (count($workTitles) >= 1) {
             // PROFESSION
             if (isset($workTitles[0])) {
-                $this->SetXY(80, 65); // Set the position for text
+                $this->SetX(80); // Set the position for text
                 $this->SetFont('Arial', 'B', 10);
                 $this->Cell(75, 8, $workTitles[0], 1, 0, 'L');
             }
@@ -360,21 +360,24 @@ class ResumePDF extends FPDF {
             
             // COMPANY & SUMMARY
             if (isset($workCompany[0]) && isset($workSummary[0])) {
-                $this->SetXY(80, 73); // Set the position for text
+                $this->SetX(80); // Set the position for text
                 $this->SetFont('Arial', 'B', 10);   
                 $this->Cell(0, 8, $workCompany[0], 1, 1, '');
 
                 if (!empty($workSummary[0])) {
-                    $this->SetXY(80, 81); // Set the position for text
+                    $this->SetX(80); // Set the position for text
                     $this->SetFont('Arial', '', 10);
-                    $this->MultiCell(0, 5, $workSummary[0], 1, 0, '');
+                    $this->MultiCell(0, 5, $workSummary[0], 1, 1, '');
+                    $this->Ln(5);
+                } else {
+                    $this->Ln(5);
                 }
             }        
         }
         if (count($workTitles) >= 2) {
             // PROFESSION
             if (isset($workTitles[1])) {
-                $this->SetXY(80, 99); // Set the position for text
+                $this->SetX(80); // Set the position for text
                 $this->SetFont('Arial', 'B', 10);
                 $this->Cell(75, 8, $workTitles[1], 1, 0, 'L');
             }
@@ -389,21 +392,24 @@ class ResumePDF extends FPDF {
             
             // COMPANY & SUMMARY
             if (isset($workCompany[1]) && isset($workSummary[1])) {
-                $this->SetXY(80, 107); // Set the position for text
+                $this->SetX(80); // Set the position for text
                 $this->SetFont('Arial', 'B', 10);   
                 $this->Cell(0, 8, $workCompany[1], 1, 1, '');
 
                 if (!empty($workSummary[1])) {
-                    $this->SetXY(80, 115); // Set the position for text
+                    $this->SetX(80); // Set the position for text
                     $this->SetFont('Arial', '', 10);
-                    $this->MultiCell(0, 5, $workSummary[1], 1, 0, '');
+                    $this->MultiCell(0, 5, $workSummary[1], 1, 1, '');
+                    $this->Ln(5);
+                } else {
+                    $this->Ln(5);
                 }
             } 
         }
         if (count($workTitles) >= 3) {
             // PROFESSION
             if (isset($workTitles[2])) {
-                $this->SetXY(80, 133); // Set the position for text
+                $this->SetX(80); // Set the position for text
                 $this->SetFont('Arial', 'B', 10);
                 $this->Cell(75, 8, $workTitles[2], 1, 0, 'L');
             }
@@ -418,21 +424,24 @@ class ResumePDF extends FPDF {
             
             // COMPANY & SUMMARY
             if (isset($workCompany[2]) && isset($workSummary[2])) {
-                $this->SetXY(80, 141); // Set the position for text
+                $this->SetX(80); // Set the position for text
                 $this->SetFont('Arial', 'B', 10);   
                 $this->Cell(0, 8, $workCompany[2], 1, 1, '');
 
                 if (!empty($workSummary[2])) {
-                    $this->SetXY(80, 149); // Set the position for text
+                    $this->SetX(80); // Set the position for text
                     $this->SetFont('Arial', '', 10);
                     $this->MultiCell(0, 5, $workSummary[2], 1, 0, '');
+                    $this->Ln(5);
+                }  else {
+                    $this->Ln(5);
                 }
             } 
         }
         if (count($workTitles) >= 4) {
             // PROFESSION
             if (isset($workTitles[3])) {
-                $this->SetXY(80, 167); // Set the position for text
+                $this->SetX(80); // Set the position for text
                 $this->SetFont('Arial', 'B', 10);
                 $this->Cell(75, 8, $workTitles[3], 1, 0, 'L');
             }
@@ -447,21 +456,24 @@ class ResumePDF extends FPDF {
             
             // COMPANY & SUMMARY
             if (isset($workCompany[3]) && isset($workSummary[3])) {
-                $this->SetXY(80, 175); // Set the position for text
+                $this->SetX(80); // Set the position for text
                 $this->SetFont('Arial', 'B', 10);   
                 $this->Cell(0, 8, $workCompany[3], 1, 1, '');
 
                 if (!empty($workSummary[3])) {
-                    $this->SetXY(80, 183); // Set the position for text
+                    $this->SetX(80); // Set the position for text
                     $this->SetFont('Arial', '', 10);
                     $this->MultiCell(0, 5, $workSummary[3], 1, 0, '');
+                    $this->Ln(5);
+                }  else {
+                    $this->Ln(5);
                 }
             } 
         }
         if (count($workTitles) >= 5) {
             // PROFESSION
             if (isset($workTitles[4])) {
-                $this->SetXY(80, 201); // Set the position for text
+                $this->SetX(80); // Set the position for text
                 $this->SetFont('Arial', 'B', 10);
                 $this->Cell(75, 8, $workTitles[4], 1, 0, 'L');
             }
@@ -476,21 +488,24 @@ class ResumePDF extends FPDF {
             
             // COMPANY & SUMMARY
             if (isset($workCompany[4]) && isset($workSummary[4])) {
-                $this->SetXY(80, 209); // Set the position for text
+                $this->SetX(80); // Set the position for text
                 $this->SetFont('Arial', 'B', 10);   
                 $this->Cell(0, 8, $workCompany[4], 1, 1, '');
 
                 if (!empty($workSummary[4])) {
-                    $this->SetXY(80, 217); // Set the position for text
+                    $this->SetX(80); // Set the position for text
                     $this->SetFont('Arial', '', 10);
                     $this->MultiCell(0, 5, $workSummary[4], 1, 0, '');
+                    $this->Ln(5);
+                }  else {
+                    $this->Ln(5);
                 }
             } 
         }
         if (count($workTitles) >= 6) {
             // PROFESSION
             if (isset($workTitles[5])) {
-                $this->SetXY(80, 235); // Set the position for text
+                $this->SetX(80); // Set the position for text
                 $this->SetFont('Arial', 'B', 10);
                 $this->Cell(75, 8, $workTitles[5], 1, 0, 'L');
             }
@@ -505,14 +520,17 @@ class ResumePDF extends FPDF {
             
             // COMPANY & SUMMARY
             if (isset($workCompany[5]) && isset($workSummary[5])) {
-                $this->SetXY(80, 243); // Set the position for text
+                $this->SetX(80); // Set the position for text
                 $this->SetFont('Arial', 'B', 10);   
                 $this->Cell(0, 8, $workCompany[5], 1, 1, '');
 
                 if (!empty($workSummary[5])) {
-                    $this->SetXY(80, 251); // Set the position for text
+                    $this->SetX(80); // Set the position for text
                     $this->SetFont('Arial', '', 10);
                     $this->MultiCell(0, 5, $workSummary[5], 1, 0, '');
+                    $this->Ln(5);
+                }  else {
+                    $this->Ln(5);
                 }
             } 
         }
