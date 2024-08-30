@@ -29,7 +29,7 @@
                 }
         
                 // Select contact record
-                $stmtC = $this->pdo->prepare('SELECT phone, firstname, lastname, birth, nationality, streetname, postalcode, city FROM contact WHERE userID = ?');
+                $stmtC = $this->pdo->prepare('SELECT phone, firstname, lastname, birth, country, streetname, postalcode, city FROM contact WHERE userID = ?');
                 $stmtC->execute([$userID]);
                 $contact = $stmtC->fetch(PDO::FETCH_ASSOC);
         

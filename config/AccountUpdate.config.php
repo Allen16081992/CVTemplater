@@ -22,7 +22,7 @@
         $street = $_POST['streetname'];
         $postal = $_POST['postalcode'];
         $city = $_POST['city'];
-        $country = $_POST['nationality'];
+        $country = $_POST['country'];
 
         $update = new UpdateAddress($street, $postal, $city, $country);
         $update->verifyAddress(); // Error handlers

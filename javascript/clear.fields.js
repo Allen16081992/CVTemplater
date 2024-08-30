@@ -19,7 +19,7 @@ document.querySelector('[name="clearAccount"]').addEventListener('click', functi
 
 // Clear address fields
 document.querySelector('[name="clearAddress"]').addEventListener('click', function(event) {
-  clearFields('address', 'streetname', 'postalcode', 'city', 'nationality');
+  clearFields('address', 'streetname', 'postalcode', 'city', 'country');
 });
 
 // Clear personal fields

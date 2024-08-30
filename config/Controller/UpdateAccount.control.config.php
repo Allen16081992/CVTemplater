@@ -68,7 +68,7 @@
                 $_SESSION['error'] = 'No city provided.';               
             } elseif(!$this->emptyCountry()) {
                 // No values given for contact information.
-                $_SESSION['error'] = 'No country or nationality provided.';                
+                $_SESSION['error'] = 'No country provided.';                
             } else {
                 $this->setAddress($this->street, $this->postal, $this->city, $this->country);
             }

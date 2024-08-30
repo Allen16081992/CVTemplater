@@ -41,7 +41,7 @@
             }
 
             // Insert contact information into the contact table
-            $stmtC = $this->connect()->prepare('INSERT INTO contact (phone, firstname, lastname, birth, nationality, streetname, postalcode, city, userID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);');
+            $stmtC = $this->connect()->prepare('INSERT INTO contact (phone, firstname, lastname, birth, country, streetname, postalcode, city, userID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);');
 
             if (!$stmtC->execute(array($phone, $firstname, $lastname, $birth, $country, $street, $postal, $city, $userID))) {
                 $stmtC = null;

@@ -112,8 +112,8 @@
               <input type="text" name="city" placeholder="City" value="<?=$contact['city'];?>">          
             </div> 
             <div class="left"> 
-              <label for="nationality">Nationality</label>
-              <input type="text" name="nationality" placeholder="Country or Nationality" value="<?=$contact['nationality'];?>">    
+              <label for="country">Country</label>
+              <input type="text" name="country" placeholder="Country" value="<?=$contact['country'];?>">    
             </div>
             <div class="left">   
               <button type="submit" name="saveBook">Save Changes</button>       

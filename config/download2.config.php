@@ -78,7 +78,7 @@ class ResumePDF extends FPDF {
             $surname = htmlspecialchars($this->data['contact'][0]['lastname']);
             $initials = substr($firstname, 0, 1) . substr($surname, 0, 1);
             $city = htmlspecialchars($this->data['contact'][0]['city']);
-            $nationality = htmlspecialchars($this->data['contact'][0]['nationality']);
+            $country = htmlspecialchars($this->data['contact'][0]['country']);
             $phone = htmlspecialchars($this->data['contact'][0]['phone']);
             $email = htmlspecialchars($this->data['accounts'][0]['email']); 
         }
@@ -171,7 +171,7 @@ class ResumePDF extends FPDF {
         $this->Ln(15);
 
         //$this->SetX($this->GetPageWidth() - 10); 
-        //$this->Cell(-5, 5, $nationality, 0, 1, 'R'); 
+        //$this->Cell(-5, 5, $country, 0, 1, 'R'); 
         //$this->Image($world, 195, 25, 5); 
         //$this->Ln(4); // add a line break
 

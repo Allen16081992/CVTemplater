@@ -48,8 +48,8 @@
             <span>Already have an account? <a href="index.php">Login</a></span>
           </div>
           <div class="tab">
-            <label for="nationality">Nationality</label>
-            <input type="text" name="nationality" placeholder="Nationality">
+            <label for="country">Country</label>
+            <input type="text" name="country" placeholder="country">
             <label for="birthday">Date of Birth</label>
             <select name="day">
                 <option selected>--</option>

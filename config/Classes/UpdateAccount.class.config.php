@@ -33,7 +33,7 @@
     class Address extends Database {
         protected function setAddress($street, $postal, $city, $country) {
             if(isset($_SESSION['user_id'])) {
-                $stmt = $this->connect()->prepare("UPDATE contact SET streetname = ?, postalcode = ?, city = ?, nationality = ? WHERE userID = ?;");  
+                $stmt = $this->connect()->prepare("UPDATE contact SET streetname = ?, postalcode = ?, city = ?, country = ? WHERE userID = ?;");  
 
                 // If this fails, kick back to homepage.
                 if(!$stmt->execute(array($street, $postal, $city, $country, $_SESSION['user_id']))) {

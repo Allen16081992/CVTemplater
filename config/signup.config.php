@@ -6,7 +6,7 @@
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
         // Absorb data in the second step
-        $country = $_POST['nationality'];
+        $country = $_POST['country'];
         $birth = $_POST['day'].'/'.$_POST['month'].'/'.$_POST['year'];
         // Absorb data in the third step
         $phone = $_POST['phone'];

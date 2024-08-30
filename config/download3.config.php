@@ -78,7 +78,7 @@ class ResumePDF extends FPDF {
             $surname = htmlspecialchars($this->data['contact'][0]['lastname']);
             $initials = substr($firstname, 0, 1) . substr($surname, 0, 1);
             $city = htmlspecialchars($this->data['contact'][0]['city']);
-            //$nationality = htmlspecialchars($this->data['contact'][0]['nationality']);
+            //$country = htmlspecialchars($this->data['contact'][0]['country']);
             $phone = htmlspecialchars($this->data['contact'][0]['phone']);
             $email = htmlspecialchars($this->data['accounts'][0]['email']);
             $postal = htmlspecialchars($this->data['contact'][0]['postalcode']);

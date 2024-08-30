@@ -43,7 +43,7 @@
                 $_SESSION['error'] = 'No firstname or lastname provided.';
             } elseif(!$this->emptyCountry()) {
                 // No country information provided.
-                $_SESSION['error'] = 'No country or nationality provided.';
+                $_SESSION['error'] = 'No country provided.';
             } elseif(!$this->emptyBirth()) {
                 // No country information provided.
                 $_SESSION['error'] = 'No date of birth provided.';

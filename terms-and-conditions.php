@@ -40,7 +40,7 @@
              If you are under 14 years (or not old enough to give your legal consent to use our service at your location), 
              you must first have obtained the consent of your parents or legal guardian to sign up for an Account and use the Service.</p><br>
           <strong>Personal Information</strong>
-          <p>We require information such as your name, nationality, date of birth, phone number, street, zip code, city and or email address.
+          <p>We require information such as your name, country, date of birth, phone number, street, zip code, city and or email address.
              We collect, store and process this information to enable our Service to you.</p>
           <p>Your information will be collected and stored until you decide to delete your Account, in which case, everything you have provided us with so far will be erased from our servers. This includes all details related to your account, personal information and any resume you may have created so far.</p><br>
           <strong>Data Processing</strong>

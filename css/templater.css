@@ -495,8 +495,8 @@ input[type="file"] {
 @media (orientation: landscape) {
   body { background-size: 100%; }
   .logo {
-      height:6rem;
-      width:6rem;
+      height:7rem;
+      width:auto;
   }
   #action { left:34%; }
   .window { width: 500px; }

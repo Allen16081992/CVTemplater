@@ -55,7 +55,7 @@ CREATE TABLE `contact` (
   `firstname` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
   `birth` varchar(20) DEFAULT NULL,
-  `nationality` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
   `streetname` varchar(255) DEFAULT NULL,
   `postalcode` varchar(20) DEFAULT NULL,
   `city` varchar(20) DEFAULT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE `contact` (
 -- Gegevens worden geëxporteerd voor tabel `contact`
 --
 
-INSERT INTO `contact` (`contactID`, `phone`, `firstname`, `lastname`, `birth`, `nationality`, `streetname`, `postalcode`, `city`, `userID`) VALUES
+INSERT INTO `contact` (`contactID`, `phone`, `firstname`, `lastname`, `birth`, `country`, `streetname`, `postalcode`, `city`, `userID`) VALUES
 (1, '06311224455', 'test', 'test', '07/06/2023', 'dutch', 'sickstreet 1', '100020vv', 'delft', 1),
 (2, '+310696588745', 'Hallo', 'Hallo', '16/4/1989', 'Japanese', 'Haunted Av. 2', '30418500', 'Tokyo', 2);
 
