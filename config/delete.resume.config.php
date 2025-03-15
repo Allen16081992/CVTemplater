@@ -82,9 +82,9 @@
             $stmtEdu = null;
           }
           
-          // Erase resume related techskill data if there is any
-          if ($this->tableHasData('techskill', $resID, $userID)) {
-            $stmtTech = $pdo->prepare('DELETE FROM `techskill` WHERE resumeID = :resID AND userID = :userID');
+          // Erase resume related technical data if there is any
+          if ($this->tableHasData('technical', $resID, $userID)) {
+            $stmtTech = $pdo->prepare('DELETE FROM `technical` WHERE resumeID = :resID AND userID = :userID');
             $stmtTech->bindParam(":resID", $resID['resumeID']);
             $stmtTech->bindParam(":userID", $userID);
             $stmtTech->execute();

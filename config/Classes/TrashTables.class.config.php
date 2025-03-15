@@ -87,9 +87,9 @@
 
             } elseif(isset($_POST['trashSkill'])) {
                 // Check if we received any row id(s)
-                if (isset($_POST['techID']) && $this->tableHasData('techskill')) {
+                if (isset($_POST['techID']) && $this->tableHasData('technical')) {
                     // Instantiate the Trashing of data. Add row, table name and column name.
-                    $this->tableTrasher('techskill', 'techID', $_POST['techID']);
+                    $this->tableTrasher('technical', 'techID', $_POST['techID']);
                 }
 
                 // message by sessions instead of URL parsing.

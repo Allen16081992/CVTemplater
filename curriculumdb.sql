@@ -170,10 +170,10 @@ INSERT INTO `resume` (`resumeID`, `resumetitle`, `userID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `techskill`
+-- Tabelstructuur voor tabel `technical`
 --
 
-CREATE TABLE `techskill` (
+CREATE TABLE `technical` (
   `techID` int(11) NOT NULL,
   `techtitle` varchar(20) DEFAULT NULL,
   `language` varchar(20) DEFAULT NULL,
@@ -240,9 +240,9 @@ ALTER TABLE `resume`
   ADD KEY `fk_res_user` (`userID`);
 
 --
--- Indexen voor tabel `techskill`
+-- Indexen voor tabel `technical`
 --
-ALTER TABLE `techskill`
+ALTER TABLE `technical`
   ADD PRIMARY KEY (`techID`),
   ADD KEY `fk_tech_res` (`resumeID`) USING BTREE,
   ADD KEY `fk_tech_user` (`userID`) USING BTREE;
@@ -294,9 +294,9 @@ ALTER TABLE `resume`
   MODIFY `resumeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT voor een tabel `techskill`
+-- AUTO_INCREMENT voor een tabel `technical`
 --
-ALTER TABLE `techskill`
+ALTER TABLE `technical`
   MODIFY `techID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --

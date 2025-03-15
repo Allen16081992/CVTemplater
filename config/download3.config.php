@@ -20,7 +20,7 @@ class ResumePDF extends FPDF {
 
     public function fetchData($resumeID, $userID) {
         $result = array();
-        $tables = array('resume', 'accounts', 'contact', 'profile', 'experience', 'education', 'techskill', 'motivation');
+        $tables = array('resume', 'accounts', 'contact', 'profile', 'experience', 'education', 'technical', 'motivation');
 
         // Loop through each table and fetch data
         foreach ($tables as $table) {
@@ -112,10 +112,10 @@ class ResumePDF extends FPDF {
             $eduSummary = array_map('htmlspecialchars', $eduSummary);
         }
         // Skills
-        if (isset($this->data['techskill'])) {
-            $techTitle = array_column($this->data['techskill'], 'techtitle');
-            $language = array_column($this->data['techskill'], 'language');
-            $interest = array_column($this->data['techskill'], 'interest');
+        if (isset($this->data['technical'])) {
+            $techTitle = array_column($this->data['technical'], 'techtitle');
+            $language = array_column($this->data['technical'], 'language');
+            $interest = array_column($this->data['technical'], 'interest');
             // Sanitize
             $techTitle = array_map('htmlspecialchars', $techTitle);
             $language = array_map('htmlspecialchars', $language);
@@ -301,7 +301,7 @@ class ResumePDF extends FPDF {
         }
 
         ////////////////////// HARD & SOFT SKILLS //////////////////////
-        if (isset($this->data['techskill'][0]['techtitle']) || isset($this->data['techskill'][0]['language']) || isset($this->data['techskill'][0]['interest'])) {
+        if (isset($this->data['technical'][0]['techtitle']) || isset($this->data['technical'][0]['language']) || isset($this->data['technical'][0]['interest'])) {
 
             // Show values from array position specifically. Limit - 3 jobs.
             // Determine the maximum number of entries to display 

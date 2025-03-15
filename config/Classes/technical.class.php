@@ -38,7 +38,7 @@ class Technicals extends Database {
         // Construct the SQL query based on the fields and values
         $fieldsStr = implode(", ", $fields);
         $valuesStr = implode(", ", array_fill(0, count($values), "?"));
-        $sql = "INSERT INTO techskill ($fieldsStr, resumeID, userID) VALUES ($valuesStr, ?, ?)";
+        $sql = "INSERT INTO technical ($fieldsStr, resumeID, userID) VALUES ($valuesStr, ?, ?)";
     
         // Prepare the SQL statement
         $stmt = $this->connect()->prepare($sql);
@@ -79,7 +79,7 @@ class Technicals extends Database {
     
         // Construct the SQL query based on the updates
         $updatesStr = implode(", ", $updates);
-        $sql = "UPDATE techskill SET $updatesStr WHERE resumeID = ? AND userID = ?";
+        $sql = "UPDATE technical SET $updatesStr WHERE resumeID = ? AND userID = ?";
     
         // Add resumeID and userID to the parameters array
         $params[] = $this->resumeID;

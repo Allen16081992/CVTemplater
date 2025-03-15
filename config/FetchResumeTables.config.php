@@ -17,9 +17,9 @@
             $data = array();
 
             // Fetch data from the 'technical' table
-            $stmt = $this->pdo->prepare('SELECT * FROM `techskill` WHERE resumeID = ? AND userID = ?');
+            $stmt = $this->pdo->prepare('SELECT * FROM `technical` WHERE resumeID = ? AND userID = ?');
             $stmt->execute([$resumeID, $userID]);
-            $data['techskill'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $data['technical'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             // Fetch data from the 'profile' table
             $stmt = $this->pdo->prepare('SELECT * FROM `profile` WHERE resumeID = ? AND userID = ?');

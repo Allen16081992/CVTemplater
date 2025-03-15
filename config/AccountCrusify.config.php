@@ -23,7 +23,7 @@
                     $this->deleteDataIfExists('contact', 'userID');
                     $this->deleteDataIfExists('experience', 'userID');
                     $this->deleteDataIfExists('education', 'userID');
-                    $this->deleteDataIfExists('techskill', 'userID');
+                    $this->deleteDataIfExists('technical', 'userID');
                     //$this->deleteDataIfExists('languages', 'userID');
                     //$this->deleteDataIfExists('interests', 'userID');
                     $this->deleteDataIfExists('motivation', 'userID');
